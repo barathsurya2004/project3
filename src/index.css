@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'Filson Pro Regular';
-  src: url('../public/fonts/Filson/FILSONPROREGULAR.OTF');
+  src: url('/fonts/Filson/FILSONPROREGULAR.OTF');
 
 }
 @font-face {
   font-family: 'TTtravels Next Bold';
-  src: url('../public/fonts/TTtravels/TTTRAVELSNEXTBOLD.OTF');
+  src: url('/fonts/TTtravels/TTTRAVELSNEXTBOLD.OTF');
 
 }
 @font-face {
   font-family: 'TTtravels Next Demibold Italic';
-  src: url('../public/fonts/TTtravels/TTTRAVELSNEXTDBOLDI.OTF');
+  src: url('/fonts/TTtravels/TTTRAVELSNEXTDBOLDI.OTF');
 
 }
 @font-face {
   font-family: 'TTtravels Next Demibold';
-  src: url("../public/fonts/TTtravels/TTTRAVELSNEXTDBOLD.OTF");
+  src: url("/fonts/TTtravels/TTTRAVELSNEXTDBOLD.OTF");
 }
 
 :root {
