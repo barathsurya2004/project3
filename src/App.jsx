@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import CircularAnimation from "./components/CircularAnimation";
+import CircularText from "./components/CircularText";
+import Hero from "./components/Hero";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="loading-helper">
+      <Hero />
+      <CircularAnimation
+        words={[
+          "Is food the same for all",
+          "Is food only for the body",
+          "Do food have habits",
+          "Is food geo-taggeed",
+          "Does food influence life",
+          "Does food have mood",
+          "Whats a meal and a feast",
+          "What is good food for you",
+          "Where is your food from",
+          "Does food have history",
+        ]}
+      />
+      <CircularText
+        texts={[
+          "Is food the same for all",
+          "Is food only for the body",
+          "Do food have habits",
+          "Is food geo-taggeed",
+          "Does food influence life",
+          "Does food have mood",
+          "Whats a meal and a feast",
+          "What is good food for you",
+          "Where is your food from",
+          "Does food have history",
+        ]}
+        radius={725}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
