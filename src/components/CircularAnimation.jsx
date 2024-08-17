@@ -36,7 +36,7 @@ const CircularAnimation = ({ words }) => {
             end: "center center",
             toggleActions: "play none none reverse",
           },
-          duration: 0.001,
+          duration: 0.0001,
           immediateRender: false,
         }
       );
@@ -49,7 +49,7 @@ const CircularAnimation = ({ words }) => {
           end: "center center",
           toggleActions: "play none none reverse",
         },
-        duration: 0.001,
+        duration: 0.0001,
       });
     });
     gsap.to(".text-circle", {

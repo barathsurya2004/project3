@@ -108,41 +108,41 @@ const CircularText = ({ texts, radius }) => {
       }
     );
 
-    // gsap.to("#drag", {
-    //   scrollTrigger: {
-    //     trigger: ".wheel-burst",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: 0.05,
-    //     onEnter: () => {
-    //       setIndVisible(null);
-    //       setAlphaMaskVisible(true);
-    //       const dragWheel = document.getElementById("drag");
-    //       dragWheel.style.pointerEvents = "none";
-    //     },
-    //     onLeaveBack: () => {
-    //       const dragWheel = document.getElementById("drag");
-    //       dragWheel.style.pointerEvents = "auto";
-    //       setZIndex(800);
-    //       const rotation = gsap.getProperty("#drag", "rotation");
-    //       const ind = Math.floor(
-    //         (30 - ((((rotation - (rotation % 12)) % 360) + 360) % 360) / 12) %
-    //           30
-    //       );
-    //       setIndVisible(ind);
-    //       setAlphaMaskVisible(false);
-    //     },
+    gsap.to("#drag", {
+      scrollTrigger: {
+        trigger: ".wheel-burst",
+        start: "top bottom",
+        end: "top top",
+        scrub: 0.05,
+        onEnter: () => {
+          setIndVisible(null);
+          setAlphaMaskVisible(true);
+          const dragWheel = document.getElementById("drag");
+          dragWheel.style.pointerEvents = "none";
+        },
+        onLeaveBack: () => {
+          const dragWheel = document.getElementById("drag");
+          dragWheel.style.pointerEvents = "auto";
+          setZIndex(800);
+          const rotation = gsap.getProperty("#drag", "rotation");
+          const ind = Math.floor(
+            (30 - ((((rotation - (rotation % 12)) % 360) + 360) % 360) / 12) %
+              30
+          );
+          setIndVisible(ind);
+          setAlphaMaskVisible(false);
+        },
 
-    //     onLeave: () => {
-    //       setZIndex(0);
-    //     },
-    //     onUpdate: (progress) => {
-    //       setChange(progress.progress);
-    //     },
-    //   },
-    //   ease: "power1.in",
-    //   onComplete: () => {},
-    // });
+        onLeave: () => {
+          setZIndex(0);
+        },
+        onUpdate: (progress) => {
+          setChange(progress.progress);
+        },
+      },
+      ease: "power1.in",
+      onComplete: () => {},
+    });
   });
   return (
     <>
@@ -209,6 +209,20 @@ const CircularText = ({ texts, radius }) => {
           </div>
         </div>
       </div>
+      <div
+        className="dragging-space"
+        style={{
+          width: "100%",
+          height: "50vh",
+        }}
+      ></div>
+      <div
+        className="wheel-burst"
+        style={{
+          width: "100%",
+          height: "100vh",
+        }}
+      ></div>
     </>
   );
 };

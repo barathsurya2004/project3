@@ -1,7 +1,9 @@
 import "./App.css";
 import CircularAnimation from "./components/CircularAnimation";
 import CircularText from "./components/CircularText";
+import FoodIs from "./components/FoodIs";
 import Hero from "./components/Hero";
+import Question from "./components/Question";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
         ]}
         radius={725}
       />
+      <Question />
+      <FoodIs />
     </div>
   );
 }
