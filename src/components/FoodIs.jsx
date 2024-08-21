@@ -169,6 +169,40 @@ const FoodIs = () => {
         ease: "none",
       }
     );
+    gsap.fromTo(
+      ".card-content",
+      {
+        bottom: 0,
+      },
+      {
+        bottom: "15vh",
+        scrollTrigger: {
+          trigger: ".culture-definition-trigger",
+          start: "top 60%",
+          end: "top top",
+          scrub: true,
+        },
+        immediateRender: false,
+        ease: "none",
+      }
+    );
+    gsap.fromTo(
+      ".culture",
+      {
+        top: "50vh",
+      },
+      {
+        top: "35vh",
+        scrollTrigger: {
+          trigger: ".culture-definition-trigger",
+          start: "top 60%",
+          end: "top top",
+          scrub: true,
+        },
+        immediateRender: false,
+        ease: "none",
+      }
+    );
   });
   return (
     <>
