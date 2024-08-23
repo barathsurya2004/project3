@@ -43,6 +43,25 @@ const CultureDef = () => {
         ease: "none",
       }
     );
+    gsap.fromTo(
+      ".culture-definition",
+      {
+        top: "5vh",
+      },
+      {
+        top: "-95vh",
+        scrollTrigger: {
+          trigger: ".cult-reading",
+          start: "top bottom",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          scrub: 0.1,
+          // markers: true,
+        },
+        immediateRender: false,
+        ease: "none",
+      }
+    );
   });
   return (
     <>
@@ -51,6 +70,13 @@ const CultureDef = () => {
         style={{
           width: "100%",
           height: "100vh",
+        }}
+      ></div>
+      <div
+        className="cult-reading"
+        style={{
+          width: "100%",
+          height: "50vh",
         }}
       ></div>
       <div

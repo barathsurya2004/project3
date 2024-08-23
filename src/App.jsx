@@ -1,6 +1,7 @@
 import "./App.css";
 import CircularAnimation from "./components/CircularAnimation";
 import CircularText from "./components/CircularText";
+import Cuisines from "./components/Cuisines";
 import CultureDef from "./components/CultureDef";
 import FoodIs from "./components/FoodIs";
 import Hero from "./components/Hero";
@@ -42,6 +43,7 @@ function App() {
       <Question />
       <FoodIs />
       <CultureDef />
+      <Cuisines />
     </div>
   );
 }

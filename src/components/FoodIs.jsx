@@ -203,6 +203,40 @@ const FoodIs = () => {
         ease: "none",
       }
     );
+    gsap.fromTo(
+      ".culture",
+      {
+        top: "35vh",
+      },
+      {
+        top: "-65vh",
+        scrollTrigger: {
+          trigger: ".cult-reading",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+        },
+        immediateRender: false,
+        ease: "none",
+      }
+    );
+    gsap.fromTo(
+      ".card-content",
+      {
+        bottom: "15vh",
+      },
+      {
+        bottom: "115vh",
+        scrollTrigger: {
+          trigger: ".cult-reading",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+        },
+        immediateRender: false,
+        ease: "none",
+      }
+    );
   });
   return (
     <>
@@ -248,6 +282,7 @@ const FoodIs = () => {
           height: "100vh",
         }}
       ></div>
+
       <div className="card-trigger">
         <div className="card-content">
           <h1
