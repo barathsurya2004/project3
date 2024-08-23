@@ -104,6 +104,24 @@ const Cuisines = () => {
         ease: "none",
       }
     );
+    gsap.fromTo(
+      ".cuisines-of-TN",
+      {
+        top: "0vh",
+      },
+      {
+        top: "-100vh",
+        scrollTrigger: {
+          trigger: ".cuisines-of-TN-trigger",
+          start: "bottom bottom",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+          scrub: 0.1,
+        },
+        immediateRender: false,
+        ease: "none",
+      }
+    );
   });
   return (
     <>

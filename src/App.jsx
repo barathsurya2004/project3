@@ -6,6 +6,7 @@ import CultureDef from "./components/CultureDef";
 import FoodIs from "./components/FoodIs";
 import Hero from "./components/Hero";
 import Question from "./components/Question";
+import YetSoUnique from "./components/YetSoUnique";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
       <FoodIs />
       <CultureDef />
       <Cuisines />
+      <YetSoUnique />
     </div>
   );
 }
