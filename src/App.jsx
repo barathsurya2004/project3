@@ -1,11 +1,17 @@
 import "./App.css";
+import Characteristics from "./components/Characteristics";
 import CircularAnimation from "./components/CircularAnimation";
 import CircularText from "./components/CircularText";
 import Cuisines from "./components/Cuisines";
 import CultureDef from "./components/CultureDef";
 import FoodIs from "./components/FoodIs";
 import Hero from "./components/Hero";
+import Ingredients from "./components/Ingredients";
+import Procedure from "./components/Procedure";
 import Question from "./components/Question";
+import SharePage from "./components/SharePage";
+import Slider from "./components/Slider";
+import ThereIsMore from "./components/ThereIsMore";
 import YetSoUnique from "./components/YetSoUnique";
 
 function App() {
@@ -46,6 +52,12 @@ function App() {
       <CultureDef />
       <Cuisines />
       <YetSoUnique />
+      <Slider />
+      <ThereIsMore />
+      <Ingredients />
+      <Procedure />
+      <Characteristics />
+      <SharePage />
     </div>
   );
 }
