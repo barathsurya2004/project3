@@ -8,15 +8,15 @@ import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 const SharePage = () => {
   useGSAP(() => {
-    // gsap.to(".sharing-page", {
-    //   opacity: 0,
-    //   duration: 0.2,
-    //   scrollTrigger: {
-    //     trigger: ".voting-helper-page",
-    //     start: "top bottom",
-    //     toggleActions: "play none none reverse",
-    //   },
-    // });
+    gsap.to(".sharing-page", {
+      opacity: 0,
+      duration: 0.2,
+      scrollTrigger: {
+        trigger: ".face-reacting-page-helper",
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      },
+    });
   });
   return (
     <div

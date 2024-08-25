@@ -4,6 +4,8 @@ import CircularAnimation from "./components/CircularAnimation";
 import CircularText from "./components/CircularText";
 import Cuisines from "./components/Cuisines";
 import CultureDef from "./components/CultureDef";
+import EndingPage from "./components/EndingPage";
+import FaceReact from "./components/FaceReact";
 import FoodIs from "./components/FoodIs";
 import Hero from "./components/Hero";
 import Ingredients from "./components/Ingredients";
@@ -58,6 +60,8 @@ function App() {
       <Procedure />
       <Characteristics />
       <SharePage />
+      <FaceReact />
+      <EndingPage />
     </div>
   );
 }
