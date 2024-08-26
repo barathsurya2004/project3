@@ -234,8 +234,6 @@ const EndingPage = () => {
               marginTop: "0.67em",
               marginBottom: "0.67em",
               zIndex: 510,
-              marginTop: "0.67em",
-              marginBottom: "0.67em",
             }}
             onClick={() => {
               setMode("Gallery");

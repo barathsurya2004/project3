@@ -53,7 +53,7 @@ function App() {
       <FoodIs />
       <CultureDef />
       <Cuisines />
-      <YetSoUnique />
+      {/* <YetSoUnique /> */}
       <Slider />
       <ThereIsMore />
       <Ingredients />

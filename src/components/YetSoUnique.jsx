@@ -78,7 +78,7 @@ const YetSoUnique = () => {
         top: "-62%",
         scrollTrigger: {
           trigger: ".yet-so-unique-content-trigger",
-          start: "bottom bottom",
+          start: "bottom 98%",
           end: "bottom top",
           toggleActions: "play none none reverse",
           scrub: 0.1,

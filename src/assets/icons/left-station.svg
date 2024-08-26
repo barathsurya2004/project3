@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960.45 3000"
+  preserveAspectRatio="none"
+>
+  <defs>
+    <clipPath id="clip-right-half">
+      <!-- This rectangle covers the right half of the SVG -->
+      <rect x="480.225" y="0" width="480.225" height="3000" />
+    </clipPath>
+    <filter id="shadow" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#bb8be8" flood-opacity="0.09"></feFlood>
+      <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+      <feMorphology in="mask" result="dilated" operator="dilate" radius="209"></feMorphology>
+      <feGaussianBlur in="dilated" result="blurred" stdDeviation="100"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blurred"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Original path without filter -->
+  <path fill="none" stroke="#bb8be8" stroke-width="10" d="M480.225,0 L480.225,3392.025" />
+  <!-- Duplicate path with filter and clipped to the right side -->
+  <path fill="none" stroke="#bb8be8" stroke-width="10" d="M480.225,0 L480.225,3392.025"
+    filter="url(#shadow)" clip-path="url(#clip-right-half)" />
+</svg>
