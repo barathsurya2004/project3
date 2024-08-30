@@ -14,11 +14,13 @@ import Question from "./components/Question";
 import SharePage from "./components/SharePage";
 import Slider from "./components/Slider";
 import ThereIsMore from "./components/ThereIsMore";
+import ThreeJsCanvas from "./components/ThreeJsCanvas";
 import YetSoUnique from "./components/YetSoUnique";
 
 function App() {
   return (
     <div className="loading-helper">
+      <ThreeJsCanvas />
       <Hero />
       <CircularAnimation
         words={[

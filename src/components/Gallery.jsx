@@ -41,16 +41,18 @@ const Gallery = () => {
       setTimeout(() => {
         const ele = document.querySelector(".photos-grid-container");
         const view = document.querySelector(".current-selection");
-        ele.style.gridTemplateColumns = "repeat(4, 1fr)";
-        ele.style.width = "100%";
-        view.style.width = "0";
-        view.style.paddingRight = "0";
-        setIndexSelected(null);
-        gsap.set(prevIndexRef.current, {
-          opacity: 1,
-        });
-        prevIndexRef.current = undefined;
-        setOpened(false);
+        if (ele) {
+          ele.style.gridTemplateColumns = "repeat(4, 1fr)";
+          ele.style.width = "100%";
+          view.style.width = "0";
+          view.style.paddingRight = "0";
+          setIndexSelected(null);
+          gsap.set(prevIndexRef.current, {
+            opacity: 1,
+          });
+          prevIndexRef.current = undefined;
+          setOpened(false);
+        }
       }, 500);
     }
   }, [mode]);
