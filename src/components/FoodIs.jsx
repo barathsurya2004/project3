@@ -1,9 +1,10 @@
 import "./FoodIs.css";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollToPlugin);
 const FoodIs = () => {
   useGSAP(() => {
     gsap.fromTo(
@@ -31,11 +32,12 @@ const FoodIs = () => {
       {
         x: -200,
         opacity: 0,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-art",
           start: "top bottom",
           end: "top 90%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
       }
@@ -49,11 +51,12 @@ const FoodIs = () => {
       {
         x: 0,
         opacity: 1,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-art",
           start: "top bottom",
           end: "top 80%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
       }
@@ -67,11 +70,12 @@ const FoodIs = () => {
       {
         x: -200,
         opacity: 0,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-adventure",
           start: "top bottom",
           end: "top 90%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
         immediateRender: false,
@@ -86,11 +90,12 @@ const FoodIs = () => {
       {
         x: 0,
         opacity: 1,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-adventure",
           start: "top bottom",
           end: "top 80%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
       }
@@ -104,11 +109,12 @@ const FoodIs = () => {
       {
         x: -200,
         opacity: 0,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-beyond-time",
           start: "top bottom",
           end: "top 90%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
         immediateRender: false,
@@ -123,11 +129,12 @@ const FoodIs = () => {
       {
         x: 0,
         opacity: 1,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-beyond-time",
           start: "top bottom",
           end: "top 80%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
       }
@@ -141,11 +148,12 @@ const FoodIs = () => {
       {
         x: -200,
         opacity: 0,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-culture",
           start: "top bottom",
           end: "top 90%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
         immediateRender: false,
@@ -160,11 +168,12 @@ const FoodIs = () => {
       {
         x: 0,
         opacity: 1,
+        duration: 0.5,
         scrollTrigger: {
           trigger: ".food-is-culture",
           start: "top bottom",
           end: "top 80%",
-          scrub: true,
+          toggleActions: "play none none reverse",
         },
         ease: "none",
       }

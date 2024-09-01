@@ -8,60 +8,208 @@ import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useFrame } from "@react-three/fiber";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger, CustomEase } from "gsap/all";
+gsap.registerPlugin(CustomEase);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 export function ArtModel(props) {
   const { nodes, materials } = useGLTF("/Models/art.glb");
   const ref = React.useRef();
+  const changeRef = React.useRef();
   const [active, setActive] = React.useState(false);
   useGSAP(() => {
-    gsap.fromTo(
-      ref.current.scale,
-      {
-        x: 0,
-        y: 0,
-        z: 0,
-      },
-      {
-        x: 0.6,
-        y: 0.6,
-        z: 0.6,
-        duration: 0.0001,
-        scrollTrigger: {
-          trigger: ".food-is-art",
-          start: "top bottom",
-          end: "top top",
-          toggleActions: "play none none reverse",
-          onToggle: (self) => {
-            setActive(self.isActive);
-          },
-          // markers: true,
+    gsap.to(ref.current, {
+      scrollTrigger: {
+        trigger: ".food-is-art",
+        start: "top bottom",
+        end: "top top",
+        toggleActions: "play none none reverse",
+        onToggle: (self) => {
+          setActive(self.isActive);
         },
-      }
-    );
-    gsap.fromTo(
-      ref.current.scale,
-      {
-        x: 0.6,
-        y: 0.6,
-        z: 0.6,
-      },
-      {
-        x: 0,
-        y: 0,
-        z: 0,
-        duration: 0.0001,
-        scrollTrigger: {
-          trigger: ".food-is-art",
-          start: "top top",
-          end: "top -100%",
-          toggleActions: "play none none reverse",
-          // markers: true,
+        onEnter: () => {
+          const appeartl = gsap.timeline({});
+          appeartl
+            .fromTo(
+              changeRef.current.rotation,
+              {
+                y: 0,
+              },
+              {
+                delay: 0.75,
+                y: 8 * Math.PI,
+                duration: 1,
+                ease: "expo.out",
+              }
+            )
+            .fromTo(
+              ref.current.scale,
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+              },
+              {
+                x: 0.6,
+                y: 0.6,
+                z: 0.6,
+                duration: 0.0001,
+                // immediateRender: false,
+              },
+              "-=1"
+            );
         },
-        immediateRender: false,
-      }
-    );
+        onLeaveBack: () => {
+          const appeartl = gsap.timeline({});
+          appeartl
+            .fromTo(
+              changeRef.current.rotation,
+              {
+                y: 0 * Math.PI,
+              },
+              {
+                y: 10 * Math.PI,
+                duration: 1,
+                ease: "expo.in",
+              }
+            )
+            .fromTo(
+              ref.current.scale,
+              {
+                x: 0.6,
+                y: 0.6,
+                z: 0.6,
+              },
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+                duration: 0.0001,
+                // immediateRender: false,
+              },
+              "-=0.25"
+            );
+        },
+        onLeave: () => {
+          const leavetl = gsap.timeline({});
+          leavetl
+            .fromTo(
+              changeRef.current.rotation,
+              {
+                y: 0,
+              },
+              {
+                y: 8 * Math.PI,
+                duration: 1,
+                ease: "expo.in",
+              }
+            )
+            .fromTo(
+              ref.current.scale,
+              {
+                x: 0.6,
+                y: 0.6,
+                z: 0.6,
+              },
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+                duration: 0.0001,
+              }
+            );
+        },
+        onEnterBack: () => {
+          const appeartl = gsap.timeline({});
+          appeartl
+            .fromTo(
+              changeRef.current.rotation,
+              {
+                y: 0 * Math.PI,
+              },
+              {
+                delay: 0.75,
+                y: 8 * Math.PI,
+                duration: 1,
+                ease: "expo.out",
+              }
+            )
+            .fromTo(
+              ref.current.scale,
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+              },
+              {
+                x: 0.6,
+                y: 0.6,
+                z: 0.6,
+                duration: 0.0001,
+              },
+              "-=1"
+            );
+        },
+        // markers: true,
+      },
+    });
+
+    // const appeartl = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".food-is-art",
+    //     start: "top bottom",
+    //     end: "top top",
+    //     toggleActions: "reverse none none play",
+    //     // markers: true,
+    //     onToggle: (self) => {
+    //       setActive(self.isActive);
+    //     },
+    //   },
+    // });
+    // appeartl
+    //   .to(changeRef.current.rotation, {
+    //     y: -10 * Math.PI,
+    //     duration: 1,
+    //     ease: CustomEase.create("custom", "M0,0 C0.8,0.10861 0.9,0.55351 1,1 "),
+    //   })
+    //   .fromTo(
+    //     ref.current.scale,
+    //     {
+    //       x: 0.6,
+    //       y: 0.6,
+    //       z: 0.6,
+    //     },
+    //     {
+    //       x: 0,
+    //       y: 0,
+    //       z: 0,
+    //       duration: 0.0001,
+    //       // immediateRender: false,
+    //     },
+    //     "-=0.25"
+    //   );
+    // gsap.fromTo(
+    //   ref.current.scale,
+    //   {
+    //     x: 0.6,
+    //     y: 0.6,
+    //     z: 0.6,
+    //   },
+    //   {
+    //     x: 0,
+    //     y: 0,
+    //     z: 0,
+    //     duration: 0.0001,
+    //     scrollTrigger: {
+    //       trigger: ".food-is-art",
+    //       start: "top top",
+    //       end: "top -100%",
+    //       toggleActions: "play none none reverse",
+    //       // markers: true,
+    //     },
+    //     immediateRender: false,
+    //   }
+    // );
   });
   useFrame(() => {
     if (active) {
@@ -71,32 +219,34 @@ export function ArtModel(props) {
     }
   });
   return (
-    <group {...props} dispose={null} scale={[0, 0, 0]} ref={ref}>
-      <mesh
-        geometry={nodes.cutensils_asian_turner_Cylinder024.geometry}
-        material={materials["_crayfishdiffuse.001"]}
-        position={[-0.713, -2.822, -0.27]}
-        rotation={[1.496, -0.324, -0.096]}
-      />
-      <mesh
-        geometry={nodes.lowpoly_spoon.geometry}
-        material={materials["Material.002"]}
-        position={[-0.249, 0.191, -0.465]}
-        rotation={[1.794, -1.268, -2.933]}
-        scale={[2.946, 0.052, 0.743]}
-      />
-      <mesh
-        geometry={nodes.cutensils_asian_turner_Cylinder001.geometry}
-        material={materials["Material.002"]}
-        position={[-1.085, -3.946, -0.102]}
-        rotation={[1.496, -0.324, -0.096]}
-      />
-      <mesh
-        geometry={nodes.cutensils_asian_turner_Cylinder002.geometry}
-        material={materials["Material.002"]}
-        position={[1.18, 2.863, -0.974]}
-        rotation={[1.496, -0.324, -0.096]}
-      />
+    <group {...props} dispose={null} scale={0} ref={ref}>
+      <group ref={changeRef}>
+        <mesh
+          geometry={nodes.cutensils_asian_turner_Cylinder024.geometry}
+          material={materials["_crayfishdiffuse.001"]}
+          position={[-0.713, -2.822, -0.27]}
+          rotation={[1.496, -0.324, -0.096]}
+        />
+        <mesh
+          geometry={nodes.lowpoly_spoon.geometry}
+          material={materials["Material.002"]}
+          position={[-0.249, 0.191, -0.465]}
+          rotation={[1.794, -1.268, -2.933]}
+          scale={[2.946, 0.052, 0.743]}
+        />
+        <mesh
+          geometry={nodes.cutensils_asian_turner_Cylinder001.geometry}
+          material={materials["Material.002"]}
+          position={[-1.085, -3.946, -0.102]}
+          rotation={[1.496, -0.324, -0.096]}
+        />
+        <mesh
+          geometry={nodes.cutensils_asian_turner_Cylinder002.geometry}
+          material={materials["Material.002"]}
+          position={[1.18, 2.863, -0.974]}
+          rotation={[1.496, -0.324, -0.096]}
+        />
+      </group>
     </group>
   );
 }

@@ -4,6 +4,7 @@ import { PerspectiveCamera } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { ArtModel } from "../../public/Models/Art";
 import { MapModel } from "../../public/Models/Treasure_map";
+import { ClockModel } from "../../public/Models/Clock";
 const ThreeJsCanvas = () => {
   return (
     <div
@@ -23,6 +24,7 @@ const ThreeJsCanvas = () => {
         <HeartModel position={[3, 0, 0]} />
         <ArtModel position={[3, 0, 0]} />
         <MapModel position={[3, 0, 0]} />
+        <ClockModel position={[3, 0, 0]} />
       </Canvas>
     </div>
   );

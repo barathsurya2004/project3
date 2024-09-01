@@ -8,14 +8,16 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger, CustomEase } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(CustomEase);
 export function HeartModel(props) {
   const { nodes, materials } = useGLTF("/Models/heart.glb");
   const [active, setActive] = React.useState(false);
 
   const ref = React.useRef();
+  const changeRef = React.useRef();
   useGSAP(() => {
     gsap.fromTo(
       ref.current.scale,
@@ -41,28 +43,83 @@ export function HeartModel(props) {
         },
       }
     );
-    gsap.fromTo(
-      ref.current.scale,
-      {
-        x: 0.4,
-        y: 0.4,
-        z: 0.4,
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".food-is-art",
+        start: "top bottom",
+        end: "top top",
+        toggleActions: "play none none reverse",
+        // markers: true,
       },
-      {
-        x: 0,
-        y: 0,
-        z: 0,
-        duration: 0.0001,
-        scrollTrigger: {
-          trigger: ".food-is-love",
-          start: "top top",
-          end: "top -100%",
-          toggleActions: "play none none reverse",
-          // markers: true,
+    });
+    gsap.to(ref.current, {
+      scrollTrigger: {
+        trigger: ".food-is-art",
+        start: "top bottom",
+        end: "top top",
+        toggleActions: "play none none reverse",
+        onEnter: () => {
+          const tl = gsap.timeline();
+          tl.fromTo(
+            changeRef.current.rotation,
+            {
+              y: 0,
+            },
+            {
+              y: 10 * Math.PI,
+              duration: 1,
+              ease: "expo.in",
+            }
+          ).fromTo(
+            ref.current.scale,
+            {
+              x: 0.4,
+              y: 0.4,
+              z: 0.4,
+            },
+            {
+              x: 0,
+              y: 0,
+              z: 0,
+              duration: 0.0001,
+              immediateRender: false,
+            },
+            "-=0.25"
+          );
         },
-        immediateRender: false,
-      }
-    );
+        onLeaveBack: () => {
+          console.log("back");
+          const tl = gsap.timeline();
+          tl.fromTo(
+            changeRef.current.rotation,
+            {
+              y: 0,
+            },
+            {
+              delay: 0.75,
+              y: 8 * Math.PI,
+              duration: 1,
+              ease: "expo.out",
+            }
+          ).fromTo(
+            ref.current.scale,
+            {
+              x: 0,
+              y: 0,
+              z: 0,
+            },
+            {
+              x: 0.4,
+              y: 0.4,
+              z: 0.4,
+              duration: 0.0001,
+              immediateRender: false,
+            },
+            "-=1"
+          );
+        },
+      },
+    });
   });
   useFrame(() => {
     if (active) {
@@ -73,12 +130,14 @@ export function HeartModel(props) {
   });
   return (
     <group {...props} dispose={null} scale={0} ref={ref}>
-      <mesh
-        geometry={nodes.polySurface1.geometry}
-        material={materials.standardSurface2}
-        position={[0, 0.016, 0]}
-        rotation={[Math.PI / 2, 0, 0]}
-      />
+      <group ref={changeRef}>
+        <mesh
+          geometry={nodes.polySurface1.geometry}
+          material={materials.standardSurface2}
+          position={[0, 0.016, 0]}
+          rotation={[Math.PI / 2, 0, 0]}
+        />
+      </group>
     </group>
   );
 }

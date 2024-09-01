@@ -33,3 +33,6 @@
 .beyond-time {
   transform: translateY(-14%);
 }
+.snap {
+  scroll-snap-align: start;
+}
