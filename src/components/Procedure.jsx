@@ -1,4 +1,5 @@
-// import CardHolder from "./CardHolder";
+import { SlowModel } from "../../public/Models/Cards/Chetti/Slow";
+import CardHolder from "./CardHolder";
 // import CardHolderC from "./CardsHolderC";
 
 const Procedure = () => {
@@ -95,7 +96,9 @@ const Procedure = () => {
             height: "100vh",
           }}
         >
-          {/* <CardHolder /> */}
+          <CardHolder>
+            <SlowModel />
+          </CardHolder>
         </div>
         <div
           className="chetti-procedure"

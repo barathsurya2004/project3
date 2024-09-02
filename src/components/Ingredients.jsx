@@ -1,4 +1,5 @@
-// import CardHolder from "./CardHolder";
+import { MortarModel } from "../../public/Models/Cards/Chetti/Mortar";
+import CardHolder from "./CardHolder";
 // import CardHolderC from "./CardsHolderC";
 const Ingredients = () => {
   return (
@@ -94,7 +95,9 @@ const Ingredients = () => {
             height: "100vh",
           }}
         >
-          {/* <CardHolder /> */}
+          <CardHolder>
+            <MortarModel />
+          </CardHolder>
         </div>
         <div
           className="chetti-ingredients"

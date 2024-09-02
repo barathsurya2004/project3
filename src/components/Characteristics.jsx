@@ -1,4 +1,5 @@
-// import CardHolder from "./CardHolder";
+import { ColorModel } from "../../public/Models/Cards/Chetti/Color";
+import CardHolder from "./CardHolder";
 // import CardHolderC from "./CardsHolderC";
 
 const Characteristics = () => {
@@ -95,7 +96,9 @@ const Characteristics = () => {
             height: "100vh",
           }}
         >
-          {/* <CardHolder /> */}
+          <CardHolder>
+            <ColorModel />
+          </CardHolder>
         </div>
         <div
           className="chetti-ingredients"

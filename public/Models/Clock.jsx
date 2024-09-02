@@ -91,6 +91,67 @@ export function ClockModel(props) {
               "-=0"
             );
         },
+        onLeave: () => {
+          const leaveTl = gsap.timeline({});
+          leaveTl
+            .fromTo(
+              changeRef.current.rotation,
+              {
+                y: 0 * Math.PI,
+              },
+              {
+                y: 10 * Math.PI,
+                duration: 1,
+                ease: "expo.in",
+              }
+            )
+            .fromTo(
+              ref.current.scale,
+              {
+                x: 12,
+                y: 12,
+                z: 12,
+              },
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+                duration: 0.0001,
+              },
+              "-=0"
+            );
+        },
+        onEnterBack: () => {
+          const appeartl = gsap.timeline({});
+          appeartl
+            .fromTo(
+              changeRef.current.rotation,
+              {
+                y: 0,
+              },
+              {
+                delay: 0.75,
+                y: 8 * Math.PI,
+                duration: 1,
+                ease: "expo.out",
+              }
+            )
+            .fromTo(
+              ref.current.scale,
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+              },
+              {
+                x: 12,
+                y: 12,
+                z: 12,
+                duration: 0.0001,
+              },
+              "-=0.75"
+            );
+        },
         // markers: true,
       },
     });
