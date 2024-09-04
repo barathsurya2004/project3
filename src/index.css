@@ -1,20 +1,17 @@
 @font-face {
-  font-family: 'Filson Pro Regular';
-  src: url('/fonts/Filson/FILSONPROREGULAR.OTF');
-
+  font-family: "Filson Pro Regular";
+  src: url("/fonts/Filson/FILSONPROREGULAR.OTF");
 }
 @font-face {
-  font-family: 'TTtravels Next Bold';
-  src: url('/fonts/TTtravels/TTTRAVELSNEXTBOLD.OTF');
-
+  font-family: "TTtravels Next Bold";
+  src: url("/fonts/TTtravels/TTTRAVELSNEXTBOLD.OTF");
 }
 @font-face {
-  font-family: 'TTtravels Next Demibold Italic';
-  src: url('/fonts/TTtravels/TTTRAVELSNEXTDBOLDI.OTF');
-
+  font-family: "TTtravels Next Demibold Italic";
+  src: url("/fonts/TTtravels/TTTRAVELSNEXTDBOLDI.OTF");
 }
 @font-face {
-  font-family: 'TTtravels Next Demibold';
+  font-family: "TTtravels Next Demibold";
   src: url("/fonts/TTtravels/TTTRAVELSNEXTDBOLD.OTF");
 }
 
@@ -24,9 +21,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
-  --ligher-beige: #F2D8A0;
+  --ligher-beige: #f2d8a0;
 }
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   color: white;

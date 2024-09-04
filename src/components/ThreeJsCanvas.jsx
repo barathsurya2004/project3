@@ -14,6 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 import gsap from "gsap";
 import { QuestionModel } from "../../public/Models/Q_mark";
+import { GlobeModel1 } from "../../public/Models/GlobeCountries";
+import { CountriesModel } from "../../public/Models/CountryGlobe";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
 
@@ -104,13 +106,45 @@ const ThreeJsCanvas = () => {
             pointerEvents: "none",
           }}
         >
-          <Perf position="top-left" />
+          {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
           <directionalLight intensity={2} position={[2.5, 0, 10]} />
           <HeartModel position={[3, 0, 0]} />
           <ArtModel position={[3, 0, 0]} />
           <MapModel position={[3, 0, 0]} />
           <ClockModel position={[3, 0, 0]} />
+        </Canvas>
+      </div>
+      <div
+        className="globe-canvas"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          zIndex: 200,
+          pointerEvents: "none",
+        }}
+      >
+        <Canvas
+          style={{
+            pointerEvents: "none",
+          }}
+        >
+          <ambientLight intensity={2} />
+          <directionalLight intensity={3} position={[5, 10, 10]} />
+          {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
+
+          <PerspectiveCamera
+            makeDefault={true}
+            far={1000}
+            near={0.001}
+            fov={22.895}
+            position={[0, 0, 2.212]}
+            zoom={0.9}
+          />
+          {/* <CountriesModel /> */}
         </Canvas>
       </div>
       <div

@@ -15,6 +15,7 @@
     "@react-three/fiber": "^8.17.6",
     "@types/three": "^0.167.2",
     "gsap": "^3.12.5",
+    "leva": "^0.9.35",
     "lottie-react": "^2.4.0",
     "r3f-perf": "^7.2.1",
     "react": "^18.3.1",

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import "./App.css";
 import Characteristics from "./components/Characteristics";
 import CircularAnimation from "./components/CircularAnimation";
@@ -9,6 +10,7 @@ import FaceReact from "./components/FaceReact";
 import FoodIs from "./components/FoodIs";
 import Hero from "./components/Hero";
 import Ingredients from "./components/Ingredients";
+import Loader from "./components/Loader";
 import Procedure from "./components/Procedure";
 import Question from "./components/Question";
 import SharePage from "./components/SharePage";
@@ -16,10 +18,18 @@ import Slider from "./components/Slider";
 import ThereIsMore from "./components/ThereIsMore";
 import ThreeJsCanvas from "./components/ThreeJsCanvas";
 import YetSoUnique from "./components/YetSoUnique";
+import { Context } from "./context";
 
 function App() {
+  const { loading } = useContext(Context);
   return (
-    <div className="loading-helper">
+    <div
+      className="loading-helper"
+      style={{
+        overflow: loading ? "hidden" : "auto",
+      }}
+    >
+      <Loader />
       <ThreeJsCanvas />
       <Hero />
       <CircularAnimation
