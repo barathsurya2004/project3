@@ -26,6 +26,7 @@ function App() {
     <div
       className="loading-helper"
       style={{
+        height: loading ? "100vh" : "100%",
         overflow: loading ? "hidden" : "auto",
       }}
     >
@@ -66,7 +67,7 @@ function App() {
       <CultureDef />
       <Cuisines />
       {/* <YetSoUnique /> */}
-      {/* <Slider /> */}
+      <Slider />
       <ThereIsMore />
       <Ingredients />
       <Procedure />

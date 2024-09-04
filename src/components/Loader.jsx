@@ -20,11 +20,13 @@ const Loader = () => {
       duration: 2,
       ease: "power4.out",
     });
+
     if (!loading) {
       gsap.to(".loader", {
         opacity: 0,
         duration: 1,
         ease: "power4.out",
+
         onComplete() {
           gsap.set(".loader", {
             display: "none",
