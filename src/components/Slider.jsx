@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PandiFlag from "./PandiFlag";
 import ChettiFlag from "./ChettiFlag";
 import left from "../assets/icons/left-station.svg";
@@ -8,9 +8,13 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import button from "../assets/icons/slider-button.svg";
+import { Context } from "../context";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 const Slider = () => {
+  const [dragging, setDragging] = useState(false);
+  const [yPos, setYPos] = useState(0);
+  const { pointer } = useContext(Context);
   useGSAP(() => {
     gsap.fromTo(
       ".slider-component-input",
@@ -73,8 +77,105 @@ const Slider = () => {
             justifyContent: "center",
             alignItems: "center",
           }}
+          onPointerDown={() => {
+            setDragging(true);
+            gsap.to(".slider-compare__center", {
+              opacity: 0.3,
+              duration: 0.5,
+            });
+          }}
+          onPointerUp={() => {
+            setDragging(false);
+            setYPos(pointer[1] - window.innerHeight / 2);
+            gsap.to(".slider-compare__center", {
+              opacity: 1,
+              duration: 0.5,
+            });
+            gsap.fromTo(
+              ".slider-compare__center",
+              {
+                left: `${sliderValue}%`,
+              },
+              {
+                left: () => {
+                  if (sliderValue > 60) {
+                    return "90%";
+                  } else if (sliderValue < 40) {
+                    return "10%";
+                  } else {
+                    return "50%";
+                  }
+                },
+                duration: 0.5,
+              }
+            );
+            gsap.fromTo(
+              ".slider-compare__center-line",
+              {
+                left: `${sliderValue - 25}%`,
+              },
+              {
+                left: () => {
+                  if (sliderValue < 40) {
+                    return "-15%";
+                  } else if (sliderValue > 60) {
+                    return "65%";
+                  } else {
+                    return "25%";
+                  }
+                },
+                duration: 0.5,
+              }
+            );
+            gsap.fromTo(
+              ".slider-compare__container__left",
+              {
+                width: `${sliderValue}%`,
+              },
+              {
+                width: () => {
+                  if (sliderValue > 60) {
+                    return "90%";
+                  } else if (sliderValue < 40) {
+                    return "10%";
+                  } else {
+                    return "50%";
+                  }
+                },
+                onComplete: () => {
+                  if (sliderValue > 60) {
+                    setSliderValue(90);
+                  } else if (sliderValue < 40) {
+                    setSliderValue(10);
+                  } else {
+                    setSliderValue(50);
+                  }
+                },
+                duration: 0.5,
+              }
+            );
+            gsap.fromTo(
+              ".slider-compare__container__right",
+              {
+                width: `${100 - sliderValue}%`,
+              },
+              {
+                width: () => {
+                  if (sliderValue > 60) {
+                    return "10%";
+                  } else if (sliderValue < 40) {
+                    return "90%";
+                  } else {
+                    return "50%";
+                  }
+                },
+                duration: 0.5,
+              }
+            );
+          }}
         >
           <img
+            className="slider-compare__center"
             src={button}
             alt=""
             style={{
@@ -82,14 +183,15 @@ const Slider = () => {
               padding: "auto 0",
               position: "absolute",
               left: `${sliderValue}%`,
-              top: "50%",
-              transform: "translate(-50%, -50%)",
+              top: dragging ? pointer[1] - window.innerHeight / 2 : yPos,
+              transform: "translate(-50%, -25%)",
               pointerEvents: "none",
               cursor: "pointer",
-              opacity: 0.5,
+              opacity: 1,
             }}
           />
           <img
+            className="slider-compare__center-line"
             style={{
               position: "absolute",
               // top: "-100%",
@@ -114,7 +216,13 @@ const Slider = () => {
             style={{
               width: "100%",
               cursor: "pointer",
+              position: "absolute",
+              left: "0",
               opacity: 0,
+              padding: "10px 0",
+              top: dragging
+                ? pointer[1] - window.innerHeight / 2 - 10
+                : yPos - 10,
             }}
             onChange={(e) => {
               setSliderValue(e.target.value);
