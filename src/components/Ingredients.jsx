@@ -1,4 +1,6 @@
+import { ColorModel } from "../../public/Models/Cards/Chetti/Color";
 import { MortarModel } from "../../public/Models/Cards/Chetti/Mortar";
+import { SlowModel } from "../../public/Models/Cards/Chetti/Slow";
 import CardHolder from "./CardHolder";
 // import CardHolderC from "./CardsHolderC";
 const Ingredients = () => {
@@ -95,8 +97,10 @@ const Ingredients = () => {
             height: "100vh",
           }}
         >
-          <CardHolder>
+          <CardHolder idd={"Ing"}>
             <MortarModel />
+            <SlowModel />
+            <ColorModel />
           </CardHolder>
         </div>
         <div

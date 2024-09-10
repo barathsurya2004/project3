@@ -2,7 +2,9 @@ import CardsCanvas from "./CardsCanvas";
 import button from "../assets/icons/cardButton.svg";
 import activePage from "../assets/icons/pagination.svg";
 import gsap from "gsap";
-const CardHolder = ({ children }) => {
+import { Children, useState } from "react";
+const CardHolder = ({ children, idd }) => {
+  const [active, setActive] = useState(0);
   return (
     <>
       <div
@@ -12,6 +14,9 @@ const CardHolder = ({ children }) => {
           top: "50%",
           left: "10%",
           zIndex: 1000,
+        }}
+        onClick={() => {
+          setActive((active - 1 + children.length) % children.length);
         }}
       >
         <img
@@ -37,7 +42,13 @@ const CardHolder = ({ children }) => {
           }}
         />
       </div>
-      <CardsCanvas>{children}</CardsCanvas>
+      <CardsCanvas cur={active}>
+        {Children.map(children, (child, index) => {
+          if (index === active) {
+            return child;
+          }
+        })}
+      </CardsCanvas>
       <div
         className="right-button-cards"
         style={{
@@ -45,6 +56,9 @@ const CardHolder = ({ children }) => {
           top: "50%",
           right: "10%",
           zIndex: 1000,
+        }}
+        onClick={() => {
+          setActive((active + 1) % children.length);
         }}
       >
         <img
@@ -80,63 +94,33 @@ const CardHolder = ({ children }) => {
           display: "flex",
         }}
       >
-        <div
-          className="pagination-button"
-          style={{
-            width: "10px",
-            height: "10px",
-            backgroundColor: "black",
-            borderRadius: "50%",
-            margin: "0 5px",
-          }}
-        >
-          <img
-            src={activePage}
-            style={{
-              width: (15 * window.innerWidth) / 1920,
-              height: (15 * window.innerHeight) / 1080,
-            }}
-            alt=""
-          />
-        </div>
-        <div
-          className="pagination-button"
-          style={{
-            width: "10px",
-            height: "10px",
-            backgroundColor: "black",
-            borderRadius: "50%",
-            margin: "0 5px",
-          }}
-        >
-          <img
-            src={activePage}
-            style={{
-              width: (15 * window.innerWidth) / 1920,
-              height: (15 * window.innerHeight) / 1080,
-            }}
-            alt=""
-          />
-        </div>
-        <div
-          className="pagination-button"
-          style={{
-            width: "10px",
-            height: "10px",
-            backgroundColor: "black",
-            borderRadius: "50%",
-            margin: "0 5px",
-          }}
-        >
-          <img
-            src={activePage}
-            style={{
-              width: (15 * window.innerWidth) / 1920,
-              height: (15 * window.innerHeight) / 1080,
-            }}
-            alt=""
-          />
-        </div>
+        {Children.map(children, (child, index) => {
+          return (
+            <div
+              className="pagination-button"
+              style={{
+                width: "10px",
+                height: "10px",
+                backgroundColor: "black",
+                borderRadius: "50%",
+                margin: "0 5px",
+              }}
+              onClick={() => {
+                setActive(index);
+              }}
+            >
+              <img
+                src={activePage}
+                style={{
+                  width: (15 * window.innerWidth) / 1920,
+                  height: (15 * window.innerHeight) / 1080,
+                  opacity: index === active ? 1 : 0.3,
+                }}
+                alt=""
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );
