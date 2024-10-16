@@ -12,8 +12,14 @@ const Loader = () => {
   useEffect(() => {
     if (progress === 100) {
       setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+        gsap.to(".text", {
+          opacity: 0,
+          duration: 1,
+          onComplete: () => {
+            setLoading(false);
+          },
+        });
+      }, 5000);
     }
     gsap.to(".bar-load", {
       width: `${progress}%`,

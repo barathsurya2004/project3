@@ -333,10 +333,12 @@ const FaceReact = () => {
               onPointerEnter={() => {
                 setHovered(true);
                 handleMouseEnterPandi();
+                handleMouseEnterChetti();
               }}
               onPointerLeave={() => {
                 setHovered(false);
                 handleMouseLeavePandi();
+                handleMouseLeaveChetti();
               }}
             />
             <div
@@ -425,9 +427,11 @@ const FaceReact = () => {
               onPointerEnter={() => {
                 setHovered(true);
                 handleMouseEnterChetti();
+                handleMouseEnterPandi();
               }}
               onPointerLeave={() => {
                 setHovered(false);
+                handleMouseLeavePandi();
                 handleMouseLeaveChetti();
               }}
             />

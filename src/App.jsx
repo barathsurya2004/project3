@@ -19,6 +19,7 @@ import ThereIsMore from "./components/ThereIsMore";
 import ThreeJsCanvas from "./components/ThreeJsCanvas";
 import YetSoUnique from "./components/YetSoUnique";
 import { Context } from "./context";
+import BackGround from "./components/BackGround";
 
 function App() {
   const { loading } = useContext(Context);
@@ -30,6 +31,7 @@ function App() {
         overflow: loading ? "hidden" : "auto",
       }}
     >
+      <BackGround />
       <Loader />
       <ThreeJsCanvas />
       <Hero />

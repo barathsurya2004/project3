@@ -83,6 +83,7 @@ const Question = () => {
         ease: "none",
       }
     );
+    const ques = document.querySelector(".question");
     gsap.fromTo(
       ".question",
       {
@@ -117,9 +118,10 @@ const Question = () => {
               height: "100vh",
               width: "100%",
               position: "fixed",
-              zIndex: 10,
+              zIndex: 0,
               top: 0,
               // left: -100,
+
               display: "flex",
               alignItems: "center",
             }}

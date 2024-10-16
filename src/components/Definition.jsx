@@ -4,8 +4,24 @@ const Definition = () => {
   return (
     <>
       <div className="definition-container">
+        <audio id="audio" controlsList="nodownload">
+          <div className="hdib" fallback>
+            <p>your browser does'nt support audio</p>
+          </div>
+          <source type="audio/mpeg" src="src/assets/Sounds/ukfolksFood.mp3" />
+        </audio>
         <h1>
-          <img src={image} alt="" />
+          <img
+            src={image}
+            alt=""
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              document.getElementById("audio").load();
+              document.getElementById("audio").play();
+            }}
+          />
           food
         </h1>
         <p>/fu:d/</p>

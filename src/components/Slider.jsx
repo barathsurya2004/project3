@@ -80,7 +80,7 @@ const Slider = () => {
           onPointerDown={() => {
             setDragging(true);
             gsap.to(".slider-compare__center", {
-              opacity: 0.3,
+              opacity: 1,
               duration: 0.5,
             });
           }}
@@ -88,7 +88,7 @@ const Slider = () => {
             setDragging(false);
             setYPos(pointer[1] - window.innerHeight / 2);
             gsap.to(".slider-compare__center", {
-              opacity: 1,
+              opacity: 0.3,
               duration: 0.5,
             });
             gsap.fromTo(
@@ -187,7 +187,8 @@ const Slider = () => {
               transform: "translate(-50%, -25%)",
               pointerEvents: "none",
               cursor: "pointer",
-              opacity: 1,
+              opacity: 0.3,
+              zIndex: 10,
             }}
           />
           <img
