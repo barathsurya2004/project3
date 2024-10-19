@@ -48,6 +48,12 @@ const Loader = () => {
     "we are what we eat",
     "food and travels, best buds forever",
     "go anywhere, right from your kitchen",
+    "what nourishes us is more than just food",
+    "travel begins with a taste",
+    "every flavour has a story",
+    "great adventures start at the dinner table",
+    "food is identity",
+    "sometimes, eating is an experience",
   ];
   useGSAP(() => {
     gsap.to(".text", {
@@ -75,7 +81,14 @@ const Loader = () => {
       }}
     >
       <div className="container">
-        <div className="text">{content[i]}</div>
+        <div
+          className="text"
+          style={{
+            whiteSpace: "nowrap",
+          }}
+        >
+          {content[i]}
+        </div>
         <div className="bar">
           <div className="bar-load"></div>
         </div>

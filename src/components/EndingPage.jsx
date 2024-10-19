@@ -370,10 +370,36 @@ const EndingPage = () => {
             </p>
           </div>
           <div
+            className="back-to-top-icon"
             style={{
               width: (100 * window.innerWidth) / 1920,
               height: (100 * window.innerHeight) / 1080,
               margin: 0,
+              opacity: 0.3,
+            }}
+            onPointerEnter={() => {
+              gsap.fromTo(
+                ".back-to-top-icon",
+                {
+                  opacity: 0.3,
+                },
+                {
+                  opacity: 1,
+                  duration: 0.2,
+                }
+              );
+            }}
+            onPointerLeave={() => {
+              gsap.fromTo(
+                ".back-to-top-icon",
+                {
+                  opacity: 1,
+                },
+                {
+                  opacity: 0.3,
+                  duration: 0.2,
+                }
+              );
             }}
           >
             <Lottie
@@ -419,7 +445,7 @@ const EndingPage = () => {
         <div
           className="overLay"
           style={{
-            position: "absolute",
+            position: "fixed",
             width: "100%",
             height: "100vh",
             display: "flex",
@@ -432,6 +458,7 @@ const EndingPage = () => {
             // opacity: 0.5,
             overflow: "hidden",
             zIndex: 501,
+            margin: 0,
           }}
         >
           <Gallery />
