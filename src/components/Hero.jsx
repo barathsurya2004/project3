@@ -10,9 +10,11 @@ import img8 from "../assets/foods-text/food (8).svg";
 import data from "../assets/lotties/scroll_down.json";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import NavBar from "./NavBar";
 gsap.registerPlugin(useGSAP);
 const Hero = () => {
   const foods = [img1, img2, img3, img4, img5, img6, img7, img8];
+
   useGSAP(() => {
     const foodsChangetl = gsap.timeline({
       repeat: -1,
@@ -227,6 +229,7 @@ const Hero = () => {
         flexDirection: "column",
       }}
     >
+      <NavBar />
       <div
         style={{
           position: "absolute",
