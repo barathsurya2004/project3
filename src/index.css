@@ -20,8 +20,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-  --ligher-beige: #f2d8a0;
+  background-color: #101010;
+
+  --lighter-beige: #f2d8a0;
 }
 body,
 html {
@@ -32,7 +33,22 @@ html {
 * {
   box-sizing: border-box;
   font-family: "Filson Pro Regular", sans-serif;
-  color: var(--ligher-beige);
+  color: var(--lighter-beige);
   margin: 0;
   padding: 0;
+  scrollbar-width: 0;
+  -ms-overflow-style: none;
+}
+
+body {
+  overflow-y: scroll; /* ensure scrollability */
+  scrollbar-width: none; /* hide scrollbar */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body::-moz-scrollbar {
+  width: 0; /* Firefox */
 }

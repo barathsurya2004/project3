@@ -227,6 +227,7 @@ const Hero = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        overflow: "hidden",
       }}
     >
       <NavBar />

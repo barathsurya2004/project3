@@ -58,7 +58,7 @@ const Loader = () => {
     if (!loading) {
       gsap.to(".loader", {
         opacity: 0,
-        duration: 1,
+        duration: 0.5,
         ease: "power4.out",
 
         onComplete() {
@@ -70,7 +70,6 @@ const Loader = () => {
     }
   }, [progress, loading]);
   let count = 0;
-  const [i, setI] = useState(0);
   let index = 0;
   const content = [
     "we are what we eat",
@@ -83,6 +82,7 @@ const Loader = () => {
     "food is identity",
     "sometimes, eating is an experience",
   ];
+  const [i, setI] = useState(Math.floor(Math.random() * content.length));
   useGSAP(() => {
     gsap.to(".text", {
       opacity: 1,
@@ -92,7 +92,7 @@ const Loader = () => {
 
       onRepeat() {
         if (count % 2 !== 0) {
-          index += 1;
+          index = Math.floor(Math.random() * content.length);
           setI(index % content.length);
         }
         count += 1;

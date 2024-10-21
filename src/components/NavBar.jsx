@@ -52,10 +52,11 @@ const NavBar = () => {
             );
             gsap.fromTo(
               ".navBar-toggle",
-              { y: 0, rotate: 0 },
+              { y: 0, rotate: 0, opacity: 0.3 },
               {
                 y: 85 * (window.innerWidth / 1920),
                 rotate: 180,
+                opacity: 1,
               }
             );
           } else {
@@ -66,10 +67,11 @@ const NavBar = () => {
             );
             gsap.fromTo(
               ".navBar-toggle",
-              { y: 85 * (window.innerWidth / 1920), rotate: 180 },
+              { y: 85 * (window.innerWidth / 1920), rotate: 180, opacity: 1 },
               {
                 y: 0,
                 rotate: 0,
+                opacity: 0.3,
               }
             );
           }

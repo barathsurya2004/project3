@@ -67,6 +67,18 @@ const CircularText = ({ texts, radius }) => {
         end: "top 47%",
         scrub: true,
         toggleActions: "play none none reverse",
+        onEnter: () => {
+          gsap.set(".cont-drag", {
+            top: 0,
+            left: 0,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set(".cont-drag", {
+            top: "200vh",
+            left: "-200vw",
+          });
+        },
       },
     });
 
@@ -154,10 +166,11 @@ const CircularText = ({ texts, radius }) => {
         }}
       ></div>
       <div
+        className="cont-drag"
         style={{
           position: "fixed",
-          top: (0 * window.innerHeight) / 1080,
-          left: 0,
+          top: "200vh",
+          left: "-200vw",
           width: "100%",
           height: "100vh",
           zIndex: zIndex,
