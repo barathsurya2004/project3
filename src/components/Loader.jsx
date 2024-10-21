@@ -24,6 +24,17 @@ const Loader = () => {
           }
         );
         gsap.fromTo(
+          ".bar-glow-small",
+          {
+            left: `${100 / 3.5}%`,
+          },
+          {
+            left: "100%",
+            duration: 5,
+            ease: "power4.out",
+          }
+        );
+        gsap.fromTo(
           ".bar-glow-inner",
           {
             width: `${100 / 3.5}%`,
@@ -55,6 +66,16 @@ const Loader = () => {
       duration: 2,
       ease: "power4.out",
     });
+    gsap.to(".bar-glow-small", {
+      left: `${progress / 3.5}%`,
+      duration: 2,
+      ease: "power4.out",
+    });
+    // gsap.to(".bar-glow-large", {
+    //   left: `${progress / 4}%`,
+    //   duration: 2,
+    //   ease: "power4.out",
+    // });
     if (!loading) {
       gsap.to(".loader", {
         opacity: 0,
@@ -118,8 +139,9 @@ const Loader = () => {
           {content[i]}
         </div>
         <div className="bar-glow">
-          <div className="bar-radial-glow-start"></div>
-          <div className="bar-radial-glow-end"></div>
+          <div className="bar-glow-small">
+            <div className="bar-glow-large"></div>
+          </div>
           <div className="bar-glow-inner"></div>
         </div>
         <div className="bar">
