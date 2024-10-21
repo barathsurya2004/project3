@@ -35,24 +35,46 @@ const NavBar = () => {
           opacity: 0.3,
         }}
         onPointerEnter={() => {
-          gsap.fromTo(".navBar-toggle", { opacity: 0.3 }, { opacity: 1 });
+          if (!isNavOpen)
+            gsap.fromTo(".navBar-toggle", { opacity: 0.3 }, { opacity: 1 });
         }}
         onPointerLeave={() => {
           if (!isNavOpen) {
             gsap.fromTo(".navBar-toggle", { opacity: 1 }, { opacity: 0.3 });
-          } else {
-            gsap.fromTo(".navBar-toggle", { opacity: 1 }, { opacity: 0 });
           }
         }}
         onClick={() => {
-          console.log("clicked", isNavOpen);
+          if (!isNavOpen) {
+            gsap.fromTo(
+              ".navBar",
+              { right: (-100 * window.innerWidth) / 1920 },
+              { right: (30 * window.innerWidth) / 1920 }
+            );
+            gsap.fromTo(
+              ".navBar-toggle",
+              { y: 0, rotate: 0 },
+              {
+                y: 85 * (window.innerWidth / 1920),
+                rotate: 180,
+              }
+            );
+          } else {
+            gsap.fromTo(
+              ".navBar",
+              { right: (30 * window.innerWidth) / 1920 },
+              { right: (-100 * window.innerWidth) / 1920 }
+            );
+            gsap.fromTo(
+              ".navBar-toggle",
+              { y: 85 * (window.innerWidth / 1920), rotate: 180 },
+              {
+                y: 0,
+                rotate: 0,
+              }
+            );
+          }
           setIsNavOpen(!isNavOpen);
-          gsap.fromTo(
-            ".navBar",
-            { right: (-100 * window.innerWidth) / 1920 },
-            { right: (30 * window.innerWidth) / 1920 }
-          );
-          gsap.fromTo(".navBar-toggle", { zIndex: 101 }, { zIndex: 0 });
+          // gsap.fromTo(".navBar-toggle", { zIndex: 101 }, { zIndex: 0 });
         }}
       >
         <img src={toggleArrow} alt="" />
@@ -90,37 +112,16 @@ const NavBar = () => {
         <div
           className="navBar-item"
           style={{
-            ...style.navItem,
+            width: 45 * (window.innerWidth / 1920),
+            height: 40 * (window.innerWidth / 1920),
+            borderRadius: "50%",
+            margin: 0,
+            padding: 0,
             marginBottom: -2.5 * (window.innerWidth / 1920),
-            position: "relative",
-            cursor: "pointer",
+            // position: "relative",
+            // cursor: "pointer",
           }}
-          onClick={() => {
-            setIsNavOpen(!isNavOpen);
-            gsap.fromTo(
-              ".navBar",
-              { right: (30 * window.innerWidth) / 1920 },
-              { right: (-100 * window.innerWidth) / 1920 }
-            );
-            gsap.fromTo(
-              ".navBar-toggle",
-              { zIndex: 0, opacity: 0 },
-              { zIndex: 101, opacity: 0.3 }
-            );
-          }}
-        >
-          <img
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -60%) rotate(180deg)",
-              width: 25 * (window.innerWidth / 1920),
-            }}
-            src={arrow}
-            alt=""
-          />
-        </div>
+        ></div>
       </div>
     </>
   );
