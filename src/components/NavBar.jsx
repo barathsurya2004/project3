@@ -1,131 +1,131 @@
-import { useState } from "react";
-import arrow from "../assets/icons/navArrow.svg";
-import toggleArrow from "../assets/icons/navToggleArrow.svg";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import place from "../assets/icons/navPlace.svg";
+
+import arrow from "../assets/icons/navToggleArrow.svg";
 const NavBar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  useGSAP(() => {
-    // gsap.to(".navBar", {
-    //   x: isNavOpen ? 0 : 45 * (window.innerWidth / 1920),
-    // });
-  });
-  const style = {
-    navItem: {
-      width: 45 * (window.innerWidth / 1920),
-      height: 40 * (window.innerWidth / 1920),
-      borderRadius: "50%",
-      margin: 0,
-      padding: 0,
-      border: "solid 3px #D3AD62",
-    },
-  };
   return (
-    <>
+    <div
+      className="nav-bar-cont"
+      style={{
+        position: "absolute",
+        zIndex: 1000,
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <div
-        className="navBar-toggle"
+        className="nav-bar"
         style={{
-          position: "absolute",
-          top: "50%",
-          right: 30 * (window.innerWidth / 1920),
-          width: 45 * (window.innerWidth / 1920),
-          height: 45 * (window.innerWidth / 1920),
-          zIndex: 101,
-          cursor: "pointer",
-          opacity: 0.3,
-        }}
-        onPointerEnter={() => {
-          if (!isNavOpen)
-            gsap.fromTo(".navBar-toggle", { opacity: 0.3 }, { opacity: 1 });
-        }}
-        onPointerLeave={() => {
-          if (!isNavOpen) {
-            gsap.fromTo(".navBar-toggle", { opacity: 1 }, { opacity: 0.3 });
-          }
-        }}
-        onClick={() => {
-          if (!isNavOpen) {
-            gsap.fromTo(
-              ".navBar",
-              { right: (-100 * window.innerWidth) / 1920 },
-              { right: (30 * window.innerWidth) / 1920 }
-            );
-            gsap.fromTo(
-              ".navBar-toggle",
-              { y: 0, rotate: 0, opacity: 0.3 },
-              {
-                y: 85 * (window.innerWidth / 1920),
-                rotate: 180,
-                opacity: 1,
-              }
-            );
-          } else {
-            gsap.fromTo(
-              ".navBar",
-              { right: (30 * window.innerWidth) / 1920 },
-              { right: (-100 * window.innerWidth) / 1920 }
-            );
-            gsap.fromTo(
-              ".navBar-toggle",
-              { y: 85 * (window.innerWidth / 1920), rotate: 180, opacity: 1 },
-              {
-                y: 0,
-                rotate: 0,
-                opacity: 0.3,
-              }
-            );
-          }
-          setIsNavOpen(!isNavOpen);
-          // gsap.fromTo(".navBar-toggle", { zIndex: 101 }, { zIndex: 0 });
-        }}
-      >
-        <img src={toggleArrow} alt="" />
-      </div>
-      <div
-        className="navBar"
-        style={{
-          position: "absolute",
-          zIndex: 100,
-          top: "50%",
-          right: -100 * (window.innerWidth / 1920),
-          width: 45 * (window.innerWidth / 1920),
-          height: 215 * (window.innerWidth / 1920),
-          transform: "translateY(-40%)",
-          border: "solid 3px #D3AD62",
-          borderRadius: 45 * (window.innerWidth / 1920),
-          margin: 0,
-          padding: 0,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
+          padding: 0,
+          // borderRadius: "5rem",
         }}
       >
         <div
-          className="navBar-item"
           style={{
-            ...style.navItem,
-            marginTop: -2.5 * (window.innerWidth / 1920),
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            borderRadius: "5rem",
+            border: "5px solid #d3ad62",
+            clipPath: "polygon(0 5%, 100% 5%, 100% 95%, 0 95%)",
           }}
-        ></div>
-        <div className="navBar-item" style={style.navItem}></div>
-        <div className="navBar-item" style={style.navItem}></div>
-        <div className="navBar-item" style={style.navItem}></div>
+        />
         <div
-          className="navBar-item"
           style={{
-            width: 45 * (window.innerWidth / 1920),
-            height: 40 * (window.innerWidth / 1920),
-            borderRadius: "50%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             margin: 0,
-            padding: 0,
-            marginBottom: -2.5 * (window.innerWidth / 1920),
-            // position: "relative",
-            // cursor: "pointer",
           }}
-        ></div>
+        >
+          <img
+            style={{
+              width: "4rem",
+              height: "4rem",
+              margin: 0,
+            }}
+            src={place}
+            alt=""
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 0,
+          }}
+        >
+          <img
+            style={{
+              width: "4rem",
+              height: "4rem",
+              margin: 0,
+            }}
+            src={place}
+            alt=""
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 0,
+          }}
+        >
+          <img
+            style={{
+              width: "4rem",
+              height: "4rem",
+              margin: 0,
+            }}
+            src={place}
+            alt=""
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 0,
+          }}
+        >
+          <img
+            style={{
+              width: "4rem",
+              height: "4rem",
+              margin: 0,
+            }}
+            src={place}
+            alt=""
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 0,
+          }}
+        >
+          <img
+            style={{
+              width: "4rem",
+              height: "4rem",
+              margin: 0,
+            }}
+            src={place}
+            alt=""
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

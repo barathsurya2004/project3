@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import App from "./App";
 import MobileLoader from "./components/MobileLoader";
+import NavBar from "./components/NavBar";
 
 const Layout = () => {
   const [windowSize, setWindowSize] = useState({
@@ -34,6 +35,7 @@ const Layout = () => {
   }
   return (
     <div>
+      {/* <NavBar /> */}
       <App />
     </div>
   );

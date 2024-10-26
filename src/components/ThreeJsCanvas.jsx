@@ -6,7 +6,7 @@ import { ArtModel } from "../../public/Models/Art";
 import { MapModel } from "../../public/Models/Treasure_map";
 import { ClockModel } from "../../public/Models/Clock";
 import { FaceModel } from "../../public/Models/Face1";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../context";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -73,6 +73,7 @@ const ThreeJsCanvas = () => {
       },
     });
   });
+
   const [num, setNum] = useState(0);
   const { mode } = useContext(Context);
   useEffect(() => {
