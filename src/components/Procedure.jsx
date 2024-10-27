@@ -1,4 +1,5 @@
-import { SlowModel } from "../../public/Models/Cards/Chetti/Slow";
+import { BlenderModel } from "../../public/Models/Cards/new/Pandi/Blender";
+import { FastModel } from "../../public/Models/Cards/new/Pandi/Fast";
 import CardHolder from "./CardHolder";
 // import CardHolderC from "./CardsHolderC";
 
@@ -97,7 +98,8 @@ const Procedure = () => {
           }}
         >
           <CardHolder>
-            <SlowModel />
+            <BlenderModel />
+            <FastModel />
           </CardHolder>
         </div>
         <div

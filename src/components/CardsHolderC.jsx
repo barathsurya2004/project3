@@ -1,11 +1,10 @@
-import { Pepper } from "../../public/models/cards/Pepper";
 import CardsCanvas from "./CardsCanvas";
-import leftButton from "../assets/cPrevArrow.svg";
-import button from "../assets/cNextArrow.svg";
-import activePage from "../assets/cPagiActive.svg";
-import inactivePage from "../assets/cPagiNotActive.svg";
+import button from "../assets/icons/cardButton.svg";
+import activePage from "../assets/icons/pagination.svg";
 import gsap from "gsap";
-const CardHolderC = () => {
+import { Children, useState } from "react";
+const CardHolder = ({ children, idd }) => {
+  const [active, setActive] = useState(0);
   return (
     <>
       <div
@@ -14,7 +13,10 @@ const CardHolderC = () => {
           position: "absolute",
           top: "50%",
           left: "10%",
-          zIndex: 550,
+          zIndex: 1000,
+        }}
+        onClick={() => {
+          setActive((active - 1 + children.length) % children.length);
         }}
       >
         <img
@@ -40,8 +42,12 @@ const CardHolderC = () => {
           }}
         />
       </div>
-      <CardsCanvas>
-        <Pepper />
+      <CardsCanvas cur={active}>
+        {Children.map(children, (child, index) => {
+          if (index === active) {
+            return child;
+          }
+        })}
       </CardsCanvas>
       <div
         className="right-button-cards"
@@ -50,6 +56,9 @@ const CardHolderC = () => {
           top: "50%",
           right: "10%",
           zIndex: 1000,
+        }}
+        onClick={() => {
+          setActive((active + 1) % children.length);
         }}
       >
         <img
@@ -85,66 +94,36 @@ const CardHolderC = () => {
           display: "flex",
         }}
       >
-        <div
-          className="pagination-button"
-          style={{
-            width: "10px",
-            height: "10px",
-            backgroundColor: "black",
-            borderRadius: "50%",
-            margin: "0 5px",
-          }}
-        >
-          <img
-            src={activePage}
-            style={{
-              width: (15 * window.innerWidth) / 1920,
-              height: (15 * window.innerHeight) / 1080,
-            }}
-            alt=""
-          />
-        </div>
-        <div
-          className="pagination-button"
-          style={{
-            width: "10px",
-            height: "10px",
-            backgroundColor: "black",
-            borderRadius: "50%",
-            margin: "0 5px",
-          }}
-        >
-          <img
-            src={inactivePage}
-            style={{
-              width: (15 * window.innerWidth) / 1920,
-              height: (15 * window.innerHeight) / 1080,
-            }}
-            alt=""
-          />
-        </div>
-        <div
-          className="pagination-button"
-          style={{
-            width: "10px",
-            height: "10px",
-            backgroundColor: "black",
-            borderRadius: "50%",
-            margin: "0 5px",
-          }}
-        >
-          <img
-            src={inactivePage}
-            style={{
-              width: (15 * window.innerWidth) / 1920,
-              height: (15 * window.innerHeight) / 1080,
-            }}
-            alt=""
-          />
-        </div>
+        {Children.map(children, (child, index) => {
+          return (
+            <div
+              className="pagination-button"
+              style={{
+                width: "10px",
+                height: "10px",
+                backgroundColor: "black",
+                borderRadius: "50%",
+                margin: "0 5px",
+              }}
+              onClick={() => {
+                setActive(index);
+              }}
+            >
+              <img
+                src={activePage}
+                style={{
+                  width: (15 * window.innerWidth) / 1920,
+                  height: (15 * window.innerHeight) / 1080,
+                  opacity: index === active ? 1 : 0.3,
+                }}
+                alt=""
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );
 };
 
-export default CardHolderC;
+export default CardHolder;

@@ -1,8 +1,14 @@
 import { ColorModel } from "../../public/Models/Cards/Chetti/Color";
 import { MortarModel } from "../../public/Models/Cards/Chetti/Mortar";
 import { SlowModel } from "../../public/Models/Cards/Chetti/Slow";
+import { RedChillyModel } from "../../public/Models/Cards/new/Chetti/Red chilly";
+import { SpicesModel } from "../../public/Models/Cards/new/Chetti/Spices";
+import { TamarindModel } from "../../public/Models/Cards/new/Chetti/Tamarind";
+import { CoconutModel } from "../../public/Models/Cards/new/Pandi/Coconut";
+import { LentilsModel } from "../../public/Models/Cards/new/Pandi/Lentils";
+import { PepperModel } from "../../public/Models/Cards/new/Pandi/Pepper";
 import CardHolder from "./CardHolder";
-// import CardHolderC from "./CardsHolderC";
+import CardHolderC from "./CardsHolderC";
 const Ingredients = () => {
   return (
     <div
@@ -98,9 +104,9 @@ const Ingredients = () => {
           }}
         >
           <CardHolder idd={"Ing"}>
-            <MortarModel />
-            <SlowModel />
-            <ColorModel />
+            <PepperModel />
+            <CoconutModel />
+            <LentilsModel />
           </CardHolder>
         </div>
         <div
@@ -113,7 +119,11 @@ const Ingredients = () => {
             height: "100vh",
           }}
         >
-          {/* <CardHolderC /> */}
+          <CardHolderC>
+            <RedChillyModel />
+            <TamarindModel />
+            <SpicesModel />
+          </CardHolderC>
         </div>
       </div>
     </div>
