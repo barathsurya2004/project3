@@ -13,6 +13,8 @@ const MapComponent = () => {
   const options = {
     mapId: "3409495573976949",
     disableDefaultUI: true,
+    zoomControl: true,
+    CameraControl: true,
   };
 
   // if (!isLoaded) return "Loading...";
@@ -175,10 +177,10 @@ const MapComponent = () => {
             {isLoaded ? (
               <GoogleMap
                 zoom={15}
-                center={{
-                  lat: 10.3656,
-                  lng: 78.8206,
-                }}
+                // center={{
+                //   lat: 10.3656,
+                //   lng: 78.8206,
+                // }}
                 mapContainerStyle={{
                   width: "100%",
                   height: "100%",
