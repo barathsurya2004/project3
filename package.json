@@ -17,7 +17,6 @@
     "@react-three/fiber": "^8.17.6",
     "@types/three": "^0.167.2",
     "dotenv": "^16.4.5",
-    "google-maps-react": "^2.0.6",
     "gsap": "^3.12.5",
     "leva": "^0.9.35",
     "lottie-react": "^2.4.0",
