@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Context } from "../context";
 import close from "../assets/icons/close.svg";
 import gsap from "gsap";
@@ -13,8 +13,6 @@ const MapComponent = () => {
   const options = {
     mapId: "3409495573976949",
     disableDefaultUI: true,
-    zoomControl: true,
-    CameraControl: true,
   };
 
   // if (!isLoaded) return "Loading...";
@@ -82,6 +80,21 @@ const MapComponent = () => {
       });
     }
   }, [mode]);
+  const [map, setMap] = useState(null);
+  const center = {
+    lat: 9.9012,
+    lng: 78.114,
+  };
+  const onLoad = useCallback(function callback(map) {
+    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map);
+  }, []);
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null);
+  }, []);
   return (
     <div
       className="map"
@@ -172,20 +185,24 @@ const MapComponent = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              position: "relative",
             }}
           >
             {isLoaded ? (
               <GoogleMap
-                zoom={15}
-                // center={{
-                //   lat: 10.3656,
-                //   lng: 78.8206,
-                // }}
+                zoom={10}
+                // center={center}
                 mapContainerStyle={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  zIndex: 1000,
                   width: "100%",
                   height: "100%",
                 }}
                 options={options}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
               ></GoogleMap>
             ) : (
               <div>Loading...</div>
