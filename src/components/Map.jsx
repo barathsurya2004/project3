@@ -2,8 +2,21 @@ import { useContext, useEffect } from "react";
 import { Context } from "../context";
 import close from "../assets/icons/close.svg";
 import gsap from "gsap";
-const Map = () => {
+import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
+const MapComponent = () => {
   const { mode, setMode } = useContext(Context);
+  const { isLoaded } = useJsApiLoader({
+    // googleMapsApiKey: process.env.VITE_API_GOOGLE,
+    // id: "google-map-script",
+    googleMapsApiKey: import.meta.env.VITE_API_GOOGLE,
+  });
+  const options = {
+    mapId: "3409495573976949",
+    disableDefaultUI: true,
+  };
+
+  // if (!isLoaded) return "Loading...";
+
   const places = [
     {
       name: "Dindigul Thalappakatti",
@@ -83,7 +96,7 @@ const Map = () => {
       }}
     >
       <div
-        className="map-container"
+        id="map-container"
         style={{
           width: (1494.583 * window.innerWidth) / 1920,
           height: (747.47 * window.innerHeight) / 1080,
@@ -159,16 +172,22 @@ const Map = () => {
               alignItems: "center",
             }}
           >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2005182.5176876935!2d77.30992582500002!3d11.010683114668074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00aa848abda3ad%3A0x53000018cde053ad!2sDindigul%20Thalappakatti!5e0!3m2!1sen!2sin!4v1729330209661!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              frameborder="0"
-              style={{ border: 0 }}
-              allowfullscreen=""
-              aria-hidden="false"
-              tabindex="0"
-            ></iframe>
+            {isLoaded ? (
+              <GoogleMap
+                zoom={15}
+                center={{
+                  lat: 10.3656,
+                  lng: 78.8206,
+                }}
+                mapContainerStyle={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                options={options}
+              ></GoogleMap>
+            ) : (
+              <div>Loading...</div>
+            )}
           </div>
           <div
             className="places-holder"
@@ -248,4 +267,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default MapComponent;

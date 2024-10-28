@@ -2,7 +2,6 @@ import { Context } from "../context";
 import { useContext, useEffect, useRef, useState } from "react";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact";
-import Map from "../components/Map";
 import Footer from "../components/Footer";
 // import image from "../assets/backToTop.svg";
 import Disclaimer from "../components/Disclaimer";
@@ -13,6 +12,7 @@ import goto from "../assets/icons/goto.svg";
 import restart from "../assets/lotties/restart.json";
 import Lottie from "lottie-react";
 import { useGSAP } from "@gsap/react";
+import MapComponent from "../components/Map";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 const EndingPage = () => {
@@ -463,7 +463,7 @@ const EndingPage = () => {
         >
           <Gallery />
           <Contact />
-          <Map />
+          <MapComponent />
           <Disclaimer />
         </div>
       </div>
