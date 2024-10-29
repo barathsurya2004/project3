@@ -1,130 +1,24 @@
-import place from "../assets/icons/navPlace.svg";
+import Lottie from "lottie-react";
+import animdata from "../assets/lotties/nav bar.json";
+import { useRef } from "react";
 
-import arrow from "../assets/icons/navToggleArrow.svg";
 const NavBar = () => {
+  const ref = useRef();
   return (
-    <div
-      className="nav-bar-cont"
-      style={{
-        position: "absolute",
-        zIndex: 1000,
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      <div
-        className="nav-bar"
+    <div>
+      <Lottie
+        animationData={animdata}
+        lottieRef={ref}
+        autoPlay={false}
+        loop={false}
         style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: 0,
-          // borderRadius: "5rem",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          height: 200,
         }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            borderRadius: "5rem",
-            border: "5px solid #d3ad62",
-            clipPath: "polygon(0 5%, 100% 5%, 100% 95%, 0 95%)",
-          }}
-        />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 0,
-          }}
-        >
-          <img
-            style={{
-              width: "4rem",
-              height: "4rem",
-              margin: 0,
-            }}
-            src={place}
-            alt=""
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 0,
-          }}
-        >
-          <img
-            style={{
-              width: "4rem",
-              height: "4rem",
-              margin: 0,
-            }}
-            src={place}
-            alt=""
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 0,
-          }}
-        >
-          <img
-            style={{
-              width: "4rem",
-              height: "4rem",
-              margin: 0,
-            }}
-            src={place}
-            alt=""
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 0,
-          }}
-        >
-          <img
-            style={{
-              width: "4rem",
-              height: "4rem",
-              margin: 0,
-            }}
-            src={place}
-            alt=""
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 0,
-          }}
-        >
-          <img
-            style={{
-              width: "4rem",
-              height: "4rem",
-              margin: 0,
-            }}
-            src={place}
-            alt=""
-          />
-        </div>
-      </div>
+      />
     </div>
   );
 };

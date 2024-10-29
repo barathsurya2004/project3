@@ -54,7 +54,7 @@ const ThreeJsCanvas = () => {
       }
     )
       .to(".face-model", {
-        x: "-25vw",
+        x: "-20vw",
         duration: 0.01,
       })
       .to(".face-model", {
@@ -189,7 +189,7 @@ const ThreeJsCanvas = () => {
           maskImage: `linear-gradient(0deg, rgba(0,0,0,0.0) ${
             num * 100
           }%, rgba(0,0,0,1) ${num * 100}%, rgba(0,0,0,1) 100%)`,
-          left: "55%",
+          left: "50%",
           transform: "translate(-50%,-50%)",
           pointerEvents: "none",
           opacity: 0,

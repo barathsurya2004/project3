@@ -58,14 +58,18 @@ const ActualMap = ({ places, cur }) => {
                   setPosition(place.coord);
                 }}
               >
-                {cur != null && cur.name == place.name ? (
+                {cur != null && cur.cuisine == "pandi" ? (
                   <Pin
-                    background={"white"}
-                    glyphColor={"grey"}
-                    borderColor={"grey"}
+                    background={"#ccb1eb"}
+                    glyphColor={"#887ba8"}
+                    borderColor={"#887ba8"}
                   />
                 ) : (
-                  <Pin background={"red"} />
+                  <Pin
+                    background={"#ed928c"}
+                    glyphColor={"#b26464"}
+                    borderColor={"#b26464"}
+                  />
                 )}
               </AdvancedMarker>
             );

@@ -16,6 +16,7 @@
     "@types/three": "^0.167.2",
     "@vis.gl/react-google-maps": "^1.4.0",
     "dotenv": "^16.4.5",
+    "firebase": "^11.0.1",
     "gsap": "^3.12.5",
     "leva": "^0.9.35",
     "lottie-react": "^2.4.0",
