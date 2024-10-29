@@ -9,6 +9,7 @@ import * as THREE from "three";
 import { Context } from "../../src/context";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 export function FaceModel(props) {
   const group = React.useRef();
   const { nodes, materials, animations } = useGLTF("/Models/face1.glb");
@@ -16,13 +17,27 @@ export function FaceModel(props) {
   const { pointer } = useContext(Context);
   const hoverMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
   const defaultMaterial = new THREE.MeshStandardMaterial({ color: "black" });
-
+  const [offset, setoffset] = React.useState([0, 0]);
   const meshRef1 = React.useRef();
   const meshRef = React.useRef();
   const eyebrowRefl = React.useRef();
   const eyebrowRefr = React.useRef();
   const { hovered, setHovered } = useContext(Context);
-
+  useGSAP(() => {
+    gsap.to(".face-model", {
+      scrollTrigger: {
+        trigger: ".ending-page-helper",
+        start: "top bottom",
+        toggleActions: "play none none reverse",
+        onEnter: () => {
+          setoffset([-window.innerWidth / 4, 0]);
+        },
+        onLeaveBack: () => {
+          setoffset([0, 0]);
+        },
+      },
+    });
+  });
   useEffect(() => {
     const blinkTimeline = gsap.timeline({
       repeat: -1,
@@ -49,10 +64,10 @@ export function FaceModel(props) {
   }, [hovered]);
 
   useFrame((state) => {
-    // console.log(pointer);
+    // console.log(offset);
 
-    const xPos = pointer[0] / window.innerWidth - 0.5;
-    const yPos = pointer[1] / window.innerHeight - 0.5;
+    const xPos = (pointer[0] - offset[0]) / window.innerWidth - 0.5;
+    const yPos = (pointer[1] - offset[1]) / window.innerHeight - 0.5;
     if (group.current) {
       group.current.rotation.y = xPos / 3;
       group.current.rotation.x = yPos / 3;
