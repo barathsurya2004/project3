@@ -43,3 +43,99 @@ export const getDocsFromDb = async (col) => {
     );
     return data;
 }
+
+export const setRandomDoc = async (col, data) => {
+    const colref = collection(db, col);
+    await setDoc(doc(colref), data);
+}
+const test= {
+    name: "Dindigul Thalappakatti",
+    location: "Dindigul",
+    food: "Biryani",
+    lat: 10.462890129065917,
+    lng: 77.96361228641968,
+    cuisine: "pandi",
+}
+  const placs = [
+    {
+      name: "Dindigul Thalappakatti",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.462890129065917,
+        lng: 77.96361228641968,
+      },
+    },
+    {
+      name: "chettinadmanor",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.344027243217678,
+        lng: 78.73814834574884,
+      },
+    },
+    {
+      name: "Athangudi Palace",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.157585454981055,
+        lng: 78.72545598292346,
+      },
+    },
+    {
+      name: "Pallathur",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.384060216215431,
+        lng: 78.81936659729178,
+      },
+    },
+    {
+      name: "JKB Hotel new president",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.299868983282456,
+        lng: 78.73378498802997,
+      },
+    },
+    {
+      name: "Friends Restaurant",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.234371356989241,
+        lng: 78.76231219111723,
+      },
+    },
+    {
+      name: "Sri Priya Mess",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.243728990496221,
+        lng: 78.8574028680748,
+      },
+    },
+    {
+      name: "Amma Mess",
+      food: "Biryani",
+      location: "Dindigul",
+      coord: {
+        lat: 10.262443428724893,
+        lng: 78.8383847326833,
+      },
+    },
+  ];
+//   placs.forEach((place) => {
+
+// setRandomDoc("placesForMap", place).then(()=>{
+//     console.log("done");
+// });
+//   })
+// placs.forEach((place)=>{
+//     setRandomDoc("placesForMap", place);
+// })
