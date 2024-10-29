@@ -31,7 +31,7 @@ function App() {
         overflow: loading ? "hidden" : "auto",
       }}
     >
-      <BackGround />
+      {/* <BackGround /> */}
       <Loader />
       <ThreeJsCanvas />
       <Hero />

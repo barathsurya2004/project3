@@ -180,8 +180,8 @@ const ThreeJsCanvas = () => {
       <div
         className="face-model"
         style={{
-          height: "60vh",
-          width: "40%",
+          width: "40vw",
+          height: "40vw",
           position: "fixed",
           // display: "none",
           top: "50vh",
@@ -189,7 +189,7 @@ const ThreeJsCanvas = () => {
           maskImage: `linear-gradient(0deg, rgba(0,0,0,0.0) ${
             num * 100
           }%, rgba(0,0,0,1) ${num * 100}%, rgba(0,0,0,1) 100%)`,
-          left: "50%",
+          left: "55%",
           transform: "translate(-50%,-50%)",
           pointerEvents: "none",
           opacity: 0,

@@ -2,18 +2,9 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { Context } from "../context";
 import close from "../assets/icons/close.svg";
 import gsap from "gsap";
-import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
+import ActualMap from "./ActualMap";
 const MapComponent = () => {
   const { mode, setMode } = useContext(Context);
-  const { isLoaded } = useJsApiLoader({
-    // googleMapsApiKey: process.env.VITE_API_GOOGLE,
-    // id: "google-map-script",
-    googleMapsApiKey: import.meta.env.VITE_API_GOOGLE,
-  });
-  const options = {
-    mapId: "3409495573976949",
-    disableDefaultUI: true,
-  };
 
   // if (!isLoaded) return "Loading...";
 
@@ -22,43 +13,80 @@ const MapComponent = () => {
       name: "Dindigul Thalappakatti",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.462890129065917,
+        lng: 77.96361228641968,
+      },
     },
     {
-      name: "Dindigul Thalappakatti",
+      name: "chettinadmanor",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.344027243217678,
+        lng: 78.73814834574884,
+      },
     },
     {
-      name: "Dindigul Thalappakatti",
+      name: "Athangudi Palace",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.157585454981055,
+        lng: 78.72545598292346,
+      },
     },
     {
-      name: "Dindigul Thalappakatti",
+      name: "Pallathur",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.384060216215431,
+        lng: 78.81936659729178,
+      },
     },
     {
-      name: "Dindigul Thalappakatti",
+      name: "JKB Hotel new president",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.299868983282456,
+        lng: 78.73378498802997,
+      },
     },
     {
-      name: "Dindigul Thalappakatti",
+      name: "Friends Restaurant",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.234371356989241,
+        lng: 78.76231219111723,
+      },
     },
     {
-      name: "Dindigul Thalappakatti",
+      name: "Sri Priya Mess",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.243728990496221,
+        lng: 78.8574028680748,
+      },
     },
     {
-      name: "Dindigul Thalappakatti",
+      name: "Amma Mess",
       food: "Biryani",
       location: "Dindigul",
+      coord: {
+        lat: 10.262443428724893,
+        lng: 78.8383847326833,
+      },
     },
   ];
+  const locations = [];
+  places.map((place) => {
+    locations.push(place.coord);
+  });
+  const [cur, setCur] = useState(null);
   useEffect(() => {
     if (mode === "Map") {
       gsap.fromTo(
@@ -80,21 +108,11 @@ const MapComponent = () => {
       });
     }
   }, [mode]);
-  const [map, setMap] = useState(null);
   const center = {
-    lat: 9.9012,
-    lng: 78.114,
+    lat: 10.262443428724893,
+    lng: 78.8383847326833,
   };
-  const onLoad = useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
 
-    setMap(map);
-  }, []);
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
   return (
     <div
       className="map"
@@ -188,25 +206,7 @@ const MapComponent = () => {
               position: "relative",
             }}
           >
-            {isLoaded ? (
-              <GoogleMap
-                zoom={10}
-                // center={center}
-                mapContainerStyle={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  zIndex: 1000,
-                  width: "100%",
-                  height: "100%",
-                }}
-                options={options}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
-              ></GoogleMap>
-            ) : (
-              <div>Loading...</div>
-            )}
+            <ActualMap places={places} cur={cur} />
           </div>
           <div
             className="places-holder"
@@ -233,6 +233,15 @@ const MapComponent = () => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    if (cur === place.coord) {
+                      setCur(null);
+                      return;
+                    }
+                    setCur(place);
+                    // console.log(place.coord);
                   }}
                 >
                   <h1
