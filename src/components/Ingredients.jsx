@@ -1,7 +1,4 @@
-import { ColorModel } from "../../public/Models/Cards/Chetti/Color";
-import { MortarModel } from "../../public/Models/Cards/Chetti/Mortar";
-import { SlowModel } from "../../public/Models/Cards/Chetti/Slow";
-import { RedChillyModel } from "../../public/Models/Cards/new/Chetti/Red chilly";
+import { RedChillyModel } from "../../public/Models/Cards/new/Chetti/RedChilly";
 import { SpicesModel } from "../../public/Models/Cards/new/Chetti/Spices";
 import { TamarindModel } from "../../public/Models/Cards/new/Chetti/Tamarind";
 import { CoconutModel } from "../../public/Models/Cards/new/Pandi/Coconut";
@@ -107,6 +104,7 @@ const Ingredients = () => {
             <PepperModel />
             <CoconutModel />
             <LentilsModel />
+            <CoconutModel />
           </CardHolder>
         </div>
         <div

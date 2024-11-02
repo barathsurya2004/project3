@@ -1,7 +1,9 @@
+import { MortarModel } from "../../public/Models/Cards/new/Chetti/Mortor";
+import { SlowModel } from "../../public/Models/Cards/new/Chetti/Slow";
 import { BlenderModel } from "../../public/Models/Cards/new/Pandi/Blender";
 import { FastModel } from "../../public/Models/Cards/new/Pandi/Fast";
 import CardHolder from "./CardHolder";
-// import CardHolderC from "./CardsHolderC";
+import CardHolderC from "./CardsHolderC";
 
 const Procedure = () => {
   return (
@@ -112,7 +114,10 @@ const Procedure = () => {
             height: "100vh",
           }}
         >
-          {/* <CardHolderC /> */}
+          <CardHolderC>
+            <MortarModel />
+            <SlowModel />
+          </CardHolderC>
         </div>
       </div>
     </div>

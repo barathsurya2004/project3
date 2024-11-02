@@ -1,7 +1,6 @@
-import { ColorModel } from "../../public/Models/Cards/Chetti/Color";
-import { RedChillyModel } from "../../public/Models/Cards/new/Chetti/Red chilly";
-import { TamarindModel } from "../../public/Models/Cards/new/Chetti/Tamarind";
-import { PandiColorModel } from "../../public/Models/Cards/new/Pandi/Pandi color";
+import { ChettiColorModel } from "../../public/Models/Cards/new/Chetti/ChettiColor";
+import { IntricateModel } from "../../public/Models/Cards/new/Chetti/Intricate";
+import { PandiColorModel } from "../../public/Models/Cards/new/Pandi/PandiColor";
 import { SimpleModel } from "../../public/Models/Cards/new/Pandi/Simple";
 import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
@@ -115,7 +114,10 @@ const Characteristics = () => {
             height: "100vh",
           }}
         >
-          <CardHolderC></CardHolderC>
+          <CardHolderC>
+            <ChettiColorModel />
+            <IntricateModel />
+          </CardHolderC>
         </div>
       </div>
     </div>
