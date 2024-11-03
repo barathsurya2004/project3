@@ -4,6 +4,7 @@ import close from "../assets/icons/close.svg";
 import gsap from "gsap";
 import ActualMap from "./ActualMap";
 import { getDocFromDb, getDocsFromDb, setRandomDoc } from "../firebaseUtils";
+import visit from "../assets/icons/goto.svg";
 const MapComponent = () => {
   const { mode, setMode } = useContext(Context);
   const [places, setPlaces] = useState([
@@ -81,6 +82,20 @@ const MapComponent = () => {
         position: "absolute",
       }}
     >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+          backgroundColor: "rgba(0,0,0,0)",
+        }}
+        onClick={() => {
+          setMode(null);
+        }}
+      ></div>
       <div
         id="map-container"
         style={{
@@ -173,7 +188,7 @@ const MapComponent = () => {
               scrollbarWidth: "none",
               borderLeft: "5px solid #D3AD62",
               background:
-                "linear-gradient(90deg, rgba(89,71,49,0.3) 0%, rgba(89,71,49,0.2) 100%)",
+                "linear-gradient(90deg, rgba(135,104,73,0.3) 0%, rgba(89,71,49,0.2) 100%)",
             }}
           >
             {places.map((place, index) => {
@@ -187,6 +202,7 @@ const MapComponent = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                     cursor: "pointer",
+                    alignItems: "center",
                   }}
                   onClick={() => {
                     if (cur === place.coord) {
@@ -194,47 +210,127 @@ const MapComponent = () => {
                       return;
                     }
                     setCur(place);
-                    // console.log(place.coord);
                   }}
                 >
-                  <h1
+                  <div
                     style={{
-                      fontSize: (34 * window.innerWidth) / 1920,
-                      color: "#DDD4C7",
-                      marginLeft: "5%",
-                      marginTop: 10,
-                      marginBottom: 10,
-                      fontWeight: 200,
+                      paddingTop: (34 * window.innerHeight) / 1080,
+                      paddingBottom: (34 * window.innerHeight) / 1080,
+                      paddingLeft: (34 * window.innerWidth) / 1920,
+                      paddingRight: (34 * window.innerWidth) / 1920,
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
                     }}
                   >
-                    {place.name}
-                  </h1>
-                  <p
-                    style={{
-                      color: "#CEB9A5",
-                      fontSize: (27 * window.innerWidth) / 1920,
-                      margin: 0,
-                      marginLeft: "5%",
-                      marginBottom: 10,
-                      fontWeight: 200,
-                    }}
-                  >
-                    {place.food}•{place.location}
-                  </p>
+                    <h1
+                      style={{
+                        fontSize: 40.8 * (window.innerWidth / 1920),
+                        color: "#DDD4C7",
+                        marginBottom: 10 * (window.innerHeight / 1080),
+                        fontWeight: 200,
+                      }}
+                    >
+                      {place.name}
+                    </h1>
+                    <p
+                      style={{
+                        color: "#CEB9A5",
+                        fontSize: (32.4 * window.innerWidth) / 1920,
+                        margin: 0,
+                        fontWeight: 200,
+                      }}
+                    >
+                      {place.food} • {place.location} •{" "}
+                      <div
+                        style={{
+                          display: "inline",
+                          color: "#CEB9A5",
+                          fontWeight: 400,
+                        }}
+                        onPointerEnter={() => {
+                          gsap.fromTo(
+                            `.place-${index}`,
+                            {
+                              x: -50,
+                            },
+                            {
+                              x: 0,
+                              duration: 0.2,
+                              // ease: "power4.inOut",
+                            }
+                          );
+                          gsap.to(`.place-${index}-text`, {
+                            duration: 0.2,
+                            textDecoration: "underline rgba(206, 185, 165,1)",
+                          });
+                        }}
+                        onPointerLeave={() => {
+                          gsap.fromTo(
+                            `.place-${index}`,
+                            {
+                              x: 0,
+                            },
+                            {
+                              x: -50,
+                              duration: 0.2,
+                              // ease: "power4.inOut",
+                            }
+                          );
+                          gsap.to(`.place-${index}-text`, {
+                            duration: 0.2,
+                            textDecoration: "none",
+                          });
+                        }}
+                      >
+                        <span
+                          className={`place-${index}-text`}
+                          style={{
+                            color: "#CEB9A5",
+                            fontWeight: 200,
+                            fontSize: (32.4 * window.innerWidth) / 1920,
+                          }}
+                        >
+                          Visit
+                        </span>
+                      </div>
+                      <div
+                        style={{
+                          display: "inline",
+                          margin: 0,
+                          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                        }}
+                      >
+                        <img
+                          className={`place-${index}`}
+                          src={visit}
+                          alt=""
+                          style={{
+                            width: (20 * window.innerWidth) / 1920,
+                            height: (20 * window.innerWidth) / 1920,
+                            marginLeft: (9 * window.innerWidth) / 1920,
+                            transform: "translate(-50px, 0px)",
+                          }}
+                        />
+                      </div>
+                    </p>
+                  </div>
                   <div
                     style={{
                       width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      paddingLeft: 34 * (window.innerWidth / 1920),
+                      paddingRight: 34 * (window.innerWidth / 1920),
                     }}
                   >
                     <hr
                       style={{
-                        width: "90%",
+                        width: "100%",
                         height: 1,
                         backgroundColor: "#AF9F8C",
                         border: "none",
+                        zIndex: 100,
                       }}
                     />
                   </div>

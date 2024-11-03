@@ -44,10 +44,24 @@ const Disclaimer = () => {
       }}
     >
       <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+          backgroundColor: "rgba(0,0,0,0)",
+        }}
+        onClick={() => {
+          setMode(null);
+        }}
+      />
+      <div
         className="diclaimer-container"
         style={{
-          width: 1050 * (window.innerWidth / 1920),
-          height: 520 * (window.innerHeight / 1080),
+          width: 1260 * (window.innerWidth / 1920),
+          height: 624 * (window.innerHeight / 1080),
           background:
             "linear-gradient(0deg, rgba(89,71,49,0.5) 0%, rgba(89,71,49,0.3) 100%)",
           //   opacity: 0.5,
@@ -55,8 +69,9 @@ const Disclaimer = () => {
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
           padding: "2%",
+          paddingBottom: 0,
           alignItems: "center",
           position: "relative",
           border: "5px solid #D3AD62",
@@ -64,7 +79,7 @@ const Disclaimer = () => {
       >
         <p
           style={{
-            width: "100%",
+            width: "80%",
             textAlign: "center",
             color: "#DDD4C7",
             fontSize: 27 * (window.innerWidth / 1920),
@@ -81,7 +96,15 @@ const Disclaimer = () => {
           content of this website. I disclaim any liability for any loss or
           damage arising from the use of this information.
         </p>
-        <div className="close-button">
+        <div
+          className="close-button"
+          style={{
+            margin: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
             src={close}
             alt="close"
@@ -91,6 +114,7 @@ const Disclaimer = () => {
             style={{
               width: 48.78 * (window.innerWidth / 1920),
               height: 62.69 * (window.innerWidth / 1920),
+              margin: 0,
               cursor: "pointer",
             }}
           />

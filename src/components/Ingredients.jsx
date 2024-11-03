@@ -53,7 +53,7 @@ const Ingredients = () => {
         </div>
         <h1
           style={{
-            fontSize: (89 * window.innerWidth) / 1920,
+            fontSize: (68 * window.innerWidth) / 1920,
             fontFamily: "TTtravels Next DemiBold",
             textAlign: "center",
             margin: (25 * window.innerHeight) / 1080,
@@ -98,6 +98,7 @@ const Ingredients = () => {
             left: 0,
             width: "50%",
             height: "100vh",
+            paddingTop: "10vh",
           }}
         >
           <CardHolder idd={"Ing"}>
@@ -114,6 +115,7 @@ const Ingredients = () => {
             right: 0,
             width: "50%",
             height: "100vh",
+            paddingTop: "10vh",
           }}
         >
           <CardHolderC>

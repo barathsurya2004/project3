@@ -54,7 +54,7 @@ const ThreeJsCanvas = () => {
       }
     )
       .to(".face-model", {
-        x: "-20vw",
+        x: "-19vw",
         duration: 0.01,
       })
       .to(".face-model", {
@@ -156,7 +156,7 @@ const ThreeJsCanvas = () => {
   const [num, setNum] = useState(0);
   const { mode } = useContext(Context);
   useEffect(() => {
-    if (mode == "Map" || mode == "Gallery") {
+    if (mode == "Map" || mode == "Gallery" || mode == "Disclaimer") {
       gsap.to(".face-model", {
         maskImage: `linear-gradient(0deg, rgba(0,0,0,0.0) ${100}%, rgba(0,0,0,1) ${100}%, rgba(0,0,0,1) 100%)`,
         ease: "power4.inOut",

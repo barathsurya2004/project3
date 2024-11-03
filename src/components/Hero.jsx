@@ -230,7 +230,7 @@ const Hero = () => {
         overflow: "hidden",
       }}
     >
-      {/* <NavBar /> */}
+      <NavBar />
       <div
         style={{
           position: "absolute",

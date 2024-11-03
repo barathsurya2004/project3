@@ -148,7 +148,7 @@ const Gallery = () => {
                 fontWeight: 200,
               }}
             >
-              Photos from my journey to Pandiyand and Chettinad
+              Snapshots from the journey
             </h1>
             <div>
               <img

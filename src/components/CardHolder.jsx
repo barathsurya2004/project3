@@ -87,7 +87,7 @@ const CardHolder = ({ children, idd }) => {
         className="pagination-cards"
         style={{
           position: "absolute",
-          bottom: "10%",
+          bottom: "13%",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 1000,

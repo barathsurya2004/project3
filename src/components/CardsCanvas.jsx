@@ -14,7 +14,7 @@ const CardsCanvas = ({ children }) => {
         <OrbitControls enableZoom={false} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <directionalLight position={[0, 10, 5]} intensity={1} />
-        <OrthographicCamera makeDefault position={[0, 0, 100]} zoom={40} />
+        <OrthographicCamera makeDefault position={[0, 0, 100]} zoom={30} />
         {children}
       </Canvas>
     </div>

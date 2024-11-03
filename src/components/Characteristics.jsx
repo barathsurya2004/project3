@@ -52,7 +52,7 @@ const Characteristics = () => {
         </div>
         <h1
           style={{
-            fontSize: (89 * window.innerWidth) / 1920,
+            fontSize: (68 * window.innerWidth) / 1920,
             fontFamily: "TTtravels Next DemiBold",
             textAlign: "center",
             margin: (25 * window.innerHeight) / 1080,

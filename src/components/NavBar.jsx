@@ -45,12 +45,11 @@ const NavBar = () => {
         style={{
           position: "absolute",
           top: "50%",
-          right: -125,
+          right: -100,
           width: 160,
           cursor: "pointer",
           transform: "translate(-50%,-50%)",
           backgroundColor: "white",
-
           mixBlendMode: "screen",
           zIndex: 100,
         }}
@@ -68,7 +67,7 @@ const NavBar = () => {
           // backgroundColor: "grey",
         }}
       >
-        <img
+        {/* <img
           src={nav}
           alt="nav"
           style={{
@@ -76,7 +75,7 @@ const NavBar = () => {
             height: 200,
             zIndex: 50,
           }}
-        />
+        /> */}
       </div>
     </div>
   );
