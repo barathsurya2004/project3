@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 lentils.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomPandiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function LentilsModel(props) {
   const { nodes, materials } = useGLTF("/Models/Cards/new/Pandi/lentils.glb");
@@ -16,6 +17,7 @@ export function LentilsModel(props) {
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomPandiShaderMaterial />
         <group
           position={[0.003, 0.031, 0]}
           rotation={[-Math.PI / 2, 0, -Math.PI]}

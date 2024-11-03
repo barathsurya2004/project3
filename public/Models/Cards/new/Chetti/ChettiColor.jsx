@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 chettiColor.glb intricate.glb mortor.glb redChilly.gl
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomChettiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function ChettiColorModel(props) {
   const { nodes, materials } = useGLTF(
@@ -14,10 +15,11 @@ export function ChettiColorModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_2717001.geometry}
-        material={nodes.Mesh_2717001.material}
+        // material={nodes.Mesh_2717001.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomChettiShaderMaterial />
         <mesh
           geometry={nodes.Coin001.geometry}
           material={materials["Gold.002"]}

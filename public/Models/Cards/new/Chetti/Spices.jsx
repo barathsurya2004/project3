@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 spices.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomChettiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function SpicesModel(props) {
   const { nodes, materials } = useGLTF("/Models/Cards/new/Chetti/spices.glb");
@@ -12,10 +13,11 @@ export function SpicesModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_983002.geometry}
-        material={nodes.Mesh_983002.material}
+        // material={nodes.Mesh_983002.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomChettiShaderMaterial />
         <group position={[0, 0.045, -0.002]} scale={[0.076, 0.032, 0.253]}>
           <mesh
             geometry={nodes.cinnamon_stick003.geometry}

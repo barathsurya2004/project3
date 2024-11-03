@@ -43,83 +43,108 @@ export function HeartModel(props) {
         },
       }
     );
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".food-is-art",
-        start: "top bottom",
-        end: "top top",
-        toggleActions: "play none none reverse",
-        // markers: true,
+    gsap.fromTo(
+      ref.current.scale,
+      {
+        x: 0.4,
+        y: 0.4,
+        z: 0.4,
       },
-    });
-    gsap.to(ref.current, {
-      scrollTrigger: {
-        trigger: ".food-is-art",
-        start: "top bottom",
-        end: "top top",
-        toggleActions: "play none none reverse",
-        onEnter: () => {
-          const tl = gsap.timeline();
-          tl.fromTo(
-            changeRef.current.rotation,
-            {
-              y: 0,
-            },
-            {
-              y: 10 * Math.PI,
-              duration: 1,
-              ease: "expo.in",
-            }
-          ).fromTo(
-            ref.current.scale,
-            {
-              x: 0.4,
-              y: 0.4,
-              z: 0.4,
-            },
-            {
-              x: 0,
-              y: 0,
-              z: 0,
-              duration: 0.0001,
-              immediateRender: false,
-            },
-            "-=0.25"
-          );
+      {
+        x: 0,
+        y: 0,
+        z: 0,
+        duration: 0.0001,
+        scrollTrigger: {
+          trigger: ".food-is-art",
+          start: "top bottom",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          onToggle: (self) => {
+            setActive(self.isActive);
+          },
+          // markers: true,
         },
-        onLeaveBack: () => {
-          console.log("back");
-          const tl = gsap.timeline();
-          tl.fromTo(
-            changeRef.current.rotation,
-            {
-              y: 0,
-            },
-            {
-              delay: 0.75,
-              y: 8 * Math.PI,
-              duration: 1,
-              ease: "expo.out",
-            }
-          ).fromTo(
-            ref.current.scale,
-            {
-              x: 0,
-              y: 0,
-              z: 0,
-            },
-            {
-              x: 0.4,
-              y: 0.4,
-              z: 0.4,
-              duration: 0.0001,
-              immediateRender: false,
-            },
-            "-=1"
-          );
-        },
-      },
-    });
+        immediateRender: false,
+      }
+    );
+    // const tl = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".food-is-art",
+    //     start: "top bottom",
+    //     end: "top top",
+    //     toggleActions: "play none none reverse",
+    //     // markers: true,
+    //   },
+    // });
+    // gsap.to(ref.current, {
+    //   scrollTrigger: {
+    //     trigger: ".food-is-art",
+    //     start: "top bottom",
+    //     end: "top top",
+    //     toggleActions: "play none none reverse",
+    //     onEnter: () => {
+    //       const tl = gsap.timeline();
+    //       tl.fromTo(
+    //         changeRef.current.rotation,
+    //         {
+    //           y: 0,
+    //         },
+    //         {
+    //           y: 10 * Math.PI,
+    //           duration: 1,
+    //           ease: "expo.in",
+    //         }
+    //       ).fromTo(
+    //         ref.current.scale,
+    //         {
+    //           x: 0.4,
+    //           y: 0.4,
+    //           z: 0.4,
+    //         },
+    //         {
+    //           x: 0,
+    //           y: 0,
+    //           z: 0,
+    //           duration: 0.0001,
+    //           immediateRender: false,
+    //         },
+    //         "-=0.25"
+    //       );
+    //     },
+    //     onLeaveBack: () => {
+    //       console.log("back");
+    //       const tl = gsap.timeline();
+    //       tl.fromTo(
+    //         changeRef.current.rotation,
+    //         {
+    //           y: 0,
+    //         },
+    //         {
+    //           delay: 0.75,
+    //           y: 8 * Math.PI,
+    //           duration: 1,
+    //           ease: "expo.out",
+    //         }
+    //       ).fromTo(
+    //         ref.current.scale,
+    //         {
+    //           x: 0,
+    //           y: 0,
+    //           z: 0,
+    //         },
+    //         {
+    //           x: 0.4,
+    //           y: 0.4,
+    //           z: 0.4,
+    //           duration: 0.0001,
+    //           immediateRender: false,
+    //         },
+    //         "-=1"
+    //       );
+    //     },
+    //   },
+    // });
   });
   useFrame(() => {
     if (active) {

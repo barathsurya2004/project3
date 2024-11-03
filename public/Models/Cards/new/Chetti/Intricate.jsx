@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 intricate.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomChettiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function IntricateModel(props) {
   const { nodes, materials } = useGLTF(
@@ -14,10 +15,11 @@ export function IntricateModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_2731001.geometry}
-        material={nodes.Mesh_2731001.material}
+        // material={nodes.Mesh_2731001.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+      <CustomChettiShaderMaterial />
         <mesh
           geometry={nodes.Jewel_02_Circle.geometry}
           material={materials["Diamond 03"]}

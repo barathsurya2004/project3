@@ -16,139 +16,54 @@ export function MapModel(props) {
   const ref = React.useRef();
   const changeRef = React.useRef();
   useGSAP(() => {
-    gsap.to(ref.current, {
-      scrollTrigger: {
-        trigger: ".food-is-adventure",
-        start: "top bottom",
-        end: "top top",
-        toggleActions: "play none none reverse",
-        onToggle: (self) => {
-          setActive(self.isActive);
-        },
-        onEnter: () => {
-          const appeartl = gsap.timeline({});
-          appeartl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                z: 0,
-              },
-              {
-                delay: 0.75,
-                z: -8 * Math.PI,
-                duration: 1,
-                ease: "expo.out",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-              },
-              {
-                x: 0.4,
-                y: 0.4,
-                z: 0.4,
-                duration: 0.0001,
-              },
-              "-=0.75"
-            );
-        },
-        onLeaveBack: () => {
-          const appeartl = gsap.timeline({});
-          appeartl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                z: 0 * Math.PI,
-              },
-              {
-                z: -10 * Math.PI,
-                duration: 1,
-                ease: "expo.in",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 0.4,
-                y: 0.4,
-                z: 0.4,
-              },
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-                duration: 0.0001,
-              },
-              "-=0.25"
-            );
-        },
-        onLeave: () => {
-          const leaveTl = gsap.timeline();
-          leaveTl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                z: 0 * Math.PI,
-              },
-              {
-                z: -10 * Math.PI,
-                duration: 1,
-                ease: "expo.in",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 0.4,
-                y: 0.4,
-                z: 0.4,
-              },
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-                duration: 0.0001,
-              },
-              "-=0.25"
-            );
-        },
-        onEnterBack: () => {
-          const appeartl = gsap.timeline();
-          appeartl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                z: 0,
-              },
-              {
-                delay: 0.75,
-                z: -8 * Math.PI,
-                duration: 1,
-                ease: "expo.out",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-              },
-              {
-                x: 0.4,
-                y: 0.4,
-                z: 0.4,
-                duration: 0.0001,
-              },
-              "-=0.75"
-            );
-        },
+    gsap.fromTo(
+      ref.current.scale,
+      {
+        x: 0,
+        y: 0,
+        z: 0,
       },
-    });
+      {
+        x: 0.4,
+        y: 0.4,
+        z: 0.4,
+        duration: 0.0001,
+        scrollTrigger: {
+          trigger: ".food-is-adventure",
+          start: "top bottom",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          onToggle: (self) => {
+            setActive(self.isActive);
+          },
+          // markers: true,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ref.current.scale,
+      {
+        x: 0.4,
+        y: 0.4,
+        z: 0.4,
+      },
+      {
+        x: 0,
+        y: 0,
+        z: 0,
+        duration: 0.0001,
+        scrollTrigger: {
+          trigger: ".food-is-beyond-time",
+          start: "top bottom",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          // markers: true,
+        },
+        immediateRender: false,
+      }
+    );
+
     // gsap.fromTo(
     //   ref.current.scale,
     //   {

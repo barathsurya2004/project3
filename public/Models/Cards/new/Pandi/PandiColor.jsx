@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 pandiColor.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomPandiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function PandiColorModel(props) {
   const { nodes, materials } = useGLTF(
@@ -14,10 +15,11 @@ export function PandiColorModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_2713001.geometry}
-        material={nodes.Mesh_2713001.material}
+        // material={nodes.Mesh_2713001.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomPandiShaderMaterial />
         <mesh
           geometry={nodes.Coin.geometry}
           material={materials["Gold.001"]}

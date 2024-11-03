@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 slow.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomChettiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function SlowModel(props) {
   const { nodes, materials } = useGLTF("/Models/Cards/new/Chetti/slow.glb");
@@ -12,10 +13,11 @@ export function SlowModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_2729001.geometry}
-        material={nodes.Mesh_2729001.material}
+        // material={nodes.Mesh_2729001.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomChettiShaderMaterial />
         <group
           position={[0, 0.038, -0.013]}
           rotation={[-2.551, -0.586, 2.162]}

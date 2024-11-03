@@ -104,7 +104,6 @@ const Ingredients = () => {
             <PepperModel />
             <CoconutModel />
             <LentilsModel />
-            <CoconutModel />
           </CardHolder>
         </div>
         <div

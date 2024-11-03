@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 pepper.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomPandiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function PepperModel(props) {
   const { nodes, materials } = useGLTF("/Models/Cards/new/Pandi/pepper.glb");
@@ -12,10 +13,11 @@ export function PepperModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_2708001.geometry}
-        material={nodes.Mesh_2708001.material}
+        // material={nodes.Mesh_2708001.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomPandiShaderMaterial />
         <mesh
           geometry={nodes.Mesh_2303002.geometry}
           material={materials["Material.019"]}

@@ -77,20 +77,24 @@ const Slider = () => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          onPointerDown={() => {
-            setDragging(true);
+          onPointerEnter={() => {
             gsap.to(".slider-compare__center", {
               opacity: 1,
+              duration: 0.5,
+            });
+          }}
+          onPointerDown={() => {
+            setDragging(true);
+          }}
+          onPointerLeave={() => {
+            gsap.to(".slider-compare__center", {
+              opacity: 0.3,
               duration: 0.5,
             });
           }}
           onPointerUp={() => {
             setDragging(false);
             setYPos(pointer[1] - window.innerHeight / 2);
-            gsap.to(".slider-compare__center", {
-              opacity: 0.3,
-              duration: 0.5,
-            });
             gsap.fromTo(
               ".slider-compare__center",
               {

@@ -18,7 +18,6 @@ const Definition = () => {
               cursor: "pointer",
             }}
             onClick={() => {
-              document.getElementById("audio").load();
               document.getElementById("audio").play();
             }}
           />

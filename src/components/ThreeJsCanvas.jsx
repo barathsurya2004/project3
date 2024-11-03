@@ -72,6 +72,85 @@ const ThreeJsCanvas = () => {
         },
       },
     });
+    gsap.fromTo(
+      ".heart-canvas",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.001,
+        scrollTrigger: {
+          trigger: ".food-is-love",
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ".art-canvas",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.001,
+        scrollTrigger: {
+          trigger: ".food-is-art",
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ".clock-canvas",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.001,
+        scrollTrigger: {
+          trigger: ".food-is-time",
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ".map-canvas",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.001,
+        scrollTrigger: {
+          trigger: ".food-is-treasure",
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ".all-canvas",
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+        duration: 0.001,
+        scrollTrigger: {
+          trigger: ".food-is-culture",
+          start: "top bottom",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
   });
 
   const [num, setNum] = useState(0);
@@ -103,16 +182,68 @@ const ThreeJsCanvas = () => {
         }}
       >
         <Canvas
+          className="heart-canvas all-canvas"
           style={{
             pointerEvents: "none",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
           }}
         >
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
           <directionalLight intensity={2} position={[2.5, 0, 10]} />
           <HeartModel position={[3, 0, 0]} />
+        </Canvas>
+        <Canvas
+          className="art-canvas all-canvas"
+          style={{
+            pointerEvents: "none",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+          }}
+        >
+          {/* <Perf position="top-left" /> */}
+          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
+          <directionalLight intensity={2} position={[2.5, 0, 10]} />
           <ArtModel position={[3, 0, 0]} />
+        </Canvas>
+        <Canvas
+          className="map-canvas all-canvas"
+          style={{
+            pointerEvents: "none",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+          }}
+        >
+          {/* <Perf position="top-left" /> */}
+          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
+          <directionalLight intensity={2} position={[2.5, 0, 10]} />
+
           <MapModel position={[3, 0, 0]} />
+        </Canvas>
+        <Canvas
+          className="clock-canvas all-canvas"
+          style={{
+            pointerEvents: "none",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+          }}
+        >
+          {/* <Perf position="top-left" /> */}
+          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
+          <directionalLight intensity={2} position={[2.5, 0, 10]} />
           <ClockModel position={[3, 0, 0]} />
         </Canvas>
       </div>

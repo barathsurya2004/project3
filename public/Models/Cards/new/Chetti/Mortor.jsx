@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 mortor.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomChettiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function MortarModel(props) {
   const { nodes, materials } = useGLTF("/Models/Cards/new/Chetti/mortor.glb");
@@ -12,10 +13,11 @@ export function MortarModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_986002.geometry}
-        material={nodes.Mesh_986002.material}
+        // material={nodes.Mesh_986002.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomChettiShaderMaterial />
         <mesh
           geometry={nodes.Mesh_1820002.geometry}
           material={materials["Material.060"]}

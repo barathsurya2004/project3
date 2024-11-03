@@ -1,6 +1,6 @@
 import CardsCanvas from "./CardsCanvas";
-import button from "../assets/icons/cardButton.svg";
-import activePage from "../assets/icons/pagination.svg";
+import button from "../assets/icons/chettiArrow.svg";
+import activePage from "../assets/icons/chettiPagi.svg";
 import gsap from "gsap";
 import { Children, useState } from "react";
 const CardHolder = ({ children, idd }) => {

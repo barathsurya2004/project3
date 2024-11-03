@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 redChilly.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomChettiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function RedChillyModel(props) {
   const { nodes, materials } = useGLTF(
@@ -14,9 +15,10 @@ export function RedChillyModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_1024002.geometry}
-        material={nodes.Mesh_1024002.material}
+        // material={nodes.Mesh_1024002.material}
         scale={[50, 50, 22.5]}
       >
+        <CustomChettiShaderMaterial />
         <group
           position={[0, 0.042, 0]}
           rotation={[2.078, -0.273, 1.75]}

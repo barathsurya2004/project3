@@ -21,140 +21,54 @@ export function ClockModel(props) {
   const [active, setActive] = React.useState(false);
 
   useGSAP(() => {
-    gsap.to(ref.current, {
-      scrollTrigger: {
-        trigger: ".food-is-beyond-time",
-        start: "top bottom",
-        end: "top top",
-        toggleActions: "play none none reverse",
-        onToggle: (self) => {
-          setActive(self.isActive);
-        },
-        onEnter: () => {
-          const appeartl = gsap.timeline({});
-          appeartl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                y: 0,
-              },
-              {
-                delay: 0.75,
-                y: 8 * Math.PI,
-                duration: 1,
-                ease: "expo.out",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-              },
-              {
-                x: 12,
-                y: 12,
-                z: 12,
-                duration: 0.0001,
-              },
-              "-=0.75"
-            );
-        },
-        onLeaveBack: () => {
-          const leaveTl = gsap.timeline({});
-          leaveTl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                y: 0 * Math.PI,
-              },
-              {
-                y: 10 * Math.PI,
-                duration: 1,
-                ease: "expo.in",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 12,
-                y: 12,
-                z: 12,
-              },
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-                duration: 0.0001,
-              },
-              "-=0"
-            );
-        },
-        onLeave: () => {
-          const leaveTl = gsap.timeline({});
-          leaveTl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                y: 0 * Math.PI,
-              },
-              {
-                y: 10 * Math.PI,
-                duration: 1,
-                ease: "expo.in",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 12,
-                y: 12,
-                z: 12,
-              },
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-                duration: 0.0001,
-              },
-              "-=0"
-            );
-        },
-        onEnterBack: () => {
-          const appeartl = gsap.timeline({});
-          appeartl
-            .fromTo(
-              changeRef.current.rotation,
-              {
-                y: 0,
-              },
-              {
-                delay: 0.75,
-                y: 8 * Math.PI,
-                duration: 1,
-                ease: "expo.out",
-              }
-            )
-            .fromTo(
-              ref.current.scale,
-              {
-                x: 0,
-                y: 0,
-                z: 0,
-              },
-              {
-                x: 12,
-                y: 12,
-                z: 12,
-                duration: 0.0001,
-              },
-              "-=0.75"
-            );
-        },
-        // markers: true,
+    gsap.fromTo(
+      ref.current.scale,
+      {
+        x: 0,
+        y: 0,
+        z: 0,
       },
-    });
+      {
+        x: 12,
+        y: 12,
+        z: 12,
+        duration: 0.0001,
+        scrollTrigger: {
+          trigger: ".food-is-beyond-time",
+          start: "top bottom",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          onToggle: (self) => {
+            setActive(self.isActive);
+          },
+          // markers: true,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ref.current.scale,
+      {
+        x: 12,
+        y: 12,
+        z: 12,
+      },
+      {
+        x: 0,
+        y: 0,
+        z: 0,
+        duration: 0.0001,
+        scrollTrigger: {
+          trigger: ".food-is-cutlure",
+          start: "top bottom",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          // markers: true,
+        },
+        immediateRender: false,
+      }
+    );
+
     // gsap.fromTo(
     //   ref.current.scale,
     //   {

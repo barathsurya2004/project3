@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.2 coconut.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { CustomPandiShaderMaterial } from "../../../../../src/components/MaterialShader";
 
 export function CoconutModel(props) {
   const { nodes, materials } = useGLTF("/Models/Cards/new/Pandi/coconut.glb");
@@ -12,10 +13,11 @@ export function CoconutModel(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Mesh_988002.geometry}
-        material={nodes.Mesh_988002.material}
+        // material={nodes.Mesh_988002.material}
         rotation={[0, 0, -Math.PI]}
         scale={[-50, -50, -14.994]}
       >
+        <CustomPandiShaderMaterial />
         <group
           position={[0.015, 0.025, -0.014]}
           rotation={[-Math.PI / 2, 0, -Math.PI]}

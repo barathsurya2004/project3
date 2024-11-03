@@ -12,7 +12,11 @@ const NavBar = () => {
     if (ref.current) ref.current.stop();
   }, []);
   return (
-    <div>
+    <div
+      style={{
+        mixBlendMode: "add",
+      }}
+    >
       <div
         className="actual-button"
         onClick={() => {
@@ -41,11 +45,14 @@ const NavBar = () => {
         style={{
           position: "absolute",
           top: "50%",
-          right: "-5%",
+          right: -125,
           width: 160,
           cursor: "pointer",
           transform: "translate(-50%,-50%)",
           backgroundColor: "white",
+
+          mixBlendMode: "screen",
+          zIndex: 100,
         }}
       />
       <div
@@ -53,12 +60,12 @@ const NavBar = () => {
           position: "absolute",
           width: 200,
           top: "50%",
-          right: "-5%",
+          right: -135,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           transform: "translate(-50%,-50%)",
-          backgroundColor: "grey",
+          // backgroundColor: "grey",
         }}
       >
         <img
@@ -67,6 +74,7 @@ const NavBar = () => {
           style={{
             width: 200,
             height: 200,
+            zIndex: 50,
           }}
         />
       </div>
