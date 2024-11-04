@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import animdata from "../assets/lotties/nav_final.json";
+import animdata from "../assets/lotties/new_reverse_navbar_3.json";
 import nav from "../assets/icons/nav_bar.svg";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -38,7 +38,7 @@ const NavBar = () => {
         }}
       ></div>
       <Lottie
-        loop={false}
+        loop={true}
         autoplay={false}
         animationData={animdata}
         lottieRef={ref}
@@ -46,10 +46,10 @@ const NavBar = () => {
           position: "absolute",
           top: "50%",
           right: -100,
-          width: 160,
+          width: 150,
           cursor: "pointer",
           transform: "translate(-50%,-50%)",
-          backgroundColor: "white",
+          // backgroundColor: "white",
           mixBlendMode: "screen",
           zIndex: 100,
         }}

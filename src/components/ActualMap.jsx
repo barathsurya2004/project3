@@ -7,6 +7,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import gsap from "gsap";
 import { useEffect, useState } from "react";
+import { Polyline } from "./PolyLine";
 const MapControls = ({ pos }) => {
   const map = useMap();
   const defaultPos = {
@@ -17,7 +18,7 @@ const MapControls = ({ pos }) => {
   useEffect(() => {
     if (!map) return;
     if (!pos) {
-      map.setZoom(5);
+      map.setZoom(8);
       return;
     } else {
       map.setZoom(12);
@@ -33,6 +34,59 @@ const ActualMap = ({ places, cur }) => {
     lat: 10.262443428724893,
     lng: 78.8383847326833,
   });
+  const pandiPath = [
+    {
+      lat: 10.011795,
+      lng: 77.423373,
+    },
+    {
+      lat: 9.777687,
+      lng: 77.628553,
+    },
+    {
+      lat: 9.731542944475976,
+      lng: 78.43435898466475,
+    },
+    {
+      lat: 10.419127253005666,
+      lng: 78.5274734306254,
+    },
+    {
+      lat: 10.68611754198443,
+      lng: 77.86015323457417,
+    },
+    {
+      lat: 10.011795,
+      lng: 77.423373,
+    },
+  ];
+  const chettiPath = [
+    { lat: 9.731542944475976, lng: 78.43435898466475 },
+    {
+      lat: 9.186567773109145,
+      lng: 78.50540404559962,
+    },
+    {
+      lat: 9.351706073750504,
+      lng: 78.95048364035807,
+    },
+    {
+      lat: 9.624451958578346,
+      lng: 78.91628679651252,
+    },
+    {
+      lat: 10.317533784517433,
+      lng: 79.32243118765399,
+    },
+    {
+      lat: 10.705000659089052,
+      lng: 79.01279635480356,
+    },
+    {
+      lat: 10.419127253005666,
+      lng: 78.5274734306254,
+    },
+  ];
   //   console.log(places, cur);
   return (
     <APIProvider apiKey={import.meta.env.VITE_API_GOOGLE}>
@@ -48,6 +102,18 @@ const ActualMap = ({ places, cur }) => {
           mapId={import.meta.env.VITE_MAP_ID}
           disableDefaultUI
         >
+          <Polyline
+            strokeWeight={10}
+            strokeColor={"#ccb1eb"}
+            strokeOpacity={0.5}
+            path={pandiPath}
+          />
+          <Polyline
+            strokeWeight={10}
+            strokeColor={"#ed928c"}
+            strokeOpacity={0.5}
+            path={chettiPath}
+          />
           {places.map((place) => {
             // console.log(place);
             return (
