@@ -13,6 +13,7 @@ const Gallery = () => {
   const [opened, setOpened] = useState(false);
   // const [fullscreen, setFullscreen] = useState(null);
   const [indexSelected, setIndexSelected] = useState(null);
+  const [titleIndex, setTitleIndex] = useState(null);
   const prevIndexRef = useRef();
   const fullref = useRef(fullscreen);
   fullref.current = fullscreen;
@@ -148,7 +149,9 @@ const Gallery = () => {
                 fontWeight: 200,
               }}
             >
-              Snapshots from the journey
+              {titleIndex == null
+                ? "Getting to the Roots"
+                : photos[titleIndex].Thumbnail}
             </h1>
             <div>
               <img
@@ -225,6 +228,7 @@ const Gallery = () => {
                         ease: "power1.inOut",
                       }).then(() => {
                         setIndexSelected(null);
+                        setTitleIndex(null);
                         setOpened(false);
                       });
                     }
@@ -287,6 +291,7 @@ const Gallery = () => {
                               ease: "power1.inOut",
                             }).then(() => {
                               setIndexSelected(null);
+                              setTitleIndex(null);
                               setOpened(false);
                             });
                             return;
@@ -314,6 +319,7 @@ const Gallery = () => {
                             });
                           } else {
                             setIndexSelected(`.images-${index}`);
+                            setTitleIndex(index);
                           }
                           setOpened(true);
                         }
