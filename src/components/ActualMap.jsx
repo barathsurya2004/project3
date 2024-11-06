@@ -8,6 +8,8 @@ import {
 import gsap from "gsap";
 import { useEffect, useState } from "react";
 import { Polyline } from "./PolyLine";
+import { Polygon } from "./polygon";
+import pandiPathJson from "../assets/json/madurai.json";
 const MapControls = ({ pos }) => {
   const map = useMap();
   const defaultPos = {
@@ -34,32 +36,10 @@ const ActualMap = ({ places, cur }) => {
     lat: 10.262443428724893,
     lng: 78.8383847326833,
   });
-  const pandiPath = [
-    {
-      lat: 10.011795,
-      lng: 77.423373,
-    },
-    {
-      lat: 9.777687,
-      lng: 77.628553,
-    },
-    {
-      lat: 9.731542944475976,
-      lng: 78.43435898466475,
-    },
-    {
-      lat: 10.419127253005666,
-      lng: 78.5274734306254,
-    },
-    {
-      lat: 10.68611754198443,
-      lng: 77.86015323457417,
-    },
-    {
-      lat: 10.011795,
-      lng: 77.423373,
-    },
-  ];
+  const pandiPath = pandiPathJson;
+  pandiPath.forEach((point) => {
+    console.log(point);
+  });
   const chettiPath = [
     { lat: 9.731542944475976, lng: 78.43435898466475 },
     {
@@ -102,11 +82,13 @@ const ActualMap = ({ places, cur }) => {
           mapId={import.meta.env.VITE_MAP_ID}
           disableDefaultUI
         >
-          <Polyline
-            strokeWeight={10}
+          <Polygon
+            path={pandiPath}
             strokeColor={"#ccb1eb"}
             strokeOpacity={0.5}
-            path={pandiPath}
+            strokeWeight={1}
+            fillColor={"#ccb1eb"}
+            fillOpacity={0.1}
           />
           <Polyline
             strokeWeight={10}
