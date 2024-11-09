@@ -14,6 +14,7 @@ gsap.registerPlugin(useGSAP);
 const Slider = () => {
   const [dragging, setDragging] = useState(false);
   const [yPos, setYPos] = useState(0);
+  const [xPos, setXPos] = useState(0);
   const { pointer } = useContext(Context);
   useGSAP(() => {
     gsap.fromTo(
@@ -95,6 +96,7 @@ const Slider = () => {
           onPointerUp={() => {
             setDragging(false);
             setYPos(pointer[1] - window.innerHeight / 2);
+            setXPos(pointer[0] - window.innerWidth / 2);
             gsap.fromTo(
               ".slider-compare__center",
               {
@@ -186,7 +188,7 @@ const Slider = () => {
               width: (100 * window.innerWidth) / 1920,
               padding: "auto 0",
               position: "absolute",
-              left: `${sliderValue}%`,
+              left: dragging ? pointer[0] : xPos,
               top: dragging ? pointer[1] - window.innerHeight / 2 : yPos,
               transform: "translate(-50%, -25%)",
               pointerEvents: "none",
@@ -203,7 +205,7 @@ const Slider = () => {
               // top: "-100%"
               height: "100vh",
               width: "50%",
-              left: ` ${sliderValue - 25}%`,
+              left: dragging ? pointer[0] - window.innerWidth / 4 : xPos,
               pointerEvents: "none",
             }}
             src={center}

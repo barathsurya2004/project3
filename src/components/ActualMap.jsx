@@ -37,9 +37,7 @@ const ActualMap = ({ places, cur }) => {
     lng: 78.8383847326833,
   });
   const pandiPath = pandiPathJson;
-  pandiPath.forEach((point) => {
-    console.log(point);
-  });
+
   const chettiPath = [
     { lat: 9.731542944475976, lng: 78.43435898466475 },
     {

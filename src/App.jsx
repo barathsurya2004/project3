@@ -14,7 +14,7 @@ import Loader from "./components/Loader";
 import Procedure from "./components/Procedure";
 import Question from "./components/Question";
 import SharePage from "./components/SharePage";
-import Slider from "./components/Slider";
+import Slider1 from "./components/Slider copy";
 import ThereIsMore from "./components/ThereIsMore";
 import ThreeJsCanvas from "./components/ThreeJsCanvas";
 import YetSoUnique from "./components/YetSoUnique";
@@ -69,7 +69,7 @@ function App() {
       <CultureDef />
       <Cuisines />
       {/* <YetSoUnique /> */}
-      <Slider />
+      <Slider1 />
       <ThereIsMore />
       <Ingredients />
       <Procedure />
