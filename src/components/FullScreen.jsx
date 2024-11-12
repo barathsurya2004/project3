@@ -10,6 +10,19 @@ const FullScreen = ({ currentSelection, photos, setcurrentSelection }) => {
   const zoomRef = useRef(zooming);
   zoomRef.current = zooming;
   const clickTimeoutRef = useRef();
+  const [keyPressed, setKeyPressed] = useState("k");
+
+  useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setKeyPressed("Escape");
+        setFullscreen(false);
+      }
+    });
+    return () => {
+      document.removeEventListener("keydown", () => {});
+    };
+  }, []);
   useEffect(() => {
     Draggable.create(".overflow-container", {
       type: "x",
@@ -179,6 +192,7 @@ const FullScreen = ({ currentSelection, photos, setcurrentSelection }) => {
           justifyContent: "center",
           // alignItems: "center",
           // aspectRatio: "16/9",
+          zIndex: 999,
         }}
         onDoubleClick={() => {
           clearTimeout(clickTimeoutRef.current);
@@ -212,6 +226,24 @@ const FullScreen = ({ currentSelection, photos, setcurrentSelection }) => {
           alt=""
         />
       </div>
+      <div
+        className="close-button"
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: "100%",
+          height: "100vh",
+          cursor: "pointer",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 0,
+        }}
+        onClick={() => {
+          setFullscreen(false);
+        }}
+      ></div>
       <div
         className="fullscreen-carousel"
         style={{

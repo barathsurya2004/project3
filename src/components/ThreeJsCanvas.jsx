@@ -14,8 +14,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 import gsap from "gsap";
 import { QuestionModel } from "../../public/Models/Q_mark";
-import { GlobeModel1 } from "../../public/Models/GlobeCountries";
-import { CountriesModel } from "../../public/Models/CountryGlobe";
+import { NewClockModel } from "../../public/Models/Clokc";
+import { TreasureModel } from "../../public/Models/Treasure";
+import { CountriesModel } from "../../public/Models/Countries";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
 
@@ -151,6 +152,22 @@ const ThreeJsCanvas = () => {
         },
       }
     );
+    gsap.fromTo(
+      ".globe-canvas",
+      {
+        top: 0,
+      },
+      {
+        top: "-100vh",
+        scrollTrigger: {
+          trigger: ".slider-compare",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+        },
+        ease: "none",
+      }
+    );
   });
 
   const [num, setNum] = useState(0);
@@ -228,7 +245,8 @@ const ThreeJsCanvas = () => {
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
           <directionalLight intensity={2} position={[2.5, 0, 10]} />
 
-          <MapModel position={[3, 0, 0]} />
+          {/* <MapModel position={[3, 0, 0]} /> */}
+          <TreasureModel position={[3, 0, 0]} />
         </Canvas>
         <Canvas
           className="clock-canvas all-canvas"
@@ -244,7 +262,8 @@ const ThreeJsCanvas = () => {
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
           <directionalLight intensity={2} position={[2.5, 0, 10]} />
-          <ClockModel position={[3, 0, 0]} />
+          {/* <ClockModel position={[3, 0, 0]} /> */}
+          <NewClockModel position={[3, 0, 0]} />
         </Canvas>
       </div>
       <div
@@ -255,7 +274,7 @@ const ThreeJsCanvas = () => {
           left: 0,
           width: "100%",
           height: "100vh",
-          zIndex: 200,
+          zIndex: 0,
           pointerEvents: "none",
         }}
       >
@@ -276,7 +295,7 @@ const ThreeJsCanvas = () => {
             position={[0, 0, 2.212]}
             zoom={0.9}
           />
-          {/* <CountriesModel /> */}
+          <CountriesModel position={[1, 0, 0]} />
         </Canvas>
       </div>
       <div

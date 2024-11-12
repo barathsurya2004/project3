@@ -38,6 +38,7 @@ html {
   padding: 0;
   scrollbar-width: 0;
   -ms-overflow-style: none;
+  user-select: none;
 }
 
 body {
