@@ -9,14 +9,43 @@ import gsap from "gsap";
 import { useEffect, useState } from "react";
 import { Polyline } from "./PolyLine";
 import { Polygon } from "./polygon";
-import pandiPathJson from "../assets/json/madurai.json";
+import madurai from "../assets/json/madurai.json";
+import aruppukottai from "../assets/json/virudunagar1.json";
+import srivilliputhur from "../assets/json/srivilliputhur.json";
+import virudunagar from "../assets/json/rajapalayam.json";
+import v3 from "../assets/json/v3.json";
+import v4 from "../assets/json/v4.json";
+import v5 from "../assets/json/v5.json";
+import v6 from "../assets/json/v6.json";
+import theni from "../assets/json/theni.json";
+import din1 from "../assets/json/din1.json";
+import din2 from "../assets/json/din2.json";
+import din3 from "../assets/json/din3.json";
+import din4 from "../assets/json/din4.json";
+import din5 from "../assets/json/din5.json";
+import din6 from "../assets/json/din6.json";
+import pudu1 from "../assets/json/chettiMap/pudu1.json";
+import pudu2 from "../assets/json/chettiMap/pudu2.json";
+import pudu3 from "../assets/json/chettiMap/pudu3.json";
+import pudu4 from "../assets/json/chettiMap/pudu4.json";
+import pudu5 from "../assets/json/chettiMap/pudu5.json";
+import pudu6 from "../assets/json/chettiMap/pudu6.json";
+import karai from "../assets/json/chettiMap/karai.json";
+import siva1 from "../assets/json/chettiMap/siva1.json";
+import siva2 from "../assets/json/chettiMap/siva2.json";
+import siva3 from "../assets/json/chettiMap/siva3.json";
+import siva4 from "../assets/json/chettiMap/siva4.json";
+import siva5 from "../assets/json/chettiMap/siva5.json";
+import siva6 from "../assets/json/chettiMap/siva6.json";
+import param from "../assets/json/chettiMap/param.json";
+import ram1 from "../assets/json/chettiMap/ram1.json";
+import ram2 from "../assets/json/chettiMap/ram2.json";
 const MapControls = ({ pos }) => {
   const map = useMap();
   const defaultPos = {
     lat: 10.262443428724893,
     lng: 78.8383847326833,
   };
-
   useEffect(() => {
     if (!map) return;
     if (!pos) {
@@ -36,34 +65,41 @@ const ActualMap = ({ places, cur }) => {
     lat: 10.262443428724893,
     lng: 78.8383847326833,
   });
-  const pandiPath = pandiPathJson;
+  const pandiPath = madurai;
 
-  const chettiPath = [
-    { lat: 9.731542944475976, lng: 78.43435898466475 },
-    {
-      lat: 9.186567773109145,
-      lng: 78.50540404559962,
-    },
-    {
-      lat: 9.351706073750504,
-      lng: 78.95048364035807,
-    },
-    {
-      lat: 9.624451958578346,
-      lng: 78.91628679651252,
-    },
-    {
-      lat: 10.317533784517433,
-      lng: 79.32243118765399,
-    },
-    {
-      lat: 10.705000659089052,
-      lng: 79.01279635480356,
-    },
-    {
-      lat: 10.419127253005666,
-      lng: 78.5274734306254,
-    },
+  const pandiPaths = [
+    madurai,
+    aruppukottai,
+    srivilliputhur,
+    virudunagar,
+    v3,
+    v5,
+    v6,
+    theni,
+    din1,
+    din2,
+    din3,
+    din4,
+    din5,
+    din6,
+  ];
+
+  const chettiPaths = [
+    pudu1,
+    pudu2,
+    pudu3,
+    pudu4,
+    pudu5,
+    pudu6,
+    karai,
+    siva1,
+    siva2,
+    siva4,
+    siva5,
+    siva6,
+    param,
+    // ram1,
+    // ram2,
   ];
   //   console.log(places, cur);
   return (
@@ -80,20 +116,31 @@ const ActualMap = ({ places, cur }) => {
           mapId={import.meta.env.VITE_MAP_ID}
           disableDefaultUI
         >
-          <Polygon
-            path={pandiPath}
-            strokeColor={"#ccb1eb"}
-            strokeOpacity={0.5}
-            strokeWeight={1}
-            fillColor={"#ccb1eb"}
-            fillOpacity={0.1}
-          />
-          <Polyline
-            strokeWeight={10}
-            strokeColor={"#ed928c"}
-            strokeOpacity={0.5}
-            path={chettiPath}
-          />
+          {pandiPaths.map((path, index) => {
+            return (
+              <Polygon
+                path={path}
+                strokeColor={"#ccb1eb"}
+                strokeOpacity={0.5}
+                strokeWeight={1}
+                fillColor={"#ccb1eb"}
+                fillOpacity={0.1}
+              />
+            );
+          })}
+          {chettiPaths.map((path, index) => {
+            return (
+              <Polygon
+                path={path}
+                strokeColor={"#ed928c"}
+                strokeOpacity={0.5}
+                strokeWeight={1}
+                fillColor={"#ed928c"}
+                fillOpacity={0.1}
+              />
+            );
+          })}
+
           {places.map((place) => {
             // console.log(place);
             return (

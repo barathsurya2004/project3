@@ -31,6 +31,7 @@ export function QuestionModel(props) {
           scrub: true,
         },
         ease: "none",
+        immediateRender: false,
       }
     );
     const tl = gsap.timeline({
@@ -58,6 +59,7 @@ export function QuestionModel(props) {
         x: 3,
         y: 1,
         duration: 2,
+        immediateRender: false,
       }
     )
       .fromTo(
@@ -119,7 +121,7 @@ export function QuestionModel(props) {
       {...props}
       dispose={null}
       scale={0.035}
-      position={[2.7, -2.5, 0]}
+      position={[2.03, -1.92, 0]}
     >
       <group rotation={[Math.PI / 2, 0, 0]}>
         <mesh

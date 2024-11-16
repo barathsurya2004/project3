@@ -132,7 +132,7 @@ const MapComponent = () => {
               fontWeight: 200,
             }}
           >
-            Interview in chettinad
+            Dive in and experience yourself!
           </h1>
           <div
             style={{
