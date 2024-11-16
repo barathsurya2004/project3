@@ -16,12 +16,24 @@ const Definition = () => {
             alt=""
             style={{
               cursor: "pointer",
+              height: "4.629vh",
+              width: "5.15027vh",
+              marginLeft: "-0.5vh",
             }}
             onClick={() => {
               document.getElementById("audio").play();
             }}
           />
-          food
+          <span
+            style={{
+              fontSize: "5.0925vh",
+              fontFamily: "TTtravels Next Bold",
+              position: "relative",
+              margin: 0,
+            }}
+          >
+            food
+          </span>
         </h1>
         <p>/fu:d/</p>
         <p>noun</p>
@@ -30,14 +42,17 @@ const Definition = () => {
           plants absorb in order to maintain life and growth.
         </p>
         <p>
-          From basic sustenance to a canvas of creativity, food fuels our bodies
-          and sparks our imaginations. Simple meals nourish us after a long day,
-          while elaborate feasts bring communities together. Across cultures and
-          centuries, food has been a source of joy, a centerpiece of
-          celebrations, and a way to connect with loved ones. Whether savoring a
-          juicy peach or sharing a plate of steaming dumplings, food is a
-          universal language of experience. Food can be a journey, a comfort, a
-          celebration. Food is a lot of things.
+          Food fuels both body and imagination. Simple meals nourish, while
+          feasts unite. Across cultures, food brings joy, celebrates milestones,
+          and connects us. From a juicy peach to steaming dumplings, food is a
+          journey, comfort, and universal language.
+        </p>
+        <p
+          style={{
+            marginTop: "4vh",
+          }}
+        >
+          Food is a lot of things...
         </p>
       </div>
     </>

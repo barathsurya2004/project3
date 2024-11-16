@@ -265,7 +265,7 @@ const EndingPage = () => {
         >
           <div
             style={{
-              padding: "9% 0 0 0",
+              padding: "5% 0 0 0",
               width: (700 * window.innerWidth) / 1920,
               display: "flex",
               flexDirection: "column",
@@ -294,9 +294,15 @@ const EndingPage = () => {
                 color: "#DDD4C7",
               }}
             >
-              This website was created by Sudhesh Venkatachalam for Project_3 in
-              Semester 6 as part of the Bachelor's of Design program at IIT
-              Hyderabad, under the guidance of Dr. Saurav Khuttiya Deori.
+              It all started when two 'Chettinad' restaurants in Madurai offered
+              completely different-tasting foods. This website is the result of
+              the questions that arose from that experience. Through extensive
+              exploration, the workings of cuisine were uncovered through the
+              distinct culinary landscapes of Tamil Nadu, revealing how two
+              unique cuisines,Pandiyanad and Chettinad, exist in close proximity
+              yet offer vastly different flavors and experiences. This platform
+              provides an in-depth look at how these cuisines function and
+              thrive.
             </p>
             <p
               style={{
@@ -306,14 +312,10 @@ const EndingPage = () => {
                 color: "#DDD4C7",
               }}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-              doloribus commodi sint, nulla, pariatur nihil incidunt itaque
-              quidem dicta obcaecati quae veritatis dolore vitae, temporibus
-              eaque tempora minus illo natus. Lorem, ipsum dolor sit amet
-              consectetur adipisicing elit. Perspiciatis, eligendi dolor? At
-              quia nesciunt voluptate reiciendis eos rerum autem, dolore
-              quibusdam corrupti vitae, magnam deserunt minima pariatur mollitia
-              saepe incidunt.
+              The website explores and celebrates two regional cuisines,
+              offering insights into their origins, preparation, and cultural
+              significance. It provides an immersive journey for anyone looking
+              to learn, savor, or appreciate these rich culinary traditions.
             </p>
           </div>
         </div>

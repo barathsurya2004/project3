@@ -16,10 +16,27 @@ export function QuestionModel(props) {
   const { nodes, materials } = useGLTF("/Models/q_mark.glb");
   const [active, setActive] = React.useState(false);
   useGSAP(() => {
+    gsap.fromTo(
+      ref.current.position,
+      {
+        y: -1.92,
+      },
+      {
+        y: -1.5,
+        scrollTrigger: {
+          trigger: ".words-container",
+          start: "top bottom",
+          end: "top 95%",
+          toggleActions: "play none none reverse",
+          scrub: true,
+        },
+        ease: "none",
+      }
+    );
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".words-container",
-        start: "top 90%",
+        start: "top 95%",
         end: "top top",
         onLeave: () => {
           setActive(true);
@@ -34,8 +51,8 @@ export function QuestionModel(props) {
     tl.fromTo(
       ref.current.position,
       {
-        x: 2.7,
-        y: -2.5,
+        x: 2.03,
+        y: -1.5,
       },
       {
         x: 3,
@@ -46,9 +63,9 @@ export function QuestionModel(props) {
       .fromTo(
         ref.current.scale,
         {
-          x: 0.035,
-          y: 0.035,
-          z: 0.035,
+          x: 0.024,
+          y: 0.024,
+          z: 0.024,
         },
         {
           x: 0.1,

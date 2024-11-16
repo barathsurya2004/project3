@@ -1,31 +1,32 @@
-.definition-container{
-    position:fixed;
-    top:-1.388vh;
-    left:0;
-    width: 100%;
-    height: 100vh;
-    padding: 30.1667vh 0 0 9.1145vw;
-    margin: 0;
+.definition-container {
+  position: fixed;
+  top: -1.388vh;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 30.1667vh 0 0 9.1145vw;
+  margin: 0;
 }
-.definition-container h1{
-    font-size: 5.0925vh;
-    font-family: 'TTtravels Next Bold';
-    position: relative;
-    margin: 0;
+.definition-container h1 {
+  font-size: 5.0925vh;
+  font-family: "TTtravels Next Bold";
+  position: relative;
+  margin: 0;
 }
-.definition-container p{
-    width: 46.6vw;
-    font-size: 2.5925vh;
-    font-family: 'Filson Pro Regular';
-    margin: 1.666vh 0;
-    line-height: 1.27;
-    color: #F2D8A0;
+.definition-container p {
+  width: 46.6vw;
+  font-size: 2.5925vh;
+  font-family: "Filson Pro Regular";
+  margin: 1.666vh 0;
+  line-height: 1.27;
+  color: #f2d8a0;
 }
-.definition-container img{
-    margin: 0;
-    position: absolute;
-    transform: translate(-125%, 25%);
-    height: 4.629vh;
-    width: 5.15027vh;
-    object-fit: cover;
+.definition-container img {
+  margin: 0;
+  margin-right: 1.5vw;
+  position: absolute;
+  transform: translate(-125%, 25%);
+  height: 4.629vh;
+  width: 5.15027vh;
+  object-fit: cover;
 }

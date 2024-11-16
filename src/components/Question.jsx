@@ -17,7 +17,7 @@ const Question = () => {
           start: "top 160%",
           end: "top 70%",
           toggleActions: "play none none reverse",
-          scrub: 0.1,
+          scrub: 0.05,
         },
       }
     );
@@ -26,7 +26,7 @@ const Question = () => {
         trigger: ".definition",
         start: "top bottom",
         end: "top top",
-        scrub: 0.1,
+        scrub: 0.05,
       },
     });
     questionTl
@@ -130,7 +130,7 @@ const Question = () => {
               style={{
                 marginLeft: (175 * window.innerWidth) / 1920,
                 fontSize: (55 * window.innerHeight) / 1080,
-                fontFamily: "TTtravels Next Demibold",
+                fontFamily: "TTtravels Next Bold",
                 transform: "translate(0% ,0%)",
                 left: "-100vh",
               }}

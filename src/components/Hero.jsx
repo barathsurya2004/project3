@@ -303,19 +303,15 @@ const Hero = () => {
             width: "100%",
           }}
         >
-          Food is something we consume and interact with every day. We typically
-          eat every 4-6 hours, enjoying a variety of foods. We have emotional
-          connections to certain meals; many times, we crave food made by our
-          moms or from home. We share food, enjoy food, waste food, and strive
-          for food. Often, we don't know how it's made or the effort involved;
-          we just eat and repeat the cycle when hunger strikes again. This cycle
-          of consumption, repeats itself tirelessly, every single meal, every
-          single day!
+          Food is a daily ritual that brings emotional connections, cravings,
+          and enjoyment, often without consideration of its origins or effort.
+          We share, savor, waste, and endlessly repeat this cycle with every
+          meal.
         </p>
         <p
           style={{
             textAlign: "center",
-            fontSize: (34 * window.innerHeight) / 1080,
+            fontSize: (27 * window.innerHeight) / 1080,
             marginTop: (60 * window.innerHeight) / 1080,
           }}
         >

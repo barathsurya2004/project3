@@ -31,7 +31,7 @@ const Loader = () => {
           opacity: 0,
           duration: 1,
           onComplete: () => {
-            // setLoading(false);
+            setLoading(false);
           },
         });
       }, 5000);
@@ -70,6 +70,7 @@ const Loader = () => {
     "sometimes, eating is an experience",
   ];
   const [i, setI] = useState(Math.floor(Math.random() * content.length));
+  const [previ, setPrevi] = useState(i);
   useGSAP(() => {
     gsap.to(".text", {
       opacity: 1,
@@ -80,7 +81,11 @@ const Loader = () => {
       onRepeat() {
         if (count % 2 !== 0) {
           index = Math.floor(Math.random() * content.length);
-          setI(index % content.length);
+          if (index === previ) {
+            index = (index + 1) % content.length;
+          } else {
+            setI(index % content.length);
+          }
         }
         count += 1;
       },
