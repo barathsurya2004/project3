@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { CustomEase } from "gsap/all";
 import "./Loader.css";
+import inner from "../assets/icons/loader.svg";
+import back from "../assets/icons/loaderBack.svg";
 gsap.registerPlugin(CustomEase);
 const Loader = () => {
   const { progress } = useProgress();
@@ -13,31 +15,9 @@ const Loader = () => {
     if (progress === 100) {
       setTimeout(() => {
         gsap.fromTo(
-          ".bar-load",
+          ".inner-loader",
           {
             width: "25%",
-          },
-          {
-            width: "100%",
-            duration: 5,
-            ease: "power4.out",
-          }
-        );
-        gsap.fromTo(
-          ".bar-glow-small",
-          {
-            left: `${100 / 3.5}%`,
-          },
-          {
-            left: "100%",
-            duration: 5,
-            ease: "power4.out",
-          }
-        );
-        gsap.fromTo(
-          ".bar-glow-inner",
-          {
-            width: `${100 / 3.5}%`,
           },
           {
             width: "100%",
@@ -51,31 +31,17 @@ const Loader = () => {
           opacity: 0,
           duration: 1,
           onComplete: () => {
-            setLoading(false);
+            // setLoading(false);
           },
         });
       }, 5000);
     }
-    gsap.to(".bar-load", {
+    gsap.to(".inner-loader", {
       width: `${progress / 4}%`,
       duration: 2,
       ease: "power4.out",
     });
-    gsap.to(".bar-glow-inner", {
-      width: `${progress / 3.5}%`,
-      duration: 2,
-      ease: "power4.out",
-    });
-    gsap.to(".bar-glow-small", {
-      left: `${progress / 3.5}%`,
-      duration: 2,
-      ease: "power4.out",
-    });
-    // gsap.to(".bar-glow-large", {
-    //   left: `${progress / 4}%`,
-    //   duration: 2,
-    //   ease: "power4.out",
-    // });
+
     if (!loading) {
       gsap.to(".loader", {
         opacity: 0,
@@ -138,14 +104,73 @@ const Loader = () => {
         >
           {content[i]}
         </div>
-        <div className="bar-glow">
+        {/* <div className="bar-glow">
           <div className="bar-glow-small">
             <div className="bar-glow-large"></div>
           </div>
           <div className="bar-glow-inner"></div>
-        </div>
-        <div className="bar">
-          <div className="bar-load"></div>
+        </div> */}
+        <div
+          className="bar-load"
+          style={{
+            width: (690 * window.innerWidth) / 1920,
+            height: (5 * window.innerHeight) / 1080,
+            position: "relative",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            // background: "white",
+            transform: `translateX(${(20 * window.innerWidth) / 1920}px)`,
+            marginTop: (20 * window.innerHeight) / 1080,
+          }}
+        >
+          <div
+            className="inner-loader"
+            style={{
+              width: 0,
+              height: (50 * window.innerHeight) / 1080,
+              // background: "white",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            <img
+              src={inner}
+              alt=""
+              style={{
+                width: "100%",
+                height: 50,
+                position: "absolute",
+                bottom: 0,
+              }}
+            />
+          </div>
+          <div
+            className="back-loader"
+            style={{
+              position: "absolute",
+              bottom: 0,
+              margin: 0,
+              width: (650 * window.innerWidth) / 1920,
+              height: "50px",
+              zIndex: -1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={back}
+              alt=""
+              style={{
+                width: "100%",
+                height: 50,
+                position: "absolute",
+                bottom: 0,
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

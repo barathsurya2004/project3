@@ -31,7 +31,10 @@
   border-radius: 5px;
   width: 100%;
   background-color: #706248;
-  overflow: hidden;
+
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
 .bar-glow {
   position: absolute;
@@ -40,7 +43,7 @@
   height: 20px;
   transform: translate(0, 50%);
   /* overflow: hidden; */
-  opacity: 0.4;
+  opacity: 1;
 }
 .bar-glow-inner {
   height: 100%;
@@ -49,12 +52,12 @@
   filter: blur(10px);
 }
 
-.bar-load {
+.bar-loada {
   height: 100%;
   border-radius: 5px;
-  width: 0%;
+  width: 100%;
 
-  background-color: #f2d8a0;
+  /* background-color: #f2d8a0; */
 }
 
 .bar-glow-small {
