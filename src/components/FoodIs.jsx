@@ -213,20 +213,80 @@ const FoodIs = () => {
       }
     );
     gsap.fromTo(
-      ".culture",
+      ".is-word",
       {
-        top: "35vh",
+        opacity: 1,
+        x: 0,
       },
       {
-        top: "-65vh",
+        opacity: 0,
+        x: -200,
+        duration: 0.1,
+        ease: "none",
         scrollTrigger: {
-          trigger: ".cult-reading",
+          trigger: ".foodxcuisine",
           start: "top bottom",
-          end: "top top",
-          scrub: true,
+          end: "top 80%",
+          toggleActions: "play none none reverse",
         },
         immediateRender: false,
+      }
+    );
+    gsap.fromTo(
+      ".x-word",
+      {
+        opacity: 0,
+        x: 500,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.1,
         ease: "none",
+        scrollTrigger: {
+          trigger: ".foodxcuisine",
+          start: "top bottom",
+          end: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+        immediateRender: false,
+      }
+    );
+    gsap.fromTo(
+      ".cuisine",
+      {
+        opacity: 0,
+        x: 500,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".foodxcuisine",
+          start: "top bottom",
+          end: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+        immediateRender: false,
+      }
+    );
+    gsap.fromTo(
+      ".cuisine",
+      {
+        top: "52.5vh",
+      },
+      {
+        top: "-47.5vh",
+        scrollTrigger: {
+          trigger: ".foodxcuisine",
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+        ease: "none",
+        immediateRender: false,
       }
     );
     gsap.fromTo(
@@ -237,13 +297,30 @@ const FoodIs = () => {
       {
         bottom: "115vh",
         scrollTrigger: {
-          trigger: ".cult-reading",
-          start: "top bottom",
-          end: "top top",
+          trigger: ".foodxcuisine",
+          start: "bottom bottom",
+          end: "bottom top",
           scrub: true,
         },
         immediateRender: false,
         ease: "none",
+      }
+    );
+    gsap.fromTo(
+      ".culture",
+      {
+        top: "35vh",
+      },
+      {
+        top: "-65vh",
+        scrollTrigger: {
+          trigger: ".foodxcuisine",
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+        ease: "none",
+        immediateRender: false,
       }
     );
   });
@@ -300,7 +377,28 @@ const FoodIs = () => {
               fontFamily: "TTtravels Next Bold",
             }}
           >
-            food is
+            food{" "}
+            <span
+              className="is-word"
+              style={{
+                color: "#D3AD62",
+                fontFamily: "TTtravels Next Bold",
+                // marginLeft: "1vw",
+              }}
+            >
+              is
+            </span>
+            <span
+              className="x-word"
+              style={{
+                color: "#D3AD62",
+                fontFamily: "",
+                marginLeft: "-5rem",
+                opacity: 0,
+              }}
+            >
+              x
+            </span>
           </h1>
 
           <div className="love">
@@ -359,6 +457,17 @@ const FoodIs = () => {
               }}
             >
               culture
+            </h2>
+          </div>
+          <div className="cuisine topic">
+            <h2
+              style={{
+                color: "#D3AD62",
+                fontFamily: "TTtravels Next DemiBold Italic",
+                top: "52.5vh",
+              }}
+            >
+              = cuisine
             </h2>
           </div>
         </div>

@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { CustomEase } from "gsap/all";
 import "./Loader.css";
-import inner from "../assets/icons/loader.svg";
+import inner from "../assets/icons/load-blur.svg";
 import back from "../assets/icons/loaderBack.svg";
 gsap.registerPlugin(CustomEase);
 const Loader = () => {
@@ -16,6 +16,17 @@ const Loader = () => {
       setTimeout(() => {
         gsap.fromTo(
           ".inner-loader",
+          {
+            width: "25%",
+          },
+          {
+            width: "100%",
+            duration: 5,
+            ease: "power4.out",
+          }
+        );
+        gsap.fromTo(
+          ".back-loader-inner",
           {
             width: "25%",
           },
@@ -41,7 +52,11 @@ const Loader = () => {
       duration: 2,
       ease: "power4.out",
     });
-
+    gsap.to(".back-loader-inner", {
+      width: `${progress / 4}%`,
+      duration: 2,
+      ease: "power4.out",
+    });
     if (!loading) {
       gsap.to(".loader", {
         opacity: 0,
@@ -133,7 +148,7 @@ const Loader = () => {
             className="inner-loader"
             style={{
               width: 0,
-              height: (50 * window.innerHeight) / 1080,
+              height: (200 * window.innerHeight) / 1080,
               // background: "white",
               position: "absolute",
               bottom: 0,
@@ -144,10 +159,11 @@ const Loader = () => {
               src={inner}
               alt=""
               style={{
-                width: "100%",
+                width: "120%",
                 height: 50,
                 position: "absolute",
                 bottom: 0,
+                // mixBlendMode: "screen",
               }}
             />
           </div>
@@ -157,7 +173,7 @@ const Loader = () => {
               position: "absolute",
               bottom: 0,
               margin: 0,
-              width: (650 * window.innerWidth) / 1920,
+              width: (675 * window.innerWidth) / 1920,
               height: "50px",
               zIndex: -1,
               display: "flex",
@@ -173,8 +189,23 @@ const Loader = () => {
                 height: 50,
                 position: "absolute",
                 bottom: 0,
+                left: 0,
               }}
             />
+            <div
+              className="back-loader-inner"
+              style={{
+                width: "100%",
+                height: 4,
+                background: "#f2d8a0",
+                position: "absolute",
+                bottom: "50%",
+                left: 0,
+                borderRadius: 2,
+                // opacity: 0.5,
+                transform: "translateY(50%)",
+              }}
+            ></div>
           </div>
         </div>
       </div>

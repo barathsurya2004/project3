@@ -20,6 +20,7 @@ import ThreeJsCanvas from "./components/ThreeJsCanvas";
 import YetSoUnique from "./components/YetSoUnique";
 import { Context } from "./context";
 import BackGround from "./components/BackGround";
+import ShallWe from "./components/ShallWe";
 
 function App() {
   const { loading } = useContext(Context);
@@ -69,6 +70,17 @@ function App() {
       <CultureDef />
       <Cuisines />
       {/* <YetSoUnique /> */}
+      {/* <ShallWe /> */}
+      {/* <div
+        style={{
+          height: "100vh",
+          width: "100%",
+          background: "blue",
+          position: "fixed",
+          top: 0,
+          left: 0,
+        }}
+      ></div> */}
       <Slider1 />
       <ThereIsMore />
       <Ingredients />

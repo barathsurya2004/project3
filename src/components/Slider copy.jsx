@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import button from "../assets/icons/slider-button.svg";
 import { Context } from "../context";
+import ShallWe from "./ShallWe";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 const Slider1 = () => {
@@ -55,6 +56,8 @@ const Slider1 = () => {
     );
   });
   const [sliderValue, setSliderValue] = useState(50);
+  const [pointerUp, setPointerUp] = useState(null);
+
   return (
     <>
       <div
@@ -63,8 +66,22 @@ const Slider1 = () => {
           width: "100%",
           height: "250vh",
           position: "relative",
+          mixBlendMode: "exclusion",
         }}
       >
+        <div
+          className="Shall-we-cont"
+          style={{
+            width: "100%",
+            height: "100vh",
+            position: "absolute",
+            top: "0",
+            left: "0",
+            zIndex: 10,
+          }}
+        >
+          <ShallWe />
+        </div>
         <div
           className="slider-component-input"
           style={{
@@ -280,10 +297,15 @@ const Slider1 = () => {
                 }
               }
             }}
-            onPointerDown={() => {
-              setDragging(true);
+            onPointerDown={(e) => {
+              let time = performance.now();
+              console.log(time, pointerUp);
+              if (time - pointerUp > 1000) {
+                setDragging(true);
+              }
             }}
             onPointerUp={() => {
+              setPointerUp(performance.now());
               setDragging(false);
               setSliderValue((pointer[0] / window.innerWidth) * 100);
               setYPos(pointer[1] - window.innerHeight / 2);

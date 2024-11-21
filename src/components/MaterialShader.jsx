@@ -14,7 +14,7 @@ export const CustomPandiShaderMaterial = () => {
         varying vec3 vPosition;
 
     void main() {
-      float opacity =smoothstep(-1.0,1.0,-vPosition.y*28.528);
+      float opacity =smoothstep(0.1,1.0,-vPosition.y);
       gl_FragColor = vec4(0.238, 0.162, 0.325, opacity);
     } 
         `}

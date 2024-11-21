@@ -130,7 +130,7 @@ const Question = () => {
               style={{
                 marginLeft: (175 * window.innerWidth) / 1920,
                 fontSize: (55 * window.innerHeight) / 1080,
-                fontFamily: "TTtravels Next Bold",
+                fontFamily: "TTtravels Next Bold  ",
                 transform: "translate(0% ,0%)",
                 left: "-100vh",
               }}

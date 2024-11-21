@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
-
+import "./Cuisines.css";
 const Cuisines = () => {
   useGSAP(() => {
     gsap.fromTo(
@@ -158,7 +158,7 @@ const Cuisines = () => {
         }}
       >
         <div
-          className="cuisines-of-the-world-title"
+          className="cuisines-of-the-world-title globe-overlay"
           style={{
             position: "absolute",
             right: 177 * (window.innerWidth / 1920),
@@ -204,7 +204,7 @@ const Cuisines = () => {
         </div>
       </div>
       <div
-        className="cuisines-of-India"
+        className="cuisines-of-India globe-overlay"
         style={{
           position: "fixed",
           top: "0",
@@ -257,7 +257,7 @@ const Cuisines = () => {
         </div>
       </div>
       <div
-        className="cuisines-of-TN"
+        className="cuisines-of-TN globe-overlay"
         style={{
           position: "fixed",
           top: "0",

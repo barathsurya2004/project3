@@ -46,20 +46,21 @@ const CultureDef = () => {
     gsap.fromTo(
       ".culture-definition",
       {
-        top: "5vh",
+        x: 0,
+        opacity: 1,
       },
       {
-        top: "-95vh",
+        x: -200,
+        opacity: 0,
+        duration: 0.1,
         scrollTrigger: {
-          trigger: ".cult-reading",
+          trigger: ".foodxcuisine",
           start: "top bottom",
-          end: "top top",
+          end: "top 80%",
           toggleActions: "play none none reverse",
-          scrub: 0.1,
-          // markers: true,
         },
-        immediateRender: false,
         ease: "none",
+        immediateRender: false,
       }
     );
   });
@@ -77,6 +78,13 @@ const CultureDef = () => {
         style={{
           width: "100%",
           height: "50vh",
+        }}
+      ></div>
+      <div
+        className="foodxcuisine"
+        style={{
+          width: "100%",
+          height: "100vh",
         }}
       ></div>
       <div

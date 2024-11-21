@@ -17,6 +17,7 @@ import { QuestionModel } from "../../public/Models/Q_mark";
 import { NewClockModel } from "../../public/Models/Clokc";
 import { TreasureModel } from "../../public/Models/Treasure";
 import { CountriesModel } from "../../public/Models/Countries";
+import { FGlobeModel } from "../../public/Models/FINAL_globe";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
 
@@ -160,12 +161,13 @@ const ThreeJsCanvas = () => {
       {
         top: "-100vh",
         scrollTrigger: {
-          trigger: ".slider-compare",
-          start: "top bottom",
-          end: "top top",
+          trigger: ".cuisines-of-TN-trigger",
+          start: "bottom bottom",
+          end: "bottom top",
           scrub: true,
         },
         ease: "none",
+        immediateRender: false,
       }
     );
   });
@@ -274,7 +276,7 @@ const ThreeJsCanvas = () => {
           left: 0,
           width: "100%",
           height: "100vh",
-          zIndex: 0,
+          zIndex: 10,
           pointerEvents: "none",
         }}
       >
@@ -295,7 +297,8 @@ const ThreeJsCanvas = () => {
             position={[0, 0, 2.212]}
             zoom={0.9}
           />
-          <CountriesModel position={[1, 0, 0]} />
+          <FGlobeModel position={[1, 0, 0]} />
+          {/* <CountriesModel position={[1, 0, 0]} /> */}
         </Canvas>
       </div>
       <div
