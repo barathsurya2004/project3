@@ -3,27 +3,34 @@ import anim from "../assets/json/shall_we_v13.json";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
-const ShallWe = () => {
+const ShallWe = ({ fun }) => {
   const ref = useRef();
   const noice = useRef();
+  useEffect(() => {
+    fun(ref.current.getDuration());
+  }, []);
   useGSAP(() => {
     gsap.to(".null", {
       scrollTrigger: {
         trigger: ".shall-we",
         start: "top bottom",
         end: "top top",
-        scrub: 0.1,
         toggleActions: "play none none reverse",
+
         onLeave: () => {
           ref.current.setSpeed(0.8);
           ref.current.play();
+
+          // document.body.style.overflow = "hidden";
         },
-        onEnterBack: () => {
-          ref.current.setSpeed(-0.8);
-          ref.current.play();
-        },
+        // onEnterBack: () => {
+        //   ref.current.setSpeed(-0.8);
+        //   ref.current.play();
+
+        //   // document.body.style.overflow = "hidden";
+        // },
       },
     });
   });
@@ -52,12 +59,11 @@ const ShallWe = () => {
         }}
         onComplete={() => {
           gsap.to(noice.current, {
+            duration: 0.5,
             opacity: 0,
-          });
-        }}
-        onPlaying={() => {
-          gsap.set(noice.current, {
-            opacity: 1,
+            onComplete: () => {
+              noice.current.style.display = "none";
+            },
           });
         }}
       />

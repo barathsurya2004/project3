@@ -25,12 +25,13 @@ const Slider1 = () => {
       },
       {
         top: "50%",
+        duration: duration ? duration : 0.5,
         scrollTrigger: {
           trigger: ".slider-compare",
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          scrub: 0.01,
+          scrub: duration ? false : 0.01,
         },
         immediateRender: false,
         ease: "none",
@@ -57,7 +58,7 @@ const Slider1 = () => {
   });
   const [sliderValue, setSliderValue] = useState(50);
   const [pointerUp, setPointerUp] = useState(null);
-
+  const [duration, setDuration] = useState(null);
   return (
     <>
       <div
@@ -80,7 +81,7 @@ const Slider1 = () => {
             zIndex: 10,
           }}
         >
-          <ShallWe />
+          <ShallWe fun={setDuration} />
         </div>
         <div
           className="slider-component-input"
