@@ -7,6 +7,7 @@ import { useRef } from "react";
 
 const ShallWe = () => {
   const ref = useRef();
+  const noice = useRef();
   useGSAP(() => {
     gsap.to(".null", {
       scrollTrigger: {
@@ -35,8 +36,9 @@ const ShallWe = () => {
         // marginBottom: "-50vh",
         position: "relative",
       }}
+      ref={noice}
     >
-      {/* <Lottie
+      <Lottie
         lottieRef={ref}
         animationData={anim}
         loop={false}
@@ -48,7 +50,17 @@ const ShallWe = () => {
           right: 0,
           bottom: 0,
         }}
-      /> */}
+        onComplete={() => {
+          gsap.to(noice.current, {
+            opacity: 0,
+          });
+        }}
+        onPlaying={() => {
+          gsap.set(noice.current, {
+            opacity: 1,
+          });
+        }}
+      />
     </div>
   );
 };

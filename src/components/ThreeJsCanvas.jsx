@@ -20,8 +20,19 @@ import { CountriesModel } from "../../public/Models/Countries";
 import { FGlobeModel } from "../../public/Models/FINAL_globe";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
-
+  const [change, setChange] = useState(0);
   useGSAP(() => {
+    gsap.to(".globe-canvas", {
+      scrollTrigger: {
+        trigger: ".cuisines-of-India-trigger",
+        start: "top bottom",
+        end: "top top",
+        onUpdate: (e) => {
+          setChange(e.progress);
+        },
+        scrub: true,
+      },
+    });
     gsap.fromTo(
       ".face-model",
       {
@@ -213,7 +224,11 @@ const ThreeJsCanvas = () => {
         >
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight intensity={2} position={[2.5, 0, 10]} />
+          <directionalLight
+            intensity={2}
+            position={[2.5, 0, 10]}
+            color="#fff5b6"
+          />
           <HeartModel position={[3, 0, 0]} />
         </Canvas>
         <Canvas
@@ -229,7 +244,11 @@ const ThreeJsCanvas = () => {
         >
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight intensity={2} position={[2.5, 0, 10]} />
+          <directionalLight
+            intensity={2}
+            position={[2.5, 0, 10]}
+            color="#fff5b6"
+          />
           <ArtModel position={[3, 0, 0]} />
         </Canvas>
         <Canvas
@@ -245,7 +264,11 @@ const ThreeJsCanvas = () => {
         >
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight intensity={2} position={[2.5, 0, 10]} />
+          <directionalLight
+            intensity={2}
+            position={[2.5, 0, 10]}
+            color="#fff5b6"
+          />
 
           {/* <MapModel position={[3, 0, 0]} /> */}
           <TreasureModel position={[3, 0, 0]} />
@@ -263,7 +286,11 @@ const ThreeJsCanvas = () => {
         >
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight intensity={2} position={[2.5, 0, 10]} />
+          <directionalLight
+            intensity={2}
+            position={[2.5, 0, 10]}
+            color="#fff5b6"
+          />
           {/* <ClockModel position={[3, 0, 0]} /> */}
           <NewClockModel position={[3, 0, 0]} />
         </Canvas>
@@ -280,34 +307,45 @@ const ThreeJsCanvas = () => {
           // pointerEvents: "none",
         }}
       >
-        <Canvas
-          style={
-            {
-              // pointerEvents: "none",
-            }
-          }
+        <div
+          className="globe-mask"
+          style={{
+            height: "100%",
+            width: "100%",
+            maskImage: `linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) ${
+              15 * change
+            }%, rgba(255,255,255,1) ${50 * change}%, rgba(255,255,255,1) 100%)`,
+          }}
         >
-          <ambientLight intensity={2} />
-          <directionalLight intensity={3} position={[5, 10, 10]} />
-          {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
-          {/* 
+          <Canvas
+            style={
+              {
+                // pointerEvents: "none",
+              }
+            }
+          >
+            <ambientLight intensity={2} />
+            <directionalLight intensity={3} position={[5, 10, 10]} />
+            {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
+            {/* 
           <OrthographicCamera
             makeDefault
             position={[0, 0, 20]}
             zoom={1000}
             // left={-1
           /> */}
-          <PerspectiveCamera
-            makeDefault={true}
-            far={1000}
-            near={0.001}
-            fov={22.895}
-            position={[0, 0, 2.212]}
-            zoom={0.9}
-          />
-          <FGlobeModel position={[1, 0, 0]} />
-          {/* <CountriesModel position={[1, 0, 0]} /> */}
-        </Canvas>
+            <PerspectiveCamera
+              makeDefault={true}
+              far={1000}
+              near={0.001}
+              fov={22.895}
+              position={[0, 0, 2.212]}
+              zoom={0.9}
+            />
+            <FGlobeModel position={[1, 0, 0]} />
+            {/* <CountriesModel position={[1, 0, 0]} /> */}
+          </Canvas>
+        </div>
       </div>
       <div
         className="question-mark-canvas"
@@ -334,7 +372,11 @@ const ThreeJsCanvas = () => {
           }}
         >
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight intensity={2} position={[2.5, 0, 10]} />
+          <directionalLight
+            intensity={2}
+            position={[2.5, 0, 10]}
+            color="#fff5b6"
+          />
           <QuestionModel />
         </Canvas>
       </div>

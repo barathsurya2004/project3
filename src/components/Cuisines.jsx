@@ -133,10 +133,24 @@ const Cuisines = () => {
         }}
       ></div>
       <div
+        className="reading-space"
+        style={{
+          width: "100%",
+          height: "50vh",
+        }}
+      ></div>
+      <div
         className="cuisines-of-India-trigger"
         style={{
           width: "100%",
           height: "100vh",
+        }}
+      ></div>
+      <div
+        className="reading-space"
+        style={{
+          width: "100%",
+          height: "50vh",
         }}
       ></div>
       <div

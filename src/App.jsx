@@ -22,6 +22,7 @@ import { Context } from "./context";
 import BackGround from "./components/BackGround";
 import ShallWe from "./components/ShallWe";
 import HoverDisplay from "./components/HoverDisplay";
+import WhatIsFoodCanvas from "./components/WhatIsFoodCanvas";
 
 function App() {
   const { loading } = useContext(Context);
@@ -66,6 +67,7 @@ function App() {
         ]}
         radius={725}
       />
+      <WhatIsFoodCanvas />
       <Question />
       <FoodIs />
       <HoverDisplay />
