@@ -68,7 +68,7 @@ export const ContextProvider = ({ children }) => {
       // Set a new timeout to update the state after 300ms (or any suitable delay)
       debounceTimeoutRef.current = setTimeout(() => {
         setActiveMeshSelected(mesh);
-      }, 300); // Adjust the delay as needed
+      }, 150); // Adjust the delay as needed
     }
   };
 

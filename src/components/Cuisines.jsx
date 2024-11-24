@@ -155,6 +155,7 @@ const Cuisines = () => {
           width: "100%",
           height: "100vh",
           pointerEvents: "none",
+          zIndex: 101,
         }}
       >
         <div
@@ -213,6 +214,7 @@ const Cuisines = () => {
           height: "100vh",
           pointerEvents: "none",
           opacity: 0,
+          zIndex: 101,
         }}
       >
         <div
@@ -266,6 +268,7 @@ const Cuisines = () => {
           height: "100vh",
           pointerEvents: "none",
           opacity: 0,
+          zIndex: 101,
         }}
       >
         <div

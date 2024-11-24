@@ -21,6 +21,7 @@ import YetSoUnique from "./components/YetSoUnique";
 import { Context } from "./context";
 import BackGround from "./components/BackGround";
 import ShallWe from "./components/ShallWe";
+import HoverDisplay from "./components/HoverDisplay";
 
 function App() {
   const { loading } = useContext(Context);
@@ -67,6 +68,7 @@ function App() {
       />
       <Question />
       <FoodIs />
+      <HoverDisplay />
       <CultureDef />
       <Cuisines />
       {/* <YetSoUnique /> */}
@@ -89,6 +91,12 @@ function App() {
       <SharePage />
       <FaceReact />
       <EndingPage />
+      <div
+        id="graduall-change-variable"
+        style={{
+          display: "none",
+        }}
+      ></div>
     </div>
   );
 }

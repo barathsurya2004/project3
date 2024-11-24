@@ -63,6 +63,21 @@ const CultureDef = () => {
         immediateRender: false,
       }
     );
+    gsap.fromTo(
+      ".culture-definition",
+      {
+        zIndex: 10,
+      },
+      {
+        zIndex: -1,
+        scrollTrigger: {
+          trigger: ".foodxcuisine",
+          start: "top bottom",
+          end: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
   });
   return (
     <>

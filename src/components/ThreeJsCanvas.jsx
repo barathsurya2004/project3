@@ -276,19 +276,27 @@ const ThreeJsCanvas = () => {
           left: 0,
           width: "100%",
           height: "100vh",
-          zIndex: 10,
-          pointerEvents: "none",
+          zIndex: 100,
+          // pointerEvents: "none",
         }}
       >
         <Canvas
-          style={{
-            pointerEvents: "none",
-          }}
+          style={
+            {
+              // pointerEvents: "none",
+            }
+          }
         >
           <ambientLight intensity={2} />
           <directionalLight intensity={3} position={[5, 10, 10]} />
           {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
-
+          {/* 
+          <OrthographicCamera
+            makeDefault
+            position={[0, 0, 20]}
+            zoom={1000}
+            // left={-1
+          /> */}
           <PerspectiveCamera
             makeDefault={true}
             far={1000}

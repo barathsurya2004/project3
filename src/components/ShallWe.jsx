@@ -36,7 +36,7 @@ const ShallWe = () => {
         position: "relative",
       }}
     >
-      <Lottie
+      {/* <Lottie
         lottieRef={ref}
         animationData={anim}
         loop={false}
@@ -48,7 +48,7 @@ const ShallWe = () => {
           right: 0,
           bottom: 0,
         }}
-      />
+      /> */}
     </div>
   );
 };
