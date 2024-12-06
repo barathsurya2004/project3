@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import anim from "../assets/json/shall_we_v13.json";
+import anim from "../assets/json/shall_we_fin_fin_2.json";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
@@ -20,17 +20,36 @@ const ShallWe = ({ fun }) => {
         toggleActions: "play none none reverse",
 
         onLeave: () => {
-          ref.current.setSpeed(0.8);
+          ref.current.setDirection(1);
           ref.current.play();
-
+          gsap.set(".slider-compare__center", {
+            y: "100vh",
+          });
+          gsap.set(".shall-we", {
+            opacity: 1,
+          });
+          gsap.set(".Shall-we-cont", {
+            zIndex: 11,
+          });
+          gsap.set(".slider-compare__center-line", {
+            opacity: 0,
+          });
           // document.body.style.overflow = "hidden";
         },
-        // onEnterBack: () => {
-        //   ref.current.setSpeed(-0.8);
-        //   ref.current.play();
-
-        //   // document.body.style.overflow = "hidden";
-        // },
+        onEnterBack: () => {
+          ref.current.setDirection(-1);
+          ref.current.play();
+          gsap.set(".shall-we", {
+            opacity: 1,
+          });
+          gsap.set(".Shall-we-cont", {
+            zIndex: 11,
+          });
+          gsap.set(".slider-compare__center-line", {
+            opacity: 0,
+          });
+          // document.body.style.overflow = "hidden";
+        },
       },
     });
   });
@@ -40,8 +59,9 @@ const ShallWe = ({ fun }) => {
       style={{
         height: "100vh",
         width: "100%",
-        // marginBottom: "-50vh",
+        margin: 0,
         position: "relative",
+        pointerEvents: "none",
       }}
       ref={noice}
     >
@@ -56,15 +76,35 @@ const ShallWe = ({ fun }) => {
           left: 0,
           right: 0,
           bottom: 0,
+          margin: 0,
         }}
-        onComplete={() => {
-          gsap.to(noice.current, {
-            duration: 0.5,
-            opacity: 0,
-            onComplete: () => {
-              noice.current.style.display = "none";
+        onComplete={(e) => {
+          gsap.fromTo(
+            ".slider-compare__center",
+            {
+              y: "100vh",
             },
-          });
+            {
+              y: 0,
+              duration: 1,
+              ease: "power3.out",
+            }
+          );
+          console.log(ref.current);
+          if (ref.current.animationItem.playDirection === 1) {
+            gsap.set(".shall-we", {
+              opacity: 0,
+            });
+            gsap.set(".Shall-we-cont", {
+              zIndex: -1,
+            });
+            gsap.set(".slider-compare__center-line", {
+              opacity: 1,
+            });
+          }
+        }}
+        rendererSettings={{
+          preserveAspectRatio: "none",
         }}
       />
     </div>

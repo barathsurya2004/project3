@@ -18,43 +18,38 @@ const Slider1 = () => {
   const [xPos, setXPos] = useState(window.innerWidth / 2);
   const { pointer } = useContext(Context);
   useGSAP(() => {
-    gsap.fromTo(
-      ".slider-component-input",
-      {
-        top: "150%",
-      },
-      {
-        top: "50%",
-        duration: duration ? duration : 0.5,
-        scrollTrigger: {
-          trigger: ".slider-compare",
-          start: "top bottom",
-          end: "top top",
-          toggleActions: "play none none reverse",
-          scrub: duration ? false : 0.01,
+    gsap.set(".slider-compare__center", {
+      y: "100vh",
+    });
+    gsap.set(".slider-compare__center-line", {
+      opacity: 0,
+    });
+    gsap.to(".slider-compare__center", {
+      scrollTrigger: {
+        trigger: ".slider-compare",
+        start: "top top",
+        end: "bottom top",
+        toggleActions: "play none none reverse",
+        onEnter: () => {
+          gsap.to(".slider-button-cont", {
+            left: "50%",
+          });
+          gsap.to(".slider-compare__center-line", {
+            left: "25%",
+          });
+          setSliderValue(50);
         },
-        immediateRender: false,
-        ease: "none",
-      }
-    );
-    gsap.fromTo(
-      ".slider-component-input ",
-      {
-        top: "50%",
-      },
-      {
-        top: "-50%",
-        scrollTrigger: {
-          trigger: ".slider-compare",
-          start: "bottom bottom",
-          end: "bottom top",
-          toggleActions: "play none none reverse",
-          scrub: 0.01,
+        onLeaveBack: () => {
+          gsap.to(".slider-button-cont", {
+            left: "50%",
+          });
+          gsap.to(".slider-compare__center-line", {
+            left: "25%",
+          });
+          setSliderValue(50);
         },
-        immediateRender: false,
-        ease: "none",
-      }
-    );
+      },
+    });
   });
   const [sliderValue, setSliderValue] = useState(50);
   const [pointerUp, setPointerUp] = useState(null);
@@ -78,7 +73,7 @@ const Slider1 = () => {
             position: "absolute",
             top: "0",
             left: "0",
-            zIndex: 10,
+            zIndex: 11,
           }}
         >
           <ShallWe fun={setDuration} />
@@ -87,7 +82,7 @@ const Slider1 = () => {
           className="slider-component-input"
           style={{
             position: "fixed",
-            top: "150%",
+            top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             zIndex: 10,
@@ -420,7 +415,7 @@ const Slider1 = () => {
                 padding: "auto 0",
                 pointerEvents: "none",
                 cursor: "pointer",
-                // transform: "translate(-50%, -25%)",
+                // transform: "translate(0, 100vh)",
                 opacity: 0.3,
                 zIndex: 10,
               }}

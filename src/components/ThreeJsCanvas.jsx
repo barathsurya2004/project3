@@ -10,6 +10,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../context";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+
 gsap.registerPlugin(ScrollTrigger);
 
 import gsap from "gsap";
@@ -18,6 +19,7 @@ import { NewClockModel } from "../../public/Models/Clokc";
 import { TreasureModel } from "../../public/Models/Treasure";
 import { CountriesModel } from "../../public/Models/Countries";
 import { FGlobeModel } from "../../public/Models/FINAL_globe";
+import { EffectComposer, Outline } from "@react-three/postprocessing";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
   const [change, setChange] = useState(0);
@@ -324,25 +326,28 @@ const ThreeJsCanvas = () => {
               }
             }
           >
-            <ambientLight intensity={2} />
-            <directionalLight intensity={3} position={[5, 10, 10]} />
-            {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
-            {/* 
+            <EffectComposer>
+              <ambientLight intensity={2} />
+              <directionalLight intensity={3} position={[5, 10, 10]} />
+              {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
+              {/* 
           <OrthographicCamera
             makeDefault
             position={[0, 0, 20]}
             zoom={1000}
             // left={-1
           /> */}
-            <PerspectiveCamera
-              makeDefault={true}
-              far={1000}
-              near={0.001}
-              fov={22.895}
-              position={[0, 0, 2.212]}
-              zoom={0.9}
-            />
-            <FGlobeModel position={[1, 0, 0]} />
+              <PerspectiveCamera
+                makeDefault={true}
+                far={1000}
+                near={0.001}
+                fov={22.895}
+                position={[0, 0, 2.212]}
+                zoom={0.9}
+              />
+
+              <FGlobeModel position={[1, 0, 0]} />
+            </EffectComposer>
             {/* <CountriesModel position={[1, 0, 0]} /> */}
           </Canvas>
         </div>
