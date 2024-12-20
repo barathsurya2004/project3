@@ -7,7 +7,6 @@ import { useEffect, useRef } from "react";
 
 const ShallWe = ({ fun }) => {
   const ref = useRef();
-  const noice = useRef();
   useEffect(() => {
     fun(ref.current.getDuration());
   }, []);
@@ -62,8 +61,8 @@ const ShallWe = ({ fun }) => {
         margin: 0,
         position: "relative",
         pointerEvents: "none",
+        scrollSnapAlign: "start",
       }}
-      ref={noice}
     >
       <Lottie
         lottieRef={ref}

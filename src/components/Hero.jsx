@@ -228,6 +228,7 @@ const Hero = () => {
         alignItems: "center",
         flexDirection: "column",
         overflow: "hidden",
+        scrollSnapAlign: "start",
       }}
     >
       {/* <NavBar /> */}

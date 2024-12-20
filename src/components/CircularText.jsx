@@ -7,41 +7,20 @@ gsap.registerPlugin(Draggable);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 const CircularText = ({ texts, radius }) => {
-  radius = (window.innerWidth * radius) / 1920;
+  radius = (window.innerHeight * radius) / 1080;
   const [change, setChange] = useState(0);
   texts = [...texts, ...texts, ...texts];
-  const [zIndex, setZIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [zIndex, setZIndex] = useState(1000);
+  const [visibleCount, setVisibleCount] = useState(30);
   const [alphaMaskVisible, setAlphaMaskVisible] = useState(false);
   const [indVisible, setIndVisible] = useState(null);
   const prevIndVisibleRef = useRef();
 
   useEffect(() => {
-    const prevIndVisible = prevIndVisibleRef.current;
-    // Animate the previous indVisible to opacity 0.3
-    if (
-      prevIndVisible !== undefined &&
-      prevIndVisible !== indVisible &&
-      !alphaMaskVisible
-    ) {
-      gsap.to(`.cir-text-${prevIndVisible}`, {
-        opacity: 0.3,
-        duration: 0.5,
-        ease: "power4",
-      });
-    }
-
-    // Animate the current indVisible to opacity 1
-    gsap.to(`.cir-text-${indVisible}`, {
-      opacity: 1,
-      duration: 0.5,
-      ease: "power4",
+    gsap.set("#drag", {
+      rotation: 180,
     });
-
-    // Update the ref with the current indVisible for the next render
-    prevIndVisibleRef.current = indVisible;
-  }, [indVisible]);
-
+  }, []);
   useGSAP(() => {
     Draggable.create("#drag", {
       type: "rotation",
@@ -60,65 +39,82 @@ const CircularText = ({ texts, radius }) => {
         setIndVisible(ind);
       },
     });
-    const fullTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".drag-space-actual",
-        start: "top 70%",
-        end: "top 47%",
-        scrub: true,
-        toggleActions: "play none none reverse",
-        onEnter: () => {
-          gsap.set(".cont-drag", {
-            top: 0,
-            left: 0,
-          });
-        },
-        onLeaveBack: () => {
-          gsap.set(".cont-drag", {
-            top: "200vh",
-            left: "-200vw",
-          });
-        },
-      },
-    });
 
-    fullTl.fromTo(
-      "#drag",
-      {
-        rotation: 45,
-      },
-      {
-        rotation: 0,
-      }
-    );
+    // const fullTl = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".drag-space-actual",
+    //     start: "top 70%",
+    //     end: "top 47%",
+    //     scrub: true,
+    //     toggleActions: "play none none reverse",
+    //     // onEnter: () => {
+    //     //   gsap.set(".cont-drag", {
+    //     //     top: 0,
+    //     //     left: 0,
+    //     //   });
+    //     // },
+    //     // onLeaveBack: () => {
+    //     //   gsap.set(".cont-drag", {
+    //     //     top: 0,
+    //     //     left: 0,
+    //     //   });
+    //     // },
+    //   },
+    // });
 
+    // fullTl.fromTo(
+    //   "#drag",
+    //   {
+    //     rotation: 45,
+    //   },
+    //   {
+    //     rotation: 0,
+    //   }
+    // );
     gsap.fromTo(
       "#drag",
       {
-        rotation: 0,
+        rotation: 90,
       },
       {
-        rotation: -60,
+        rotation: 12,
         scrollTrigger: {
-          trigger: ".drag-space-actual",
-          start: "top 47%",
-          end: "top top",
+          trigger: ".wheel-word-ref-9",
+          start: "top 60%",
+          end: `top 47.5%`,
           scrub: true,
-          onLeave: () => {
-            setZIndex(1000);
-            setIndVisible(5);
-            setVisibleCount(texts.length);
-          },
-          onEnterBack: () => {
-            setIndVisible(null);
-            setZIndex(10);
-            setVisibleCount(10);
-          },
+          markers: true,
         },
-        immediateRender: false,
         ease: "none",
       }
     );
+    // gsap.fromTo(
+    //   "#drag",
+    //   {
+    //     rotation: 0,
+    //   },
+    //   {
+    //     rotation: -60,
+    //     scrollTrigger: {
+    //       trigger: ".drag-space-actual",
+    //       start: "top 47%",
+    //       end: "top top",
+    //       scrub: true,
+    //       onLeave: () => {
+    //         setZIndex(1000);
+    //         setIndVisible(5);
+    //         setVisibleCount(texts.length);
+    //       },
+    //       onEnterBack: () => {
+    //         setIndVisible(null);
+    //         setZIndex(10);
+    //         setVisibleCount(10);
+    //       },
+    //     },
+    //     immediateRender: false,
+    //     ease: "none",
+    //   }
+    // );
 
     gsap.to("#drag", {
       scrollTrigger: {
@@ -169,48 +165,63 @@ const CircularText = ({ texts, radius }) => {
         className="cont-drag"
         style={{
           position: "fixed",
-          top: "200vh",
-          left: "-200vw",
-          width: "100%",
+          top: "50%",
+          left: "0%",
+          width: "100vh",
           height: "100vh",
+          transform: `translate(${(-506 * window.innerHeight) / 1080}px,-50%)`,
           zIndex: zIndex,
         }}
       >
-        <div className="circle-container" style={{}}>
+        <div
+          className="circle-container"
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+
+            transformOrigin: `center center`,
+
+            transform: `translate(-50%, 0%)`,
+          }}
+        >
           <div
             id="drag"
             className="circle"
             style={{
               position: "absolute",
-              width: `${radius * 5}px `,
-              height: `${radius * 5}px`,
-              left: ` ${(-2364 * window.innerWidth) / 1920}px`,
+              width: "100%",
+              height: "100%",
+              // backgroundColor: "blue",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               // left: 0,
-              // top: 0,
             }}
           >
             {texts.map((text, index) => {
               const angle = (index * 360) / texts.length;
-              let fontSize = 0.05095;
-              if (index > visibleCount) fontSize = "0";
+              // let fontSize = 0.05095;
+              // if (index > visibleCount) fontSize = "0";
               // console.log(index);
               return (
                 <div
                   className={`circle-text cir-text-${index}`}
                   key={index}
                   style={{
-                    opacity: 0.3 + 1 * change,
+                    opacity: index > 10 ? 0 : 0.3 + 1 * change,
+                    transform: "translateY(-50%)",
                   }}
                 >
                   <div
                     style={{
-                      transform: ` rotate(${angle}deg) translate(${
-                        radius + window.innerWidth * change
+                      transform: ` rotate(${angle}deg) translateX(${
+                        radius + (change * 2000 * window.innerHeight) / 1080
                       }px) `,
                       transformOrigin: `left center`,
                       fontFamily: "TTtravels Next Demibold",
                       fontSize:
-                        fontSize * window.innerHeight +
+                        (55 * window.innerHeight) / 1080 +
                         change * window.innerHeight * 0.09,
                     }}
                   >

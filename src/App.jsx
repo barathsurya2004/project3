@@ -27,79 +27,74 @@ import WhatIsFoodCanvas from "./components/WhatIsFoodCanvas";
 function App() {
   const { loading } = useContext(Context);
   return (
-    <div
-      className="loading-helper"
-      style={{
-        height: loading ? "100vh" : "100%",
-        overflow: loading ? "hidden" : "auto",
-      }}
-    >
-      {/* <BackGround /> */}
-      <Loader />
-      <ThreeJsCanvas />
-      <Hero />
-      <CircularAnimation
-        words={[
-          "Is food the same for all",
-          "Is food only for the body",
-          "Do food have habits",
-          "Is food geo-taggeed",
-          "Does food influence life",
-          "Does food have mood",
-          "Whats a meal and a feast",
-          "What is good food for you",
-          "Where is your food from",
-          "Does food have history",
-        ]}
-      />
-      <CircularText
-        texts={[
-          "Is food the same for all",
-          "Is food only for the body",
-          "Do food have habits",
-          "Is food geo-taggeed",
-          "Does food influence life",
-          "Does food have mood",
-          "Whats a meal and a feast",
-          "What is good food for you",
-          "Where is your food from",
-          "Does food have history",
-        ]}
-        radius={725}
-      />
-      <WhatIsFoodCanvas />
-      <Question />
-      <FoodIs />
-      <HoverDisplay />
-      <CultureDef />
-      <Cuisines />
-      <YetSoUnique />
-      {/* <ShallWe /> */}
-      {/* <div
-        style={{
-          height: "100vh",
-          width: "100%",
-          background: "blue",
-          position: "fixed",
-          top: 0,
-          left: 0,
-        }}
-      ></div> */}
-      <Slider1 />
-      <ThereIsMore />
-      <Ingredients />
-      <Procedure />
-      <Characteristics />
-      <SharePage />
-      <FaceReact />
-      <EndingPage />
+    <>
       <div
-        id="graduall-change-variable"
+        className="loading-helper"
         style={{
-          display: "none",
+          height: loading ? "100vh" : "100%",
+          overflowX: "hidden",
+          overflowY: loading ? "hidden" : "scroll",
+          scrollBehavior: "smooth",
+          scrollSnapType: "y mandatory",
         }}
-      ></div>
-    </div>
+      >
+        {/* <BackGround /> */}
+
+        <Loader />
+        {/* <ThreeJsCanvas /> */}
+        <Hero />
+        <CircularAnimation
+          words={[
+            "Is food the same for all",
+            "Is food only for the body",
+            "Do food have habits",
+            "Is food geo-taggeed",
+            "Does food influence life",
+            "Does food have mood",
+            "Whats a meal and a feast",
+            "What is good food for you",
+            "Where is your food from",
+            "Does food have history",
+          ]}
+        />
+        <CircularText
+          texts={[
+            "Is food the same for all",
+            "Is food only for the body",
+            "Do food have habits",
+            "Is food geo-taggeed",
+            "Does food influence life",
+            "Does food have mood",
+            "Whats a meal and a feast",
+            "What is good food for you",
+            "Where is your food from",
+            "Does food have history",
+          ]}
+          radius={680}
+        />
+        <WhatIsFoodCanvas />
+        <Question />
+        <FoodIs />
+        <HoverDisplay />
+        <CultureDef />
+        <Cuisines />
+        <YetSoUnique />
+        <Slider1 />
+        <ThereIsMore />
+        <Ingredients />
+        <Procedure />
+        <Characteristics />
+        <SharePage />
+        <FaceReact />
+        <EndingPage />
+        <div
+          id="graduall-change-variable"
+          style={{
+            display: "none",
+          }}
+        ></div>
+      </div>
+    </>
   );
 }
 

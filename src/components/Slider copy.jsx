@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/all";
 import button from "../assets/icons/slider-button.svg";
 import { Context } from "../context";
 import ShallWe from "./ShallWe";
+import ShallWeEnd from "./ShallWeEnd";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 const Slider1 = () => {
@@ -77,6 +78,19 @@ const Slider1 = () => {
           }}
         >
           <ShallWe fun={setDuration} />
+        </div>
+        <div
+          className="Shall-we-end-cont"
+          style={{
+            width: "100%",
+            height: "100vh",
+            position: "absolute",
+            bottom: "0",
+            left: "0",
+            zIndex: 11,
+          }}
+        >
+          <ShallWeEnd />
         </div>
         <div
           className="slider-component-input"

@@ -1,139 +1,170 @@
-import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "./CircularAnimation.css";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger, MotionPathPlugin } from "gsap/all";
+import gsap from "gsap";
+import SvgComponent from "./TestingSvg";
+import { useEffect } from "react";
+// import CircularText from "./pages/CircularText";
+
+gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
-const CircularAnimation = ({ words }) => {
-  const radius = 725;
-  const margin = 3;
-
-  useGSAP(() => {
-    words.forEach((word, index) => {
-      let wordElement = `.word1-${index}`;
-      gsap.to(wordElement, {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: wordElement,
-          start: "center 60%",
-          end: "center 50.5%",
-          toggleActions: "play none none reverse",
-        },
-        duration: 0.01,
-      });
-
-      gsap.fromTo(
-        wordElement,
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-          scrollTrigger: {
-            trigger: wordElement,
-            start: "center center",
-            end: "center center",
-            toggleActions: "play none none reverse",
-          },
-          duration: 0.0001,
-          immediateRender: false,
-        }
-      );
-      let cWordElement = `.c-word1-${index}`;
-      gsap.to(cWordElement, {
-        opacity: 0.3,
-        scrollTrigger: {
-          trigger: wordElement,
-          start: "center center",
-          end: "center center",
-          toggleActions: "play none none reverse",
-        },
-        duration: 0.0001,
-      });
+const CircularAnimation = () => {
+  const texts = [
+    "Is food the same for all",
+    "Is food only for the body",
+    "Do food have habits",
+    "Is food geo-taggeed",
+    "Does food influence life",
+    "Does food have mood",
+    "Whats a meal and a feast",
+    "What is good food for you",
+    "Where is your food from",
+    "Does food have history",
+  ];
+  useEffect(() => {
+    gsap.set(".wheel-word", {
+      opacity: 0,
     });
-    gsap.to(".text-circle", {
-      rotation: -180,
+  }, []);
+  useGSAP(() => {
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".words-container",
-        start: `top -${2 * margin - 0.1}%`,
-        end: `bottom -${2 * margin}%`,
-        scrub: true,
+        trigger: ".scroll-control",
+        start: "top center",
+        end: "bottom bottom",
+        scrub: 0,
+        markers: true, // Debug markers, remove in production
       },
-      ease: "none",
+      defaults: {
+        ease: "none",
+      },
+    });
+
+    // Select all `.test` elements
+    const divs = document.querySelectorAll(".wheel-word");
+    const divsRef = document.querySelectorAll(".wheel-word-ref");
+
+    divsRef.forEach((div, index) => {
+      gsap.set(div, {
+        opacity: 0,
+      });
+
+      tl.to(
+        div,
+        {
+          motionPath: {
+            path: "#path-please",
+            align: "#path-please",
+            alignOrigin: [0, 1],
+            start: 1.1,
+            end: 0,
+          },
+          onStart: () => {
+            gsap.set(div, {
+              opacity: 1,
+            });
+          },
+        },
+        index * 0.045
+      );
+    });
+
+    // Apply animations with overlap using stagger-like delays
+    divs.forEach((div, index) => {
+      // gsap.set(div, {
+      //   opacity: 1,
+      // });
+      tl.to(
+        div,
+        {
+          motionPath: {
+            path: "#path-please",
+            align: "#path-please",
+            autoRotate: true, // Ensures rotation aligns with the motion path
+            alignOrigin: [0, 0],
+            start: 1.1,
+            end: 0,
+          },
+          onStart: () => {
+            gsap.set(div, {
+              opacity: 1,
+            });
+            console.log("onStart");
+          },
+        },
+        index * 0.045 // Overlap animations by starting the next one with a small delay
+      );
     });
   });
 
   return (
-    <div
-      className="words-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "start",
-        justifyContent: "space-between",
-        width: "100%",
-        paddingTop: "50vh",
-        paddingLeft: `${(window.innerWidth * 173) / 1920}px`,
-      }}
-    >
+    <>
       <div
-        className="text-circle-container"
         style={{
           position: "fixed",
-          left: 0,
           top: 0,
-          width: "100%",
+          left: 0,
+          width: "100vw",
           height: "100vh",
         }}
       >
-        <div
-          className="text-circle"
-          style={{
-            position: "relative",
-            width: "100%",
-            transformOrigin: `${
-              (-(radius - 174) * window.innerWidth) / 1920
-            }px 50%`,
-            height: "100vh",
-          }}
-        >
-          {words.map((word, index) => (
+        {texts.map((text, index) => (
+          <>
+            <div
+              className={`wheel-word-ref wheel-word-ref-${index}`}
+              position="absolute"
+              style={{
+                height: 50,
+                width: 50,
+                // backgroundColor: "red",
+                // transform: `translate(0,-100%)`,
+              }}
+            ></div>
             <div
               key={index}
-              className={`c-word1-${index}`}
+              className={`wheel-word wheel-word-${index}`}
               style={{
                 position: "absolute",
-                opacity: 0,
-                top: "50%",
-                fontSize: "5.0925vh",
-                left: -((radius - 170) * window.innerWidth) / 1920,
-                transform: `rotate(${
-                  index * (370 / (words.length * 3))
-                }deg) translate(${
-                  (radius * window.innerWidth) / 1920
-                }px, -50%) `,
-                transformOrigin: "top left",
+                top: `${index * 100}px`,
+                left: `${index * 100}px`,
+                // backgroundColor: "red",
               }}
             >
-              <div className="word-cont">{word}</div>
+              <div
+                className={`wheel-word-text-cont-${index}`}
+                style={{
+                  transform: "rotate(90deg) translate(0,-100%)", // Center the text
+                  transformOrigin: "left top",
+                  whiteSpace: "nowrap",
+                  fontFamily: "TTtravels Next Demibold",
+
+                  fontSize: (55 * window.innerHeight) / 1080,
+                }}
+              >
+                {text}
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-      {words.map((word, index) => (
-        <div
-          key={index}
-          className={`word1 word1-${index}`}
+          </>
+        ))}
+
+        <SvgComponent
           style={{
-            margin: `${margin - 1}vh 0`,
-            // marginBottom: "2.5vh",
+            position: "absolute",
+            height: "100vh",
+            top: 0,
+            left: (-336.4 * window.innerWidth) / 1920,
+            opacity: 0,
           }}
-        >
-          <div className="word-cont">{word}</div>
-        </div>
-      ))}
-    </div>
+        />
+      </div>
+      <div
+        className="scroll-control"
+        style={{
+          height: "200vh",
+          width: "100vw",
+        }}
+      ></div>
+    </>
   );
 };
 
