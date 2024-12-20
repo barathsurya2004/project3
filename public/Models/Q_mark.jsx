@@ -24,7 +24,7 @@ export function QuestionModel(props) {
       {
         y: -1.5,
         scrollTrigger: {
-          trigger: ".words-container",
+          trigger: ".scroll-control",
           start: "top bottom",
           end: "top 95%",
           toggleActions: "play none none reverse",
@@ -36,9 +36,9 @@ export function QuestionModel(props) {
     );
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".words-container",
+        trigger: ".scroll-control",
         start: "top 95%",
-        end: "top top",
+        end: "top 25%",
         onLeave: () => {
           setActive(true);
         },

@@ -1,7 +1,7 @@
 const ThereIsMore = () => {
   return (
     <div
-      className="there's-more-container"
+      className="theres-more-container"
       style={{
         position: "relative",
         zIndex: 1,

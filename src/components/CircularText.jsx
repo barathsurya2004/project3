@@ -21,6 +21,7 @@ const CircularText = ({ texts, radius }) => {
     gsap.set("#drag", {
       rotation: 180,
     });
+    document.getElementById("drag").style.pointerEvents = "none";
   }, []);
   useEffect(() => {
     console.log(rotation);
@@ -137,13 +138,16 @@ const CircularText = ({ texts, radius }) => {
           scrub: true,
           // markers: true,
           onUpdate: (progress) => {
+            console.log(progress);
             setRotation(12 - 72 * progress.progress);
           },
           onLeave: () => {
             setVisibleCount(50);
+            document.getElementById("drag").style.pointerEvents = "auto";
           },
           onEnterBack: () => {
             setVisibleCount(10);
+            document.getElementById("drag").style.pointerEvents = "none";
           },
         },
         ease: "none",
@@ -200,6 +204,7 @@ const CircularText = ({ texts, radius }) => {
               30
           );
           setIndVisible(ind);
+          setCanHighlight(true);
           setAlphaMaskVisible(false);
         },
 

@@ -23,6 +23,7 @@ export const Context = createContext({
   photos: [],
   fullscreen: null,
   setFullscreen: () => {},
+  canScrollTo: false,
 });
 
 export const ContextProvider = ({ children }) => {
@@ -37,7 +38,7 @@ export const ContextProvider = ({ children }) => {
   const [globeClicked, setGlobeClicked] = useState(false);
   const [mode, setMode] = useState(null);
   const [fullscreen, setFullscreen] = useState(null);
-
+  const canScrollTo = useRef(true);
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
     setPointer([clientX, clientY]);
@@ -217,6 +218,7 @@ export const ContextProvider = ({ children }) => {
     photos,
     fullscreen,
     setFullscreen,
+    canScrollTo,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

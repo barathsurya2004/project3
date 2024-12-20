@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import bolt from "../assets/icons/lightning bolt.svg";
 import { Context } from "../context";
 import pandiIcon from "../assets/icons/pandisvg.svg";
@@ -11,8 +11,11 @@ import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import EndingPage from "./EndingPage";
+import Lottie from "lottie-react";
+import anim from "../assets/json/lightning for face.json";
 gsap.registerPlugin(ScrollTrigger);
 const FaceReact = () => {
+  const animRef = useRef();
   const styles = {
     para: {
       fontSize: (34 * window.innerHeight) / 1080,
@@ -24,6 +27,11 @@ const FaceReact = () => {
       margin: 0,
     },
   };
+  useEffect(() => {
+    gsap.set(".actual-voting-page", {
+      opacity: 0,
+    });
+  }, []);
   const { hovered, setHovered } = useContext(Context);
   const [imagePandi, setImagePandi] = useState(pandiIcon);
   const [imageChetti, setImageChetti] = useState(chettiIcon);
@@ -236,6 +244,17 @@ const FaceReact = () => {
           trigger: ".face-reacting-page-helper",
           start: "top 90%",
           toggleActions: "play none none reverse",
+          onEnter: () => {
+            console.log("enter");
+            animRef.current.goToAndPlay(0);
+            animRef.current.play();
+            console.log(animRef);
+          },
+          onLeaveBack: () => {
+            gsap.set(".actual-voting-page", {
+              opacity: 0,
+            });
+          },
         },
         ease: "none",
       }
@@ -284,253 +303,295 @@ const FaceReact = () => {
         }}
       >
         <div
-          className="bottom-text"
-          style={{
-            position: "absolute",
-            bottom: "10%",
-            left: "50%",
-            transform: "translate(-50%, 0)",
-            color: "#FFF3DC",
-            fontSize: (55 * window.innerHeight) / 1080,
-            zIndex: 505,
-            fontFamily: "TTtravels Next DemiBold",
-            textAlign: "center",
-            textWrap: "nowrap",
-            pointerEvents: "none",
-          }}
-        >
-          Which one would you try first?
-        </div>
-        <div
-          className="react-cards"
-          style={{
-            position: "relative",
-            height: "100%",
-            width: "100%",
-            // zIndex: 505,
-          }}
-        >
-          <div
-            className="pandi-react-card"
-            style={{
-              position: "absolute",
-              top: "19.25%",
-              left: "10%",
-              zIndex: 505,
-              height: (400 * window.innerHeight) / 1080,
-            }}
-          >
-            <img
-              className="pandi-image"
-              src={imagePandi}
-              alt="pandi"
-              style={{
-                width: (250 * window.innerHeight) / 1080,
-                height: (250 * window.innerHeight) / 1080,
-                cursor: "pointer",
-              }}
-              onClick={PandihandleClick}
-              onPointerEnter={() => {
-                setHovered(true);
-                handleMouseEnterPandi();
-                handleMouseEnterChetti();
-              }}
-              onPointerLeave={() => {
-                setHovered(false);
-                handleMouseLeavePandi();
-                handleMouseLeaveChetti();
-              }}
-            />
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: "100%",
-                  height: "100%",
-                  top: 0,
-                  left: 0,
-                  display: "flex",
-                  flexWrap: "nowrap",
-                  flexDirection: "column",
-                  zIndex: 505,
-                }}
-              >
-                <p
-                  className="pandi-text"
-                  style={{
-                    display: "flex",
-                    flexWrap: "nowrap",
-                    ...styles.para,
-                    color: "#BB8BE8",
-                  }}
-                >
-                  Pandiyanad
-                </p>
-                <p
-                  className="pandi-text"
-                  style={{
-                    ...styles.para,
-                    color: "#BB8BE8",
-                  }}
-                >
-                  Cuisine
-                </p>
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-
-                  zIndex: 505,
-                }}
-              >
-                <p
-                  className="pandi-vote"
-                  style={{
-                    ...styles.para,
-                    color: "#BB8BE8",
-                    opacity: 0,
-                  }}
-                >
-                  ~Vote~
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className="chetti-react-card"
-            style={{
-              position: "absolute",
-              top: "19.25%",
-              right: "10%",
-              zIndex: 505,
-            }}
-          >
-            <img
-              src={imageChetti}
-              className="chetti-image"
-              onClick={ChettihandleClick}
-              alt="chetti"
-              style={{
-                width: (250 * window.innerHeight) / 1080,
-                height: (250 * window.innerHeight) / 1080,
-                cursor: "pointer",
-              }}
-              onPointerEnter={() => {
-                setHovered(true);
-                handleMouseEnterChetti();
-                handleMouseEnterPandi();
-              }}
-              onPointerLeave={() => {
-                setHovered(false);
-                handleMouseLeavePandi();
-                handleMouseLeaveChetti();
-              }}
-            />
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  flexWrap: "nowrap",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  zIndex: 505,
-                }}
-              >
-                <p
-                  className="chetti-texts"
-                  style={{ ...styles.para, color: "#CC7272" }}
-                >
-                  Chettinad
-                </p>
-                <p
-                  className="chetti-texts"
-                  style={{
-                    ...styles.para,
-                    color: "#CC7272",
-                  }}
-                >
-                  Cuisine
-                </p>
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  zIndex: 505,
-                }}
-              >
-                <p
-                  className="chetti-vote"
-                  style={{
-                    ...styles.para,
-                    color: "#CC7272",
-                    opacity: 0,
-                  }}
-                >
-                  ~Vote~
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <img
-          src={bolt}
-          style={{
-            position: "absolute",
-            width: (576 * window.innerHeight) / 1080,
-            top: (-58.15 * window.innerHeight) / 1080,
-            transform: "translate(-50%, 0)",
-            left: "50%",
-            zIndex: 1,
-          }}
-        />
-        <div
-          className="pandiyanad-react"
           style={{
             position: "absolute",
             top: 0,
             left: 0,
-            width: "48%",
-            background: "#A693CC",
+            width: "100%",
             height: "100%",
-            maskImage:
-              "linear-gradient(to left, rgba(0,0,0,0.4), rgba(0,0,0,0))",
-            maskSize: "100% 100%",
+            zIndex: 1000,
           }}
-        ></div>
+        >
+          <Lottie
+            animationData={anim}
+            lottieRef={animRef}
+            loop={false}
+            autoplay={false}
+            rendererSettings={{
+              preserveAspectRatio: "none",
+            }}
+            style={{
+              height: "100vh",
+              width: "100%",
+            }}
+            onComplete={() => {
+              console.log("completed");
+              gsap.set(".actual-voting-page", {
+                opacity: 1,
+              });
+            }}
+          />
+        </div>
         <div
-          className="chettinad-react"
+          className="actual-voting-page"
           style={{
             position: "absolute",
             top: 0,
-            right: 0,
-            width: "52%",
-            background: "#CC7272",
-            maskImage:
-              "linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0))",
+            left: 0,
+            width: "100%",
             height: "100%",
+            zIndex: 800,
           }}
-        ></div>
+        >
+          <div
+            className="bottom-text"
+            style={{
+              position: "absolute",
+              bottom: "10%",
+              left: "50%",
+              transform: "translate(-50%, 0)",
+              color: "#FFF3DC",
+              fontSize: (55 * window.innerHeight) / 1080,
+              zIndex: 505,
+              fontFamily: "TTtravels Next DemiBold",
+              textAlign: "center",
+              textWrap: "nowrap",
+              pointerEvents: "none",
+            }}
+          >
+            Which one would you try first?
+          </div>
+          <div
+            className="react-cards"
+            style={{
+              position: "relative",
+              height: "100%",
+              width: "100%",
+              // zIndex: 505,
+            }}
+          >
+            <div
+              className="pandi-react-card"
+              style={{
+                position: "absolute",
+                top: "19.25%",
+                left: "10%",
+                zIndex: 505,
+                height: (400 * window.innerHeight) / 1080,
+              }}
+            >
+              <img
+                className="pandi-image"
+                src={imagePandi}
+                alt="pandi"
+                style={{
+                  width: (250 * window.innerHeight) / 1080,
+                  height: (250 * window.innerHeight) / 1080,
+                  cursor: "pointer",
+                }}
+                onClick={PandihandleClick}
+                onPointerEnter={() => {
+                  setHovered(true);
+                  handleMouseEnterPandi();
+                  handleMouseEnterChetti();
+                }}
+                onPointerLeave={() => {
+                  setHovered(false);
+                  handleMouseLeavePandi();
+                  handleMouseLeaveChetti();
+                }}
+              />
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    top: 0,
+                    left: 0,
+                    display: "flex",
+                    flexWrap: "nowrap",
+                    flexDirection: "column",
+                    zIndex: 505,
+                  }}
+                >
+                  <p
+                    className="pandi-text"
+                    style={{
+                      display: "flex",
+                      flexWrap: "nowrap",
+                      ...styles.para,
+                      color: "#BB8BE8",
+                    }}
+                  >
+                    Pandiyanad
+                  </p>
+                  <p
+                    className="pandi-text"
+                    style={{
+                      ...styles.para,
+                      color: "#BB8BE8",
+                    }}
+                  >
+                    Cuisine
+                  </p>
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+
+                    zIndex: 505,
+                  }}
+                >
+                  <p
+                    className="pandi-vote"
+                    style={{
+                      ...styles.para,
+                      color: "#BB8BE8",
+                      opacity: 0,
+                    }}
+                  >
+                    ~Vote~
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              className="chetti-react-card"
+              style={{
+                position: "absolute",
+                top: "19.25%",
+                right: "10%",
+                zIndex: 505,
+              }}
+            >
+              <img
+                src={imageChetti}
+                className="chetti-image"
+                onClick={ChettihandleClick}
+                alt="chetti"
+                style={{
+                  width: (250 * window.innerHeight) / 1080,
+                  height: (250 * window.innerHeight) / 1080,
+                  cursor: "pointer",
+                }}
+                onPointerEnter={() => {
+                  setHovered(true);
+                  handleMouseEnterChetti();
+                  handleMouseEnterPandi();
+                }}
+                onPointerLeave={() => {
+                  setHovered(false);
+                  handleMouseLeavePandi();
+                  handleMouseLeaveChetti();
+                }}
+              />
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexWrap: "nowrap",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    zIndex: 505,
+                  }}
+                >
+                  <p
+                    className="chetti-texts"
+                    style={{ ...styles.para, color: "#CC7272" }}
+                  >
+                    Chettinad
+                  </p>
+                  <p
+                    className="chetti-texts"
+                    style={{
+                      ...styles.para,
+                      color: "#CC7272",
+                    }}
+                  >
+                    Cuisine
+                  </p>
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    zIndex: 505,
+                  }}
+                >
+                  <p
+                    className="chetti-vote"
+                    style={{
+                      ...styles.para,
+                      color: "#CC7272",
+                      opacity: 0,
+                    }}
+                  >
+                    ~Vote~
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img
+            src={bolt}
+            style={{
+              position: "absolute",
+              width: (576 * window.innerHeight) / 1080,
+              top: (-58.15 * window.innerHeight) / 1080,
+              transform: "translate(-50%, 0)",
+              left: "50%",
+              zIndex: 1,
+            }}
+          />
+          <div
+            className="pandiyanad-react"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "48%",
+              background: "#A693CC",
+              height: "100%",
+              maskImage:
+                "linear-gradient(to left, rgba(0,0,0,0.4), rgba(0,0,0,0))",
+              maskSize: "100% 100%",
+            }}
+          ></div>
+          <div
+            className="chettinad-react"
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              width: "52%",
+              background: "#CC7272",
+              maskImage:
+                "linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0))",
+              height: "100%",
+            }}
+          ></div>
+        </div>
       </div>
     </>
   );

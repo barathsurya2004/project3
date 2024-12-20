@@ -16,7 +16,7 @@ import MapComponent from "../components/Map";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 const EndingPage = () => {
-  const { mode, setMode, fullscreen } = useContext(Context);
+  const { mode, setMode, fullscreen, canScrollTo } = useContext(Context);
   const animRef = useRef(null);
 
   useEffect(() => {
@@ -341,10 +341,14 @@ const EndingPage = () => {
             alignItems: "center",
           }}
           onClick={() => {
+            canScrollTo.current = false;
             gsap.to(window, {
               duration: 4,
               scrollTo: 0,
               ease: "power4.inOut",
+              onComplete: () => {
+                canScrollTo.current = true;
+              },
             });
           }}
         >

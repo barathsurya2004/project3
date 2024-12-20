@@ -51,6 +51,31 @@ const Slider1 = () => {
         },
       },
     });
+    gsap.to(".slider-compare__center", {
+      scrollTrigger: {
+        trigger: ".shall-we-end",
+        start: "top top",
+        end: "bottom top",
+        onEnter: () => {
+          gsap.to(".slider-button-cont", {
+            left: "50%",
+          });
+          gsap.to(".slider-compare__center-line", {
+            left: "25%",
+          });
+          setSliderValue(50);
+        },
+        onLeaveBack: () => {
+          gsap.to(".slider-button-cont", {
+            left: "50%",
+          });
+          gsap.to(".slider-compare__center-line", {
+            left: "25%",
+          });
+          setSliderValue(50);
+        },
+      },
+    });
   });
   const [sliderValue, setSliderValue] = useState(50);
   const [pointerUp, setPointerUp] = useState(null);
@@ -64,6 +89,7 @@ const Slider1 = () => {
           height: "250vh",
           position: "relative",
           mixBlendMode: "exclusion",
+          // paddingTop: "20vh",
         }}
       >
         <div

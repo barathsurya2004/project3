@@ -41,7 +41,7 @@ function App() {
         {/* <BackGround /> */}
 
         <Loader />
-        {/* <ThreeJsCanvas /> */}
+        <ThreeJsCanvas />
         <Hero />
         <CircularAnimation
           words={[

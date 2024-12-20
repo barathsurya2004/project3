@@ -66,6 +66,7 @@ const SharePage = () => {
           alignItems: "center",
           justifyContent: "center",
           margin: (25 * window.innerHeight) / 1080,
+          zIndex: 10,
         }}
       >
         <img
@@ -74,6 +75,7 @@ const SharePage = () => {
             width: (125 * window.innerWidth) / 1920,
             height: (125 * window.innerHeight) / 1080,
             margin: 0,
+            cursor: "pointer",
           }}
           alt=""
         />
