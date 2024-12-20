@@ -11,32 +11,57 @@ const CircularText = ({ texts, radius }) => {
   const [change, setChange] = useState(0);
   texts = [...texts, ...texts, ...texts];
   const [zIndex, setZIndex] = useState(1000);
-  const [visibleCount, setVisibleCount] = useState(30);
+  const [visibleCount, setVisibleCount] = useState(10);
   const [alphaMaskVisible, setAlphaMaskVisible] = useState(false);
   const [indVisible, setIndVisible] = useState(null);
   const prevIndVisibleRef = useRef();
-
+  const [rotation, setRotation] = useState(0);
+  const [canHighlight, setCanHighlight] = useState(false);
   useEffect(() => {
     gsap.set("#drag", {
       rotation: 180,
     });
   }, []);
+  useEffect(() => {
+    console.log(rotation);
+
+    let ind = Math.floor(
+      (30 -
+        ((((rotation - 3 - ((rotation - 3) % 3)) % 360) + 360) % 360) / 12) %
+        30
+    );
+    if (canHighlight) {
+      if (ind < visibleCount) setIndVisible(ind);
+      else setIndVisible(null);
+    }
+  }, [rotation]);
+  useEffect(() => {
+    if (indVisible !== prevIndVisibleRef.current) {
+      gsap.to(`.cir-text-${prevIndVisibleRef.current}`, {
+        opacity: 0.3,
+        duration: 0.5,
+      });
+      gsap.to(`.cir-text-${indVisible}`, {
+        opacity: 1,
+        duration: 0.5,
+      });
+      prevIndVisibleRef.current = indVisible;
+    }
+  }, [indVisible]);
   useGSAP(() => {
     Draggable.create("#drag", {
       type: "rotation",
+      onDrag: () => {
+        setRotation(gsap.getProperty("#drag", "rotation"));
+      },
       onDragEnd: () => {
-        const rotation = gsap.getProperty("#drag", "rotation");
-
         gsap.to("#drag", {
-          rotation: rotation - 6 - ((rotation - 6) % 12),
+          rotation: Math.round(gsap.getProperty("#drag", "rotation") / 12) * 12,
+          duration: 0.5,
         });
-        let ind = Math.floor(
-          (30 -
-            ((((rotation - 6 - ((rotation - 6) % 12)) % 360) + 360) % 360) /
-              12) %
-            30
+        setRotation(
+          Math.round(gsap.getProperty("#drag", "rotation") / 12) * 12
         );
-        setIndVisible(ind);
       },
     });
 
@@ -79,11 +104,47 @@ const CircularText = ({ texts, radius }) => {
       {
         rotation: 12,
         scrollTrigger: {
-          trigger: ".wheel-word-ref-9",
-          start: "top 60%",
-          end: `top 47.5%`,
+          trigger: ".scroll-control",
+          start: "bottom 70%",
+          end: `bottom 47.5%`,
           scrub: true,
-          markers: true,
+          onUpdate: (progress) => {
+            setRotation(90 - 78 * progress.progress);
+          },
+          onLeave: () => {
+            setCanHighlight(true);
+          },
+          onEnterBack: () => {
+            setCanHighlight(false);
+            setIndVisible(null);
+          },
+          // markers: true,
+        },
+        ease: "none",
+      }
+    );
+    gsap.fromTo(
+      "#drag",
+      {
+        rotation: 12,
+      },
+      {
+        rotation: -60,
+        scrollTrigger: {
+          trigger: ".scroll-control",
+          start: "bottom 47.5%",
+          end: "bottom top",
+          scrub: true,
+          // markers: true,
+          onUpdate: (progress) => {
+            setRotation(12 - 72 * progress.progress);
+          },
+          onLeave: () => {
+            setVisibleCount(50);
+          },
+          onEnterBack: () => {
+            setVisibleCount(10);
+          },
         },
         ease: "none",
       }
@@ -167,8 +228,8 @@ const CircularText = ({ texts, radius }) => {
           position: "fixed",
           top: "50%",
           left: "0%",
-          width: "100vh",
-          height: "100vh",
+          width: "250vh",
+          height: "250vh",
           transform: `translate(${(-506 * window.innerHeight) / 1080}px,-50%)`,
           zIndex: zIndex,
         }}
@@ -181,7 +242,6 @@ const CircularText = ({ texts, radius }) => {
             position: "absolute",
 
             transformOrigin: `center center`,
-
             transform: `translate(-50%, 0%)`,
           }}
         >
@@ -190,6 +250,7 @@ const CircularText = ({ texts, radius }) => {
             className="circle"
             style={{
               position: "absolute",
+              // background: "red",
               width: "100%",
               height: "100%",
               // backgroundColor: "blue",
@@ -209,7 +270,7 @@ const CircularText = ({ texts, radius }) => {
                   className={`circle-text cir-text-${index}`}
                   key={index}
                   style={{
-                    opacity: index > 10 ? 0 : 0.3 + 1 * change,
+                    opacity: index > visibleCount ? 0 : 0.3 + 1 * change,
                     transform: "translateY(-50%)",
                   }}
                 >

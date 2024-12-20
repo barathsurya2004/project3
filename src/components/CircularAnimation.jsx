@@ -31,9 +31,9 @@ const CircularAnimation = () => {
       scrollTrigger: {
         trigger: ".scroll-control",
         start: "top center",
-        end: "bottom bottom",
+        end: "bottom top",
         scrub: 0,
-        markers: true, // Debug markers, remove in production
+        // markers: true, // Debug markers, remove in production
       },
       defaults: {
         ease: "none",
@@ -43,6 +43,7 @@ const CircularAnimation = () => {
     // Select all `.test` elements
     const divs = document.querySelectorAll(".wheel-word");
     const divsRef = document.querySelectorAll(".wheel-word-ref");
+    let pathline = document.querySelector("#path-please");
 
     divsRef.forEach((div, index) => {
       gsap.set(div, {
@@ -59,11 +60,6 @@ const CircularAnimation = () => {
             start: 1.1,
             end: 0,
           },
-          onStart: () => {
-            gsap.set(div, {
-              opacity: 1,
-            });
-          },
         },
         index * 0.045
       );
@@ -71,9 +67,9 @@ const CircularAnimation = () => {
 
     // Apply animations with overlap using stagger-like delays
     divs.forEach((div, index) => {
-      // gsap.set(div, {
-      //   opacity: 1,
-      // });
+      gsap.set(div, {
+        opacity: 1,
+      });
       tl.to(
         div,
         {
@@ -85,11 +81,33 @@ const CircularAnimation = () => {
             start: 1.1,
             end: 0,
           },
+
           onStart: () => {
             gsap.set(div, {
-              opacity: 1,
+              opacity: 0.3,
             });
-            console.log("onStart");
+          },
+          onUpdate: () => {
+            let delta = MotionPathPlugin.getRelativePosition(
+              pathline,
+              div,
+              [0, 0],
+              [0, 0]
+            );
+            if (
+              delta.y < window.innerHeight / 2 + 50 &&
+              delta.y > window.innerHeight / 2 - 50
+            ) {
+              gsap.to(div, {
+                opacity: 1,
+                duration: 0.5,
+              });
+            } else {
+              gsap.to(div, {
+                opacity: 0.3,
+                duration: 0.5,
+              });
+            }
           },
         },
         index * 0.045 // Overlap animations by starting the next one with a small delay
@@ -116,7 +134,7 @@ const CircularAnimation = () => {
               style={{
                 height: 50,
                 width: 50,
-                // backgroundColor: "red",
+                backgroundColor: "red",
                 // transform: `translate(0,-100%)`,
               }}
             ></div>
@@ -128,6 +146,7 @@ const CircularAnimation = () => {
                 top: `${index * 100}px`,
                 left: `${index * 100}px`,
                 // backgroundColor: "red",
+                opacity: 0.3,
               }}
             >
               <div
@@ -137,7 +156,7 @@ const CircularAnimation = () => {
                   transformOrigin: "left top",
                   whiteSpace: "nowrap",
                   fontFamily: "TTtravels Next Demibold",
-
+                  // opacity: 0.3,
                   fontSize: (55 * window.innerHeight) / 1080,
                 }}
               >
@@ -160,7 +179,7 @@ const CircularAnimation = () => {
       <div
         className="scroll-control"
         style={{
-          height: "200vh",
+          height: "100vh",
           width: "100vw",
         }}
       ></div>
