@@ -88,15 +88,12 @@ const CircularAnimation = () => {
             });
           },
           onUpdate: () => {
-            let delta = MotionPathPlugin.getRelativePosition(
-              pathline,
-              div,
-              [0, 0],
-              [0, 0]
-            );
+            const divRef = document.querySelector(`.wheel-word-ref-${index}`);
+            const delta = divRef.getBoundingClientRect().top;
+
             if (
-              delta.y < window.innerHeight / 2 + 50 &&
-              delta.y > window.innerHeight / 2 - 50
+              delta < window.innerHeight / 2 + 45 &&
+              delta > window.innerHeight / 2 - 45
             ) {
               gsap.to(div, {
                 opacity: 1,

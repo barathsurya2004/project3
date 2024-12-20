@@ -185,6 +185,7 @@ const CircularText = ({ texts, radius }) => {
         scrub: 0.05,
         onEnter: () => {
           setIndVisible(null);
+          setCanHighlight(false);
           setAlphaMaskVisible(true);
           const dragWheel = document.getElementById("drag");
           dragWheel.style.pointerEvents = "none";
