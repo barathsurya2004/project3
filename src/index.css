@@ -53,3 +53,16 @@ body {
 body::-moz-scrollbar {
   width: 0; /* Firefox */
 }
+ul ::marker {
+  /* content: ""; */
+  font-size: 25px;
+
+  /* margin-right: 20px; */
+}
+
+/* li {
+  margin-left: 20px;
+}
+li p {
+  margin-left: 5px;
+} */

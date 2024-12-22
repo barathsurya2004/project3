@@ -22,7 +22,7 @@ const ShallWe = ({ fun }) => {
           if (!canScrollTo.current) {
             return;
           }
-          document.body.style.overflow = "hidden";
+          // document.body.style.overflow = "hidden";
           gsap.to(window, {
             scrollTo: {
               y: ".Shall-we-cont",
@@ -53,7 +53,7 @@ const ShallWe = ({ fun }) => {
           if (!canScrollTo.current) {
             return;
           }
-          document.body.style.overflow = "hidden";
+          // document.body.style.overflow = "hidden";
           gsap.to(window, {
             scrollTo: {
               y: ".Shall-we-cont",

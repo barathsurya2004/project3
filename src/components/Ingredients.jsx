@@ -19,7 +19,7 @@ const Ingredients = () => {
       <div
         style={{
           position: "relative",
-          zIndex: 500,
+          zIndex: 1000,
           overflow: "hidden",
         }}
       >

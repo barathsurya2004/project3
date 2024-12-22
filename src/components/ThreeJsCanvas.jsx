@@ -1,6 +1,10 @@
 import { Canvas } from "@react-three/fiber";
 import { HeartModel } from "../../public/Models/Heart";
-import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
+import {
+  OrbitControls,
+  OrthographicCamera,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { ArtModel } from "../../public/Models/Art";
 import { MapModel } from "../../public/Models/Treasure_map";
@@ -20,6 +24,7 @@ import { TreasureModel } from "../../public/Models/Treasure";
 import { CountriesModel } from "../../public/Models/Countries";
 import { FGlobeModel } from "../../public/Models/FINAL_globe";
 import { EffectComposer, Outline } from "@react-three/postprocessing";
+import { TrialModel } from "../../public/Models/Triallllllllll";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
   const [change, setChange] = useState(0);
@@ -35,21 +40,22 @@ const ThreeJsCanvas = () => {
         scrub: true,
       },
     });
-    gsap.fromTo(
-      ".face-model",
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.2,
-        scrollTrigger: {
-          trigger: ".face-reacting-page-helper",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
+    // gsap.fromTo(
+    //   ".face-model",
+    //   {
+    //     opacity: 0,
+    //   },
+    //   {
+    //     opacity: 1,
+    //     duration: 0.2,
+    //     scrollTrigger: {
+    //       trigger: ".face-reacting-page-helper",
+    //       start: "top 90%",
+    //       toggleActions: "none none none reverse",
+    //     },
+    //     immediateRender: false,
+    //   }
+    // );
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".ending-page-helper",
@@ -305,7 +311,7 @@ const ThreeJsCanvas = () => {
           left: 0,
           width: "100%",
           height: "100vh",
-          zIndex: 100,
+          zIndex: 1000,
           // pointerEvents: "none",
         }}
       >
@@ -345,8 +351,10 @@ const ThreeJsCanvas = () => {
                 position={[0, 0, 2.212]}
                 zoom={0.9}
               />
+              {/* <OrbitControls /> */}
 
               <FGlobeModel position={[1, 0, 0]} />
+              {/* <TrialModel position={[1, 0, 0]} /> */}
             </EffectComposer>
             {/* <CountriesModel position={[1, 0, 0]} /> */}
           </Canvas>
@@ -393,7 +401,7 @@ const ThreeJsCanvas = () => {
           position: "fixed",
           // display: "none",
           top: "50vh",
-          zIndex: 510,
+          zIndex: 501,
           maskImage: `linear-gradient(0deg, rgba(0,0,0,0.0) ${
             num * 100
           }%, rgba(0,0,0,1) ${num * 100}%, rgba(0,0,0,1) 100%)`,

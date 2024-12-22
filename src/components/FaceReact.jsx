@@ -27,11 +27,7 @@ const FaceReact = () => {
       margin: 0,
     },
   };
-  useEffect(() => {
-    gsap.set(".actual-voting-page", {
-      opacity: 0,
-    });
-  }, []);
+
   const { hovered, setHovered } = useContext(Context);
   const [imagePandi, setImagePandi] = useState(pandiIcon);
   const [imageChetti, setImageChetti] = useState(chettiIcon);
@@ -233,32 +229,21 @@ const FaceReact = () => {
     );
   };
   useGSAP(() => {
-    gsap.fromTo(
-      ".face-reacting-page",
-      { display: "none", opacity: 0 },
-      {
-        display: "block",
-        opacity: 1,
-        duration: 0.2,
-        scrollTrigger: {
-          trigger: ".face-reacting-page-helper",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-          onEnter: () => {
-            console.log("enter");
-            animRef.current.goToAndPlay(0);
-            animRef.current.play();
-            console.log(animRef);
-          },
-          onLeaveBack: () => {
-            gsap.set(".actual-voting-page", {
-              opacity: 0,
-            });
-          },
-        },
-        ease: "none",
-      }
-    );
+    // gsap.fromTo(
+    //   ".face-reacting-page",
+    //   { display: "none", opacity: 0 },
+    //   {
+    //     display: "block",
+    //     opacity: 1,
+    //     duration: 0.2,
+    //     scrollTrigger: {
+    //       trigger: ".face-reacting-page-helper",
+    //       start: "top 90%",
+    //       toggleActions: "play none none reverse",
+    //     },
+    //     ease: "none",
+    //   }
+    // );
     gsap.fromTo(
       ".face-reacting-page",
       {
@@ -302,7 +287,7 @@ const FaceReact = () => {
           opacity: 0,
         }}
       >
-        <div
+        {/* <div
           style={{
             position: "absolute",
             top: 0,
@@ -326,12 +311,16 @@ const FaceReact = () => {
             }}
             onComplete={() => {
               console.log("completed");
-              gsap.set(".actual-voting-page", {
+              // gsap.to(".sharing-page", {
+              //   delay: -0.5,
+              //   opacity: 0,
+              // });
+              gsap.to(".actual-voting-page", {
                 opacity: 1,
               });
             }}
           />
-        </div>
+        </div> */}
         <div
           className="actual-voting-page"
           style={{
