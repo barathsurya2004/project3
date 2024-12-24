@@ -10,7 +10,8 @@ import { Context } from "../../src/context";
 import { useFrame } from "@react-three/fiber";
 export function GlobeModel(props) {
   const { nodes, materials } = useGLTF("/Models/Globe.glb");
-  const { setDown, setMeshSelected, meshSelected } = useContext(Context);
+  const { setDown, setMeshSelected, meshSelected, pointer } =
+    useContext(Context);
   const mainRef = React.useRef();
   const rotRef = React.useRef();
   const [active, setActive] = React.useState(true);
@@ -18,11 +19,15 @@ export function GlobeModel(props) {
   const [statesVisible, setStatesVisible] = React.useState(false);
   const [hovering, setHovering] = React.useState(false);
   const [districtsVisible, setDistrictsVisible] = React.useState(false);
+  const [dragging, setDragging] = React.useState(false);
   const statesRef = React.useRef();
   const districtsRef = React.useRef();
   const IndianSubRef = React.useRef();
   const TnStateRef = React.useRef();
-  const speedRef = React.useRef(0.005);
+  const prevMousePosition = React.useRef({ x: 0, y: 0 });
+  const [initialMouse, setInitialMouse] = React.useState({ x: 0, y: 0 });
+  const dragRef = React.useRef();
+
   useFrame(() => {
     if (active && shouldRotate && !hovering)
       rotRef.current.rotation.y =
@@ -149,6 +154,7 @@ export function GlobeModel(props) {
         immediateRender: false,
       }
     );
+
     gsap.fromTo(
       mainRef.current.position,
       {
@@ -165,6 +171,11 @@ export function GlobeModel(props) {
           onEnter: () => {
             setShouldRotate(false);
             gsap.to(rotRef.current.rotation, {
+              y: 0,
+              duration: 1,
+            });
+            gsap.to(dragRef.current.rotation, {
+              x: 0,
               y: 0,
               duration: 1,
             });
@@ -264,6 +275,40 @@ export function GlobeModel(props) {
       }
     );
   });
+  useEffect(() => {
+    if (!dragging && !hovering) {
+      gsap.to(dragRef.current.rotation, {
+        x: 0,
+      });
+    }
+  }, [dragging, hovering]);
+
+  useFrame((state) => {
+    if (dragging) {
+      const x = state.pointer.x;
+      const y = state.pointer.y;
+      const dx = x - initialMouse.x;
+      const dy = y - initialMouse.y;
+      const rotX = dragRef.current.rotation.x;
+      const rotY = dragRef.current.rotation.y;
+      const maxRotX = 45 * (Math.PI / 180); // 90 degrees in radians
+      const minRotX = -45 * (Math.PI / 180);
+
+      let newRotX = (rotX - dy * 2) % (2 * Math.PI);
+
+      // Constrain newRotX between minRotX and maxRotX
+
+      newRotX = Math.max(minRotX, Math.min(maxRotX, newRotX));
+      let newRotY = rotY + dx * 10;
+
+      gsap.to(dragRef.current.rotation, {
+        x: newRotX,
+        y: newRotY,
+        duration: 0.5,
+      });
+    }
+    setInitialMouse({ x: state.pointer.x, y: state.pointer.y });
+  });
   return (
     <group
       {...props}
@@ -275,321 +320,92 @@ export function GlobeModel(props) {
     >
       <mesh
         scale={1.3}
+        onPointerDown={() => {
+          // setInitialMouse({ x: pointer.x, y: pointer.y });
+          setDragging(true);
+        }}
+        onPointerUp={() => {
+          setDragging(false);
+          // prevMousePosition.current = null;
+        }}
         onPointerEnter={() => {
           setHovering(true);
         }}
         onPointerLeave={() => {
           setHovering(false);
+          setDragging(false);
         }}
       >
         <sphereGeometry args={[1, 32, 32]} />
         <meshStandardMaterial transparent opacity={0} color="#ffffff" />
       </mesh>
-      <group name="Scene">
-        <mesh
-          ref={rotRef}
-          name="frame"
-          geometry={nodes.frame.geometry}
-          material={nodes.frame.material}
-          scale={1.199}
-        >
-          <group
-            name="AMER"
-            position={[-0.116, 0.302, -0.876]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
+      <group ref={dragRef}>
+        <group name="Scene">
+          <mesh
+            ref={rotRef}
+            name="frame"
+            geometry={nodes.frame.geometry}
+            material={nodes.frame.material}
+            scale={1.199}
           >
-            <mesh
-              name="Plane084"
-              geometry={nodes.Plane084.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane084_1"
-              geometry={nodes.Plane084_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="AUS"
-            position={[0.576, -0.667, 0.41]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane180"
-              geometry={nodes.Plane180.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane180_1"
-              geometry={nodes.Plane180_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
+            <group
+              name="AMER"
+              position={[-0.116, 0.302, -0.876]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane084"
+                geometry={nodes.Plane084.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane084_1"
+                geometry={nodes.Plane084_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="AUS"
+              position={[0.576, -0.667, 0.41]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane180"
+                geometry={nodes.Plane180.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane180_1"
+                geometry={nodes.Plane180_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
 
-          <group
-            name="BRIT"
-            position={[-0.807, 0.558, 0.103]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane115"
-              geometry={nodes.Plane115.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane115_1"
-              geometry={nodes.Plane115_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="C_AFRICA"
-            position={[-0.762, -0.377, 0.451]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane089"
-              geometry={nodes.Plane089.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane089_1"
-              geometry={nodes.Plane089_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="C_ASIA"
-            position={[-0.022, 0.382, 0.843]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane098"
-              geometry={nodes.Plane098.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane098_1"
-              geometry={nodes.Plane098_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="C_EURO"
-            position={[-0.763, 0.514, 0.345]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane097"
-              geometry={nodes.Plane097.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane097_1"
-              geometry={nodes.Plane097_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="CHINESE"
-            position={[0.362, 0.241, 0.821]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane181"
-              geometry={nodes.Plane181.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane181_1"
-              geometry={nodes.Plane181_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="CIRPOLAR"
-            position={[0.062, 0.644, 0.444]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane176"
-              geometry={nodes.Plane176.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane176_1"
-              geometry={nodes.Plane176_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="E_AFRICA"
-            position={[-0.624, -0.418, 0.6]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane179"
-              geometry={nodes.Plane179.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane179_1"
-              geometry={nodes.Plane179_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="E_EURO"
-            position={[-0.689, 0.471, 0.509]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane090"
-              geometry={nodes.Plane090.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane090_1"
-              geometry={nodes.Plane090_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="FRANCE"
-            position={[-0.858, 0.441, 0.2]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane100"
-              geometry={nodes.Plane100.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane100_1"
-              geometry={nodes.Plane100_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="GREEK"
-            position={[-0.769, 0.319, 0.53]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane124"
-              geometry={nodes.Plane124.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane124_1"
-              geometry={nodes.Plane124_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group name="Indian-states" ref={statesRef}>
             <group
-              name="BANGALADESH"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="BRIT"
+              position={[-0.807, 0.558, 0.103]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -598,23 +414,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane062"
-                geometry={nodes.Plane062.geometry}
+                name="Plane115"
+                geometry={nodes.Plane115.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane062_1"
-                geometry={nodes.Plane062_1.geometry}
+                name="Plane115_1"
+                geometry={nodes.Plane115_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="NEPAL"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="C_AFRICA"
+              position={[-0.762, -0.377, 0.451]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -623,23 +439,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane038"
-                geometry={nodes.Plane038.geometry}
+                name="Plane089"
+                geometry={nodes.Plane089.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane038_1"
-                geometry={nodes.Plane038_1.geometry}
+                name="Plane089_1"
+                geometry={nodes.Plane089_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_E_INDIA"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="C_ASIA"
+              position={[-0.022, 0.382, 0.843]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -648,23 +464,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane002"
-                geometry={nodes.Plane002.geometry}
+                name="Plane098"
+                geometry={nodes.Plane098.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane002_1"
-                geometry={nodes.Plane002_1.geometry}
+                name="Plane098_1"
+                geometry={nodes.Plane098_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_GOA"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="C_EURO"
+              position={[-0.763, 0.514, 0.345]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -673,23 +489,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane067"
-                geometry={nodes.Plane067.geometry}
+                name="Plane097"
+                geometry={nodes.Plane097.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane067_1"
-                geometry={nodes.Plane067_1.geometry}
+                name="Plane097_1"
+                geometry={nodes.Plane097_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_N_E_INDIA"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="CHINESE"
+              position={[0.362, 0.241, 0.821]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -698,23 +514,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane014"
-                geometry={nodes.Plane014.geometry}
+                name="Plane181"
+                geometry={nodes.Plane181.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane014_1"
-                geometry={nodes.Plane014_1.geometry}
+                name="Plane181_1"
+                geometry={nodes.Plane181_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_N_INDIA"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="CIRPOLAR"
+              position={[0.062, 0.644, 0.444]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -723,23 +539,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane003"
-                geometry={nodes.Plane003.geometry}
+                name="Plane176"
+                geometry={nodes.Plane176.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane003_1"
-                geometry={nodes.Plane003_1.geometry}
+                name="Plane176_1"
+                geometry={nodes.Plane176_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_RAJ"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="E_AFRICA"
+              position={[-0.624, -0.418, 0.6]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -748,23 +564,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane037"
-                geometry={nodes.Plane037.geometry}
+                name="Plane179"
+                geometry={nodes.Plane179.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane037_1"
-                geometry={nodes.Plane037_1.geometry}
+                name="Plane179_1"
+                geometry={nodes.Plane179_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_S_INDIA"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="E_EURO"
+              position={[-0.689, 0.471, 0.509]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -773,24 +589,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane056"
-                geometry={nodes.Plane056.geometry}
+                name="Plane090"
+                geometry={nodes.Plane090.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane056_1"
-                geometry={nodes.Plane056_1.geometry}
+                name="Plane090_1"
+                geometry={nodes.Plane090_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_S_INDIA_TN"
-              ref={TnStateRef}
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="FRANCE"
+              position={[-0.858, 0.441, 0.2]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -799,23 +614,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane012"
-                geometry={nodes.Plane012.geometry}
+                name="Plane100"
+                geometry={nodes.Plane100.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane012_1"
-                geometry={nodes.Plane012_1.geometry}
+                name="Plane100_1"
+                geometry={nodes.Plane100_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="IN_W_INDIA"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="GREEK"
+              position={[-0.769, 0.319, 0.53]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -824,460 +639,514 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane061"
-                geometry={nodes.Plane061.geometry}
+                name="Plane124"
+                geometry={nodes.Plane124.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane061_1"
-                geometry={nodes.Plane061_1.geometry}
+                name="Plane124_1"
+                geometry={nodes.Plane124_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
-          </group>
-          <group
-            name="INDIAN_SUB_CONT"
-            ref={IndianSubRef}
-            position={[0, 0.04, 0.963]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane080"
-              geometry={nodes.Plane080.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane080_1"
-              geometry={nodes.Plane080_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="IRAN"
-            position={[-0.447, 0.21, 0.838]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane096"
-              geometry={nodes.Plane096.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane096_1"
-              geometry={nodes.Plane096_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="IRISH"
-            position={[-0.828, 0.538, 0.024]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane101"
-              geometry={nodes.Plane101.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane101_1"
-              geometry={nodes.Plane101_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="ITALIAN"
-            position={[-0.88, 0.324, 0.312]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane127"
-              geometry={nodes.Plane127.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane127_1"
-              geometry={nodes.Plane127_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="JAPAN"
-            position={[0.786, 0.201, 0.564]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane107"
-              geometry={nodes.Plane107.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane107_1"
-              geometry={nodes.Plane107_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="KOREAN"
-            position={[0.702, 0.3, 0.625]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane111"
-              geometry={nodes.Plane111.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane111_1"
-              geometry={nodes.Plane111_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="MEX_CAR"
-            position={[-0.035, -0.049, -0.951]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane095"
-              geometry={nodes.Plane095.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane095_1"
-              geometry={nodes.Plane095_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="MID_EAST"
-            position={[-0.516, 0.002, 0.824]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane091"
-              geometry={nodes.Plane091.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane091_1"
-              geometry={nodes.Plane091_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="N_AFRICA"
-            position={[-0.813, 0.017, 0.465]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane094"
-              geometry={nodes.Plane094.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane094_1"
-              geometry={nodes.Plane094_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
+            <group name="Indian-states" ref={statesRef}>
+              <group
+                name="BANGALADESH"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane062"
+                  geometry={nodes.Plane062.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane062_1"
+                  geometry={nodes.Plane062_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="NEPAL"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane038"
+                  geometry={nodes.Plane038.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane038_1"
+                  geometry={nodes.Plane038_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_E_INDIA"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane002"
+                  geometry={nodes.Plane002.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane002_1"
+                  geometry={nodes.Plane002_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_GOA"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane067"
+                  geometry={nodes.Plane067.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane067_1"
+                  geometry={nodes.Plane067_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_N_E_INDIA"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane014"
+                  geometry={nodes.Plane014.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane014_1"
+                  geometry={nodes.Plane014_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_N_INDIA"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane003"
+                  geometry={nodes.Plane003.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane003_1"
+                  geometry={nodes.Plane003_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_RAJ"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane037"
+                  geometry={nodes.Plane037.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane037_1"
+                  geometry={nodes.Plane037_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_S_INDIA"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane056"
+                  geometry={nodes.Plane056.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane056_1"
+                  geometry={nodes.Plane056_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_S_INDIA_TN"
+                ref={TnStateRef}
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane012"
+                  geometry={nodes.Plane012.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane012_1"
+                  geometry={nodes.Plane012_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="IN_W_INDIA"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane061"
+                  geometry={nodes.Plane061.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane061_1"
+                  geometry={nodes.Plane061_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+            </group>
+            <group
+              name="INDIAN_SUB_CONT"
+              ref={IndianSubRef}
+              position={[0, 0.04, 0.963]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane080"
+                geometry={nodes.Plane080.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane080_1"
+                geometry={nodes.Plane080_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="IRAN"
+              position={[-0.447, 0.21, 0.838]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane096"
+                geometry={nodes.Plane096.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane096_1"
+                geometry={nodes.Plane096_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="IRISH"
+              position={[-0.828, 0.538, 0.024]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane101"
+                geometry={nodes.Plane101.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane101_1"
+                geometry={nodes.Plane101_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="ITALIAN"
+              position={[-0.88, 0.324, 0.312]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane127"
+                geometry={nodes.Plane127.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane127_1"
+                geometry={nodes.Plane127_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="JAPAN"
+              position={[0.786, 0.201, 0.564]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane107"
+                geometry={nodes.Plane107.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane107_1"
+                geometry={nodes.Plane107_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="KOREAN"
+              position={[0.702, 0.3, 0.625]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane111"
+                geometry={nodes.Plane111.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane111_1"
+                geometry={nodes.Plane111_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="MEX_CAR"
+              position={[-0.035, -0.049, -0.951]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane095"
+                geometry={nodes.Plane095.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane095_1"
+                geometry={nodes.Plane095_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="MID_EAST"
+              position={[-0.516, 0.002, 0.824]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane091"
+                geometry={nodes.Plane091.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane091_1"
+                geometry={nodes.Plane091_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="N_AFRICA"
+              position={[-0.813, 0.017, 0.465]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane094"
+                geometry={nodes.Plane094.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane094_1"
+                geometry={nodes.Plane094_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
 
-          <group
-            name="PAKISTAN"
-            position={[-0.012, 0.024, 0.973]}
-            rotation={[0.082, 0.18, 0.013]}
-            scale={4.17}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane063"
-              geometry={nodes.Plane063.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane063_1"
-              geometry={nodes.Plane063_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="PAPUA"
-            position={[0.82, -0.482, 0.268]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane102"
-              geometry={nodes.Plane102.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane102_1"
-              geometry={nodes.Plane102_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="Plane590"
-            position={[-0.272, -0.839, -0.446]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane125"
-              geometry={nodes.Plane125.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane125_1"
-              geometry={nodes.Plane125_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="PORTU"
-            position={[-0.942, 0.298, 0.006]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane112"
-              geometry={nodes.Plane112.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane112_1"
-              geometry={nodes.Plane112_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="S_AFRICA"
-            position={[-0.607, -0.669, 0.386]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane177"
-              geometry={nodes.Plane177.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane177_1"
-              geometry={nodes.Plane177_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="S_AMERICA"
-            position={[-0.447, -0.583, -0.582]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane088"
-              geometry={nodes.Plane088.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane088_1"
-              geometry={nodes.Plane088_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="S_E_ASIA"
-            position={[0.732, -0.464, 0.472]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane117"
-              geometry={nodes.Plane117.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane117_1"
-              geometry={nodes.Plane117_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="SPANISH"
-            position={[-0.924, 0.325, 0.102]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane182"
-              geometry={nodes.Plane182.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane182_1"
-              geometry={nodes.Plane182_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="SRI_LANKA"
-            position={[0.024, -0.277, 0.948]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane081"
-              geometry={nodes.Plane081.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane081_1"
-              geometry={nodes.Plane081_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group name="TN-DISTRICTS" ref={districtsRef}>
             <group
-              name="TN_CHETTI"
+              name="PAKISTAN"
               position={[-0.012, 0.024, 0.973]}
               rotation={[0.082, 0.18, 0.013]}
               scale={4.17}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -1286,23 +1155,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane016"
-                geometry={nodes.Plane016.geometry}
+                name="Plane063"
+                geometry={nodes.Plane063.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane016_1"
-                geometry={nodes.Plane016_1.geometry}
+                name="Plane063_1"
+                geometry={nodes.Plane063_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="TN_CHOLA"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="PAPUA"
+              position={[0.82, -0.482, 0.268]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -1311,23 +1180,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane028"
-                geometry={nodes.Plane028.geometry}
+                name="Plane102"
+                geometry={nodes.Plane102.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane028_1"
-                geometry={nodes.Plane028_1.geometry}
+                name="Plane102_1"
+                geometry={nodes.Plane102_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="TN_KONGU"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="Plane590"
+              position={[-0.272, -0.839, -0.446]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -1336,23 +1205,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane010"
-                geometry={nodes.Plane010.geometry}
+                name="Plane125"
+                geometry={nodes.Plane125.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane010_1"
-                geometry={nodes.Plane010_1.geometry}
+                name="Plane125_1"
+                geometry={nodes.Plane125_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="TN_NANJIL"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="PORTU"
+              position={[-0.942, 0.298, 0.006]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -1361,23 +1230,23 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane020"
-                geometry={nodes.Plane020.geometry}
+                name="Plane112"
+                geometry={nodes.Plane112.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane020_1"
-                geometry={nodes.Plane020_1.geometry}
+                name="Plane112_1"
+                geometry={nodes.Plane112_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="TN_PANDI"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="S_AFRICA"
+              position={[-0.607, -0.669, 0.386]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
                 console.log(e.object.parent.name);
               }}
@@ -1386,90 +1255,325 @@ export function GlobeModel(props) {
               }}
             >
               <mesh
-                name="Plane007"
-                geometry={nodes.Plane007.geometry}
+                name="Plane177"
+                geometry={nodes.Plane177.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane007_1"
-                geometry={nodes.Plane007_1.geometry}
+                name="Plane177_1"
+                geometry={nodes.Plane177_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
             <group
-              name="TN_THONDAI"
-              position={[-0.012, 0.024, 0.973]}
-              rotation={[0.082, 0.18, 0.013]}
-              scale={4.17}
+              name="S_AMERICA"
+              position={[-0.447, -0.583, -0.582]}
+              scale={4.025}
               onPointerEnter={(e) => {
                 e.stopPropagation();
+                if (dragging) return;
                 setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
-              onPointerLeave={(e) => {
+              onPointerLeave={() => {
                 setMeshSelected(null);
               }}
             >
               <mesh
-                name="Plane036"
-                geometry={nodes.Plane036.geometry}
+                name="Plane088"
+                geometry={nodes.Plane088.geometry}
                 material={materials["Material.004"]}
               />
               <mesh
-                name="Plane036_1"
-                geometry={nodes.Plane036_1.geometry}
+                name="Plane088_1"
+                geometry={nodes.Plane088_1.geometry}
                 material={materials["Material.005"]}
               />
             </group>
-          </group>
-          <group
-            name="TURK"
-            position={[-0.655, 0.254, 0.685]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane183"
-              geometry={nodes.Plane183.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane183_1"
-              geometry={nodes.Plane183_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-          <group
-            name="W_AFRICA"
-            position={[-0.932, -0.171, 0.134]}
-            scale={4.025}
-            onPointerEnter={(e) => {
-              e.stopPropagation();
-              setMeshSelected(e.object.parent.name);
-              console.log(e.object.parent.name);
-            }}
-            onPointerLeave={() => {
-              setMeshSelected(null);
-            }}
-          >
-            <mesh
-              name="Plane178"
-              geometry={nodes.Plane178.geometry}
-              material={materials["Material.004"]}
-            />
-            <mesh
-              name="Plane178_1"
-              geometry={nodes.Plane178_1.geometry}
-              material={materials["Material.005"]}
-            />
-          </group>
-        </mesh>
+            <group
+              name="S_E_ASIA"
+              position={[0.732, -0.464, 0.472]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane117"
+                geometry={nodes.Plane117.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane117_1"
+                geometry={nodes.Plane117_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="SPANISH"
+              position={[-0.924, 0.325, 0.102]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane182"
+                geometry={nodes.Plane182.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane182_1"
+                geometry={nodes.Plane182_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="SRI_LANKA"
+              position={[0.024, -0.277, 0.948]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane081"
+                geometry={nodes.Plane081.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane081_1"
+                geometry={nodes.Plane081_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group name="TN-DISTRICTS" ref={districtsRef}>
+              <group
+                name="TN_CHETTI"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane016"
+                  geometry={nodes.Plane016.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane016_1"
+                  geometry={nodes.Plane016_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="TN_CHOLA"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane028"
+                  geometry={nodes.Plane028.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane028_1"
+                  geometry={nodes.Plane028_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="TN_KONGU"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane010"
+                  geometry={nodes.Plane010.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane010_1"
+                  geometry={nodes.Plane010_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="TN_NANJIL"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane020"
+                  geometry={nodes.Plane020.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane020_1"
+                  geometry={nodes.Plane020_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="TN_PANDI"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
+                }}
+                onPointerLeave={() => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane007"
+                  geometry={nodes.Plane007.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane007_1"
+                  geometry={nodes.Plane007_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+              <group
+                name="TN_THONDAI"
+                position={[-0.012, 0.024, 0.973]}
+                rotation={[0.082, 0.18, 0.013]}
+                scale={4.17}
+                onPointerEnter={(e) => {
+                  e.stopPropagation();
+                  if (dragging) return;
+                  setMeshSelected(e.object.parent.name);
+                }}
+                onPointerLeave={(e) => {
+                  setMeshSelected(null);
+                }}
+              >
+                <mesh
+                  name="Plane036"
+                  geometry={nodes.Plane036.geometry}
+                  material={materials["Material.004"]}
+                />
+                <mesh
+                  name="Plane036_1"
+                  geometry={nodes.Plane036_1.geometry}
+                  material={materials["Material.005"]}
+                />
+              </group>
+            </group>
+            <group
+              name="TURK"
+              position={[-0.655, 0.254, 0.685]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane183"
+                geometry={nodes.Plane183.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane183_1"
+                geometry={nodes.Plane183_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+            <group
+              name="W_AFRICA"
+              position={[-0.932, -0.171, 0.134]}
+              scale={4.025}
+              onPointerEnter={(e) => {
+                e.stopPropagation();
+                if (dragging) return;
+                setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
+              }}
+              onPointerLeave={() => {
+                setMeshSelected(null);
+              }}
+            >
+              <mesh
+                name="Plane178"
+                geometry={nodes.Plane178.geometry}
+                material={materials["Material.004"]}
+              />
+              <mesh
+                name="Plane178_1"
+                geometry={nodes.Plane178_1.geometry}
+                material={materials["Material.005"]}
+              />
+            </group>
+          </mesh>
+        </group>
       </group>
     </group>
   );
