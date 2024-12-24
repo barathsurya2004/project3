@@ -9,7 +9,7 @@ const SvgMorphAnimation = () => {
   const newLineRef = useRef(null);
   const [posRef, setPosRef] = useState({ left: 0, right: 0, top: 0 });
   useEffect(() => {
-    const lineStart = document.querySelector("#hover-display-line");
+    const lineStart = document.getElementById("hover-display-line");
     const rect = lineStart.getBoundingClientRect();
     setPosRef({ left: rect.left, right: rect.right, top: rect.top });
   }, [meshSelected, down]);
@@ -80,7 +80,9 @@ const SvgMorphAnimation = () => {
           width: 0,
         },
         {
-          width: down ? (500 * window.innerWidth) / 1920 : heading.offsetWidth,
+          width: down
+            ? Math.max((500 * window.innerWidth) / 1920, heading.offsetWidth)
+            : heading.offsetWidth,
           duration: 0.25,
           ease: "none",
         }

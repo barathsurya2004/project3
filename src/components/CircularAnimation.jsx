@@ -2,13 +2,16 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger, MotionPathPlugin } from "gsap/all";
 import gsap from "gsap";
 import SvgComponent from "./TestingSvg";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../context";
 // import CircularText from "./pages/CircularText";
 
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
 const CircularAnimation = () => {
+  const [current, setCurrent] = useState(null);
+  const { questionSelected, setQuestionSelected } = useContext(Context);
   const texts = [
     "Is food the same for all",
     "Is food only for the body",
@@ -95,6 +98,7 @@ const CircularAnimation = () => {
               delta < window.innerHeight / 2 + 45 &&
               delta > window.innerHeight / 2 - 45
             ) {
+              setCurrent(index);
               gsap.to(div, {
                 opacity: 1,
                 duration: 0.5,
@@ -104,6 +108,10 @@ const CircularAnimation = () => {
                 opacity: 0.3,
                 duration: 0.5,
               });
+            }
+            if (index === 9 && delta < window.innerHeight / 2 - 45) {
+              setCurrent(null);
+              setQuestionSelected(null);
             }
           },
         },
@@ -121,16 +129,17 @@ const CircularAnimation = () => {
           left: 0,
           width: "100vw",
           height: "100vh",
+          zIndex: 101,
         }}
       >
         {texts.map((text, index) => (
           <>
             <div
               className={`wheel-word-ref wheel-word-ref-${index}`}
-              position="absolute"
               style={{
                 height: 50,
                 width: 50,
+                position: "absolute",
                 backgroundColor: "red",
                 // transform: `translate(0,-100%)`,
               }}
@@ -155,6 +164,14 @@ const CircularAnimation = () => {
                   fontFamily: "TTtravels Next Demibold",
                   // opacity: 0.3,
                   fontSize: (55 * window.innerHeight) / 1080,
+                  cursor: current !== null ? "pointer" : "auto",
+                }}
+                onClick={() => {
+                  console.log(index);
+
+                  if (current === null) return;
+                  setQuestionSelected(index);
+                  let delta = -current + index;
                 }}
               >
                 {text}

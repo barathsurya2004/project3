@@ -24,6 +24,8 @@ export const Context = createContext({
   fullscreen: null,
   setFullscreen: () => {},
   canScrollTo: false,
+  questionSelected: -2,
+  setQuestionSelected: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -39,6 +41,8 @@ export const ContextProvider = ({ children }) => {
   const [mode, setMode] = useState(null);
   const [fullscreen, setFullscreen] = useState(null);
   const canScrollTo = useRef(true);
+  const [questionSelected, setQuestionSelected] = useState(-2);
+
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
     setPointer([clientX, clientY]);
@@ -219,6 +223,8 @@ export const ContextProvider = ({ children }) => {
     fullscreen,
     setFullscreen,
     canScrollTo,
+    questionSelected,
+    setQuestionSelected,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

@@ -30,6 +30,7 @@ const SharePage = () => {
           scale: 0.95,
           outline: "5px solid #D3AD62",
           borderRadius: "50px",
+          background: "#101010",
         },
       })
       .then(async function (dataUrl) {
@@ -525,6 +526,13 @@ const SharePage = () => {
                   }}
                   onClick={() => {
                     getImage();
+                    const ele = document.querySelector(
+                      ".share-overlay-copy-icon"
+                    );
+                    ele.innerHTML = "Copied!";
+                    setTimeout(() => {
+                      ele.innerHTML = "Share";
+                    }, 2000);
                   }}
                 >
                   Share

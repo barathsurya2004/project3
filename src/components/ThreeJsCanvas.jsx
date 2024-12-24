@@ -25,6 +25,7 @@ import { CountriesModel } from "../../public/Models/Countries";
 import { FGlobeModel } from "../../public/Models/FINAL_globe";
 import { EffectComposer, Outline } from "@react-three/postprocessing";
 import { TrialModel } from "../../public/Models/Triallllllllll";
+import { GlobeModel } from "../../public/Models/Globe";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
   const [change, setChange] = useState(0);
@@ -353,7 +354,8 @@ const ThreeJsCanvas = () => {
               />
               {/* <OrbitControls /> */}
 
-              <FGlobeModel position={[1, 0, 0]} />
+              {/* <FGlobeModel position={[1, 0, 0]} /> */}
+              <GlobeModel position={[1, 0, 0]} />
               {/* <TrialModel position={[1, 0, 0]} /> */}
             </EffectComposer>
             {/* <CountriesModel position={[1, 0, 0]} /> */}

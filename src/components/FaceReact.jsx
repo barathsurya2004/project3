@@ -282,7 +282,7 @@ const FaceReact = () => {
           position: "fixed",
           top: "0vh",
           left: 0,
-          zIndex: 500,
+          zIndex: 50,
           // display: "none",
           opacity: 0,
         }}

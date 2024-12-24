@@ -269,7 +269,7 @@ const FoodIs = () => {
           end: "top 80%",
           toggleActions: "play none none reverse",
         },
-        immediateRender: false,
+        // immediateRender: false,
       }
     );
     gsap.fromTo(
@@ -286,7 +286,7 @@ const FoodIs = () => {
           scrub: true,
         },
         ease: "none",
-        immediateRender: false,
+        // immediateRender: false,
       }
     );
     gsap.fromTo(

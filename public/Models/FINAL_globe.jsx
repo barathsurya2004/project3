@@ -5,13 +5,13 @@ Command: npx gltfjsx@6.5.3 FINAL_globe.glb -k
 
 import React, { useContext, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useControls } from "leva";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import { useFrame } from "@react-three/fiber";
 import { Context } from "../../src/context";
+import { useFrame } from "@react-three/fiber";
+import { useControls } from "leva";
 import { Outline } from "@react-three/postprocessing";
+import { ScrollTrigger } from "gsap/all";
 import { BlendFunction, Resizer, KernelSize } from "postprocessing";
 
 export function FGlobeModel(props) {
@@ -258,7 +258,6 @@ export function FGlobeModel(props) {
         dispose={null}
         ref={mainRef}
         scale={0}
-        position={[0.35, 0, 0]}
         rotation={[0, 0, 0]}
       >
         <mesh

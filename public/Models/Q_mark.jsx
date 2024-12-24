@@ -41,6 +41,7 @@ export function QuestionModel(props) {
         end: "top 25%",
         onLeave: () => {
           setActive(true);
+          console.log(ref.current);
         },
         onEnterBack: () => {
           setActive(false);

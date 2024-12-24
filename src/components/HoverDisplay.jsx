@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context";
 import SvgMorphAnimation from "./SvgMorphAnimation";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-
+import data from "../assets/json/globe.json";
 const HoverDisplay = () => {
   const { down, setDown, meshSelected } = useContext(Context);
   if (!meshSelected) return null;
+  const [current, setCurrent] = useState(null);
+  useEffect(() => {
+    const current = data.find((item) => item.id === meshSelected);
+    setCurrent(current);
+    console.log(current);
+  }, [meshSelected]);
   useGSAP(() => {
     gsap.fromTo(
       "#hover-display-heading",
@@ -15,7 +21,7 @@ const HoverDisplay = () => {
         y: 20,
       },
       {
-        delay: 0.5,
+        delay: 0.7,
         opacity: 1,
         y: 0,
         duration: 0.2,
@@ -29,17 +35,26 @@ const HoverDisplay = () => {
       },
       {
         y: 0,
-        delay: 0.5,
+        delay: 0.7,
         opacity: 1,
         duration: 0.2,
       }
     );
   });
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAnimation(true);
+    }, 200);
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, []);
 
   if (down)
     return (
       <>
-        <SvgMorphAnimation />
+        {showAnimation && <SvgMorphAnimation />}
         <div
           className="hover-display"
           style={{
@@ -59,7 +74,7 @@ const HoverDisplay = () => {
             }}
             id="hover-display-heading"
           >
-            {meshSelected}
+            {current ? current.title : ""}
           </p>
           <div
             id="hover-display-line"
@@ -76,10 +91,7 @@ const HoverDisplay = () => {
               marginTop: (18.5 * window.innerWidth) / 1920,
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            quam harum numquam, ut ex iste perspiciatis velit impedit fuga
-            deleniti, eligendi aliquam quidem sed, tempore ipsa asperiores nobis
-            molestias ducimus.
+            {current ? current.text : ""}
           </p>
           <p
             id="hover-display-text"
@@ -89,7 +101,7 @@ const HoverDisplay = () => {
               marginTop: (23 * window.innerWidth) / 1920,
             }}
           >
-            Region: Central Asia
+            Region: {current ? current.region : ""}
           </p>
         </div>
       </>
@@ -97,7 +109,7 @@ const HoverDisplay = () => {
   else {
     return (
       <>
-        <SvgMorphAnimation />
+        {showAnimation && <SvgMorphAnimation />}
         <div
           className="hover-display"
           style={{
@@ -117,12 +129,13 @@ const HoverDisplay = () => {
             }}
             id="hover-display-heading"
           >
-            {meshSelected}
+            {current ? current.title : " "}
           </h1>
           <div
             id="hover-display-line"
             style={{
               height: 1,
+              margin: 0,
             }}
           ></div>
           <p
@@ -133,10 +146,7 @@ const HoverDisplay = () => {
               marginTop: (18.5 * window.innerWidth) / 1920,
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            quam harum numquam, ut ex iste perspiciatis velit impedit fuga
-            deleniti, eligendi aliquam quidem sed, tempore ipsa asperiores nobis
-            molestias ducimus.
+            {current ? current.text : " "}
           </p>
           <p
             id="hover-display-text"
@@ -146,7 +156,7 @@ const HoverDisplay = () => {
               marginTop: (23 * window.innerWidth) / 1920,
             }}
           >
-            Region: Central Asia
+            Region:{current ? current.region : ""}
           </p>
         </div>
       </>

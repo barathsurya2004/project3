@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./CircularText.css";
 import { Draggable, ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { Context } from "../context";
 gsap.registerPlugin(Draggable);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
@@ -10,13 +11,16 @@ const CircularText = ({ texts, radius }) => {
   radius = (window.innerHeight * radius) / 1080;
   const [change, setChange] = useState(0);
   texts = [...texts, ...texts, ...texts];
-  const [zIndex, setZIndex] = useState(1000);
+  const [zIndex, setZIndex] = useState(100);
   const [visibleCount, setVisibleCount] = useState(10);
   const [alphaMaskVisible, setAlphaMaskVisible] = useState(false);
   const [indVisible, setIndVisible] = useState(null);
   const prevIndVisibleRef = useRef();
   const [rotation, setRotation] = useState(0);
   const [canHighlight, setCanHighlight] = useState(false);
+  const { questionSelected, setQuestionSelected } = useContext(Context);
+  const answer = [...texts];
+  // console.log(360 / 30);
   useEffect(() => {
     gsap.set("#drag", {
       rotation: 180,
@@ -24,11 +28,11 @@ const CircularText = ({ texts, radius }) => {
     document.getElementById("drag").style.pointerEvents = "none";
   }, []);
   useEffect(() => {
-    console.log(rotation);
+    // console.log(rotation);
 
     let ind = Math.floor(
       (30 -
-        ((((rotation - 3 - ((rotation - 3) % 3)) % 360) + 360) % 360) / 12) %
+        ((((rotation - 6 - ((rotation - 6) % 6)) % 360) + 360) % 360) / 12) %
         30
     );
     if (canHighlight) {
@@ -63,6 +67,13 @@ const CircularText = ({ texts, radius }) => {
         setRotation(
           Math.round(gsap.getProperty("#drag", "rotation") / 12) * 12
         );
+
+        let rot = gsap.getProperty("#drag", "rotation");
+        let ind = Math.floor(
+          (30 - ((((rot - (rot % 12)) % 360) + 360) % 360) / 12) % 30
+        );
+        console.log(ind);
+        setQuestionSelected(ind);
       },
     });
 
@@ -114,10 +125,13 @@ const CircularText = ({ texts, radius }) => {
           },
           onLeave: () => {
             setCanHighlight(true);
+            setZIndex(101);
           },
           onEnterBack: () => {
+            setZIndex(0);
             setCanHighlight(false);
             setIndVisible(null);
+            setQuestionSelected(-2);
           },
           // markers: true,
         },
@@ -195,9 +209,9 @@ const CircularText = ({ texts, radius }) => {
           dragWheel.style.pointerEvents = "none";
         },
         onLeaveBack: () => {
+          setZIndex(101);
           const dragWheel = document.getElementById("drag");
           dragWheel.style.pointerEvents = "auto";
-          setZIndex(800);
           const rotation = gsap.getProperty("#drag", "rotation");
           const ind = Math.floor(
             (30 - ((((rotation - (rotation % 12)) % 360) + 360) % 360) / 12) %
@@ -206,6 +220,7 @@ const CircularText = ({ texts, radius }) => {
           setIndVisible(ind);
           setCanHighlight(true);
           setAlphaMaskVisible(false);
+          setQuestionSelected(-1);
         },
 
         onLeave: () => {
@@ -228,6 +243,40 @@ const CircularText = ({ texts, radius }) => {
           height: "100vh",
         }}
       ></div>
+      <div
+        className="questions-answers"
+        style={{
+          width: "100%",
+          height: "100vh",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          backgroundColor: "rgba(0,0,0,0.5)",
+          zIndex: -1,
+        }}
+      >
+        <div
+          className="questions"
+          style={{
+            position: "absolute",
+            bottom: "5%",
+            right: "27.5%",
+            width: (500 * window.innerHeight) / 1080,
+            textAlign: "center",
+            transform: "translateX(50%)",
+          }}
+        >
+          {(() => {
+            if (questionSelected === -2) {
+              return "Click on any questions to know more about it";
+            } else if (questionSelected === -1) {
+              return "Click on the globe to know more about the project";
+            } else {
+              return answer[questionSelected];
+            }
+          })()}
+        </div>
+      </div>
       <div
         className="cont-drag"
         style={{
