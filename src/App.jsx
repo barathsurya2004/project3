@@ -28,6 +28,7 @@ function App() {
   const { loading } = useContext(Context);
   return (
     <>
+      <BackGround />
       <div
         className="loading-helper"
         style={{
@@ -38,8 +39,6 @@ function App() {
           scrollSnapType: "y mandatory",
         }}
       >
-        {/* <BackGround /> */}
-
         <Loader />
         <ThreeJsCanvas />
         <Hero />

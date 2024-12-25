@@ -1,23 +1,65 @@
-.grainy-cont {
+.bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  background-color: #101010;
+  overflow: hidden;
+}
+.vertical-lines {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.grid-lines-verti {
+  background-color: #1e1e1e;
+  width: 2px;
+  height: 0%;
+}
+.horizontal-lines {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.grid-lines-hori {
+  background-color: #1e1e1e;
+  height: 2px;
+  width: 0%;
+  position: fixed;
+}
+video {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  z-index: 1000;
+  mix-blend-mode: luminosity;
+  object-fit: cover;
   pointer-events: none;
-  filter: url(#grainy);
-  opacity: 1;
-  animation: grainyAnimation 10s infinite alternate;
 }
-@keyframes grainyAnimation {
-  0% {
-    filter: url(#grainy);
-    offset: 0;
-  }
-  100% {
-    filter: url(#grainy) baseFrequency= "0.21";
-    offset: 2000;
-  }
+.back-vid {
+  opacity: 20%;
+  z-index: -10;
+}
+.fore-vid {
+  z-index: 999;
+  opacity: 15%;
+}
+.vid-helper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 700;
+  pointer-events: none;
+  overflow-x: hidden;
 }

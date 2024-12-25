@@ -294,7 +294,7 @@ export function GlobeModel(props) {
       const maxRotX = 45 * (Math.PI / 180); // 90 degrees in radians
       const minRotX = -45 * (Math.PI / 180);
 
-      let newRotX = (rotX - dy * 2) % (2 * Math.PI);
+      let newRotX = (rotX - dy) % (2 * Math.PI);
 
       // Constrain newRotX between minRotX and maxRotX
 
@@ -304,7 +304,7 @@ export function GlobeModel(props) {
       gsap.to(dragRef.current.rotation, {
         x: newRotX,
         y: newRotY,
-        duration: 0.5,
+        duration: 0.1,
       });
     }
     setInitialMouse({ x: state.pointer.x, y: state.pointer.y });

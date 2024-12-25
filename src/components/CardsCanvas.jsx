@@ -8,6 +8,9 @@ const CardsCanvas = ({ children }) => {
         width: "100%",
         height: "100%",
       }}
+      onDoubleClick={() => {
+        console.log("double click");
+      }}
     >
       <Canvas>
         <ambientLight intensity={1.1} />

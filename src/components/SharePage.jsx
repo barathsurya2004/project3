@@ -16,6 +16,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 import { EffectCoverflow, Navigation } from "swiper/modules";
+import tempImage from "../assets/images/cards/Asset 85.png";
 gsap.registerPlugin(ScrollTrigger);
 import anim from "../assets/json/lightning for face.json";
 // import html2canvas from "html2canvas";
@@ -89,23 +90,22 @@ const SharePage = () => {
   const cards = [
     {
       id: 1,
-      image: "https://picsum.photos/200/300",
     },
     {
       id: 2,
-      image: "https://picsum.photos/200/300",
+      image: tempImage,
     },
     {
       id: 3,
-      image: "https://picsum.photos/200/300",
+      image: tempImage,
     },
     {
       id: 4,
-      image: "https://picsum.photos/200/300",
+      image: tempImage,
     },
     {
       id: 5,
-      image: "https://picsum.photos/200/300",
+      image: tempImage,
     },
   ];
   useGSAP(() => {
@@ -365,9 +365,9 @@ const SharePage = () => {
                             }}
                           >
                             <img
-                              src={"https://picsum.photos/200/300"}
+                              src={tempImage}
                               style={{
-                                width: "100%",
+                                // width: "100%",
                                 height: "100%",
                               }}
                               alt=""
