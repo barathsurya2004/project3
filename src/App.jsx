@@ -28,7 +28,7 @@ function App() {
   const { loading } = useContext(Context);
   return (
     <>
-      <BackGround />
+      {/* <BackGround /> */}
       <div
         className="loading-helper"
         style={{

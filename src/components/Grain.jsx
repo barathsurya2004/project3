@@ -58,7 +58,7 @@ const Grain = () => {
           }
 
           void main() {
-            vec2 uv = vUv * 300.0 + vec2(randomSeed * 1000.0); // Randomize position
+            vec2 uv = vUv * 600.0 + vec2(randomSeed * 1000.0); // Randomize position
             float noise = perlinNoise(uv + uTime * 0.001); // Add animation
             vec3 color = vec3(noise);
             gl_FragColor = vec4(color, 0.56);
