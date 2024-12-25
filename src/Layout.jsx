@@ -49,7 +49,7 @@ const Layout = () => {
           top: 0,
           left: 0,
           zIndex: 1010,
-          opacity: 0.15,
+          opacity: 0.075,
           pointerEvents: "none",
         }}
       >
@@ -65,7 +65,7 @@ const Layout = () => {
           <Grain />
         </Canvas>
       </div>
-      <div
+      {/* <div
         style={{
           position: "fixed",
           top: 0,
@@ -78,7 +78,6 @@ const Layout = () => {
           mixBlendMode: "screen",
           pointerEvents: "none",
           userSelect: "none",
-          // opacity: 0.5,
         }}
       >
         <Canvas
@@ -88,12 +87,12 @@ const Layout = () => {
             pointerEvents: "none",
           }}
         >
-          {/* <OrbitControls /> */}
-          <OrthographicCamera makeDefault zoom={50} position={[-0, 0, 10]} />
+       
+          <OrthographicCamera makeDefault zoom={50} position={[0, 0, 10]} />
           <ambientLight intensity={100} />
           <Grid />
         </Canvas>
-      </div>
+      </div> */}
       <App />
     </div>
   );
