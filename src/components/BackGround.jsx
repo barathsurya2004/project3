@@ -39,6 +39,30 @@ const BackGround = () => {
   });
   return (
     <>
+      <div
+        className="grain-container"
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 1010,
+          pointerEvents: "none",
+        }}
+      >
+        <Canvas
+          style={{
+            pointerEvents: "none",
+            height: "100vh",
+            width: "100vw",
+          }}
+        >
+          <OrthographicCamera makeDefault zoom={100} position={[0, 0, 10]} />
+
+          <Grain />
+        </Canvas>
+      </div>
       <div className="bg-container">
         <div className="horizontal-lines">
           {Array.from({ length: hori }, (item, index) => (
