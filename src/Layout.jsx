@@ -65,7 +65,7 @@ const Layout = () => {
           <Grain />
         </Canvas>
       </div>
-      {/* <div
+      <div
         style={{
           position: "fixed",
           top: 0,
@@ -87,12 +87,11 @@ const Layout = () => {
             pointerEvents: "none",
           }}
         >
-       
           <OrthographicCamera makeDefault zoom={50} position={[0, 0, 10]} />
           <ambientLight intensity={100} />
           <Grid />
         </Canvas>
-      </div> */}
+      </div>
       <App />
     </div>
   );
