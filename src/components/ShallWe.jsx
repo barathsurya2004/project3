@@ -26,7 +26,7 @@ const ShallWe = ({ fun }) => {
           gsap.to(window, {
             scrollTo: {
               y: ".Shall-we-cont",
-              offsetY: -1,
+              offsetY: (-1 * window.innerHeight) / 1080,
               autoKill: false,
             },
             duration: 0.5,
@@ -57,7 +57,7 @@ const ShallWe = ({ fun }) => {
           gsap.to(window, {
             scrollTo: {
               y: ".Shall-we-cont",
-              offsetY: 1,
+              offsetY: (2 * window.innerHeight) / 1080,
               autoKill: false,
             },
             ease: "none",
