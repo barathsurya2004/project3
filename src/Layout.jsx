@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import App from "./App";
 import MobileLoader from "./components/MobileLoader";
 import NavBar from "./components/NavBar";
+import { Canvas } from "@react-three/fiber";
+import { OrthographicCamera } from "@react-three/drei";
+import Grain from "./components/Grain";
 
 const Layout = () => {
   const [windowSize, setWindowSize] = useState({
@@ -36,6 +39,31 @@ const Layout = () => {
   return (
     <div>
       {/* <NavBar /> */}
+      <div
+        className="grain-container"
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 1010,
+          opacity: 0.2,
+          pointerEvents: "none",
+        }}
+      >
+        <Canvas
+          style={{
+            pointerEvents: "none",
+            height: "100vh",
+            width: "100vw",
+          }}
+        >
+          <OrthographicCamera makeDefault zoom={100} position={[0, 0, 10]} />
+
+          <Grain />
+        </Canvas>
+      </div>
       <App />
     </div>
   );
