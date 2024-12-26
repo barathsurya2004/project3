@@ -18,6 +18,9 @@ const Slider1 = () => {
   const [yPos, setYPos] = useState(0);
   const [xPos, setXPos] = useState(window.innerWidth / 2);
   const { pointer } = useContext(Context);
+  const [sliderValue, setSliderValue] = useState(50);
+  const [pointerUp, setPointerUp] = useState(null);
+  const [duration, setDuration] = useState(null);
   useGSAP(() => {
     gsap.set(".slider-compare__center", {
       y: "100vh",
@@ -25,71 +28,213 @@ const Slider1 = () => {
     gsap.set(".slider-compare__center-line", {
       opacity: 0,
     });
-    gsap.to(".slider-compare__center", {
+    gsap.fromTo(
+      ".slider-compare__center",
+      {
+        y: "100vh",
+      },
+      {
+        y: "0",
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: ".shall-we-anim-scroll",
+          start: "bottom bottom",
+          toggleActions: "play none none reverse",
+          onEnter: () => {
+            gsap.set(".slider-compare__center-line", {
+              opacity: 1,
+            });
+          },
+          onLeaveBack: () => {
+            gsap.set(".slider-compare__center-line", {
+              opacity: 0,
+            });
+          },
+        },
+        ease: "none",
+      }
+    );
+    gsap.to(".null", {
       scrollTrigger: {
-        trigger: ".slider-compare",
-        start: "top top",
-        end: "bottom top",
-        toggleActions: "play none none reverse",
+        trigger: ".shall-we-end-anim-scroll",
+        start: "top bottom",
+        end: "bottom bottom",
         onEnter: () => {
-          gsap.to(".slider-button-cont", {
-            left: "50%",
+          gsap.set(".slider-compare__center-line", {
+            opacity: 0,
           });
-          gsap.to(".slider-compare__center-line", {
-            left: "25%",
-          });
-          setSliderValue(50);
         },
         onLeaveBack: () => {
-          gsap.to(".slider-button-cont", {
-            left: "50%",
+          gsap.set(".slider-compare__center-line", {
+            opacity: 1,
           });
-          gsap.to(".slider-compare__center-line", {
-            left: "25%",
-          });
-          setSliderValue(50);
         },
       },
     });
-    gsap.to(".slider-compare__center", {
-      scrollTrigger: {
-        trigger: ".shall-we-end",
-        start: "top top",
-        end: "bottom top",
-        onEnter: () => {
-          gsap.to(".slider-button-cont", {
-            left: "50%",
-          });
-          gsap.to(".slider-compare__center-line", {
-            left: "25%",
-          });
-          setSliderValue(50);
+
+    gsap.fromTo(
+      ".slider-compare",
+      {
+        top: "100vh",
+      },
+      {
+        top: 0,
+        scrollTrigger: {
+          trigger: ".slider-place-holder",
+          start: "top bottom",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          scrub: true,
         },
+        ease: "none",
+      }
+    );
+    gsap.fromTo(
+      ".slider-compare",
+      {
+        top: 0,
+      },
+      {
+        top: "-150vh",
+        scrollTrigger: {
+          trigger: ".slider-compare-scroll",
+          start: "top bottom",
+          end: "bottom bottom",
+          toggleActions: "play none none reverse",
+          scrub: true,
+          // markers: true,
+
+          // onEnterBack: () => {
+          //   gsap.set(".slider-compare__center", {
+          //     opacity: 1,
+          //   });
+          // },
+        },
+        ease: "none",
+        immediateRender: false,
+      }
+    );
+    gsap.fromTo(
+      ".slider-compare",
+      {
+        top: "-150vh",
+      },
+      {
+        top: "-250vh",
+        scrollTrigger: {
+          trigger: ".slider-compare-remove-scroll",
+          start: "bottom bottom",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+          scrub: true,
+          onEnter: () => {
+            gsap.set(".slider-compare__center", {
+              opacity: 0,
+            });
+            gsap.set(".slider-compare__center", {
+              y: "100vh",
+            });
+          },
+
+          onLeaveBack: () => {
+            gsap.set(".slider-compare__center", {
+              opacity: 1,
+            });
+            gsap.set(".slider-compare__center", {
+              y: 0,
+            });
+          },
+        },
+        ease: "none",
+        immediateRender: false,
+      }
+    );
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".slider-compare-scroll",
+        start: "top bottom",
+        end: "bottom bottom",
+        toggleActions: "play none none none",
         onLeaveBack: () => {
+          setSliderValue(50);
+          gsap.to(".slider-compare__center-line", {
+            left: "25%",
+            duration: 0.1,
+          });
           gsap.to(".slider-button-cont", {
             left: "50%",
           });
+        },
+        onLeave: () => {
+          setSliderValue(50);
           gsap.to(".slider-compare__center-line", {
             left: "25%",
+            duration: 0.1,
           });
-          setSliderValue(50);
+          gsap.to(".slider-button-cont", {
+            left: "50%",
+          });
         },
       },
     });
   });
-  const [sliderValue, setSliderValue] = useState(50);
-  const [pointerUp, setPointerUp] = useState(null);
-  const [duration, setDuration] = useState(null);
+
   return (
     <>
+      <div
+        className="slider-place-holder"
+        style={{
+          width: "100%",
+          height: "100vh",
+        }}
+      ></div>
+
+      <div
+        className="shall-we-anim-scroll"
+        style={{
+          width: "100%",
+          height: "200vh",
+        }}
+      ></div>
+      <div
+        className="slider-stay-scroll"
+        style={{
+          width: "100%",
+          height: "50vh",
+        }}
+      ></div>
+      <div
+        className="slider-compare-scroll"
+        style={{
+          width: "100%",
+          height: "150vh",
+        }}
+      ></div>
+      <div
+        className="shall-we-end-anim-scroll"
+        style={{
+          width: "100%",
+          height: "100vh",
+        }}
+      ></div>
+      <div
+        className="slider-compare-remove-scroll"
+        style={{
+          width: "100%",
+          height: "50vh",
+        }}
+      ></div>
       <div
         className="slider-compare"
         style={{
           width: "100%",
           height: "250vh",
-          position: "relative",
+          position: "fixed",
+          top: "100vh",
+          left: "0",
           mixBlendMode: "exclusion",
           // paddingTop: "20vh",
+          zIndex: 550,
         }}
       >
         <div

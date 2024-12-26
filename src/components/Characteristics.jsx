@@ -2,6 +2,10 @@ import { ChettiColorModel } from "../../public/Models/Cards/new/Chetti/ChettiCol
 import { IntricateModel } from "../../public/Models/Cards/new/Chetti/Intricate";
 import { PandiColorModel } from "../../public/Models/Cards/new/Pandi/PandiColor";
 import { SimpleModel } from "../../public/Models/Cards/new/Pandi/Simple";
+import { ChettiColorCard } from "../../public/Models/ChettiCards/Color";
+import { IntricateCard } from "../../public/Models/ChettiCards/Intricate";
+import { PnadiColorCard } from "../../public/Models/PandiCards/Pandicolor";
+import { SimpleCard } from "../../public/Models/PandiCards/Simple";
 import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
 
@@ -100,8 +104,8 @@ const Characteristics = () => {
           }}
         >
           <CardHolder>
-            <PandiColorModel />
-            <SimpleModel />
+            <PnadiColorCard />
+            <SimpleCard />
           </CardHolder>
         </div>
         <div
@@ -115,8 +119,8 @@ const Characteristics = () => {
           }}
         >
           <CardHolderC>
-            <ChettiColorModel />
-            <IntricateModel />
+            <ChettiColorCard />
+            <IntricateCard />
           </CardHolderC>
         </div>
       </div>

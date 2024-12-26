@@ -232,67 +232,18 @@ const ThreeJsCanvas = () => {
           }}
         >
           {/* <Perf position="top-left" /> */}
-          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight
-            intensity={2}
-            position={[2.5, 0, 10]}
-            color="#fff5b6"
-          />
+
           <HeartModel position={[3, 0, 0]} />
-        </Canvas>
-        <Canvas
-          className="art-canvas all-canvas"
-          style={{
-            pointerEvents: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100vh",
-          }}
-        >
+
           {/* <Perf position="top-left" /> */}
-          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight
-            intensity={2}
-            position={[2.5, 0, 10]}
-            color="#fff5b6"
-          />
+
           <ArtModel position={[3, 0, 0]} />
-        </Canvas>
-        <Canvas
-          className="map-canvas all-canvas"
-          style={{
-            pointerEvents: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100vh",
-          }}
-        >
+
           {/* <Perf position="top-left" /> */}
-          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight
-            intensity={2}
-            position={[2.5, 0, 10]}
-            color="#fff5b6"
-          />
 
           {/* <MapModel position={[3, 0, 0]} /> */}
           <TreasureModel position={[3, 0, 0]} />
-        </Canvas>
-        <Canvas
-          className="clock-canvas all-canvas"
-          style={{
-            pointerEvents: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100vh",
-          }}
-        >
+
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
           <directionalLight
@@ -420,7 +371,9 @@ const ThreeJsCanvas = () => {
         >
           <ambientLight intensity={1} />
           <directionalLight intensity={3} position={[10, 10, 10]} />
-          <OrthographicCamera makeDefault position={[0, 0, 20]} zoom={22} />
+          {/* <OrthographicCamera makeDefault position={[0, 0, 20]} zoom={22} /> */}
+          <PerspectiveCamera makeDefault position={[0, 0, 100]} zoom={4} />
+
           <FaceModel />
         </Canvas>
       </div>

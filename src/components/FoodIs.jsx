@@ -1,10 +1,9 @@
 import "./FoodIs.css";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollToPlugin);
 const FoodIs = () => {
   useGSAP(() => {
     gsap.fromTo(

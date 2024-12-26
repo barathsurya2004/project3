@@ -1,4 +1,8 @@
-import { OrbitControls, OrthographicCamera } from "@react-three/drei";
+import {
+  OrbitControls,
+  OrthographicCamera,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 const CardsCanvas = ({ children }) => {
@@ -17,7 +21,8 @@ const CardsCanvas = ({ children }) => {
         <OrbitControls enableZoom={false} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <directionalLight position={[0, 10, 5]} intensity={1} />
-        <OrthographicCamera makeDefault position={[0, 0, 100]} zoom={30} />
+        {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={150} /> */}
+        <PerspectiveCamera makeDefault position={[0, 0, 10]} zoom={1.5} />
         {children}
       </Canvas>
     </div>

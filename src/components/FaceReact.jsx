@@ -13,6 +13,10 @@ import { ScrollTrigger } from "gsap/all";
 import EndingPage from "./EndingPage";
 import Lottie from "lottie-react";
 import anim from "../assets/json/lightning for face.json";
+import { Canvas } from "@react-three/fiber";
+import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
+import { VoteChetti } from "../../public/Models/Cards/Voting/VoteChetti";
+import { VotePandi } from "../../public/Models/Cards/Voting/VotePandi";
 gsap.registerPlugin(ScrollTrigger);
 const FaceReact = () => {
   const animRef = useRef();
@@ -282,7 +286,7 @@ const FaceReact = () => {
           position: "fixed",
           top: "0vh",
           left: 0,
-          zIndex: 50,
+          zIndex: 500,
           // display: "none",
           opacity: 0,
         }}
@@ -329,7 +333,7 @@ const FaceReact = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            zIndex: 800,
+            zIndex: 500,
           }}
         >
           <div
@@ -366,30 +370,32 @@ const FaceReact = () => {
                 top: "19.25%",
                 left: "10%",
                 zIndex: 505,
-                height: (400 * window.innerHeight) / 1080,
+                height: (250 * window.innerHeight) / 1080,
+                width: (250 * window.innerHeight) / 1080,
+              }}
+              onClick={PandihandleClick}
+              onPointerEnter={() => {
+                setHovered(true);
+                handleMouseEnterPandi();
+                handleMouseEnterChetti();
+              }}
+              onPointerLeave={() => {
+                setHovered(false);
+                handleMouseLeavePandi();
+                handleMouseLeaveChetti();
               }}
             >
-              <img
-                className="pandi-image"
-                src={imagePandi}
-                alt="pandi"
+              <Canvas
                 style={{
-                  width: (250 * window.innerHeight) / 1080,
-                  height: (250 * window.innerHeight) / 1080,
+                  height: "100%",
+                  width: "100%",
                   cursor: "pointer",
                 }}
-                onClick={PandihandleClick}
-                onPointerEnter={() => {
-                  setHovered(true);
-                  handleMouseEnterPandi();
-                  handleMouseEnterChetti();
-                }}
-                onPointerLeave={() => {
-                  setHovered(false);
-                  handleMouseLeavePandi();
-                  handleMouseLeaveChetti();
-                }}
-              />
+              >
+                <PerspectiveCamera position={[0, 0, 3]} makeDefault />
+                <ambientLight />
+                <VotePandi />
+              </Canvas>
               <div
                 style={{
                   position: "relative",
@@ -461,29 +467,32 @@ const FaceReact = () => {
                 top: "19.25%",
                 right: "10%",
                 zIndex: 505,
+                height: (250 * window.innerHeight) / 1080,
+                width: (250 * window.innerHeight) / 1080,
               }}
+              onPointerEnter={() => {
+                setHovered(true);
+                handleMouseEnterChetti();
+                handleMouseEnterPandi();
+              }}
+              onPointerLeave={() => {
+                setHovered(false);
+                handleMouseLeavePandi();
+                handleMouseLeaveChetti();
+              }}
+              onClick={ChettihandleClick}
             >
-              <img
-                src={imageChetti}
-                className="chetti-image"
-                onClick={ChettihandleClick}
-                alt="chetti"
+              <Canvas
                 style={{
-                  width: (250 * window.innerHeight) / 1080,
-                  height: (250 * window.innerHeight) / 1080,
+                  height: "100%",
+                  width: "100%",
                   cursor: "pointer",
                 }}
-                onPointerEnter={() => {
-                  setHovered(true);
-                  handleMouseEnterChetti();
-                  handleMouseEnterPandi();
-                }}
-                onPointerLeave={() => {
-                  setHovered(false);
-                  handleMouseLeavePandi();
-                  handleMouseLeaveChetti();
-                }}
-              />
+              >
+                <PerspectiveCamera position={[0, 0, 3]} makeDefault />
+                <ambientLight />
+                <VoteChetti />
+              </Canvas>
               <div
                 style={{
                   position: "relative",

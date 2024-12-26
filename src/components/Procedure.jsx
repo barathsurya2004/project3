@@ -2,6 +2,10 @@ import { MortarModel } from "../../public/Models/Cards/new/Chetti/Mortor";
 import { SlowModel } from "../../public/Models/Cards/new/Chetti/Slow";
 import { BlenderModel } from "../../public/Models/Cards/new/Pandi/Blender";
 import { FastModel } from "../../public/Models/Cards/new/Pandi/Fast";
+import { MortarCard } from "../../public/Models/ChettiCards/Mortar";
+import { SlowCard } from "../../public/Models/ChettiCards/Slow";
+import { BlenderCard } from "../../public/Models/PandiCards/Blender";
+import { FastCard } from "../../public/Models/PandiCards/Fast";
 import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
 
@@ -100,8 +104,8 @@ const Procedure = () => {
           }}
         >
           <CardHolder>
-            <BlenderModel />
-            <FastModel />
+            <BlenderCard />
+            <FastCard />
           </CardHolder>
         </div>
         <div
@@ -115,8 +119,8 @@ const Procedure = () => {
           }}
         >
           <CardHolderC>
-            <MortarModel />
-            <SlowModel />
+            <MortarCard />
+            <SlowCard />
           </CardHolderC>
         </div>
       </div>

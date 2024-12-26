@@ -4,6 +4,12 @@ import { TamarindModel } from "../../public/Models/Cards/new/Chetti/Tamarind";
 import { CoconutModel } from "../../public/Models/Cards/new/Pandi/Coconut";
 import { LentilsModel } from "../../public/Models/Cards/new/Pandi/Lentils";
 import { PepperModel } from "../../public/Models/Cards/new/Pandi/Pepper";
+import { ChilliCard } from "../../public/Models/ChettiCards/Chilli";
+import { SpicesCard } from "../../public/Models/ChettiCards/Spices";
+import { TamarindCard } from "../../public/Models/ChettiCards/Tamarind";
+import { CoconutCard } from "../../public/Models/PandiCards/Coconut";
+import { LentilsCard } from "../../public/Models/PandiCards/Lentils";
+import { PepperCard } from "../../public/Models/PandiCards/Pepper";
 import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
 const Ingredients = () => {
@@ -102,9 +108,9 @@ const Ingredients = () => {
           }}
         >
           <CardHolder idd={"Ing"}>
-            <PepperModel />
-            <CoconutModel />
-            <LentilsModel />
+            <PepperCard />
+            <CoconutCard />
+            <LentilsCard />
           </CardHolder>
         </div>
         <div
@@ -119,9 +125,9 @@ const Ingredients = () => {
           }}
         >
           <CardHolderC>
-            <RedChillyModel />
-            <TamarindModel />
-            <SpicesModel />
+            <ChilliCard />
+            <TamarindCard />
+            <SpicesCard />
           </CardHolderC>
         </div>
       </div>

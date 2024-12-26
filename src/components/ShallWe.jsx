@@ -7,77 +7,41 @@ import { useContext, useEffect, useRef } from "react";
 import { Context } from "../context";
 
 const ShallWe = ({ fun }) => {
-  const { canScrollTo } = useContext(Context);
   const ref = useRef();
   useEffect(() => {
     fun(ref.current.getDuration());
   }, []);
   useGSAP(() => {
-    gsap.to(".null", {
+    gsap.to(ref.current, {
       scrollTrigger: {
-        trigger: ".Shall-we-cont",
-        start: "top top",
-        toggleActions: "play none none reverse",
-        onEnter: () => {
-          if (!canScrollTo.current) {
-            return;
+        trigger: ".shall-we-anim-scroll",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        onUpdate: (self) => {
+          if (self.progress != 1) {
+            gsap.set(".shall-we", {
+              opacity: 1,
+            });
+            gsap.set(".Shall-we-cont", {
+              zIndex: 11,
+            });
+            const totalFrames = ref.current.getDuration(true);
+            const frame = self.progress * totalFrames;
+            ref.current.goToAndStop(frame, true);
+          } else {
+            gsap.set(".shall-we", {
+              opacity: 0,
+            });
+            gsap.set(".Shall-we-cont", {
+              zIndex: -1,
+            });
           }
-          // document.body.style.overflow = "hidden";
-          gsap.to(window, {
-            scrollTo: {
-              y: ".Shall-we-cont",
-              offsetY: -2,
-              autoKill: false,
-            },
-            duration: 0.5,
-            onComplete: () => {
-              ref.current.setDirection(1);
-              ref.current.play();
-              gsap.set(".slider-compare__center", {
-                y: "100vh",
-              });
-              gsap.set(".shall-we", {
-                opacity: 1,
-              });
-              gsap.set(".Shall-we-cont", {
-                zIndex: 11,
-              });
-              gsap.set(".slider-compare__center-line", {
-                opacity: 0,
-              });
-              // document.body.style.overflow = "auto";
-            },
-          });
         },
-        onLeaveBack: () => {
-          if (!canScrollTo.current) {
-            return;
-          }
-          // document.body.style.overflow = "hidden";
-          gsap.to(window, {
-            scrollTo: {
-              y: ".Shall-we-cont",
-              offsetY: 2,
-              autoKill: false,
-            },
-            ease: "none",
-            onComplete: () => {
-              ref.current.setDirection(-1);
-              ref.current.play();
-              gsap.set(".slider-compare__center", {
-                y: "100vh",
-              });
-              gsap.set(".shall-we", {
-                opacity: 1,
-              });
-              gsap.set(".Shall-we-cont", {
-                zIndex: 11,
-              });
-              gsap.set(".slider-compare__center-line", {
-                opacity: 0,
-              });
-              // document.body.style.overflow = "auto";
-            },
+        onComplete: () => {
+          console.log("yeadhh");
+          gsap.set(".shall-we", {
+            opacity: 0,
           });
         },
       },
@@ -109,7 +73,6 @@ const ShallWe = ({ fun }) => {
           margin: 0,
         }}
         onComplete={(e) => {
-          canScrollTo.current = true;
           gsap.fromTo(
             ".slider-compare__center",
             {
@@ -133,7 +96,6 @@ const ShallWe = ({ fun }) => {
               opacity: 1,
             });
           }
-          document.body.style.overflow = "auto";
         }}
         rendererSettings={{
           preserveAspectRatio: "none",

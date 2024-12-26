@@ -5,6 +5,7 @@ import gsap from "gsap";
 const Grid = () => {
   const shaderRef = useRef();
   const { size, camera } = useThree(); // Access screen size and camera
+  console.log(size, camera);
   const mouse = useRef([0, 0]);
   const isMoving = useRef(true); // Track if the mouse is moving
   const distortionVisibility = useRef({ value: 1.0 }); // Control distortion visibility
@@ -38,7 +39,7 @@ const Grid = () => {
   useFrame(() => {
     if (shaderRef.current) {
       shaderRef.current.uniforms.uMouse.value = [
-        mouse.current[0] * 10,
+        mouse.current[0] * 20,
         mouse.current[1] * 10,
       ];
       shaderRef.current.uniforms.uVisibility.value =
@@ -47,7 +48,7 @@ const Grid = () => {
   });
 
   // Calculate plane dimensions based on the screen size and camera zoom
-  const planeWidth = (size.width / size.height) * camera.zoom * 2; // Aspect ratio * zoom
+  const planeWidth = (size.width / size.height) * camera.zoom; // Aspect ratio * zoom
   const planeHeight = camera.zoom * 2; // Top/bottom frustum bounds * 2
 
   return (

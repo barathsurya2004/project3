@@ -6,107 +6,49 @@ import gsap from "gsap";
 import { Context } from "../context";
 const ShallWeEnd = () => {
   const ref = useRef();
-  const { canScrollTo } = useContext(Context);
-  //   useEffect(() => {
-  //     fun(ref.current.getDuration());
-  //   }, []);
 
   useGSAP(() => {
-    gsap.to(".null", {
+    gsap.to(ref.current, {
       scrollTrigger: {
-        trigger: ".Shall-we-end-cont",
-        start: "top 3%",
-        toggleActions: "play none none reverse",
+        trigger: ".shall-we-end-anim-scroll",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+        onUpdate: (self) => {
+          gsap.set(".shall-we-end", {
+            opacity: 1,
+          });
+          gsap.set(".Shall-we-end-cont", {
+            zIndex: 11,
+          });
+          const totalFrames = ref.current.getDuration(true);
+          const frame = self.progress * totalFrames;
+          ref.current.goToAndStop(frame, true);
+        },
+
         onEnter: () => {
-          if (!canScrollTo.current) {
-            return;
-          }
-          document.body.style.overflow = "hidden";
-          gsap.to(window, {
-            scrollTo: {
-              y: ".Shall-we-end-cont",
-              autoKill: false,
-            },
-            duration: 0.5,
-            onComplete: () => {
-              ref.current.setDirection(1);
-              ref.current.play();
-              gsap.set(".slider-compare__center", {
-                y: "100vh",
-              });
-              gsap.set(".shall-we-end", {
-                opacity: 1,
-              });
-              gsap.set(".Shall-we-end-cont", {
-                zIndex: 11,
-              });
-              gsap.set(".slider-compare__center-line", {
-                opacity: 0,
-              });
-              // document.body.style.overflow = "auto";
-            },
+          gsap.set(".shall-we-end", {
+            opacity: 1,
           });
         },
-      },
-    });
-    gsap.to(".null", {
-      scrollTrigger: {
-        trigger: ".Shall-we-end-cont",
-        start: "bottom 3%",
         onLeaveBack: () => {
-          console.log(canScrollTo);
-          if (!canScrollTo.current) {
-            return;
-          }
-          document.body.style.overflow = "hidden";
-          gsap.to(window, {
-            scrollTo: {
-              y: ".Shall-we-end-cont",
-              autoKill: false,
-            },
-            ease: "none",
-            onComplete: () => {
-              ref.current.setDirection(-1);
-              ref.current.play();
-            },
-            duration: 1,
+          gsap.set(".shall-we-end", {
+            opacity: 0,
+          });
+          gsap.set(".Shall-we-end-cont", {
+            zIndex: 9,
+          });
+        },
+        onComplete: () => {
+          gsap.set(".shall-we-end", {
+            opacity: 0,
+          });
+          gsap.set(".Shall-we-end-cont", {
+            zIndex: 9,
           });
         },
       },
     });
-    // gsap.to(".null", {
-    //   scrollTrigger: {
-    //     trigger: ".Shall-we-end-cont",
-    //     start: "top top",
-    //     end: "bottom top",
-    //     toggleActions: "play none none reverse",
-
-    //     onEnter: () => {
-    //       ref.current.setDirection(1);
-    //       ref.current.play();
-    //       gsap.set(".slider-compare__center", {
-    //         y: 0,
-    //       });
-    //       gsap.set(".shall-we-end", {
-    //         opacity: 1,
-    //       });
-    //       gsap.set(".Shall-we-end-cont", {
-    //         zIndex: 11,
-    //       });
-    //       gsap.set(".slider-compare__center-line", {
-    //         opacity: 1,
-    //       });
-
-    //       document.body.style.overflow = "hidden";
-    //     },
-    //     onLeaveBack: () => {
-    //       ref.current.setDirection(-1);
-    //       ref.current.play();
-
-    //       // document.body.style.overflow = "hidden";
-    //     },
-    //   },
-    // });
   }, []);
   return (
     <div
@@ -114,6 +56,7 @@ const ShallWeEnd = () => {
       style={{
         height: "100vh",
         width: "100%",
+        opacity: 0,
       }}
     >
       <Lottie
@@ -128,46 +71,7 @@ const ShallWeEnd = () => {
           height: "100vh",
           width: "100%",
         }}
-        onComplete={(e) => {
-          console.log(ref.current);
-          document.body.style.overflow = "auto";
-          if (ref.current.animationItem.playDirection === 1) {
-            gsap.set(".slider-compare__center-line", {
-              opacity: 0,
-            });
-            gsap.set(
-              ".slider-compare__center",
 
-              {
-                y: "100vh",
-                duration: 1,
-              }
-            );
-            gsap.to(window, {
-              scrollTo: {
-                y: ".theres-more-container",
-                autoKill: false,
-              },
-              duration: 1,
-              ease: "none",
-            });
-          } else {
-            gsap.set(".slider-compare__center-line", {
-              opacity: 1,
-            });
-            gsap.fromTo(
-              ".slider-compare__center",
-              {
-                y: "100vh",
-              },
-              {
-                y: 0,
-                duration: 1,
-                ease: "power3.out",
-              }
-            );
-          }
-        }}
         // autoplay={false}
       />
     </div>
