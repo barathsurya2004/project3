@@ -109,9 +109,15 @@ export function GlobeModel(props) {
           toggleActions: "play none none reverse",
           onEnter: () => {
             setActive(true);
+            gsap.set(".globe-canvas", {
+              zIndex: 1010,
+            });
           },
           onLeaveBack: () => {
             setActive(false);
+            gsap.set(".globe-canvas", {
+              zIndex: 101,
+            });
           },
         },
       }

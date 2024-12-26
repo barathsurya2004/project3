@@ -125,7 +125,7 @@ const CircularText = ({ texts, radius }) => {
           },
           onLeave: () => {
             setCanHighlight(true);
-            setZIndex(101);
+            setZIndex(1010);
           },
           onEnterBack: () => {
             setZIndex(0);
@@ -209,7 +209,7 @@ const CircularText = ({ texts, radius }) => {
           dragWheel.style.pointerEvents = "none";
         },
         onLeaveBack: () => {
-          setZIndex(101);
+          setZIndex(1010);
           const dragWheel = document.getElementById("drag");
           dragWheel.style.pointerEvents = "auto";
           const rotation = gsap.getProperty("#drag", "rotation");
@@ -251,7 +251,6 @@ const CircularText = ({ texts, radius }) => {
           position: "fixed",
           top: "0",
           left: "0",
-          backgroundColor: "rgba(0,0,0,0.5)",
           zIndex: -1,
         }}
       >

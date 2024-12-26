@@ -10,9 +10,11 @@ const Cuisines = () => {
       ".cuisines-of-the-world",
       {
         top: "100vh",
+        zIndex: 10,
       },
       {
         top: "0vh",
+        zIndex: 1100,
         scrollTrigger: {
           trigger: ".cuisines-of-the-world-trigger",
           start: "top bottom",
@@ -29,10 +31,12 @@ const Cuisines = () => {
       {
         opacity: 1,
         y: 0,
+        zIndex: 1100,
       },
       {
         opacity: 0,
         y: -50,
+        zIndex: 10,
         scrollTrigger: {
           trigger: ".cuisines-of-India-trigger",
           start: "top bottom",
@@ -49,10 +53,12 @@ const Cuisines = () => {
       {
         opacity: 0,
         x: -50,
+        zIndex: 10,
       },
       {
         opacity: 1,
         x: 0,
+        zIndex: 1100,
         scrollTrigger: {
           trigger: ".cuisines-of-India-trigger",
           start: "top 80%",
@@ -69,10 +75,12 @@ const Cuisines = () => {
       {
         opacity: 1,
         x: 0,
+        zIndex: 1100,
       },
       {
         opacity: 0,
         y: -50,
+        zIndex: 10,
         scrollTrigger: {
           trigger: ".cuisines-of-TN-trigger",
           start: "top bottom",
@@ -89,9 +97,11 @@ const Cuisines = () => {
       {
         opacity: 0,
         x: -50,
+        zIndex: 10,
       },
       {
         opacity: 1,
+        zIndex: 1100,
         x: 0,
         scrollTrigger: {
           trigger: ".cuisines-of-TN-trigger",
@@ -169,7 +179,7 @@ const Cuisines = () => {
           width: "100%",
           height: "100vh",
           pointerEvents: "none",
-          zIndex: 101,
+          zIndex: 10,
         }}
       >
         <div
@@ -228,7 +238,7 @@ const Cuisines = () => {
           height: "100vh",
           pointerEvents: "none",
           opacity: 0,
-          zIndex: 101,
+          zIndex: 10,
         }}
       >
         <div
@@ -282,7 +292,7 @@ const Cuisines = () => {
           height: "100vh",
           pointerEvents: "none",
           opacity: 0,
-          zIndex: 101,
+          zIndex: 10,
         }}
       >
         <div

@@ -111,54 +111,6 @@ const ThreeJsCanvas = () => {
     );
 
     gsap.fromTo(
-      ".art-canvas",
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.001,
-        scrollTrigger: {
-          trigger: ".food-is-art",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    gsap.fromTo(
-      ".clock-canvas",
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.001,
-        scrollTrigger: {
-          trigger: ".food-is-time",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    gsap.fromTo(
-      ".map-canvas",
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.001,
-        scrollTrigger: {
-          trigger: ".food-is-treasure",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    gsap.fromTo(
       ".all-canvas",
       {
         opacity: 1,
@@ -263,7 +215,8 @@ const ThreeJsCanvas = () => {
           left: 0,
           width: "100%",
           height: "100vh",
-          zIndex: 1000,
+          zIndex: 10,
+
           // pointerEvents: "none",
         }}
       >
@@ -328,7 +281,7 @@ const ThreeJsCanvas = () => {
             30 + 90 * prog
           }%, rgba(255,255,255,1) 100%)`,
 
-          zIndex: 500,
+          zIndex: 10,
           pointerEvents: "none",
         }}
       >
@@ -354,7 +307,7 @@ const ThreeJsCanvas = () => {
           position: "fixed",
           // display: "none",
           top: "50vh",
-          zIndex: 501,
+          zIndex: 10,
           maskImage: `linear-gradient(0deg, rgba(0,0,0,0.0) ${
             num * 100
           }%, rgba(0,0,0,1) ${num * 100}%, rgba(0,0,0,1) 100%)`,
@@ -372,7 +325,7 @@ const ThreeJsCanvas = () => {
           <ambientLight intensity={1} />
           <directionalLight intensity={3} position={[10, 10, 10]} />
           {/* <OrthographicCamera makeDefault position={[0, 0, 20]} zoom={22} /> */}
-          <PerspectiveCamera makeDefault position={[0, 0, 100]} zoom={4} />
+          <PerspectiveCamera makeDefault position={[0, 0, 100]} zoom={3.5} />
 
           <FaceModel />
         </Canvas>

@@ -37,6 +37,26 @@ const CircularAnimation = () => {
         end: "bottom top",
         scrub: 0,
         // markers: true, // Debug markers, remove in production
+        onEnter: () => {
+          gsap.set(".wheel-animation-cont", {
+            zIndex: 1010,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set(".wheel-animation-cont", {
+            zIndex: 101,
+          });
+        },
+        onLeave: () => {
+          gsap.set(".wheel-animation-cont", {
+            zIndex: 101,
+          });
+        },
+        onEnterBack: () => {
+          gsap.set(".wheel-animation-cont", {
+            zIndex: 1010,
+          });
+        },
       },
       defaults: {
         ease: "none",
@@ -123,6 +143,7 @@ const CircularAnimation = () => {
   return (
     <>
       <div
+        className="wheel-animation-cont"
         style={{
           position: "fixed",
           top: 0,

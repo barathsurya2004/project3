@@ -55,11 +55,12 @@ const EndingPage = () => {
   useGSAP(() => {
     gsap.fromTo(
       ".ending-ahh-page",
-      { display: "none", opacity: 0 },
+      { display: "none", opacity: 0, zIndex: 50 },
       {
         display: "block",
         opacity: 1,
         duration: 0.2,
+        zIndex: 510,
         scrollTrigger: {
           trigger: ".ending-page-helper",
           start: "top bottom",

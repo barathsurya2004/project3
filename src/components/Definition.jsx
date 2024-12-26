@@ -3,7 +3,7 @@ import image from "../assets/icons/speaker.svg";
 const Definition = () => {
   return (
     <>
-      <div className="definition-container">
+      <div className="definition-container" style={{}}>
         <audio id="audio" controlsList="nodownload">
           <div className="hdib" fallback>
             <p>your browser does'nt support audio</p>

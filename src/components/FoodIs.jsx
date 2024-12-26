@@ -369,7 +369,7 @@ const FoodIs = () => {
       ></div>
 
       <div className="card-trigger">
-        <div className="card-content">
+        <div className="card-content" style={{}}>
           <h1
             style={{
               color: "#D3AD62",
@@ -452,6 +452,7 @@ const FoodIs = () => {
             <h2
               style={{
                 color: "#D3AD62",
+
                 fontFamily: "TTtravels Next DemiBold Italic",
               }}
             >
@@ -463,6 +464,7 @@ const FoodIs = () => {
               style={{
                 color: "#D3AD62",
                 fontFamily: "TTtravels Next DemiBold Italic",
+
                 top: "52.5vh",
               }}
             >

@@ -130,6 +130,9 @@ const SharePage = () => {
               document.body.style.overflow = "hidden";
               animRef.current.setDirection(1);
               animRef.current.goToAndPlay(0);
+              gsap.set(".share-page-transition-container", {
+                top: 0,
+              });
               gsap.set(ref.current, {
                 zIndex: 0,
               });
@@ -140,7 +143,11 @@ const SharePage = () => {
           console.log("please go back");
           gsap.fromTo(".face-reacting-page", { opacity: 1 }, { opacity: 0 });
           gsap.fromTo(".sharing-page", { opacity: 0 }, { opacity: 1 });
-          gsap.fromTo(".face-model", { opacity: 1 }, { opacity: 0 });
+          gsap.fromTo(
+            ".face-model",
+            { opacity: 1, zIndex: 10 },
+            { opacity: 0, zIndex: 1000 }
+          );
           gsap.set(ref.current, {
             zIndex: 1000,
           });
@@ -540,44 +547,6 @@ const SharePage = () => {
               </div>
             </div>
           </div>
-          <Lottie
-            animationData={anim}
-            lottieRef={animRef}
-            loop={false}
-            autoplay={false}
-            rendererSettings={{
-              preserveAspectRatio: "none",
-            }}
-            style={{
-              height: "100vh",
-              width: "100%",
-              pointerEvents: "none",
-            }}
-            onComplete={() => {
-              console.log("completed");
-              gsap.to(".sharing-page", {
-                delay: -1,
-                opacity: 0,
-                duration: 0.001,
-              });
-              gsap.to(".face-model", {
-                opacity: 1,
-                duration: 0.001,
-              });
-              gsap.fromTo(
-                ".face-reacting-page",
-                { display: "none", opacity: 0 },
-                {
-                  display: "block",
-                  opacity: 1,
-                  duration: 0.001,
-                  ease: "none",
-                  immediateRender: false,
-                }
-              );
-              document.body.style.overflow = "auto";
-            }}
-          />
         </div>
         <div
           style={{
@@ -725,6 +694,62 @@ const SharePage = () => {
           {/* <CardsCanvas>
           <Tamarind />
         </CardsCanvas> */}
+        </div>
+        <div
+          className="share-page-transition-container"
+          style={{
+            position: "fixed",
+            top: "100vh",
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            // opacity: 1,
+            // mixBlendMode: "screen",
+          }}
+        >
+          <Lottie
+            animationData={anim}
+            lottieRef={animRef}
+            loop={false}
+            autoplay={false}
+            rendererSettings={{
+              preserveAspectRatio: "none",
+            }}
+            style={{
+              height: "100%",
+              width: "100%",
+              pointerEvents: "none",
+            }}
+            onComplete={() => {
+              gsap.set(".share-page-transition-container", {
+                top: "100vh",
+              });
+              // console.log("completed");
+              gsap.to(".sharing-page", {
+                delay: -1,
+                opacity: 0,
+                duration: 0.001,
+              });
+              gsap.to(".face-model", {
+                zIndex: 1100,
+                opacity: 1,
+                duration: 0.001,
+              });
+              gsap.fromTo(
+                ".face-reacting-page",
+                { display: "none", opacity: 0 },
+                {
+                  display: "block",
+                  opacity: 1,
+                  duration: 0.001,
+                  ease: "none",
+                  immediateRender: false,
+                }
+              );
+              document.body.style.overflow = "auto";
+            }}
+          />
         </div>
       </div>
     </>

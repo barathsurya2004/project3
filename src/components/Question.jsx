@@ -27,6 +27,26 @@ const Question = () => {
         start: "top bottom",
         end: "top top",
         scrub: 0.05,
+        onEnter: () => {
+          gsap.set(".definition-container", {
+            zIndex: 1011,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set(".definition-container", {
+            zIndex: 101,
+          });
+        },
+        onLeave: () => {
+          gsap.set(".definition-container", {
+            zIndex: 101,
+          });
+        },
+        onEnterBack: () => {
+          gsap.set(".definition-container", {
+            zIndex: 1010,
+          });
+        },
       },
     });
     questionTl
@@ -104,7 +124,7 @@ const Question = () => {
   });
   return (
     <>
-      <div className="what-is-food">
+      <div className="what-is-food" style={{}}>
         <div
           className="question-trigger"
           style={{

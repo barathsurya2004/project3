@@ -99,7 +99,7 @@ const SvgMorphAnimation = () => {
         left: 0,
         position: "fixed",
         overflow: "hidden",
-        zIndex: 1000,
+        zIndex: 1100,
         pointerEvents: "none",
         userSelect: "none",
       }}

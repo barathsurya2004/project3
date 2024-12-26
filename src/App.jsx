@@ -37,6 +37,7 @@ function App() {
           overflowY: loading ? "hidden" : "scroll",
           scrollBehavior: "smooth",
           scrollSnapType: "y mandatory",
+          //
         }}
       >
         <Loader />

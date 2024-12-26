@@ -224,6 +224,7 @@ const Slider1 = () => {
           height: "50vh",
         }}
       ></div>
+
       <div
         className="slider-compare"
         style={{

@@ -61,7 +61,7 @@ const HoverDisplay = () => {
             position: "fixed",
             bottom: (0 * window.innerHeight) / 1080,
             left: 80 * (window.innerWidth / 1920),
-            zIndex: 1000,
+            zIndex: 1100,
             padding: (50 * window.innerWidth) / 1920,
           }}
         >
