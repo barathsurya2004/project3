@@ -63,11 +63,11 @@ const NavBarSvg = (props) => {
     <div style={{ ...containerStyle }}>
       <div
         style={{
-          clipPath: "polygon(0 1%, 100% 0, 100% 90%, 70% 60%, 30% 60%, 0 90%);",
+          clipPath: "polygon(0 1%, 100% 0, 100% 90%, 70% 60%, 30% 60%, 0 90%)",
           height: "100%",
           width: "100%",
           position: "absolute",
-          //   backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundColor: "rgba(0, 0, 0, 1)",
           zIndex: -0,
         }}
       >
