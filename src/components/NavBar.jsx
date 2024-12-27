@@ -14,8 +14,9 @@ const NavBar = () => {
         style={{
           position: "fixed",
           zIndex: 1900,
-          top: 0,
-          right: 0,
+          top: "50%",
+          right: "5%",
+          transform: "translate(0%, -50%)",
           height: 500,
         }}
       >

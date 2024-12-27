@@ -19,13 +19,11 @@ import ThereIsMore from "./components/ThereIsMore";
 import ThreeJsCanvas from "./components/ThreeJsCanvas";
 import YetSoUnique from "./components/YetSoUnique";
 import { Context } from "./context";
-import BackGround from "./components/BackGround";
-import ShallWe from "./components/ShallWe";
 import HoverDisplay from "./components/HoverDisplay";
 import WhatIsFoodCanvas from "./components/WhatIsFoodCanvas";
 
 function App() {
-  const { loading } = useContext(Context);
+  const { loading, pointer, light } = useContext(Context);
   return (
     <>
       {/* <BackGround /> */}
@@ -37,6 +35,13 @@ function App() {
           overflowY: loading ? "hidden" : "scroll",
           scrollBehavior: "smooth",
           scrollSnapType: "y mandatory",
+
+          clipPath: light
+            ? `circle(100px at ${pointer[0] + window.scrollX}px ${
+                pointer[1] + window.scrollY
+              }px)`
+            : null,
+
           //
         }}
       >

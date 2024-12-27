@@ -5,7 +5,6 @@ import gsap from "gsap";
 const Grid = () => {
   const shaderRef = useRef();
   const { size, camera } = useThree(); // Access screen size and camera
-  console.log(size, camera);
   const mouse = useRef([0, 0]);
   const isMoving = useRef(true); // Track if the mouse is moving
   const distortionVisibility = useRef({ value: 1.0 }); // Control distortion visibility

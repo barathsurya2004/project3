@@ -1,3 +1,4 @@
+import gsap from "gsap";
 import { useRef } from "react";
 import { useContext, createContext, useState, useEffect } from "react";
 
@@ -26,6 +27,14 @@ export const Context = createContext({
   canScrollTo: false,
   questionSelected: -2,
   setQuestionSelected: () => {},
+  invert: false,
+  setInvert: () => {},
+  speed: 1,
+  setSpeed: () => {},
+  light: false,
+  setLight: () => {},
+  interaction: 1,
+  setInteraction: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -42,7 +51,10 @@ export const ContextProvider = ({ children }) => {
   const [fullscreen, setFullscreen] = useState(null);
   const canScrollTo = useRef(true);
   const [questionSelected, setQuestionSelected] = useState(-2);
-
+  const [invert, setInvert] = useState(false);
+  const [speed, setSpeed] = useState(1);
+  const [light, setLight] = useState(false);
+  const [interaction, setInteraction] = useState(1);
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
     setPointer([clientX, clientY]);
@@ -55,6 +67,18 @@ export const ContextProvider = ({ children }) => {
     };
   }, []);
 
+  useEffect(() => {
+    const root = document.querySelector(":root");
+    if (invert) {
+      gsap.to(root, {
+        filter: "invert(1)",
+      });
+    } else {
+      gsap.to(root, {
+        filter: "invert(0)",
+      });
+    }
+  }, [invert, speed, light, interaction]);
   const debounceTimeoutRef = useRef();
 
   const setMeshSelected = (mesh) => {
@@ -76,7 +100,6 @@ export const ContextProvider = ({ children }) => {
       }, 150); // Adjust the delay as needed
     }
   };
-
   const photos = [
     {
       alt: "chetti14.jpg",
@@ -225,6 +248,14 @@ export const ContextProvider = ({ children }) => {
     canScrollTo,
     questionSelected,
     setQuestionSelected,
+    invert,
+    setInvert,
+    speed,
+    setSpeed,
+    light,
+    setLight,
+    interaction,
+    setInteraction,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

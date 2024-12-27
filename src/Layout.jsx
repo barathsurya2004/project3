@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import App from "./App";
 import MobileLoader from "./components/MobileLoader";
 import NavBar from "./components/NavBar";
@@ -12,7 +12,6 @@ const Layout = () => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
   const prevWidth = useRef(window.innerWidth);
 
   useEffect(() => {
