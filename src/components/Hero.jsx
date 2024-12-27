@@ -231,7 +231,7 @@ const Hero = () => {
         scrollSnapAlign: "start",
       }}
     >
-      {/* <NavBar /> */}
+      <NavBar />
       <div
         style={{
           position: "absolute",
