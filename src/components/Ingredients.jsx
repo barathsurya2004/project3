@@ -124,7 +124,7 @@ const Ingredients = () => {
             paddingTop: "10vh",
           }}
         >
-          <CardHolderC>
+          <CardHolderC idd={"Ing"}>
             <ChilliCard />
             <TamarindCard />
             <SpicesCard />

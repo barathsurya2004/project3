@@ -42,7 +42,13 @@ const CardHolder = ({ children, idd }) => {
           }}
         />
       </div>
-      <CardsCanvas cur={active}>
+      <CardsCanvas
+        cur={active}
+        idd={idd}
+        onDoubleClick={() => {
+          console.log(idd, active);
+        }}
+      >
         {Children.map(children, (child, index) => {
           if (index === active) {
             return child;

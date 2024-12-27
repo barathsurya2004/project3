@@ -103,7 +103,7 @@ const Procedure = () => {
             height: "100vh",
           }}
         >
-          <CardHolder>
+          <CardHolder idd={"proc"}>
             <BlenderCard />
             <FastCard />
           </CardHolder>
@@ -118,7 +118,7 @@ const Procedure = () => {
             height: "100vh",
           }}
         >
-          <CardHolderC>
+          <CardHolderC idd={"proc"}>
             <MortarCard />
             <SlowCard />
           </CardHolderC>

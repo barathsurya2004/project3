@@ -48,6 +48,12 @@ export const setRandomDoc = async (col, data) => {
     const colref = collection(db, col);
     await setDoc(doc(colref), data);
 }
+
+export const updateDoc = async (col, docId, data) => {  
+    const docRef = doc(db, col, docId);
+    await setDoc(docRef, data);
+}
+
 const test= {
     name: "Dindigul Thalappakatti",
     location: "Dindigul",

@@ -10,16 +10,15 @@ import { useState } from "react";
 import SplitType from "split-type";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import EndingPage from "./EndingPage";
-import Lottie from "lottie-react";
-import anim from "../assets/json/lightning for face.json";
+
 import { Canvas } from "@react-three/fiber";
 import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
 import { VoteChetti } from "../../public/Models/Cards/Voting/VoteChetti";
 import { VotePandi } from "../../public/Models/Cards/Voting/VotePandi";
+import { getDocFromDb, updateDoc } from "../firebaseUtils";
 gsap.registerPlugin(ScrollTrigger);
 const FaceReact = () => {
-  const animRef = useRef();
+  const [selected, setSelected] = useState(null);
   const styles = {
     para: {
       fontSize: (34 * window.innerHeight) / 1080,
@@ -33,39 +32,73 @@ const FaceReact = () => {
   };
 
   const { hovered, setHovered } = useContext(Context);
-  const [imagePandi, setImagePandi] = useState(pandiIcon);
-  const [imageChetti, setImageChetti] = useState(chettiIcon);
+  const [pandiVotes, setPandiVotes] = useState(0);
+  const [chettiVotes, setChettiVotes] = useState(0);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getDocFromDb(
+        "VotePandiVsChetti",
+        "axGd1qsAOJBNFQ1mHR4W"
+      );
+      setChettiVotes(data.chetti);
+      setPandiVotes(data.pandi);
+    }
+    fetchData();
+  }, []);
+
   const PandihandleClick = () => {
-    setImagePandi(pandiVote);
-    gsap.fromTo(
-      ".pandi-image",
-      {
-        rotationY: 0,
-      },
-      {
-        duration: 0.5,
-        rotationY: 360,
+    if (!selected) {
+      updateDoc("VotePandiVsChetti", "axGd1qsAOJBNFQ1mHR4W", {
+        chetti: chettiVotes,
+        pandi: pandiVotes + 1,
+      });
+      setPandiVotes(pandiVotes + 1);
+      setSelected("pandi");
+    } else {
+      if (selected === "pandi") {
+        updateDoc("VotePandiVsChetti", "axGd1qsAOJBNFQ1mHR4W", {
+          chetti: chettiVotes,
+          pandi: pandiVotes - 1,
+        });
+        setPandiVotes(pandiVotes - 1);
+        setSelected(null);
+      } else if (selected == "chetti") {
+        updateDoc("VotePandiVsChetti", "axGd1qsAOJBNFQ1mHR4W", {
+          chetti: chettiVotes - 1,
+          pandi: pandiVotes + 1,
+        });
+        setPandiVotes(pandiVotes + 1);
+        setChettiVotes(chettiVotes - 1);
+        setSelected("pandi");
       }
-    );
-    setTimeout(() => {
-      setImagePandi(pandiIcon);
-    }, 2000);
+    }
   };
   const ChettihandleClick = () => {
-    setImageChetti(chettiVote);
-    gsap.fromTo(
-      ".chetti-image",
-      {
-        rotationY: 0,
-      },
-      {
-        duration: 0.5,
-        rotationY: 360,
+    if (!selected) {
+      updateDoc("VotePandiVsChetti", "axGd1qsAOJBNFQ1mHR4W", {
+        chetti: chettiVotes + 1,
+        pandi: pandiVotes,
+      });
+      setChettiVotes(chettiVotes + 1);
+      setSelected("chetti");
+    } else {
+      if (selected === "chetti") {
+        updateDoc("VotePandiVsChetti", "axGd1qsAOJBNFQ1mHR4W", {
+          chetti: chettiVotes - 1,
+          pandi: pandiVotes,
+        });
+        setChettiVotes(chettiVotes - 1);
+        setSelected(null);
+      } else if (selected == "pandi") {
+        updateDoc("VotePandiVsChetti", "axGd1qsAOJBNFQ1mHR4W", {
+          chetti: chettiVotes + 1,
+          pandi: pandiVotes - 1,
+        });
+        setChettiVotes(chettiVotes + 1);
+        setPandiVotes(pandiVotes - 1);
+        setSelected("chetti");
       }
-    );
-    setTimeout(() => {
-      setImageChetti(chettiIcon);
-    }, 2000);
+    }
   };
   const handleMouseEnterPandi = () => {
     const tl = gsap.timeline();
@@ -442,7 +475,7 @@ const FaceReact = () => {
                     width: "100%",
                     height: "100%",
                     display: "flex",
-                    justifyContent: "center",
+                    flexDirection: "column",
 
                     zIndex: 505,
                   }}
@@ -456,6 +489,14 @@ const FaceReact = () => {
                     }}
                   >
                     ~Vote~
+                  </p>
+                  <p
+                    style={{
+                      ...styles.para,
+                      color: "#BB8BE8",
+                    }}
+                  >
+                    {pandiVotes}
                   </p>
                 </div>
               </div>
@@ -533,7 +574,8 @@ const FaceReact = () => {
                     width: "100%",
                     height: "100%",
                     display: "flex",
-                    justifyContent: "center",
+                    flexDirection: "column",
+                    // justifyContent: "center",
                     zIndex: 505,
                   }}
                 >
@@ -546,6 +588,14 @@ const FaceReact = () => {
                     }}
                   >
                     ~Vote~
+                  </p>
+                  <p
+                    style={{
+                      ...styles.para,
+                      color: "#CC7272",
+                    }}
+                  >
+                    {chettiVotes}
                   </p>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import Characteristics from "./components/Characteristics";
 import CircularAnimation from "./components/CircularAnimation";
@@ -23,7 +23,19 @@ import HoverDisplay from "./components/HoverDisplay";
 import WhatIsFoodCanvas from "./components/WhatIsFoodCanvas";
 
 function App() {
-  const { loading, pointer, light } = useContext(Context);
+  const { loading, light } = useContext(Context);
+  const [pointer, setPointer] = useState([0, 0]);
+  useEffect(() => {
+    window.addEventListener("mousemove", (e) => {
+      setPointer([e.clientX, e.clientY]);
+    });
+
+    return () => {
+      window.removeEventListener("mousemove", (e) => {
+        setPointer([e.clientX, e.clientY]);
+      });
+    };
+  });
   return (
     <>
       {/* <BackGround /> */}
@@ -36,11 +48,11 @@ function App() {
           scrollBehavior: "smooth",
           scrollSnapType: "y mandatory",
 
-          clipPath: light
-            ? `circle(100px at ${pointer[0] + window.scrollX}px ${
+          maskImage: light
+            ? `radial-gradient(circle at ${pointer[0] + window.scrollX}px ${
                 pointer[1] + window.scrollY
-              }px)`
-            : null,
+              }px, rgba(0,0,0,1) 100px, rgba(0,0,0,0) 250px)`
+            : "none",
 
           //
         }}

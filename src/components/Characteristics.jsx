@@ -103,7 +103,7 @@ const Characteristics = () => {
             height: "100vh",
           }}
         >
-          <CardHolder>
+          <CardHolder idd={"char"}>
             <PnadiColorCard />
             <SimpleCard />
           </CardHolder>
@@ -118,7 +118,7 @@ const Characteristics = () => {
             height: "100vh",
           }}
         >
-          <CardHolderC>
+          <CardHolderC idd={"char"}>
             <ChettiColorCard />
             <IntricateCard />
           </CardHolderC>
