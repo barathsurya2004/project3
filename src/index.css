@@ -21,7 +21,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #101010;
-  /* filter: invert(100%); */
+  filter: invert(100%);
 
   --lighter-beige: #f2d8a0;
 }
