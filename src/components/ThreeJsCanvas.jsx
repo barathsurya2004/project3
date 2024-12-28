@@ -29,7 +29,11 @@ import { GlobeModel } from "../../public/Models/Globe";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
   const [change, setChange] = useState(0);
+  const { loading } = useContext(Context);
   useGSAP(() => {
+    gsap.set(".question-mark-canvas", {
+      y: "100vh",
+    });
     gsap.to(".globe-canvas", {
       scrollTrigger: {
         trigger: ".cuisines-of-India-trigger",
@@ -143,7 +147,15 @@ const ThreeJsCanvas = () => {
       }
     );
   });
-
+  useEffect(() => {
+    if (!loading) {
+      gsap.to(".question-mark-canvas", {
+        y: 0,
+        duration: 1,
+        ease: "power4.out",
+      });
+    }
+  }, [loading]);
   const [num, setNum] = useState(0);
   const { mode } = useContext(Context);
   useEffect(() => {

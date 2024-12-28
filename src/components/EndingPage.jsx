@@ -344,7 +344,7 @@ const EndingPage = () => {
           onClick={() => {
             canScrollTo.current = false;
             gsap.to(window, {
-              duration: 4,
+              duration: 8,
               scrollTo: 0,
               ease: "power4.inOut",
               onComplete: () => {

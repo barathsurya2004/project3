@@ -21,6 +21,8 @@ import YetSoUnique from "./components/YetSoUnique";
 import { Context } from "./context";
 import HoverDisplay from "./components/HoverDisplay";
 import WhatIsFoodCanvas from "./components/WhatIsFoodCanvas";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 function App() {
   const { loading, light } = useContext(Context);
@@ -36,9 +38,11 @@ function App() {
       });
     };
   });
+
   return (
     <>
       {/* <BackGround /> */}
+      <Loader />
       <div
         className="loading-helper"
         style={{
@@ -57,7 +61,6 @@ function App() {
           //
         }}
       >
-        <Loader />
         <ThreeJsCanvas />
         <Hero />
         <CircularAnimation

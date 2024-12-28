@@ -111,7 +111,7 @@ const Loader = () => {
     <div
       className="loader"
       style={{
-        background: "black",
+        // background: "black",
         zIndex: 1000,
       }}
     >

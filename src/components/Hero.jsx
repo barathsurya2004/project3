@@ -11,11 +11,17 @@ import data from "../assets/lotties/scroll_down.json";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import NavBar from "./NavBar";
+import { useContext } from "react";
+import { Context } from "../context";
 gsap.registerPlugin(useGSAP);
 const Hero = () => {
   const foods = [img1, img2, img3, img4, img5, img6, img7, img8];
+  const { loading } = useContext(Context);
 
   useGSAP(() => {
+    gsap.set(".hero-scroll-start", {
+      y: "100vh",
+    });
     const foodsChangetl = gsap.timeline({
       repeat: -1,
     });
@@ -216,108 +222,126 @@ const Hero = () => {
         }
       );
   });
+  useGSAP(() => {
+    if (!loading) {
+      gsap.to(".hero-scroll-start", {
+        y: 0,
+        duration: 1,
+        ease: "power4.out",
+      });
+    }
+  }, [loading]);
   return (
     <div
       className="hero-content"
       style={{
         height: "100vh",
         width: "100%",
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
         overflow: "hidden",
         scrollSnapAlign: "start",
       }}
     >
-      <NavBar />
       <div
+        className="hero-scroll-start"
         style={{
-          position: "absolute",
-          bottom: "5vh",
-          left: 0,
-          width: "100%",
           height: "100vh",
-          pointerEvents: "none",
-        }}
-      >
-        <Lottie
-          animationData={data}
-          style={{
-            height: "100vh",
-          }}
-        />
-      </div>
-      <div
-        className="alignn"
-        style={{
+          width: "100%",
+          position: "relative",
           display: "flex",
-          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          height: "100%",
-          width: "93.083vh",
+          flexDirection: "column",
+          zIndex: 1010,
         }}
       >
+        <NavBar />
         <div
           style={{
-            width: 679 * (window.innerWidth / 1920),
-            height: 170 * (window.innerHeight / 1080),
-            position: "relative",
-            marginBottom: 125 * (window.innerHeight / 1080),
-            fontSize: "2.5vh",
+            position: "absolute",
+            bottom: "5vh",
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            pointerEvents: "none",
           }}
         >
-          {foods.map((food, index) => {
-            return (
-              <div
-                key={index}
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  // alignItems: "center",
-                  position: "absolute",
-                  transform: index == 6 ? "translateY(25%)" : 0,
-                }}
-              >
-                <img
-                  className={`food-${index}`}
+          <Lottie
+            animationData={data}
+            style={{
+              height: "100vh",
+            }}
+          />
+        </div>
+        <div
+          className="alignn"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "93.083vh",
+          }}
+        >
+          <div
+            style={{
+              width: 679 * (window.innerWidth / 1920),
+              height: 170 * (window.innerHeight / 1080),
+              position: "relative",
+              marginBottom: 125 * (window.innerHeight / 1080),
+              fontSize: "2.5vh",
+            }}
+          >
+            {foods.map((food, index) => {
+              return (
+                <div
                   key={index}
-                  src={food}
-                  alt="food"
                   style={{
                     height: "100%",
-                    opacity: 0,
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    // alignItems: "center",
+                    position: "absolute",
+                    transform: index == 6 ? "translateY(25%)" : 0,
                   }}
-                />
-              </div>
-            );
-          })}
+                >
+                  <img
+                    className={`food-${index}`}
+                    key={index}
+                    src={food}
+                    alt="food"
+                    style={{
+                      height: "100%",
+                      opacity: 0,
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <p
+            style={{
+              fontSize: 27 * (window.innerHeight / 1080),
+              textAlign: "center",
+              width: "100%",
+            }}
+          >
+            Food is a daily ritual that brings emotional connections, cravings,
+            and enjoyment, often without consideration of its origins or effort.
+            We share, savor, waste, and endlessly repeat this cycle with every
+            meal.
+          </p>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: (27 * window.innerHeight) / 1080,
+              marginTop: (60 * window.innerHeight) / 1080,
+            }}
+          >
+            Apart from all this, is there more to food
+          </p>
         </div>
-        <p
-          style={{
-            fontSize: 27 * (window.innerHeight / 1080),
-            textAlign: "center",
-            width: "100%",
-          }}
-        >
-          Food is a daily ritual that brings emotional connections, cravings,
-          and enjoyment, often without consideration of its origins or effort.
-          We share, savor, waste, and endlessly repeat this cycle with every
-          meal.
-        </p>
-        <p
-          style={{
-            textAlign: "center",
-            fontSize: (27 * window.innerHeight) / 1080,
-            marginTop: (60 * window.innerHeight) / 1080,
-          }}
-        >
-          Apart from all this, is there more to food
-        </p>
       </div>
     </div>
   );

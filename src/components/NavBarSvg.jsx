@@ -43,6 +43,12 @@ const NavBarSvg = (props) => {
         rotate: 180,
         ease: "power1.inOut",
       });
+      gsap.to(".nav-bar-cont-2", {
+        duration: 0.5,
+        y: 0,
+        opacity: 0.3,
+        ease: "power1.inOut",
+      });
     } else {
       gsap.to(".hide-on-click", {
         duration: 0.5,
@@ -57,6 +63,12 @@ const NavBarSvg = (props) => {
       gsap.to("#arrow-nav-bar", {
         duration: 0.5,
         rotate: 0,
+        ease: "power1.inOut",
+      });
+      gsap.to(".nav-bar-cont-2", {
+        duration: 0.5,
+        y: "40%",
+        opacity: 1,
         ease: "power1.inOut",
       });
     }
@@ -94,7 +106,7 @@ const NavBarSvg = (props) => {
   };
 
   return (
-    <div style={{ ...containerStyle }}>
+    <div style={{ ...containerStyle }} className="nav-bar-cont-2">
       <div
         style={{
           clipPath: "polygon(0 0%, 100% 0, 100% 92%, 70% 80%, 30% 80%, 0 92%)",
@@ -215,6 +227,22 @@ const NavBarSvg = (props) => {
         }}
         onClick={() => {
           setShow(!show);
+        }}
+        onPointerEnter={() => {
+          gsap.to(".nav-bar-cont-2", {
+            duration: 0.5,
+            opacity: 1,
+            ease: "power1.inOut",
+          });
+        }}
+        onPointerLeave={() => {
+          if (!show) {
+            gsap.to(".nav-bar-cont-2", {
+              duration: 0.5,
+              opacity: 0.3,
+              ease: "power1.inOut",
+            });
+          }
         }}
       >
         <img

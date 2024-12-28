@@ -12,7 +12,7 @@ const NavBar = () => {
     <>
       <div
         style={{
-          position: "fixed",
+          position: "absolute",
           zIndex: 1900,
           top: "50%",
           right: "5%",

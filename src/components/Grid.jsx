@@ -22,11 +22,11 @@ const Grid = () => {
     isMoving.current = true;
     distortionVisibility.current.value = 1.0;
 
-    // Set a timeout to turn off distortion after 5 seconds of inactivity
-    inactivityTimeout.current = setTimeout(() => {
-      isMoving.current = false;
-      gsap.to(distortionVisibility.current, { value: 0.0, duration: 1.0 });
-    }, 100);
+    // // Set a timeout to turn off distortion after 5 seconds of inactivity
+    // inactivityTimeout.current = setTimeout(() => {
+    //   isMoving.current = false;
+    //   gsap.to(distortionVisibility.current, { value: 0.0, duration: 1.0 });
+    // }, 100);
   };
 
   useEffect(() => {

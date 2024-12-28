@@ -23,6 +23,7 @@ import anim from "../assets/json/lightning for face.json";
 import * as htmlToImage from "html-to-image";
 const SharePage = () => {
   const divRef = useRef();
+  const change = useRef({ value: 1 });
   const getImage = () => {
     var node = divRef.current;
     htmlToImage
@@ -162,7 +163,13 @@ const SharePage = () => {
       gsap.to(".share-pop-up", {
         top: 0,
         duration: 0.5,
+
         ease: "power2.inOut",
+      });
+      gsap.to(ref.current, {
+        maskImage: `linear-gradient(0deg, rgba(0,0,0,0.0) ${100}%, rgba(0,0,0,1) ${100}%, rgba(0,0,0,1) 100%)`,
+        ease: "power2.inOut",
+        duration: 0.5,
       });
     } else {
       gsap.to(".share-pop-up", {
@@ -171,10 +178,376 @@ const SharePage = () => {
         ease: "power2.inOut",
       });
       document.body.style.overflow = "auto";
+      gsap.to(ref.current, {
+        maskImage: `linear-gradient(0deg, rgba(0,0,0,0.0) ${-20}%, rgba(0,0,0,1) ${-20}%, rgba(0,0,0,1) 100%)`,
+        ease: "power2.inOut",
+        duration: 0.5,
+      });
     }
   }, [shareOpen]);
   return (
     <>
+      {" "}
+      <div
+        className="share-pop-up"
+        style={{
+          position: "fixed",
+          top: "100vh",
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          zIndex: 1000,
+        }}
+      >
+        {/* <div
+            id="testing-for-ss"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: 100,
+              height: 100,
+              zIndex: 0,
+              backgroundColor: "red",
+              // objectFit: "cover",
+            }}
+          ></div> */}
+        <div
+          className="share-page-backdrop"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            // backgroundColor: "rgba(0, 0, 0, 1)",
+            zIndex: -1,
+          }}
+          onClick={() => {
+            setShareOpen(false);
+          }}
+        />
+        <div
+          className="share-page-overlay"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: (1500 * window.innerWidth) / 1920,
+            height: (753 * window.innerHeight) / 1080,
+            borderRadius: (50 * window.innerWidth) / 1920,
+            border: "5px solid #D3AD62",
+            // backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            zIndex: 2000,
+            overflow: "hidden",
+          }}
+        >
+          <div
+            // ref={divRef}
+            className="left-container"
+            style={{
+              width: "60%",
+              height: "100%",
+              position: "relative",
+              display: "flex",
+            }}
+          >
+            <div
+              className="share-page-carousel"
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "100%",
+                height: "100%",
+                // backgroundColor: "rgba(255, 0, 0, 0.5)",
+              }}
+            >
+              <div
+                className="share-carousel-next-button"
+                style={{
+                  position: "absolute",
+                  right: (20 * window.innerWidth) / 1920,
+                  top: "50%",
+                  transform: "translate(0, -50%)",
+                  cursor: "pointer",
+                  zIndex: 1,
+                }}
+              >
+                <img
+                  src={arrow}
+                  alt=""
+                  style={{
+                    height: (45 * window.innerHeight) / 1080,
+                  }}
+                />
+              </div>
+              <div
+                className="share-carousel-prev-button"
+                style={{
+                  position: "absolute",
+                  left: (20 * window.innerWidth) / 1920,
+                  top: "50%",
+                  transform: "translate(0, -50%)",
+                  cursor: "pointer",
+                  zIndex: 1,
+                }}
+              >
+                <img
+                  src={arrow}
+                  style={{
+                    height: (45 * window.innerHeight) / 1080,
+                    transform: "rotate(180deg)",
+                  }}
+                  alt=""
+                />
+              </div>
+              <div
+                ref={divRef}
+                className="share-carousel-container"
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  // backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  padding: (130 * window.innerHeight) / 1080,
+                  backgroundImage:
+                    "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
+                  outline: "5px solid #D3AD62",
+                  // borderRadius: (50 * window.innerWidth) / 1920,
+                  // outlineOffset: "5px",
+                }}
+              >
+                <div
+                  className="share-carousel-slider"
+                  style={{
+                    // position: "absolute",
+                    // height: 370 * (window.innerHeight / 1080),
+                    // top: "50%",
+                    // transform: "translate(0, -50%)",
+                    // left: 0,
+                    // marginTop: (20 * window.innerHeight) / 1080,
+                    width: "100%",
+
+                    height: "100%",
+
+                    zIndex: 0,
+                  }}
+                >
+                  <Swiper
+                    effect={"coverflow"}
+                    grabCursor={true}
+                    centeredSlides={true}
+                    slidesPerView={3}
+                    coverflowEffect={{
+                      rotate: 0,
+                      stretch: 0,
+                      depth: 50,
+                      modifier: 4,
+                      slideShadows: false,
+                    }}
+                    modules={[EffectCoverflow, Navigation]}
+                    navigation={{
+                      nextEl: ".share-carousel-next-button",
+                      prevEl: ".share-carousel-prev-button",
+                      clickable: true,
+                    }}
+                  >
+                    {cards.map((item) => (
+                      <SwiperSlide>
+                        <div
+                          className="share-carousel-slide"
+                          style={{
+                            // width: 100,
+                            // height: 100,
+                            // height: "100%",
+                            height: 370 * (window.innerHeight / 1080),
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <img
+                            src={tempImage}
+                            style={{
+                              // width: "100%",
+                              height: "100%",
+                            }}
+                            alt=""
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                  <div
+                    className="share-current-select-text"
+                    style={{
+                      marginTop: (20 * window.innerHeight) / 1080,
+                    }}
+                  >
+                    {shareContent.map(
+                      (ele, index) =>
+                        ele.selected && (
+                          <p
+                            style={{
+                              marginBottom: (20 * window.innerHeight) / 1080,
+                            }}
+                          >
+                            {ele.text}
+                          </p>
+                        )
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="right-container"
+            style={{
+              width: "40%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              borderLeft: "5px solid #D3AD62",
+              backgroundImage:
+                "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
+            }}
+          >
+            <div
+              className="share-overlay-header"
+              style={{
+                width: "100%",
+                height: "20%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#D3AD62",
+                color: "black",
+                textAlign: "center",
+                padding: (32 * window.innerHeight) / 1080,
+                fontSize: (32 * window.innerWidth) / 1920,
+              }}
+            >
+              Select text and click share to copy to clipboard
+            </div>
+            <div
+              className="share-overlay-content"
+              style={{
+                height: "60%",
+                width: "100%",
+                // backgroundColor: "blue",
+                borderBottom: "5px solid #D3AD62",
+                // padding: (20 * window.innerWidth) / 1920,
+                padding: `${(40 * window.innerHeight) / 1080}px ${
+                  (60 * window.innerHeight) / 1080
+                }px`,
+                overflowY: "auto",
+              }}
+            >
+              <ul
+                style={{
+                  // listStylePosition: "inside",
+                  listStyleType: "none",
+                  // padding: 10,
+                }}
+              >
+                {shareContent.map((ele, index) => {
+                  return (
+                    <>
+                      <li
+                        style={{
+                          position: "relative",
+                        }}
+                        onClick={() => {
+                          let temp = [...shareContent];
+                          temp.forEach((item) => {
+                            if (item.id === ele.id) {
+                              if (item.selected) {
+                                item.selected = false;
+                              } else item.selected = true;
+                            } else {
+                              item.selected = false;
+                            }
+                          });
+                          setShareContent(temp);
+                          console.log(shareContent);
+                        }}
+                      >
+                        <img
+                          src={ulImage}
+                          alt=""
+                          style={{
+                            width: (20 * window.innerWidth) / 1920,
+                            height: (20 * window.innerHeight) / 1080,
+                            margin: 0,
+                            padding: 0,
+                            transform: "translate(-100%, 25%)",
+                            position: "absolute",
+                            opacity: ele.selected ? 1 : 0,
+                          }}
+                        />
+                        <p
+                          key={index}
+                          style={{
+                            // fontSize: (20 * window.innerWidth) / 1920,
+                            marginLeft: (20 * window.innerWidth) / 1920,
+                            // padding: (10 * window.innerWidth) / 1920,
+                            // color: "#D3AD62",
+                            fontSize: (27 * window.innerWidth) / 1920,
+                            marginBottom: (50 * window.innerHeight) / 1080,
+                          }}
+                        >
+                          {ele.text}
+                        </p>
+                      </li>
+                    </>
+                  );
+                })}
+              </ul>
+            </div>
+            <div
+              className="share-overlay-share"
+              style={{
+                width: "100%",
+                height: "20%",
+                display: "flex",
+              }}
+            >
+              <div
+                className="share-overlay-copy-icon"
+                style={{
+                  flex: 1,
+                  // padding: (50 * window.innerWidth) / 1920,
+                  // borderRight: "5px solid #D3AD62",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  fontFamily: "TTtravels Next DemiBold",
+                  fontSize: (55 * window.innerWidth) / 1920,
+                }}
+                onClick={() => {
+                  getImage();
+                  const ele = document.querySelector(
+                    ".share-overlay-copy-icon"
+                  );
+                  ele.innerHTML = "Copied!";
+                  setTimeout(() => {
+                    ele.innerHTML = "Share";
+                  }, 2000);
+                }}
+              >
+                Share
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
         ref={ref}
         className="sharing-page"
@@ -188,366 +561,6 @@ const SharePage = () => {
           alignItems: "center",
         }}
       >
-        <div
-          className="share-pop-up"
-          style={{
-            position: "fixed",
-            top: "100vh",
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            zIndex: 1000,
-          }}
-        >
-          {/* <div
-            id="testing-for-ss"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: 100,
-              height: 100,
-              zIndex: 0,
-              backgroundColor: "red",
-              // objectFit: "cover",
-            }}
-          ></div> */}
-          <div
-            className="share-page-backdrop"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 1)",
-              zIndex: -1,
-            }}
-            onClick={() => {
-              setShareOpen(false);
-            }}
-          />
-          <div
-            className="share-page-overlay"
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: (1500 * window.innerWidth) / 1920,
-              height: (753 * window.innerHeight) / 1080,
-              borderRadius: (50 * window.innerWidth) / 1920,
-              border: "5px solid #D3AD62",
-              // backgroundColor: "rgba(0, 0, 0, 0.5)",
-              display: "flex",
-              zIndex: 2000,
-              overflow: "hidden",
-            }}
-          >
-            <div
-              // ref={divRef}
-              className="left-container"
-              style={{
-                width: "60%",
-                height: "100%",
-                position: "relative",
-                display: "flex",
-              }}
-            >
-              <div
-                className="share-page-carousel"
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: "100%",
-                  height: "100%",
-                  // backgroundColor: "rgba(255, 0, 0, 0.5)",
-                }}
-              >
-                <div
-                  className="share-carousel-next-button"
-                  style={{
-                    position: "absolute",
-                    right: (20 * window.innerWidth) / 1920,
-                    top: "50%",
-                    transform: "translate(0, -50%)",
-                    cursor: "pointer",
-                    zIndex: 1,
-                  }}
-                >
-                  <img
-                    src={arrow}
-                    alt=""
-                    style={{
-                      height: (45 * window.innerHeight) / 1080,
-                    }}
-                  />
-                </div>
-                <div
-                  className="share-carousel-prev-button"
-                  style={{
-                    position: "absolute",
-                    left: (20 * window.innerWidth) / 1920,
-                    top: "50%",
-                    transform: "translate(0, -50%)",
-                    cursor: "pointer",
-                    zIndex: 1,
-                  }}
-                >
-                  <img
-                    src={arrow}
-                    style={{
-                      height: (45 * window.innerHeight) / 1080,
-                      transform: "rotate(180deg)",
-                    }}
-                    alt=""
-                  />
-                </div>
-                <div
-                  ref={divRef}
-                  className="share-carousel-container"
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "100%",
-                    // backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    padding: (130 * window.innerHeight) / 1080,
-                    backgroundImage:
-                      "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
-                    outline: "5px solid #D3AD62",
-                    // borderRadius: (50 * window.innerWidth) / 1920,
-                    // outlineOffset: "5px",
-                  }}
-                >
-                  <div
-                    className="share-carousel-slider"
-                    style={{
-                      // position: "absolute",
-                      // height: 370 * (window.innerHeight / 1080),
-                      // top: "50%",
-                      // transform: "translate(0, -50%)",
-                      // left: 0,
-                      // marginTop: (20 * window.innerHeight) / 1080,
-                      width: "100%",
-
-                      height: "100%",
-
-                      zIndex: 0,
-                    }}
-                  >
-                    <Swiper
-                      effect={"coverflow"}
-                      grabCursor={true}
-                      centeredSlides={true}
-                      slidesPerView={3}
-                      coverflowEffect={{
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 50,
-                        modifier: 4,
-                        // slideShadows: true,
-                      }}
-                      modules={[EffectCoverflow, Navigation]}
-                      navigation={{
-                        nextEl: ".share-carousel-next-button",
-                        prevEl: ".share-carousel-prev-button",
-                        clickable: true,
-                      }}
-                    >
-                      {cards.map((item) => (
-                        <SwiperSlide>
-                          <div
-                            className="share-carousel-slide"
-                            style={{
-                              // width: 100,
-                              // height: 100,
-                              // height: "100%",
-                              height: 370 * (window.innerHeight / 1080),
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <img
-                              src={tempImage}
-                              style={{
-                                // width: "100%",
-                                height: "100%",
-                              }}
-                              alt=""
-                            />
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      className="share-current-select-text"
-                      style={{
-                        marginTop: (20 * window.innerHeight) / 1080,
-                      }}
-                    >
-                      {shareContent.map(
-                        (ele, index) =>
-                          ele.selected && (
-                            <p
-                              style={{
-                                marginBottom: (20 * window.innerHeight) / 1080,
-                              }}
-                            >
-                              {ele.text}
-                            </p>
-                          )
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="right-container"
-              style={{
-                width: "40%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                borderLeft: "5px solid #D3AD62",
-                backgroundImage:
-                  "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
-              }}
-            >
-              <div
-                className="share-overlay-header"
-                style={{
-                  width: "100%",
-                  height: "20%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#D3AD62",
-                  color: "black",
-                  textAlign: "center",
-                  padding: (32 * window.innerHeight) / 1080,
-                  fontSize: (32 * window.innerWidth) / 1920,
-                }}
-              >
-                Select text and click share to copy to clipboard
-              </div>
-              <div
-                className="share-overlay-content"
-                style={{
-                  height: "60%",
-                  width: "100%",
-                  // backgroundColor: "blue",
-                  borderBottom: "5px solid #D3AD62",
-                  // padding: (20 * window.innerWidth) / 1920,
-                  padding: `${(40 * window.innerHeight) / 1080}px ${
-                    (60 * window.innerHeight) / 1080
-                  }px`,
-                  overflowY: "auto",
-                }}
-              >
-                <ul
-                  style={{
-                    // listStylePosition: "inside",
-                    listStyleType: "none",
-                    // padding: 10,
-                  }}
-                >
-                  {shareContent.map((ele, index) => {
-                    return (
-                      <>
-                        <li
-                          style={{
-                            position: "relative",
-                          }}
-                          onClick={() => {
-                            let temp = [...shareContent];
-                            temp.forEach((item) => {
-                              if (item.id === ele.id) {
-                                if (item.selected) {
-                                  item.selected = false;
-                                } else item.selected = true;
-                              } else {
-                                item.selected = false;
-                              }
-                            });
-                            setShareContent(temp);
-                            console.log(shareContent);
-                          }}
-                        >
-                          <img
-                            src={ulImage}
-                            alt=""
-                            style={{
-                              width: (20 * window.innerWidth) / 1920,
-                              height: (20 * window.innerHeight) / 1080,
-                              margin: 0,
-                              padding: 0,
-                              transform: "translate(-100%, 25%)",
-                              position: "absolute",
-                              opacity: ele.selected ? 1 : 0,
-                            }}
-                          />
-                          <p
-                            key={index}
-                            style={{
-                              // fontSize: (20 * window.innerWidth) / 1920,
-                              marginLeft: (20 * window.innerWidth) / 1920,
-                              // padding: (10 * window.innerWidth) / 1920,
-                              // color: "#D3AD62",
-                              fontSize: (27 * window.innerWidth) / 1920,
-                              marginBottom: (50 * window.innerHeight) / 1080,
-                            }}
-                          >
-                            {ele.text}
-                          </p>
-                        </li>
-                      </>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div
-                className="share-overlay-share"
-                style={{
-                  width: "100%",
-                  height: "20%",
-                  display: "flex",
-                }}
-              >
-                <div
-                  className="share-overlay-copy-icon"
-                  style={{
-                    flex: 1,
-                    // padding: (50 * window.innerWidth) / 1920,
-                    // borderRight: "5px solid #D3AD62",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    fontFamily: "TTtravels Next DemiBold",
-                    fontSize: (55 * window.innerWidth) / 1920,
-                  }}
-                  onClick={() => {
-                    getImage();
-                    const ele = document.querySelector(
-                      ".share-overlay-copy-icon"
-                    );
-                    ele.innerHTML = "Copied!";
-                    setTimeout(() => {
-                      ele.innerHTML = "Share";
-                    }, 2000);
-                  }}
-                >
-                  Share
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div
           style={{
             margin: 0,

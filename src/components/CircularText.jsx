@@ -331,7 +331,7 @@ const CircularText = ({ texts, radius }) => {
                   <div
                     style={{
                       transform: ` rotate(${angle}deg) translateX(${
-                        radius + (change * 2000 * window.innerHeight) / 1080
+                        radius + (change * 2500 * window.innerHeight) / 1080
                       }px) `,
                       transformOrigin: `left center`,
                       fontFamily: "TTtravels Next Demibold",
