@@ -140,7 +140,6 @@ export function GlobeModel(props) {
           end: "top top",
           toggleActions: "play none none reverse",
           scrub: 0.1,
-          markers: true,
           onLeave: () => {
             setCanDrag(true);
           },
@@ -407,7 +406,7 @@ export function GlobeModel(props) {
                     vec3 viewDirection = normalize(cameraPosition - vPosition);
                     float fresnel = abs(dot(normal, viewDirection));
                     float opacity = 0.3 - pow(fresnel, 10.0);
-                    gl_FragColor = vec4(0.0,0.0,0.0, 0.3);
+                    gl_FragColor = vec4(0.0,0.0,0.0, 0.001);
                     
                   }`}
                 // transparent
