@@ -138,12 +138,27 @@ const ThreeJsCanvas = () => {
         top: "-100vh",
         scrollTrigger: {
           trigger: ".cuisines-of-TN-trigger",
-          start: "bottom bottom",
+          start: "bottom 50%",
           end: "bottom top",
           scrub: true,
         },
         ease: "none",
         immediateRender: false,
+      }
+    );
+    gsap.fromTo(
+      ".globe-mask2",
+      {
+        maskImage: `linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%)`,
+      },
+      {
+        maskImage: `linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 100%, rgba(255,255,255,1) 100%)`,
+        scrollTrigger: {
+          trigger: ".cuisines-of-TN-trigger",
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+        },
       }
     );
   });
@@ -233,49 +248,59 @@ const ThreeJsCanvas = () => {
         }}
       >
         <div
-          className="globe-mask"
+          className="globe-mask2"
           style={{
             height: "100%",
             width: "100%",
-            maskImage: `linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) ${
-              15 * change
-            }%, rgba(255,255,255,1) ${50 * change}%, rgba(255,255,255,1) 100%)`,
           }}
         >
-          <Canvas
-            style={
-              {
-                // pointerEvents: "none",
-              }
-            }
+          <div
+            className="globe-mask"
+            style={{
+              height: "100%",
+              width: "100%",
+              maskImage: `linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) ${
+                15 * change
+              }%, rgba(255,255,255,1) ${
+                50 * change
+              }%, rgba(255,255,255,1) 100%)`,
+            }}
           >
-            <EffectComposer>
-              <ambientLight intensity={2} />
-              <directionalLight intensity={3} position={[5, 10, 10]} />
-              {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
-              {/* 
+            <Canvas
+              style={
+                {
+                  // pointerEvents: "none",
+                }
+              }
+            >
+              <EffectComposer>
+                <ambientLight intensity={2} />
+                <directionalLight intensity={3} position={[5, 10, 10]} />
+                {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
+                {/* 
           <OrthographicCamera
             makeDefault
             position={[0, 0, 20]}
             zoom={1000}
             // left={-1
           /> */}
-              <PerspectiveCamera
-                makeDefault={true}
-                far={1000}
-                near={0.001}
-                fov={22.895}
-                position={[0, 0, 2.212]}
-                zoom={0.9}
-              />
-              {/* <OrbitControls /> */}
+                <PerspectiveCamera
+                  makeDefault={true}
+                  far={1000}
+                  near={0.001}
+                  fov={22.895}
+                  position={[0, 0, 2.212]}
+                  zoom={0.9}
+                />
+                {/* <OrbitControls /> */}
 
-              {/* <FGlobeModel position={[1, 0, 0]} /> */}
-              <GlobeModel position={[1, 0, 0]} />
-              {/* <TrialModel position={[1, 0, 0]} /> */}
-            </EffectComposer>
-            {/* <CountriesModel position={[1, 0, 0]} /> */}
-          </Canvas>
+                {/* <FGlobeModel position={[1, 0, 0]} /> */}
+                <GlobeModel position={[1, 0, 0]} />
+                {/* <TrialModel position={[1, 0, 0]} /> */}
+              </EffectComposer>
+              {/* <CountriesModel position={[1, 0, 0]} /> */}
+            </Canvas>
+          </div>
         </div>
       </div>
       <div

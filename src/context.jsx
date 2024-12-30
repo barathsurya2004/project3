@@ -35,6 +35,8 @@ export const Context = createContext({
   setLight: () => {},
   interaction: 1,
   setInteraction: () => {},
+  modelsPosition: {},
+  setModelsPosition: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -55,6 +57,9 @@ export const ContextProvider = ({ children }) => {
   const [speed, setSpeed] = useState(1);
   const [light, setLight] = useState(false);
   const [interaction, setInteraction] = useState(1);
+  const [modelsPosition, setModelsPosition] = useState({
+    qMark: [0, 0],
+  });
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
     setPointer([clientX, clientY]);
@@ -256,6 +261,8 @@ export const ContextProvider = ({ children }) => {
     setLight,
     interaction,
     setInteraction,
+    modelsPosition,
+    setModelsPosition,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

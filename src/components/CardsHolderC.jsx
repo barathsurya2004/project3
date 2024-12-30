@@ -107,7 +107,7 @@ const CardHolder = ({ children, idd }) => {
               style={{
                 width: "10px",
                 height: "10px",
-                backgroundColor: "black",
+                // backgroundColor: "black",
                 borderRadius: "50%",
                 margin: "0 5px",
               }}

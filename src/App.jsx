@@ -23,6 +23,7 @@ import HoverDisplay from "./components/HoverDisplay";
 import WhatIsFoodCanvas from "./components/WhatIsFoodCanvas";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Interactions from "./components/Interactions";
 
 function App() {
   const { loading, light } = useContext(Context);
@@ -61,6 +62,7 @@ function App() {
           //
         }}
       >
+        <Interactions />
         <ThreeJsCanvas />
         <Hero />
         <CircularAnimation

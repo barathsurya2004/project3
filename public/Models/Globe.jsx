@@ -16,6 +16,7 @@ export function GlobeModel(props) {
   const rotRef = React.useRef();
   const [active, setActive] = React.useState(true);
   const [shouldRotate, setShouldRotate] = React.useState(true);
+  const [canDrag, setCanDrag] = React.useState(false);
   const [statesVisible, setStatesVisible] = React.useState(false);
   const [hovering, setHovering] = React.useState(false);
   const [districtsVisible, setDistrictsVisible] = React.useState(false);
@@ -139,6 +140,13 @@ export function GlobeModel(props) {
           end: "top top",
           toggleActions: "play none none reverse",
           scrub: 0.1,
+          markers: true,
+          onLeave: () => {
+            setCanDrag(true);
+          },
+          onEnterBack: () => {
+            setCanDrag(false);
+          },
         },
         immediateRender: false,
       }
@@ -175,6 +183,7 @@ export function GlobeModel(props) {
           toggleActions: "play none none reverse",
           scrub: 0.1,
           onEnter: () => {
+            setCanDrag(false);
             setShouldRotate(false);
             gsap.to(rotRef.current.rotation, {
               y: 0,
@@ -188,6 +197,7 @@ export function GlobeModel(props) {
             setStatesVisible(true);
           },
           onLeaveBack: () => {
+            setCanDrag(true);
             setShouldRotate(true);
             setStatesVisible(false);
           },
@@ -280,6 +290,22 @@ export function GlobeModel(props) {
         immediateRender: false,
       }
     );
+    gsap.fromTo(
+      mainRef.current.position,
+      {
+        y: 0.2,
+      },
+      {
+        y: 0.3,
+        scrollTrigger: {
+          trigger: ".cuisines-of-TN-trigger",
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+        immediateRender: false,
+      }
+    );
   });
   useEffect(() => {
     if (!dragging && !hovering) {
@@ -290,7 +316,7 @@ export function GlobeModel(props) {
   }, [dragging, hovering]);
 
   useFrame((state) => {
-    if (dragging) {
+    if (dragging && canDrag) {
       const x = state.pointer.x;
       const y = state.pointer.y;
       const dx = x - initialMouse.x;
@@ -335,10 +361,10 @@ export function GlobeModel(props) {
           // prevMousePosition.current = null;
         }}
         onPointerEnter={() => {
-          setHovering(true);
+          if (canDrag) setHovering(true);
         }}
         onPointerLeave={() => {
-          setHovering(false);
+          if (canDrag) setHovering(false);
           setDragging(false);
         }}
       >
@@ -353,7 +379,40 @@ export function GlobeModel(props) {
             geometry={nodes.frame.geometry}
             material={nodes.frame.material}
             scale={1.199}
+            onPointerEnter={(e) => {
+              e.stopPropagation();
+            }}
           >
+            <mesh scale={0.98} castShadow={false} receiveShadow={false}>
+              <sphereGeometry args={[1, 32, 32]} />
+              <shaderMaterial
+                vertexShader={`
+              varying vec3 vNormal;
+              varying vec3 vPosition;
+              varying vec2 vUv;
+              void main() {
+                vNormal = normal;
+                vPosition = position;
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+                `}
+                // adding fresnel effect to the opacity of the shpere
+                fragmentShader={`
+                  varying vec3 vNormal;
+                  varying vec3 vPosition;
+                  varying vec2 vUv;
+                  void main() {
+                    vec3 normal = normalize(vNormal);
+                    vec3 viewDirection = normalize(cameraPosition - vPosition);
+                    float fresnel = abs(dot(normal, viewDirection));
+                    float opacity = 0.3 - pow(fresnel, 10.0);
+                    gl_FragColor = vec4(0.0,0.0,0.0, 0.3);
+                    
+                  }`}
+                // transparent
+              />
+            </mesh>
             <group
               name="AMER"
               position={[-0.116, 0.302, -0.876]}

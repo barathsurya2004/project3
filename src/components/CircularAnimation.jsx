@@ -185,14 +185,6 @@ const CircularAnimation = () => {
                   fontFamily: "TTtravels Next Demibold",
                   // opacity: 0.3,
                   fontSize: (55 * window.innerHeight) / 1080,
-                  cursor: current !== null ? "pointer" : "auto",
-                }}
-                onClick={() => {
-                  console.log(index);
-
-                  if (current === null) return;
-                  setQuestionSelected(index);
-                  let delta = -current + index;
                 }}
               >
                 {text}
