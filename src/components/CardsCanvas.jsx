@@ -1,3 +1,4 @@
+import { useGSAP } from "@gsap/react";
 import {
   CameraControls,
   OrbitControls,
@@ -6,10 +7,14 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
-import { useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
+import CardRotateHelp from "./CardRotateHelp";
+import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
+import { BlurPass, Resizer, KernelSize, Resolution } from "postprocessing";
 
 const CardsCanvas = ({ children, onDoubleClick }) => {
   const ref = useRef();
+
   return (
     <div
       style={{
@@ -20,14 +25,26 @@ const CardsCanvas = ({ children, onDoubleClick }) => {
     >
       <Canvas
         onPointerOut={() => {
-          console.log(ref.current);
-          // ref.current?.reset();
           if (ref.current) {
             ref.current.setAzimuthalAngle(0);
           }
         }}
       >
         <ambientLight intensity={1.1} />
+        <Suspense fallback={null}>
+          <EffectComposer multisampling={0}>
+            {/* <SMAA /> */}
+            <Bloom
+              intensity={1.0} // The bloom intensity.
+              kernelSize={KernelSize.LARGE} // blur kernel size
+              luminanceThreshold={0.9} // luminance threshold. Raise this value to mask out darker elements in the scene.
+              luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
+              mipmapBlur={false} // Enables or disables mipmap blur.
+              resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
+              resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
+            />
+          </EffectComposer>
+        </Suspense>
 
         <OrbitControls
           ref={ref}
@@ -42,7 +59,7 @@ const CardsCanvas = ({ children, onDoubleClick }) => {
         <directionalLight position={[0, 10, 5]} intensity={1} />
         {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={150} /> */}
         <PerspectiveCamera makeDefault position={[0, 0, 10]} zoom={1.5} />
-        {children}
+        <CardRotateHelp>{children}</CardRotateHelp>
       </Canvas>
     </div>
   );

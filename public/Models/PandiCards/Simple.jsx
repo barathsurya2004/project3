@@ -4,10 +4,15 @@ Command: npx gltfjsx@6.5.3 simple.glb -k -K
 */
 
 import React from "react";
-import { useGLTF } from "@react-three/drei";
-
+import { Caustics, MeshRefractionMaterial, useGLTF } from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
+import { RGBELoader } from "three-stdlib";
 export function SimpleCard(props) {
   const { nodes, materials } = useGLTF("/Models/PandiCards/simple.glb");
+  const texture = useLoader(
+    RGBELoader,
+    "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr"
+  );
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -32,13 +37,24 @@ export function SimpleCard(props) {
             material={materials["Material.019"]}
             scale={[1, 1.329, 1]}
           />
+
           <mesh
             name="Jewel_03_Circle002"
             geometry={nodes.Jewel_03_Circle002.geometry}
-            material={materials["Game Gold Coin.002"]}
+            // material={materials["Game Gold Coin.002"]}
             position={[0, 0, -0.061]}
             scale={[0.019, 0.026, 0.019]}
-          />
+          >
+            {/* for a diamond */}{" "}
+            <MeshRefractionMaterial
+              envMap={texture}
+              toneMapped={false}
+              // bounces={}
+              refractionRatio={0.98}
+              roughness={0}
+              // metalness={1}
+            />
+          </mesh>
         </group>
       </group>
     </group>

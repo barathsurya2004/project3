@@ -156,9 +156,11 @@ const ThreeJsCanvas = () => {
         scrollTrigger: {
           trigger: ".cuisines-of-TN-trigger",
           start: "bottom bottom",
-          end: "bottom top",
+          end: "bottom 50%",
           scrub: true,
+          // markers: true,
         },
+        ease: "none",
       }
     );
   });

@@ -4,10 +4,16 @@ Command: npx gltfjsx@6.5.3 intricate.glb -k -K
 */
 
 import React from "react";
-import { useGLTF } from "@react-three/drei";
+import { MeshRefractionMaterial, useGLTF } from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
+import { RGBELoader } from "three-stdlib";
 
 export function IntricateCard(props) {
   const { nodes, materials } = useGLTF("/Models/ChettiCards/intricate.glb");
+  const texture = useLoader(
+    RGBELoader,
+    "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr"
+  );
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -35,10 +41,18 @@ export function IntricateCard(props) {
           <mesh
             name="Jewel_02_Circle001"
             geometry={nodes.Jewel_02_Circle001.geometry}
-            material={materials["RAL Classic Red hues"]}
+            // material={materials["RAL Classic Red hues"]}
             position={[0, 0, -0.042]}
             scale={[0.018, 0.039, 0.018]}
-          />
+          >
+            <MeshRefractionMaterial
+              envMap={texture}
+              toneMapped={false}
+              refractionRatio={0.98}
+              roughness={0}
+              color={"red"}
+            />
+          </mesh>
         </group>
       </group>
     </group>

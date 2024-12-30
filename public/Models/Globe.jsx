@@ -301,7 +301,9 @@ export function GlobeModel(props) {
           start: "bottom bottom",
           end: "bottom top",
           scrub: true,
+          // markers: true,
         },
+        ease: "none",
         immediateRender: false,
       }
     );

@@ -23,12 +23,14 @@
     "html2canvas": "^1.4.1",
     "leva": "^0.9.35",
     "lottie-react": "^2.4.0",
+    "postprocessing": "^6.36.5",
     "r3f-perf": "^7.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "split-type": "^0.3.4",
     "swiper": "^11.1.15",
     "three": "^0.167.1",
+    "three-stdlib": "^2.35.2",
     "use-react-screenshot": "^4.0.0"
   },
   "devDependencies": {

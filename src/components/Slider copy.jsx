@@ -177,6 +177,33 @@ const Slider1 = () => {
         },
       },
     });
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".slider-stay-scroll",
+        start: "top bottom",
+        end: "bottom bottom",
+        onEnter: () => {
+          setSliderValue(50);
+          gsap.to(".slider-compare__center-line", {
+            left: "25%",
+            duration: 0.1,
+          });
+          gsap.to(".slider-button-cont", {
+            left: "50%",
+          });
+        },
+        onLeaveBack: () => {
+          setSliderValue(50);
+          gsap.to(".slider-compare__center-line", {
+            left: "25%",
+            duration: 0.1,
+          });
+          gsap.to(".slider-button-cont", {
+            left: "50%",
+          });
+        },
+      },
+    });
   });
 
   return (
