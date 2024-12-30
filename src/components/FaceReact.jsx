@@ -284,11 +284,9 @@ const FaceReact = () => {
     gsap.fromTo(
       ".face-reacting-page",
       {
-        display: "block",
         opacity: 1,
       },
       {
-        display: "none",
         opacity: 0,
         duration: 0.2,
         scrollTrigger: {
@@ -296,8 +294,10 @@ const FaceReact = () => {
           start: "top bottom",
           toggleActions: "play none none reverse",
         },
+        onComplete: (e) => {
+          console.log(e);
+        },
         ease: "none",
-        immediateRender: false,
       }
     );
   });
@@ -322,6 +322,7 @@ const FaceReact = () => {
           zIndex: 500,
           // display: "none",
           opacity: 0,
+          transform: "translateY(-100vh)",
         }}
       >
         {/* <div

@@ -66,12 +66,6 @@ const EndingPage = () => {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          onEnter: () => {
-            document.querySelector(".ending-page").style.zIndex = 510;
-          },
-          onLeaveBack: () => {
-            document.querySelector(".ending-page").style.zIndex = 50;
-          },
         },
       }
     );

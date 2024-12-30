@@ -142,7 +142,18 @@ const SharePage = () => {
         },
         onLeaveBack: () => {
           console.log("please go back");
-          gsap.fromTo(".face-reacting-page", { opacity: 1 }, { opacity: 0 });
+          gsap.fromTo(
+            ".face-reacting-page",
+            { opacity: 1 },
+            {
+              opacity: 0,
+              onComplete: () => {
+                gsap.set(".face-reacting-page", {
+                  y: "100vh",
+                });
+              },
+            }
+          );
           gsap.fromTo(".sharing-page", { opacity: 0 }, { opacity: 1 });
           gsap.fromTo(
             ".face-model",
@@ -749,11 +760,13 @@ const SharePage = () => {
                 opacity: 1,
                 duration: 0.001,
               });
+              gsap.set(".face-reacting-page", {
+                y: 0,
+              });
               gsap.fromTo(
                 ".face-reacting-page",
-                { display: "none", opacity: 0 },
+                { opacity: 0 },
                 {
-                  display: "block",
                   opacity: 1,
                   duration: 0.001,
                   ease: "none",

@@ -8,7 +8,7 @@ const Definition = () => {
           <div className="hdib" fallback>
             <p>your browser does'nt support audio</p>
           </div>
-          <source type="audio/mpeg" src="src/assets/Sounds/ukfolksFood.mp3" />
+          <source type="audio/mpeg" src="/Sounds/ukfolksFood.mp3" />
         </audio>
         <h1>
           <img
