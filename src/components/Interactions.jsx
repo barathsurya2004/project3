@@ -71,6 +71,16 @@ const Interactions = () => {
           </p>
         </div>
       </div>
+      <div
+        className="testing"
+        style={{
+          position: "fixed",
+          top: modelsPosition.globePandi[1],
+          left: modelsPosition.globePandi[0],
+        }}
+      >
+        <p>heheh</p>
+      </div>
     </>
   );
 };

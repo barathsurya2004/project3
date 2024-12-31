@@ -39,6 +39,11 @@ export function GlobeModel(props) {
   const pandiRef = React.useRef();
   const chettiRef = React.useRef();
   const [forced, setForced] = React.useState(false);
+  const pointerEnterEvent = new Event("pointerenter", {
+    bubbles: true,
+    cancelable: true,
+  });
+
   useEffect(() => {
     if (forced) {
       setMeshSelected(null);
@@ -73,20 +78,6 @@ export function GlobeModel(props) {
     }
 
     // Calculate screen position of pandiRef (nested object)
-    if (pandiRef.current) {
-      const pandiWorldPosition = new THREE.Vector3();
-      pandiRef.current.getWorldPosition(pandiWorldPosition); // Get world position of pandiRef
-      pandiWorldPosition.project(state.camera); // Project world position to normalized device coordinates (NDC)
-
-      // Convert NDC to screen space
-      const pandiScreenX = pandiWorldPosition.x * widthHalf + widthHalf;
-      const pandiScreenY = -(pandiWorldPosition.y * heightHalf) + heightHalf;
-
-      // Set the position of pandiRef (you can update state or perform other actions)
-      const temp = modelsPosition;
-      temp.pandi = [pandiScreenX, pandiScreenY];
-      setModelsPosition(temp);
-    }
   });
 
   useGSAP(() => {
@@ -114,6 +105,7 @@ export function GlobeModel(props) {
       });
     }
     if (districtsVisible) {
+      console.log(pandiRef.current);
       gsap.set(TnStateRef.current.scale, {
         x: 0,
         y: 0,
@@ -1606,6 +1598,7 @@ export function GlobeModel(props) {
                 rotation={[0.082, 0.18, 0.013]}
                 scale={4.17}
                 onPointerEnter={(e) => {
+                  console.log(e);
                   e.stopPropagation();
                   if (dragging) return;
                   if (!forced) setMeshSelected(e.object.parent.name);

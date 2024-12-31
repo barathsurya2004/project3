@@ -20,7 +20,7 @@ createRoot(document.getElementById("root")).render(
           position: "fixed",
           top: 0,
           left: 0,
-          zIndex: 1010,
+          zIndex: 10000,
           opacity: 0.075,
           pointerEvents: "none",
         }}

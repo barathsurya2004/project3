@@ -10,6 +10,8 @@ import back from "../assets/icons/loaderBack.svg";
 gsap.registerPlugin(CustomEase);
 const Loader = () => {
   const { progress } = useProgress();
+  const hori = 11;
+  const verti = 19;
   const { loading, setLoading } = useContext(Context);
   useEffect(() => {
     if (progress === 100) {
@@ -106,15 +108,51 @@ const Loader = () => {
       },
       yoyo: true,
     });
+    gsap.to(".grid-lines-hori", {
+      width: "100%",
+      duration: 4.371,
+      stagger: {
+        amount: 1,
+        from: "random",
+      },
+      ease: CustomEase.create("custom", "M0,0 C0.33,0 0.67,1 1,1 "),
+    });
+    gsap.to(".grid-lines-verti", {
+      height: "100%",
+      duration: 4.371,
+      stagger: {
+        amount: 1,
+        from: "random",
+      },
+      ease: CustomEase.create("custom", "M0,0 C0.33,0 0.67,1 1,1 "),
+    });
   });
   return (
     <div
       className="loader"
       style={{
         // background: "black",
-        zIndex: 1000,
+        zIndex: 9999,
       }}
     >
+      <div className="bg-container">
+        <div className="horizontal-lines">
+          {Array.from({ length: hori }, (item, index) => (
+            <div
+              className="grid-lines-hori"
+              key={index}
+              style={{
+                top: `${(window.innerHeight / 8) * index}px`,
+              }}
+            ></div>
+          ))}
+        </div>
+        <div className="vertical-lines">
+          {Array.from({ length: verti }, (item, index) => (
+            <div className="grid-lines-verti" key={index}></div>
+          ))}
+        </div>
+      </div>
       <div className="container">
         <div
           className="text"
