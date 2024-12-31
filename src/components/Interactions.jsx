@@ -45,7 +45,29 @@ const Interactions = () => {
               //   color: "white",
             }}
           >
-            {temp[questionSelected]}
+            {questionSelected === null
+              ? "Drag the wheel to explore"
+              : temp[questionSelected]}
+          </p>
+        </div>
+        <div
+          className="globe-interactions"
+          style={{
+            position: "absolute",
+            left: modelsPosition.globe[0],
+            top: modelsPosition.globe[1],
+          }}
+        >
+          <p
+            style={{
+              fontSize: (27 * window.innerWidth) / 1920,
+              transform: "translate(-50%, -50%)",
+              //   color: "white",
+              width: "90%",
+            }}
+          >
+            Hover, Click and Drag to explore the world through the lens of
+            cuisines
           </p>
         </div>
       </div>

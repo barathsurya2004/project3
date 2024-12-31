@@ -70,32 +70,38 @@ const Grid = () => {
         fragmentShader={`  
           varying vec3 vPosition;
 
-          uniform vec2 uMouse;
-          uniform float uCircleRadius;
-          uniform float uVisibility;
+uniform vec2 uMouse;
+uniform float uCircleRadius;
+uniform float uVisibility;
 
-          void main() {
-            // Calculate distance from the current fragment to the mouse position
-            float dist = distance(vPosition.xy, uMouse);
+void main() {
+  // Calculate distance from the current fragment to the mouse position
+  float dist = distance(vPosition.xy, uMouse);
 
-            // Apply distortion effect
-            vec2 distortion = vPosition.xy - uMouse;
-            distortion *= smoothstep(uCircleRadius, 0.0, dist) * 0.2 * uVisibility;
+  // Apply distortion effect
+  vec2 distortion = vPosition.xy - uMouse;
+  distortion *= smoothstep(uCircleRadius, 0.0, dist) * 0.2 * uVisibility;
 
-            // Grid effect
-            float gridSize = 2.0; // Adjust the grid cell size
-            float lineWidth = 0.02; // Adjust the grid line thickness
-            vec2 gridPos = mod(vPosition.xy + distortion, gridSize);
-            bool isLineX = gridPos.x < lineWidth || gridPos.x > (gridSize - lineWidth);
-            bool isLineY = gridPos.y < lineWidth || gridPos.y > (gridSize - lineWidth);
+  // Dynamic line thickness based on distance
+  float gridSize = 2.0;          // Adjust the grid cell size
+  float baseLineWidth = 0.02;    // Base grid line thickness
+  float thicknessScale = 0.05;    // Scale factor for thickness increase
+  float dynamicLineWidth = baseLineWidth + 
+                           thicknessScale * smoothstep(uCircleRadius, 0.0, dist);
 
-            // Distorted gridlines
-            if (isLineX || isLineY) {
-              gl_FragColor = vec4(0.117647, 0.117647, 0.117647, 1.0); // Gridline color
-              } else {
-                gl_FragColor = vec4(0.062745, 0.062745, 0.062745, 0.0); // Background color
-            }
-          }
+  // Grid effect
+  vec2 gridPos = mod(vPosition.xy + distortion, gridSize);
+  bool isLineX = gridPos.x < dynamicLineWidth || gridPos.x > (gridSize - dynamicLineWidth);
+  bool isLineY = gridPos.y < dynamicLineWidth || gridPos.y > (gridSize - dynamicLineWidth);
+
+  // Distorted gridlines
+  if (isLineX || isLineY) {
+    gl_FragColor = vec4(0.117647, 0.117647, 0.117647, 1.0); // Gridline color
+  } else {
+    gl_FragColor = vec4(0.062745, 0.062745, 0.062745, 0.0); // Background color
+  }
+}
+
         `}
       />
     </mesh>

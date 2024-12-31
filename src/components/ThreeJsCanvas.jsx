@@ -137,7 +137,7 @@ const ThreeJsCanvas = () => {
       {
         top: "-100vh",
         scrollTrigger: {
-          trigger: ".cuisines-of-TN-trigger",
+          trigger: ".pandiyaNadu-intro",
           start: "bottom 50%",
           end: "bottom top",
           scrub: true,
@@ -154,7 +154,7 @@ const ThreeJsCanvas = () => {
       {
         maskImage: `linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 100%, rgba(255,255,255,1) 100%)`,
         scrollTrigger: {
-          trigger: ".cuisines-of-TN-trigger",
+          trigger: ".pandiyaNadu-intro",
           start: "bottom bottom",
           end: "bottom 50%",
           scrub: true,

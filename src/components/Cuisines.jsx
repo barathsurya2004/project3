@@ -4,7 +4,10 @@ gsap.registerPlugin(useGSAP);
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 import "./Cuisines.css";
+import { useContext } from "react";
+import { Context } from "../context";
 const Cuisines = () => {
+  const { setMeshSelected, meshSelected } = useContext(Context);
   useGSAP(() => {
     gsap.fromTo(
       ".cuisines-of-the-world",
@@ -122,7 +125,7 @@ const Cuisines = () => {
       {
         top: "-100vh",
         scrollTrigger: {
-          trigger: ".cuisines-of-TN-trigger",
+          trigger: ".pandiyaNadu-intro",
           start: "bottom bottom",
           end: "bottom top",
           toggleActions: "play none none reverse",
@@ -132,6 +135,79 @@ const Cuisines = () => {
         ease: "none",
       }
     );
+    gsap.fromTo(
+      ".intro-text",
+      {
+        y: 100,
+        opacity: 0,
+      },
+      {
+        y: "0vh",
+        opacity: 1,
+        scrollTrigger: {
+          trigger: ".pandiVschetti-intro",
+          start: "top bottom",
+          end: "top 80%",
+          toggleActions: "play none none reverse",
+          scrub: 0.1,
+        },
+        // immediateRender: false,
+        ease: "none",
+      }
+    );
+    gsap.fromTo(
+      ".intro-text",
+      {
+        opacity: 1,
+        y: "0vh",
+      },
+      {
+        y: -100,
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".pandiVschetti-intro",
+          start: "top 20%",
+          end: "top top",
+          toggleActions: "play none none reverse",
+          scrub: 0.1,
+        },
+        immediateRender: false,
+        ease: "none",
+      }
+    );
+
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".pandiyaNadu-intro",
+        start: "top bottom",
+        end: "bottom bottom",
+        onEnter: () => {
+          setMeshSelected("TN_PANDI");
+        },
+        onLeaveBack: () => {
+          setMeshSelected("TN_CHETTI");
+        },
+        onLeave: () => {
+          setMeshSelected(null);
+        },
+        onEnterBack: () => {
+          setMeshSelected("TN_PANDI");
+        },
+      },
+    });
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".chettiNadu-intro",
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => {
+          setMeshSelected("TN_CHETTI");
+        },
+        onLeaveBack: () => {
+          setMeshSelected(null);
+        },
+      },
+    });
   });
   return (
     <>
@@ -168,6 +244,34 @@ const Cuisines = () => {
         style={{
           width: "100%",
           height: "100vh",
+        }}
+      ></div>
+      <div
+        className="reading-space"
+        style={{
+          width: "100%",
+          height: "50vh",
+        }}
+      ></div>
+      <div
+        className="pandiVschetti-intro"
+        style={{
+          height: "100vh",
+          width: "100%",
+        }}
+      ></div>
+      <div
+        className="chettiNadu-intro"
+        style={{
+          height: "100vh",
+          width: "100%",
+        }}
+      ></div>
+      <div
+        className="pandiyaNadu-intro"
+        style={{
+          height: "100vh",
+          width: "100%",
         }}
       ></div>
       <div
@@ -286,7 +390,7 @@ const Cuisines = () => {
         className="cuisines-of-TN globe-overlay"
         style={{
           position: "fixed",
-          top: "0",
+          bottom: 50 * (window.innerHeight / 1080),
           left: "0",
           width: "100%",
           height: "100vh",
@@ -336,6 +440,30 @@ const Cuisines = () => {
             Cuisines
           </h2>
         </div>
+      </div>
+      <div
+        className="intro-text"
+        style={{
+          position: "fixed",
+          bottom: 50 * (window.innerHeight / 1080),
+          left: 175 * (window.innerWidth / 1920),
+          display: "flex",
+          flexDirection: "column",
+          lineHeight: 1.2,
+        }}
+      >
+        <p
+          style={{
+            fontSize: (27 * window.innerHeight) / 1080,
+            width: 600 * (window.innerWidth / 1920),
+          }}
+        >
+          Among the cuisines of Tamil Nadu, Chettinad and Pandiyanad present a
+          unique scenario. Despite being just 60 kilometers apart, they offer
+          completely different tastes and experiences. They epitomize diversity
+          and serve as a prime example of how two cuisines can be so distinct,
+          despite their geographical proximity and other shared factors.
+        </p>
       </div>
     </>
   );

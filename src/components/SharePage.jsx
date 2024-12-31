@@ -207,7 +207,7 @@ const SharePage = () => {
           left: 0,
           width: "100vw",
           height: "100vh",
-          zIndex: 1000,
+          zIndex: 9999,
         }}
       >
         {/* <div
@@ -231,8 +231,9 @@ const SharePage = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            // backgroundColor: "rgba(0, 0, 0, 1)",
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
             zIndex: -1,
+            cursor: "pointer",
           }}
           onClick={() => {
             setShareOpen(false);

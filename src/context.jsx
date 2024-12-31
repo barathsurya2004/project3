@@ -52,13 +52,16 @@ export const ContextProvider = ({ children }) => {
   const [mode, setMode] = useState(null);
   const [fullscreen, setFullscreen] = useState(null);
   const canScrollTo = useRef(true);
-  const [questionSelected, setQuestionSelected] = useState(-2);
+  const [questionSelected, setQuestionSelected] = useState(null);
   const [invert, setInvert] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [light, setLight] = useState(false);
   const [interaction, setInteraction] = useState(1);
   const [modelsPosition, setModelsPosition] = useState({
     qMark: [0, 0],
+    globe: [0, 0],
+    globePandi: [0, 0],
+    globeChetti: [0, 0],
   });
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
