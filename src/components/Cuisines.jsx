@@ -7,7 +7,8 @@ import "./Cuisines.css";
 import { useContext } from "react";
 import { Context } from "../context";
 const Cuisines = () => {
-  const { setMeshSelected, meshSelected } = useContext(Context);
+  const { setMeshSelected, meshSelected, chettiVis, pandiVis } =
+    useContext(Context);
   useGSAP(() => {
     gsap.fromTo(
       ".cuisines-of-the-world",
@@ -168,7 +169,7 @@ const Cuisines = () => {
           trigger: ".pandiVschetti-intro",
           start: "top 20%",
           end: "top top",
-          toggleActions: "play none none reverse",
+
           scrub: 0.1,
         },
         immediateRender: false,
@@ -178,32 +179,47 @@ const Cuisines = () => {
 
     gsap.to(".null", {
       scrollTrigger: {
-        trigger: ".pandiyaNadu-intro",
-        start: "top bottom",
-        end: "bottom bottom",
+        trigger: ".chettiNadu-intro",
+        start: "top 90%",
+        end: "bottom 100%",
         onEnter: () => {
-          setMeshSelected("TN_PANDI");
-        },
-        onLeaveBack: () => {
+          chettiVis.current = true;
           setMeshSelected("TN_CHETTI");
         },
         onLeave: () => {
           setMeshSelected(null);
+          chettiVis.current = false;
         },
+
         onEnterBack: () => {
-          setMeshSelected("TN_PANDI");
+          chettiVis.current = true;
+          setMeshSelected("TN_CHETTI");
+        },
+        onLeaveBack: () => {
+          chettiVis.current = false;
+          setMeshSelected(null);
         },
       },
     });
     gsap.to(".null", {
       scrollTrigger: {
-        trigger: ".chettiNadu-intro",
-        start: "top bottom",
-        end: "bottom top",
+        trigger: ".pandiyaNadu-intro",
+        start: "top 90%",
+        end: "bottom 90%",
         onEnter: () => {
-          setMeshSelected("TN_CHETTI");
+          pandiVis.current = true;
+          setMeshSelected("TN_PANDI");
+        },
+        onLeave: () => {
+          pandiVis.current = false;
+          setMeshSelected(null);
+        },
+        onEnterBack: () => {
+          pandiVis.current = true;
+          setMeshSelected("TN_PANDI");
         },
         onLeaveBack: () => {
+          pandiVis.current = false;
           setMeshSelected(null);
         },
       },
@@ -256,21 +272,21 @@ const Cuisines = () => {
       <div
         className="pandiVschetti-intro"
         style={{
-          height: "100vh",
+          height: "200vh",
           width: "100%",
         }}
       ></div>
       <div
         className="chettiNadu-intro"
         style={{
-          height: "100vh",
+          height: "150vh",
           width: "100%",
         }}
       ></div>
       <div
         className="pandiyaNadu-intro"
         style={{
-          height: "100vh",
+          height: "150vh",
           width: "100%",
         }}
       ></div>

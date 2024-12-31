@@ -1,13 +1,18 @@
 import React, { useEffect, useRef, useContext, useState } from "react";
 import { gsap } from "gsap";
 import { Context } from "../context";
-
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 const SvgMorphAnimation = () => {
   const containerRef = useRef(null);
   const lineRef = useRef(null);
-  const { meshSelected, pointer, down } = useContext(Context);
+  const { meshSelected, pointer, down, modelsPosition, chettiVis, pandiVis } =
+    useContext(Context);
   const newLineRef = useRef(null);
+
   const [posRef, setPosRef] = useState({ left: 0, right: 0, top: 0 });
+
   useEffect(() => {
     const lineStart = document.getElementById("hover-display-line");
     const rect = lineStart.getBoundingClientRect();
@@ -19,10 +24,18 @@ const SvgMorphAnimation = () => {
     const container = containerRef.current;
     const line = lineRef.current;
     const rect = container.getBoundingClientRect();
-    const cursorX = pointer[0] - rect.left;
-    const cursorY = pointer[1] - rect.top;
+    let cursorX = pointer[0] - rect.left;
+    let cursorY = pointer[1] - rect.top;
     const heading = document.getElementById("hover-display-heading");
     const liness = document.getElementById("hover-display-line");
+    if (chettiVis.current) {
+      cursorX = modelsPosition.globeChetti[0];
+      cursorY = modelsPosition.globeChetti[1];
+    }
+    if (pandiVis.current) {
+      cursorX = modelsPosition.globePandi[0];
+      cursorY = modelsPosition.globePandi[1];
+    }
     const upPosition = {
       x: liness.getBoundingClientRect().left,
       y: liness.getBoundingClientRect().top,

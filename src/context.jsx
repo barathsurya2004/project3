@@ -37,6 +37,8 @@ export const Context = createContext({
   setInteraction: () => {},
   modelsPosition: {},
   setModelsPosition: () => {},
+  chettiVis: false,
+  pandiVis: false,
 });
 
 export const ContextProvider = ({ children }) => {
@@ -63,6 +65,8 @@ export const ContextProvider = ({ children }) => {
     globePandi: [0, 0],
     globeChetti: [0, 0],
   });
+  const chettiVis = useRef(false);
+  const pandiVis = useRef(false);
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
     setPointer([clientX, clientY]);
@@ -266,6 +270,8 @@ export const ContextProvider = ({ children }) => {
     setInteraction,
     modelsPosition,
     setModelsPosition,
+    chettiVis,
+    pandiVis,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

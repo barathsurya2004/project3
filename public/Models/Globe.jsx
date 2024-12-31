@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Context } from "../../src/context";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 export function GlobeModel(props) {
   const { nodes, materials } = useGLTF("/Models/Globe.glb");
   const {
@@ -47,15 +48,20 @@ export function GlobeModel(props) {
     if (active && shouldRotate && !hovering)
       rotRef.current.rotation.y =
         (rotRef.current.rotation.y + 0.005) % (2 * Math.PI);
+
     if (shouldRotate) {
       setDown(false);
     } else {
       setDown(true);
     }
+
     const width = window.innerWidth;
     const height = window.innerHeight;
     const widthHalf = width / 2;
+    const heightHalf = height / 2;
+
     if (!positionSet.current) {
+      // Calculate screen position of the main object
       const position = mainRef.current.position.clone();
       position.project(state.camera);
       position.x = position.x * widthHalf + widthHalf;
@@ -65,18 +71,22 @@ export function GlobeModel(props) {
       setModelsPosition(temp);
       positionSet.current = true;
     }
-    const positionPandi = pandiRef.current.position.clone();
-    positionPandi.project(state.camera);
-    positionPandi.x = positionPandi.x * widthHalf + widthHalf;
-    positionPandi.y = -(positionPandi.y * height) / 2 + height / 2;
-    const temp1 = modelsPosition;
-    temp1.globePandi = [positionPandi.x, positionPandi.y];
-    const chettiPosition = chettiRef.current.position.clone();
-    chettiPosition.project(state.camera);
-    chettiPosition.x = chettiPosition.x * widthHalf + widthHalf;
-    chettiPosition.y = -(chettiPosition.y * height) / 2 + height / 2;
-    temp1.globeChetti = [chettiPosition.x, chettiPosition.y];
-    setModelsPosition(temp1);
+
+    // Calculate screen position of pandiRef (nested object)
+    if (pandiRef.current) {
+      const pandiWorldPosition = new THREE.Vector3();
+      pandiRef.current.getWorldPosition(pandiWorldPosition); // Get world position of pandiRef
+      pandiWorldPosition.project(state.camera); // Project world position to normalized device coordinates (NDC)
+
+      // Convert NDC to screen space
+      const pandiScreenX = pandiWorldPosition.x * widthHalf + widthHalf;
+      const pandiScreenY = -(pandiWorldPosition.y * heightHalf) + heightHalf;
+
+      // Set the position of pandiRef (you can update state or perform other actions)
+      const temp = modelsPosition;
+      temp.pandi = [pandiScreenX, pandiScreenY];
+      setModelsPosition(temp);
+    }
   });
 
   useGSAP(() => {

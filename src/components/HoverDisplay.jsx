@@ -46,7 +46,7 @@ const HoverDisplay = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAnimation(true);
-    }, 500);
+    }, 200);
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, []);
