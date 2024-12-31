@@ -85,127 +85,152 @@ const PandiFlag = () => {
         }}
       >
         <div
-          style={{
-            display: "flex",
-            position: "absolute",
-            top: 0,
-            right: 0,
-
-            marginTop: "15%",
-            height: "85%",
-
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <img
-            style={{
-              height: 300 * (window.innerHeight / 1080),
-            }}
-            src={holder}
-            alt=""
-          />
-          <img
-            style={{
-              height: 300 * (window.innerHeight / 1080),
-            }}
-            src={holder}
-            alt=""
-          />
-          <img
-            style={{
-              height: 300 * (window.innerHeight / 1080),
-            }}
-            src={holder}
-            alt=""
-          />
-        </div>
-        <div
           className="pandi-flag-content-actual"
           style={{
-            width: "60%",
+            width: "100%",
             padding: "0 10%",
           }}
         >
-          <h2
+          <div
             style={{
-              fontSize: (55 * window.innerHeight) / 1080,
-              fontFamily: "TTtravels Next DemiBold",
-              color: "#BB8BE8",
-              margin: 0,
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              // background: "white",
             }}
           >
-            About
-          </h2>
-          <p
+            <div>
+              <h2
+                style={{
+                  fontSize: (55 * window.innerHeight) / 1080,
+                  fontFamily: "TTtravels Next DemiBold",
+                  color: "#BB8BE8",
+                  margin: 0,
+                  width: "60%",
+                }}
+              >
+                About
+              </h2>
+              <p
+                style={{
+                  fontSize: (27 * window.innerHeight) / 1080,
+                  fontFamily: "Filson Pro Regular",
+                  color: "#BB8BE8",
+                  width: "60%",
+                  marginBottom: 70 * (window.innerHeight / 1080),
+                }}
+              >
+                Pandiyanad cuisine offers a wide variety of dishes for every
+                part of the meal, constantly evolving while retaining the wisdom
+                of past generations. From quick snacks to slow-cooked
+                delicacies, pandiyanad Cuisine has it all, the cuisine is deeply
+                inspired by the Pandiyan kings. the culinary heritage is
+                reflected by the Modern-day Madurai and its surrounding
+                villages, once the capital of the Pandiyan dynasty,. The
+                Pandiyans, key rulers of South India, were known for their
+                extensive trade networks, making Madurai a bustling city that
+                never sleeps, along with the food too!
+              </p>
+            </div>
+            <img
+              style={{
+                height: 300 * (window.innerHeight / 1080),
+              }}
+              src={holder}
+              alt=""
+            />
+          </div>
+          <div
             style={{
-              fontSize: (27 * window.innerHeight) / 1080,
-              fontFamily: "Filson Pro Regular",
-              color: "#BB8BE8",
-              marginBottom: 70 * (window.innerHeight / 1080),
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            Pandiyanad cuisine offers a wide variety of dishes for every part of
-            the meal, constantly evolving while retaining the wisdom of past
-            generations. From quick snacks to slow-cooked delicacies, pandiyanad
-            Cuisine has it all, the cuisine is deeply inspired by the Pandiyan
-            kings. the culinary heritage is reflected by the Modern-day Madurai
-            and its surrounding villages, once the capital of the Pandiyan
-            dynasty,. The Pandiyans, key rulers of South India, were known for
-            their extensive trade networks, making Madurai a bustling city that
-            never sleeps, along with the food too!
-          </p>
-          <h2
+            <div>
+              <h2
+                style={{
+                  fontSize: (55 * window.innerHeight) / 1080,
+                  fontFamily: "TTtravels Next DemiBold",
+                  color: "#BB8BE8",
+                  margin: 0,
+                  width: "60%",
+                }}
+              >
+                History
+              </h2>
+              <p
+                style={{
+                  fontSize: (27 * window.innerHeight) / 1080,
+                  fontFamily: "Filson Pro Regular",
+                  color: "#BB8BE8",
+                  width: "60%",
+                  marginBottom: 70 * (window.innerHeight / 1080),
+                }}
+              >
+                Modern Pandiyanad cuisine has deep roots in the Pandiyan kings'
+                era. The variety of foods, influenced by international trade,
+                reflects the Pandiyans' connections with various parts of the
+                world. The wide array of seafood dishes can be traced back to
+                the overseas territories ruled by the Pandiyans. Food was
+                integral to the city then and continues to be so today, every
+                meal is a celebration!
+              </p>
+            </div>
+            <img
+              style={{
+                height: 300 * (window.innerHeight / 1080),
+              }}
+              src={holder}
+              alt=""
+            />
+          </div>
+          <div
             style={{
-              fontSize: (55 * window.innerHeight) / 1080,
-              fontFamily: "TTtravels Next DemiBold",
-              color: "#BB8BE8",
-              margin: 0,
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            History
-          </h2>
-          <p
-            style={{
-              fontSize: (27 * window.innerHeight) / 1080,
-              fontFamily: "Filson Pro Regular",
-              color: "#BB8BE8",
-              marginBottom: 70 * (window.innerHeight / 1080),
-            }}
-          >
-            Modern Pandiyanad cuisine has deep roots in the Pandiyan kings' era.
-            The variety of foods, influenced by international trade, reflects
-            the Pandiyans' connections with various parts of the world. The wide
-            array of seafood dishes can be traced back to the overseas
-            territories ruled by the Pandiyans. Food was integral to the city
-            then and continues to be so today, every meal is a celebration!
-          </p>
-          <h2
-            style={{
-              fontSize: (55 * window.innerHeight) / 1080,
-              fontFamily: "TTtravels Next DemiBold",
-              color: "#BB8BE8",
-              margin: 0,
-            }}
-          >
-            Current
-          </h2>
-          <p
-            style={{
-              fontSize: (27 * window.innerHeight) / 1080,
-              fontFamily: "Filson Pro Regular",
-              color: "#BB8BE8",
-              marginBottom: 70 * (window.innerHeight / 1080),
-            }}
-          >
-            The Pandiyans' culinary legacy lives on with a lavish variety of
-            foods and unforgettable tastes. Walking the streets of Madurai and
-            its neighboring villages, one can find food readily available in
-            welcoming homes and restaurants. However, a modern problem persists:
-            the identity of Pandiyanad cuisine is being forgotten. Many locals
-            are unaware of the historical significance of their cuisines and
-            their kitchens and often mistake it for other nearby cuisines.
-          </p>
+            <div>
+              <h2
+                style={{
+                  fontSize: (55 * window.innerHeight) / 1080,
+                  fontFamily: "TTtravels Next DemiBold",
+                  color: "#BB8BE8",
+                  margin: 0,
+                  width: "60%",
+                }}
+              >
+                Current
+              </h2>
+              <p
+                style={{
+                  fontSize: (27 * window.innerHeight) / 1080,
+                  fontFamily: "Filson Pro Regular",
+                  color: "#BB8BE8",
+                  width: "60%",
+                  marginBottom: 70 * (window.innerHeight / 1080),
+                }}
+              >
+                The Pandiyans' culinary legacy lives on with a lavish variety of
+                foods and unforgettable tastes. Walking the streets of Madurai
+                and its neighboring villages, one can find food readily
+                available in welcoming homes and restaurants. However, a modern
+                problem persists: the identity of Pandiyanad cuisine is being
+                forgotten. Many locals are unaware of the historical
+                significance of their cuisines and their kitchens and often
+                mistake it for other nearby cuisines.
+              </p>
+            </div>
+            <img
+              style={{
+                height: 300 * (window.innerHeight / 1080),
+              }}
+              src={holder}
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -135,7 +135,7 @@ const Loader = () => {
         zIndex: 9999,
       }}
     >
-      <div className="bg-container">
+      {/* <div className="bg-container">
         <div className="horizontal-lines">
           {Array.from({ length: hori }, (item, index) => (
             <div
@@ -152,7 +152,7 @@ const Loader = () => {
             <div className="grid-lines-verti" key={index}></div>
           ))}
         </div>
-      </div>
+      </div> */}
       <div className="container">
         <div
           className="text"

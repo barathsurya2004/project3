@@ -89,131 +89,169 @@ const ChettiFlag = () => {
         }}
       >
         <div
-          style={{
-            display: "flex",
-            position: "absolute",
-            top: 0,
-            left: 0,
-
-            marginTop: "15%",
-            height: "85%",
-
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <img
-            style={{
-              height: 300 * (window.innerHeight / 1080),
-            }}
-            src={holder}
-            alt=""
-          />
-          <img
-            style={{
-              height: 300 * (window.innerHeight / 1080),
-            }}
-            src={holder}
-            alt=""
-          />
-          <img
-            style={{
-              height: 300 * (window.innerHeight / 1080),
-            }}
-            src={holder}
-            alt=""
-          />
-        </div>
-        <div
           className="chetti-flag-content-actual"
           style={{
-            width: "60%",
+            width: "100%",
             padding: "0 10%",
           }}
         >
-          <h2
+          <div
             style={{
-              fontSize: (55 * window.innerHeight) / 1080,
-              fontFamily: "TTtravels Next DemiBold",
-              color: "#F07373",
-              margin: 0,
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            About
-          </h2>
-          <p
+            <img
+              style={{
+                height: 300 * (window.innerHeight / 1080),
+              }}
+              src={holder}
+              alt=""
+            />
+            <div
+              style={{
+                width: "50%",
+                // padding: "0 10% 0 0",
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: (55 * window.innerHeight) / 1080,
+                  fontFamily: "TTtravels Next DemiBold",
+                  color: "#F07373",
+                  margin: 0,
+                  textAlign: "right",
+                }}
+              >
+                About
+              </h2>
+              <p
+                style={{
+                  fontSize: (27 * window.innerHeight) / 1080,
+                  fontFamily: "Filson Pro Regular",
+                  color: "#F07373",
+                  textAlign: "right",
+                  marginBottom: 70 * (window.innerHeight / 1080),
+                }}
+              >
+                Chettinad cuisine is as intricate as the blend of spices get.
+                Originating from present-day Karaikudi and neighboring villages
+                in the Sivagangai district (often referred to as Chettinad,
+                meaning "the land of Chettiars"), this community-influenced
+                cuisine is renowned nationwide. Although it evolved alongside
+                Pandiyanad cuisine, Chettinad cuisine has its unique surprises.
+              </p>
+            </div>
+          </div>
+          <div
             style={{
-              fontSize: (27 * window.innerHeight) / 1080,
-              fontFamily: "Filson Pro Regular",
-              color: "#F07373",
-              marginBottom: 70 * (window.innerHeight / 1080),
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            Chettinad cuisine is as intricate as the blend of spices get.
-            Originating from present-day Karaikudi and neighboring villages in
-            the Sivagangai district (often referred to as Chettinad, meaning
-            "the land of Chettiars"), this community-influenced cuisine is
-            renowned nationwide. Although it evolved alongside Pandiyanad
-            cuisine, Chettinad cuisine has its unique surprises.
-          </p>
-          <h2
+            <img
+              style={{
+                height: 300 * (window.innerHeight / 1080),
+              }}
+              src={holder}
+              alt=""
+            />
+            <div
+              style={{
+                width: "50%",
+                // padding: "0 10% 0 0",
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: (55 * window.innerHeight) / 1080,
+                  fontFamily: "TTtravels Next DemiBold",
+                  color: "#F07373",
+                  margin: 0,
+                  textAlign: "right",
+                }}
+              >
+                History
+              </h2>
+              <p
+                style={{
+                  fontSize: (27 * window.innerHeight) / 1080,
+                  fontFamily: "Filson Pro Regular",
+                  color: "#F07373",
+                  textAlign: "right",
+                  marginBottom: 70 * (window.innerHeight / 1080),
+                }}
+              >
+                Once, a thriving community lived around Puducherry's coastal
+                region, excelling in trade and commerce. When seven families who
+                had left for trade returned only to find their homeland
+                devastated by a tsunami, they sought refuge in the elevated
+                lands under the Pandiyan kings. The Pandiyans granted them land
+                in exchange for work(accountign and commerce), leading to the
+                formation of the seven villages (from the 7 families) that make
+                up modern Chettinad. Impressed by their work, the Pandiyans
+                allotted a quarter of their land with its own jurisdiction and
+                appointed a local king. This mini-kingdom, known as
+                KaanaaduKaathan Parappu, meaning "the land of the ruler of a
+                quarter of the Pandiyan's land," shaped Chettinad cuisine as an
+                embodiment of rich history and exceptional flavor.
+              </p>
+            </div>
+          </div>
+          <div
             style={{
-              fontSize: (55 * window.innerHeight) / 1080,
-              fontFamily: "TTtravels Next DemiBold",
-              color: "#F07373",
-              margin: 0,
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            History
-          </h2>
-          <p
-            style={{
-              fontSize: (27 * window.innerHeight) / 1080,
-              fontFamily: "Filson Pro Regular",
-              color: "#F07373",
-              marginBottom: 70 * (window.innerHeight / 1080),
-            }}
-          >
-            Once, a thriving community lived around Puducherry's coastal region,
-            excelling in trade and commerce. When seven families who had left
-            for trade returned only to find their homeland devastated by a
-            tsunami, they sought refuge in the elevated lands under the Pandiyan
-            kings. The Pandiyans granted them land in exchange for
-            work(accountign and commerce), leading to the formation of the seven
-            villages (from the 7 families) that make up modern Chettinad.
-            Impressed by their work, the Pandiyans allotted a quarter of their
-            land with its own jurisdiction and appointed a local king. This
-            mini-kingdom, known as KaanaaduKaathan Parappu, meaning "the land of
-            the ruler of a quarter of the Pandiyan's land," shaped Chettinad
-            cuisine as an embodiment of rich history and exceptional flavor.
-          </p>
-          <h2
-            style={{
-              fontSize: (55 * window.innerHeight) / 1080,
-              fontFamily: "TTtravels Next DemiBold",
-              color: "#F07373",
-              margin: 0,
-            }}
-          >
-            Current
-          </h2>
-          <p
-            style={{
-              fontSize: (27 * window.innerHeight) / 1080,
-              fontFamily: "Filson Pro Regular",
-              color: "#F07373",
-              marginBottom: 70 * (window.innerHeight / 1080),
-            }}
-          >
-            Due to various reasons, Chettinad cuisine is one of the most popular
-            cuisines nationwide. Most people think of Chettinad dishes when they
-            think about South Indian food. The sole popularity of Chettinad
-            cuisine and the craze around it is consuming the legacies of the
-            nearby cuisines, leaving the people from the Chettinad region
-            confused about what food carries their Chettinad legacy. Despite
-            this, since Chettinad cuisine evolves from a community, there is a
-            constant claim of who makes the authentic Chettinad food.
-          </p>
+            <img
+              style={{
+                height: 300 * (window.innerHeight / 1080),
+              }}
+              src={holder}
+              alt=""
+            />
+            <div
+              style={{
+                width: "50%",
+                // padding: "0 10% 0 0",
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: (55 * window.innerHeight) / 1080,
+                  fontFamily: "TTtravels Next DemiBold",
+                  color: "#F07373",
+                  margin: 0,
+                  textAlign: "right",
+                }}
+              >
+                Current
+              </h2>
+              <p
+                style={{
+                  fontSize: (27 * window.innerHeight) / 1080,
+                  fontFamily: "Filson Pro Regular",
+                  color: "#F07373",
+                  textAlign: "right",
+                  marginBottom: 70 * (window.innerHeight / 1080),
+                }}
+              >
+                Due to various reasons, Chettinad cuisine is one of the most
+                popular cuisines nationwide. Most people think of Chettinad
+                dishes when they think about South Indian food. The sole
+                popularity of Chettinad cuisine and the craze around it is
+                consuming the legacies of the nearby cuisines, leaving the
+                people from the Chettinad region confused about what food
+                carries their Chettinad legacy. Despite this, since Chettinad
+                cuisine evolves from a community, there is a constant claim of
+                who makes the authentic Chettinad food.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
