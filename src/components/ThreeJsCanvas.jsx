@@ -26,6 +26,7 @@ import { FGlobeModel } from "../../public/Models/FINAL_globe";
 import { EffectComposer, Outline } from "@react-three/postprocessing";
 import { TrialModel } from "../../public/Models/Triallllllllll";
 import { GlobeModel } from "../../public/Models/Globe";
+import { GlobeModelBack } from "../../public/Models/Globe copy";
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
   const [change, setChange] = useState(0);
@@ -152,7 +153,7 @@ const ThreeJsCanvas = () => {
         maskImage: `linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%)`,
       },
       {
-        maskImage: `linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 100%, rgba(255,255,255,1) 100%)`,
+        maskImage: `linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 70%, rgba(255,255,255,1) 100%)`,
         scrollTrigger: {
           trigger: ".pandiyaNadu-intro",
           start: "bottom bottom",
@@ -223,16 +224,26 @@ const ThreeJsCanvas = () => {
           {/* <Perf position="top-left" /> */}
 
           {/* <MapModel position={[3, 0, 0]} /> */}
-          <TreasureModel position={[3, 0, 0]} />
+          <TreasureModel position={[5, 0, -5]} scale={0.6} />
 
           {/* <Perf position="top-left" /> */}
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight
-            intensity={2}
-            position={[2.5, 0, 10]}
-            color="#fff5b6"
+          <spotLight
+            intensity={50}
+            position={[5, 0, 5]}
+            color="#f4e7cb"
+            angle={Math.PI / 2}
           />
+          <spotLight
+            intensity={20}
+            position={[1, 0, 4]}
+            color={"#f4e7cb"}
+            angle={Math.PI / 2}
+          />
+
+          <spotLight intensity={80} position={[3, 3, 5]} color="#f4e7cb" />
           {/* <ClockModel position={[3, 0, 0]} /> */}
+
           <NewClockModel position={[3, 0, 0]} />
         </Canvas>
       </div>
@@ -276,7 +287,6 @@ const ThreeJsCanvas = () => {
               }
             >
               <EffectComposer>
-                <ambientLight intensity={2} />
                 <directionalLight intensity={3} position={[5, 10, 10]} />
                 {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
                 {/* 
@@ -298,6 +308,7 @@ const ThreeJsCanvas = () => {
 
                 {/* <FGlobeModel position={[1, 0, 0]} /> */}
                 <GlobeModel position={[1, 0, 0]} />
+                {/* <GlobeModelBack /> */}
                 {/* <TrialModel position={[1, 0, 0]} /> */}
               </EffectComposer>
               {/* <CountriesModel position={[1, 0, 0]} /> */}
@@ -329,13 +340,24 @@ const ThreeJsCanvas = () => {
             pointerEvents: "none",
           }}
         >
-          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
-          <directionalLight
-            intensity={2}
-            position={[2.5, 0, 10]}
-            color="#fff5b6"
+          <spotLight
+            intensity={20}
+            position={[5, 0, 10]}
+            color="#f4e7cb"
+            angle={Math.PI / 2}
           />
+          <spotLight
+            intensity={20}
+            position={[1, 0, 10]}
+            color={"#f4e7cb"}
+            angle={Math.PI / 2}
+          />
+
+          <spotLight intensity={50} position={[3, 3, 5]} color="#f4e7cb" />
+          <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
+
           <QuestionModel />
+          {/* <ambientLight intensity={1} /> */}
         </Canvas>
       </div>
       <div

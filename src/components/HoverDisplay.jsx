@@ -9,7 +9,7 @@ const HoverDisplay = () => {
   if (!meshSelected) return null;
   const [current, setCurrent] = useState(null);
   useEffect(() => {
-    const current = data.find((item) => item.id === meshSelected);
+    const current = data.find((item) => item.id === meshSelected.name);
     setCurrent(current);
     console.log(current);
   }, [meshSelected]);

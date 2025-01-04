@@ -16,16 +16,18 @@ const PandiFlag = () => {
         style={{
           position: "relative",
           display: "flex",
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center",
           // height: "110vh",
-          width: "50%",
           paddingTop: 300 * (window.innerHeight / 1080),
         }}
       >
         <div
           style={{
             position: "relative",
+            // background: "white",
+            marginLeft: "10%",
+            transform: "translateY(60%)",
           }}
         >
           <div

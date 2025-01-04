@@ -62,7 +62,7 @@ function App() {
           //
         }}
       >
-        <Interactions />
+        {/* <Interactions /> */}
         <ThreeJsCanvas />
         <Hero />
         <CircularAnimation

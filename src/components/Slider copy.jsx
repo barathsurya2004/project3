@@ -95,7 +95,7 @@ const Slider1 = () => {
         top: 0,
       },
       {
-        top: "-150vh",
+        top: "-125vh",
         scrollTrigger: {
           trigger: ".slider-compare-scroll",
           start: "top bottom",
@@ -117,16 +117,17 @@ const Slider1 = () => {
     gsap.fromTo(
       ".slider-compare",
       {
-        top: "-150vh",
+        top: "-125vh",
       },
       {
-        top: "-250vh",
+        top: "-225vh",
         scrollTrigger: {
-          trigger: ".slider-compare-remove-scroll",
-          start: "bottom bottom",
+          trigger: ".shall-we-end-anim-scroll",
+          start: "bottom 100%",
           end: "bottom top",
           toggleActions: "play none none reverse",
           scrub: true,
+          // markers: true,
           onEnter: () => {
             gsap.set(".slider-compare__center", {
               opacity: 0,
@@ -234,21 +235,14 @@ const Slider1 = () => {
         className="slider-compare-scroll"
         style={{
           width: "100%",
-          height: "150vh",
+          height: "125vh",
         }}
       ></div>
       <div
         className="shall-we-end-anim-scroll"
         style={{
           width: "100%",
-          height: "100vh",
-        }}
-      ></div>
-      <div
-        className="slider-compare-remove-scroll"
-        style={{
-          width: "100%",
-          height: "50vh",
+          height: "25vh",
         }}
       ></div>
 
@@ -256,7 +250,7 @@ const Slider1 = () => {
         className="slider-compare"
         style={{
           width: "100%",
-          height: "250vh",
+          height: "225vh",
           position: "fixed",
           top: "100vh",
           left: "0",
@@ -332,7 +326,7 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-compare__container__left",
                     {
-                      width: "10%",
+                      width: "5%",
                     },
                     {
                       width: "50%",
@@ -342,7 +336,7 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-compare__container__right",
                     {
-                      width: "90%",
+                      width: "95%",
                     },
                     {
                       width: "50%",
@@ -352,7 +346,7 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-compare__center-line",
                     {
-                      left: "-15%",
+                      left: "-20%",
                     },
                     {
                       left: "25%",
@@ -362,14 +356,14 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-button-cont",
                     {
-                      left: "10%",
+                      left: "5%",
                     },
                     {
                       left: "50%",
                       duration: 0.5,
                     }
                   );
-                  setXPos(0.1 * window.innerWidth);
+                  setXPos(0.05 * window.innerWidth);
                   // setYPos(0);
                 }
               } else if (cur > 0.7 * window.innerWidth) {
@@ -377,7 +371,7 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-compare__container__left",
                     {
-                      width: "90%",
+                      width: "95%",
                     },
                     {
                       width: "50%",
@@ -387,7 +381,7 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-compare__container__right",
                     {
-                      width: "10%",
+                      width: "5%",
                     },
                     {
                       width: "50%",
@@ -397,7 +391,7 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-compare__center-line",
                     {
-                      left: "65%",
+                      left: "70%",
                     },
                     {
                       left: "25%",
@@ -407,14 +401,14 @@ const Slider1 = () => {
                   gsap.fromTo(
                     ".slider-button-cont",
                     {
-                      left: "90%",
+                      left: "95%",
                     },
                     {
                       left: "50%",
                       duration: 0.5,
                     }
                   );
-                  setXPos(0.9 * window.innerWidth);
+                  setXPos(0.95 * window.innerWidth);
                   // setYPos(0);
                 }
               } else {
@@ -425,7 +419,7 @@ const Slider1 = () => {
                       width: "50%",
                     },
                     {
-                      width: "10%",
+                      width: "5%",
                       duration: 0.5,
                     }
                   );
@@ -435,7 +429,7 @@ const Slider1 = () => {
                       width: "50%",
                     },
                     {
-                      width: "90%",
+                      width: "95%",
                       duration: 0.5,
                     }
                   );
@@ -445,7 +439,7 @@ const Slider1 = () => {
                       left: "25%",
                     },
                     {
-                      left: "-15%",
+                      left: "-20%",
                       duration: 0.5,
                     }
                   );
@@ -455,11 +449,11 @@ const Slider1 = () => {
                       left: "50%",
                     },
                     {
-                      left: "10%",
+                      left: "5%",
                       duration: 0.5,
                     }
                   );
-                  setXPos(0.1 * window.innerWidth);
+                  setXPos(0.05 * window.innerWidth);
                   // setYPos(0);
                 } else {
                   gsap.fromTo(
@@ -468,7 +462,7 @@ const Slider1 = () => {
                       width: "50%",
                     },
                     {
-                      width: "90%",
+                      width: "95%",
                       duration: 0.5,
                     }
                   );
@@ -478,7 +472,7 @@ const Slider1 = () => {
                       width: "50%",
                     },
                     {
-                      width: "10%",
+                      width: "5%",
                       duration: 0.5,
                     }
                   );
@@ -488,7 +482,7 @@ const Slider1 = () => {
                       left: "25%",
                     },
                     {
-                      left: "65%",
+                      left: "70%",
                       duration: 0.5,
                     }
                   );
@@ -498,11 +492,11 @@ const Slider1 = () => {
                       left: "50%",
                     },
                     {
-                      left: "90%",
+                      left: "95%",
                       duration: 0.5,
                     }
                   );
-                  setXPos(0.9 * window.innerWidth);
+                  setXPos(0.95 * window.innerWidth);
                 }
               }
             }}
@@ -528,9 +522,9 @@ const Slider1 = () => {
                 {
                   width: () => {
                     if ((pointer[0] / window.innerWidth) * 100 > 60) {
-                      return "90%";
+                      return "95%";
                     } else if ((pointer[0] / window.innerWidth) * 100 < 40) {
-                      return "10%";
+                      return "5%";
                     } else {
                       return "50%";
                     }
@@ -546,9 +540,9 @@ const Slider1 = () => {
                 {
                   width: () => {
                     if ((pointer[0] / window.innerWidth) * 100 > 60) {
-                      return "10%";
+                      return "5%";
                     } else if ((pointer[0] / window.innerWidth) * 100 < 40) {
-                      return "90%";
+                      return "95%";
                     } else {
                       return "50%";
                     }
@@ -564,9 +558,9 @@ const Slider1 = () => {
                 {
                   left: () => {
                     if ((pointer[0] / window.innerWidth) * 100 > 60) {
-                      return "65%";
+                      return "70%";
                     } else if ((pointer[0] / window.innerWidth) * 100 < 40) {
-                      return "-15%";
+                      return "-20%";
                     } else {
                       return "25%";
                     }
@@ -582,9 +576,9 @@ const Slider1 = () => {
                 {
                   left: () => {
                     if ((pointer[0] / window.innerWidth) * 100 > 60) {
-                      return "90%";
+                      return "95%";
                     } else if ((pointer[0] / window.innerWidth) * 100 < 40) {
-                      return "10%";
+                      return "5%";
                     } else {
                       return "50%";
                     }

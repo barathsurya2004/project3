@@ -30,7 +30,7 @@ const Hero = () => {
         ".food-0",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         { opacity: 1, x: 0, duration: 0.5, ease: "power1.inOut" }
       )
@@ -40,7 +40,7 @@ const Hero = () => {
         {
           delay: 5,
           opacity: 0,
-          x: -30,
+          x: (-200 * window.innerWidth) / 1920,
           duration: 0.5,
           ease: "power1.inOut",
           immediateRender: false,
@@ -50,7 +50,7 @@ const Hero = () => {
         ".food-1",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         {
           opacity: 1,
@@ -65,7 +65,7 @@ const Hero = () => {
         {
           delay: 5,
           opacity: 0,
-          x: -30,
+          x: (-200 * window.innerWidth) / 1920,
           duration: 0.5,
           ease: "power1.inOut",
           immediateRender: false,
@@ -75,7 +75,7 @@ const Hero = () => {
         ".food-2",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         {
           opacity: 1,
@@ -100,7 +100,7 @@ const Hero = () => {
         ".food-3",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         {
           opacity: 1,
@@ -125,7 +125,7 @@ const Hero = () => {
         ".food-4",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         {
           opacity: 1,
@@ -150,7 +150,7 @@ const Hero = () => {
         ".food-5",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         {
           opacity: 1,
@@ -175,7 +175,7 @@ const Hero = () => {
         ".food-6",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         {
           opacity: 1,
@@ -200,7 +200,7 @@ const Hero = () => {
         ".food-7",
         {
           opacity: 0,
-          x: 30,
+          x: (200 * window.innerWidth) / 1920,
         },
         {
           opacity: 1,

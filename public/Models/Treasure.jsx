@@ -24,9 +24,9 @@ export function TreasureModel(props) {
         z: 0,
       },
       {
-        x: 0.4,
-        y: 0.4,
-        z: 0.4,
+        x: 0.6,
+        y: 0.6,
+        z: 0.6,
         duration: 0.0001,
         scrollTrigger: {
           trigger: ".food-is-adventure",
@@ -44,9 +44,9 @@ export function TreasureModel(props) {
     gsap.fromTo(
       ref.current.scale,
       {
-        x: 0.4,
-        y: 0.4,
-        z: 0.4,
+        x: 0.6,
+        y: 0.6,
+        z: 0.6,
       },
       {
         x: 0,
@@ -73,90 +73,106 @@ export function TreasureModel(props) {
   });
   return (
     <group {...props} dispose={null} ref={ref}>
-      <group position={[0, -5, 0]}>
-        <mesh
-          geometry={nodes.Mesh_0002.geometry}
-          material={nodes.Mesh_0002.material}
-          position={[0, 6.294, -0.182]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[195.655, 195.655, 24.367]}
-        />
-        <mesh
-          geometry={nodes.Mesh_1002.geometry}
-          material={materials["Material_1.002"]}
-          position={[0, 6.294, -0.182]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[195.655, 195.655, 24.367]}
-        />
-        <mesh
-          geometry={nodes.Mesh_2002.geometry}
-          material={materials["Material_2.002"]}
-          position={[0, 6.294, -0.182]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[195.655, 195.655, 24.367]}
-        />
-        <mesh
-          geometry={nodes.Mesh_3002.geometry}
-          material={materials["Material_3.002"]}
-          position={[0, 6.294, -0.182]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[195.655, 195.655, 24.367]}
-        />
-        <mesh
-          geometry={nodes.Mesh_4002.geometry}
-          material={materials["Material_4.002"]}
-          position={[0, 6.294, -0.182]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[195.655, 195.655, 24.367]}
-        />
-        <mesh
-          geometry={nodes.Mesh_5002.geometry}
-          material={materials["Material_5.002"]}
-          position={[0, 6.294, -0.182]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[195.655, 195.655, 24.367]}
-        />
-        <mesh
-          geometry={nodes.Mesh_6002.geometry}
-          material={materials["Material_6.002"]}
-          position={[0, 6.294, -0.182]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[195.655, 195.655, 24.367]}
-        />
-        <group rotation={[Math.PI / 2, 0, 0]}>
+      <group>
+        <group position={[0, -5, 0]}>
           <mesh
-            geometry={nodes.VR_Map_Cube029_1.geometry}
+            geometry={nodes.Mesh_0002.geometry}
+            material={nodes.Mesh_0002.material}
+            position={[0, 6.294, -0.182]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[195.655, 195.655, 24.367]}
             castShadow
             receiveShadow
-          >
-            <meshStandardMaterial
-              color={"#FFCC88"}
-              roughness={0.6}
-              metalness={0}
-            />
-          </mesh>
+          />
           <mesh
-            geometry={nodes.VR_Map_Cube029_2.geometry}
+            geometry={nodes.Mesh_1002.geometry}
+            material={materials["Material_1.002"]}
+            position={[0, 6.294, -0.182]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[195.655, 195.655, 24.367]}
             castShadow
             receiveShadow
-          >
-            <meshStandardMaterial
-              color={"#5A5A5A"}
-              roughness={0.6}
-              metalness={0}
-            />
-          </mesh>
+          />
           <mesh
-            geometry={nodes.VR_Map_Cube029_3.geometry}
+            geometry={nodes.Mesh_2002.geometry}
+            material={materials["Material_2.002"]}
+            position={[0, 6.294, -0.182]}
+            rotation={[Math.PI, 0, Math.PI]}
             castShadow
             receiveShadow
-          >
-            <meshStandardMaterial
-              color={"#FA8C7F"}
-              roughness={0.6}
-              metalness={0}
-            />
-          </mesh>
+            scale={[195.655, 195.655, 24.367]}
+          />
+          <mesh
+            geometry={nodes.Mesh_3002.geometry}
+            material={materials["Material_3.002"]}
+            position={[0, 6.294, -0.182]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[195.655, 195.655, 24.367]}
+            castShadow
+            receiveShadow
+          />
+          <mesh
+            geometry={nodes.Mesh_4002.geometry}
+            material={materials["Material_4.002"]}
+            position={[0, 6.294, -0.182]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[195.655, 195.655, 24.367]}
+            castShadow
+            receiveShadow
+          />
+          <mesh
+            geometry={nodes.Mesh_5002.geometry}
+            material={materials["Material_5.002"]}
+            position={[0, 6.294, -0.182]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[195.655, 195.655, 24.367]}
+            castShadow
+            receiveShadow
+          />
+          <mesh
+            geometry={nodes.Mesh_6002.geometry}
+            material={materials["Material_6.002"]}
+            position={[0, 6.294, -0.182]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[195.655, 195.655, 24.367]}
+            castShadow
+            receiveShadow
+          />
+          <group rotation={[Math.PI / 2, 0, 0]}>
+            <mesh
+              geometry={nodes.VR_Map_Cube029_1.geometry}
+              castShadow
+              receiveShadow
+            >
+              <meshStandardMaterial
+                color={"#FFCC88"}
+                roughness={0.6}
+                metalness={0}
+              />
+            </mesh>
+            <mesh
+              geometry={nodes.VR_Map_Cube029_2.geometry}
+              castShadow
+              receiveShadow
+            >
+              <meshStandardMaterial
+                color={"#5A5A5A"}
+                roughness={0.6}
+                metalness={0}
+              />
+            </mesh>
+            <mesh
+              geometry={nodes.VR_Map_Cube029_3.geometry}
+              castShadow
+              receiveShadow
+            >
+              <meshStandardMaterial
+                color={"#FA8C7F"}
+                roughness={0.6}
+                metalness={0}
+              />
+            </mesh>
+          </group>
         </group>
       </group>
     </group>

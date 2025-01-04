@@ -9,8 +9,16 @@ import gsap from "gsap";
 import { Context } from "../../src/context";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-export function GlobeModel(props) {
+import { useControls } from "leva";
+export function GlobeModelBack(props) {
   const { nodes, materials } = useGLTF("/Models/Globe.glb");
+
+  useEffect(() => {
+    gsap.set(materials["Material.004"], {
+      color: new THREE.Color(0.652, 0.418, 0.122),
+    });
+    console.log(materials["Material.004"].color);
+  }, []);
   const {
     setDown,
     setMeshSelected,
@@ -19,27 +27,6 @@ export function GlobeModel(props) {
     setModelsPosition,
     modelsPosition,
   } = useContext(Context);
-  useEffect(() => {
-    if (!meshSelected) return;
-    if (meshSelected.children == null) return;
-
-    const child = meshSelected?.children[0];
-    if (!child) return;
-    child.material = new THREE.MeshStandardMaterial(materials["Material.004"]);
-    child.material.color = new THREE.Color(0.652, 0.418, 0.122);
-    const tl = gsap.timeline();
-    tl.to(child.material.color, {
-      r: 0.952,
-      g: 0.61,
-      b: 0.178,
-      duration: 1,
-    }).to(child.material.color, {
-      r: 0.652,
-      g: 0.418,
-      b: 0.122,
-      duration: 0.5,
-    });
-  }, [meshSelected]);
   const mainRef = React.useRef();
   const rotRef = React.useRef();
   const [active, setActive] = React.useState(true);
@@ -497,11 +484,30 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                if (!forced) setMeshSelected(e.object.parent.name);
+
+                const child = e.eventObject.children[0];
+                child.material = new THREE.MeshStandardMaterial(
+                  materials["Material.004"]
+                );
+                child.material.color = new THREE.Color(0.652, 0.418, 0.122);
+                console.log(child);
+
+                const tl = gsap.timeline();
+                tl.to(child.material.color, {
+                  r: 0.952,
+                  g: 0.61,
+                  b: 0.178,
+
+                  duration: 1,
+                }).to(child.material.color, {
+                  r: 0.652,
+                  g: 0.418,
+                  b: 0.122,
+                  duration: 0.5,
+                });
+
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -531,15 +537,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -564,15 +563,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -596,15 +588,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -628,15 +613,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -660,15 +638,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -692,15 +663,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -724,15 +688,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -756,15 +713,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -788,15 +738,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -820,15 +763,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -852,15 +788,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -886,15 +815,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -919,15 +841,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -952,15 +867,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -985,15 +893,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1018,15 +919,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1051,15 +945,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1084,15 +971,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1117,15 +997,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1151,15 +1024,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1184,15 +1050,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1218,15 +1077,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1250,15 +1102,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1282,15 +1127,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1314,15 +1152,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1346,15 +1177,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1378,15 +1202,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1410,15 +1227,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1442,15 +1252,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1474,15 +1277,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1508,15 +1304,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1540,15 +1329,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1572,15 +1354,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1604,15 +1379,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1636,15 +1404,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1668,15 +1429,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1700,15 +1454,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1732,15 +1479,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1764,15 +1504,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -1799,15 +1532,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1832,15 +1558,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1865,15 +1584,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1898,15 +1610,8 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1933,15 +1638,8 @@ export function GlobeModel(props) {
                   console.log(e);
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
-                  console.log({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
+                  if (!forced) setMeshSelected(e.object.parent.name);
+                  console.log(e.object.parent.name);
                 }}
                 onPointerLeave={() => {
                   setMeshSelected(null);
@@ -1966,11 +1664,7 @@ export function GlobeModel(props) {
                 onPointerEnter={(e) => {
                   e.stopPropagation();
                   if (dragging) return;
-                  if (!forced)
-                    setMeshSelected({
-                      name: e.object.parent.name,
-                      children: e.object.parent.children,
-                    });
+                  if (!forced) setMeshSelected(e.object.parent.name);
                 }}
                 onPointerLeave={(e) => {
                   setMeshSelected(null);
@@ -1995,15 +1689,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);
@@ -2027,15 +1714,8 @@ export function GlobeModel(props) {
               onPointerEnter={(e) => {
                 e.stopPropagation();
                 if (dragging) return;
-                if (!forced)
-                  setMeshSelected({
-                    name: e.object.parent.name,
-                    children: e.object.parent.children,
-                  });
-                console.log({
-                  name: e.object.parent.name,
-                  children: e.object.parent.children,
-                });
+                if (!forced) setMeshSelected(e.object.parent.name);
+                console.log(e.object.parent.name);
               }}
               onPointerLeave={() => {
                 setMeshSelected(null);

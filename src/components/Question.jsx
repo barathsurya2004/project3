@@ -14,7 +14,7 @@ const Question = () => {
         left: 0,
         scrollTrigger: {
           trigger: ".question-trigger",
-          start: "top 160%",
+          start: "top 200%",
           end: "top 70%",
           toggleActions: "play none none reverse",
           scrub: 0.05,
@@ -129,7 +129,7 @@ const Question = () => {
           className="question-trigger"
           style={{
             width: "100%",
-            height: "100vh",
+            height: "50vh",
           }}
         >
           <div

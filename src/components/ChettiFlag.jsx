@@ -18,16 +18,19 @@ const ChettiFlag = () => {
         style={{
           position: "relative",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          // justifyContent: "center",
+          // alignItems: "center",
           // height: "110vh",
-          width: "50%",
+          // width: "50%",
           paddingTop: 300 * (window.innerHeight / 1080),
+          paddingRight: "10%",
         }}
       >
         <div
           style={{
             position: "relative",
+            // background: "white",
+            transform: "translateY(60%)",
           }}
         >
           <div

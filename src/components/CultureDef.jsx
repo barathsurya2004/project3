@@ -17,7 +17,7 @@ const CultureDef = () => {
         scrollTrigger: {
           trigger: ".culture-definition-trigger",
           start: "top 100%",
-          end: "top 60%",
+          end: "top 24%",
           toggleActions: "play none none reverse",
           scrub: 0.1,
         },
@@ -34,7 +34,7 @@ const CultureDef = () => {
         top: "5vh",
         scrollTrigger: {
           trigger: ".culture-definition-trigger",
-          start: "top 60%",
+          start: "top 24%",
           end: "top top",
           toggleActions: "play none none reverse",
           scrub: 0.1,

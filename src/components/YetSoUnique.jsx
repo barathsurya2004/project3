@@ -41,7 +41,7 @@ const YetSoUnique = () => {
           top: "150%",
         },
         {
-          top: "60%",
+          top: "50%",
           immediateRender: false,
           ease: "none",
         }
@@ -53,19 +53,8 @@ const YetSoUnique = () => {
         },
         {
           top: "38%",
-          ease: "none",
           immediateRender: false,
-        }
-      )
-      .fromTo(
-        ".yet-so-unique-content",
-        {
-          top: "60%",
-        },
-        {
-          top: "50%",
           ease: "none",
-          immediateRender: false,
         },
         "<"
       );
@@ -77,11 +66,11 @@ const YetSoUnique = () => {
       {
         top: "-62%",
         scrollTrigger: {
-          trigger: ".yet-so-unique-content-trigger",
-          start: "bottom 98%",
-          end: "bottom top",
+          trigger: ".slider-place-holder",
+          start: "top bottom",
+          end: "top top",
           toggleActions: "play none none reverse",
-          scrub: 0.1,
+          scrub: true,
         },
         immediateRender: false,
         ease: "none",
@@ -95,11 +84,11 @@ const YetSoUnique = () => {
       {
         top: "-50%",
         scrollTrigger: {
-          trigger: ".yet-so-unique-content-trigger",
-          start: "bottom bottom",
-          end: "bottom top",
+          trigger: ".slider-place-holder",
+          start: "top bottom",
+          end: "top top",
           toggleActions: "play none none reverse",
-          scrub: 0.1,
+          scrub: true,
         },
         immediateRender: false,
         ease: "none",
@@ -115,10 +104,24 @@ const YetSoUnique = () => {
           width: "100%",
         }}
       ></div>
+      {/* <div
+        className="readingSpace"
+        style={{
+          height: "50vh",
+          width: "100%",
+        }}
+      ></div> */}
       <div
         className="yet-so-unique-content-trigger"
         style={{
           height: "100vh",
+          width: "100%",
+        }}
+      ></div>
+      <div
+        className="readingSpace"
+        style={{
+          height: "50vh",
           width: "100%",
         }}
       ></div>

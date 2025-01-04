@@ -34,7 +34,7 @@ createRoot(document.getElementById("root")).render(
         >
           <OrthographicCamera makeDefault zoom={100} position={[0, 0, 10]} />
 
-          <Grain />
+          {/* <Grain /> */}
         </Canvas>
       </div>
       <div

@@ -9,7 +9,7 @@ const FoodIs = () => {
     gsap.fromTo(
       ".card-content",
       {
-        bottom: "-200vh",
+        bottom: "-100vh",
       },
       {
         bottom: 0,
@@ -29,9 +29,9 @@ const FoodIs = () => {
         opacity: 1,
       },
       {
-        x: -200,
+        x: (-700 * window.innerWidth) / 1920,
         opacity: 0,
-        duration: 0.5,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-art",
           start: "top bottom",
@@ -44,13 +44,15 @@ const FoodIs = () => {
     gsap.fromTo(
       ".art",
       {
-        x: 500,
+        x: (1000 * window.innerWidth) / 1920,
         opacity: 0,
+        scale: 0.75,
       },
       {
         x: 0,
         opacity: 1,
-        duration: 0.5,
+        scale: 1,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-art",
           start: "top bottom",
@@ -67,9 +69,9 @@ const FoodIs = () => {
         opacity: 1,
       },
       {
-        x: -200,
+        x: (-700 * window.innerWidth) / 1920,
         opacity: 0,
-        duration: 0.5,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-adventure",
           start: "top bottom",
@@ -83,13 +85,15 @@ const FoodIs = () => {
     gsap.fromTo(
       ".adventure",
       {
-        x: 500,
+        x: (1000 * window.innerWidth) / 1920,
         opacity: 0,
+        scale: 0.75,
       },
       {
         x: 0,
+        scale: 1,
         opacity: 1,
-        duration: 0.5,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-adventure",
           start: "top bottom",
@@ -106,9 +110,9 @@ const FoodIs = () => {
         opacity: 1,
       },
       {
-        x: -200,
+        x: (-700 * window.innerWidth) / 1920,
         opacity: 0,
-        duration: 0.5,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-beyond-time",
           start: "top bottom",
@@ -122,13 +126,15 @@ const FoodIs = () => {
     gsap.fromTo(
       ".beyond-time",
       {
-        x: 500,
+        x: (1000 * window.innerWidth) / 1920,
         opacity: 0,
+        scale: 0.75,
       },
       {
         x: 0,
+        scale: 1,
         opacity: 1,
-        duration: 0.5,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-beyond-time",
           start: "top bottom",
@@ -145,9 +151,9 @@ const FoodIs = () => {
         opacity: 1,
       },
       {
-        x: -200,
+        x: (-700 * window.innerWidth) / 1920,
         opacity: 0,
-        duration: 0.5,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-culture",
           start: "top bottom",
@@ -161,13 +167,15 @@ const FoodIs = () => {
     gsap.fromTo(
       ".culture",
       {
-        x: 500,
+        x: (1000 * window.innerWidth) / 1920,
         opacity: 0,
+        scale: 0.75,
       },
       {
         x: 0,
         opacity: 1,
-        duration: 0.5,
+        scale: 1,
+        duration: 0.3,
         scrollTrigger: {
           trigger: ".food-is-culture",
           start: "top bottom",
@@ -376,7 +384,7 @@ const FoodIs = () => {
               fontFamily: "TTtravels Next Bold",
             }}
           >
-            food{" "}
+            food
             <span
               className="is-word"
               style={{
@@ -385,13 +393,14 @@ const FoodIs = () => {
                 // marginLeft: "1vw",
               }}
             >
+              {" "}
               is
             </span>
             <span
               className="x-word"
               style={{
                 color: "#D3AD62",
-                fontFamily: "",
+                fontFamily: "TTtravels Next DemiBold",
                 marginLeft: "-5rem",
                 opacity: 0,
               }}

@@ -184,7 +184,10 @@ const Cuisines = () => {
         end: "bottom 100%",
         onEnter: () => {
           chettiVis.current = true;
-          setMeshSelected("TN_CHETTI");
+          setMeshSelected({
+            name: "TN_CHETTI",
+            children: null,
+          });
         },
         onLeave: () => {
           setMeshSelected(null);
@@ -193,7 +196,10 @@ const Cuisines = () => {
 
         onEnterBack: () => {
           chettiVis.current = true;
-          setMeshSelected("TN_CHETTI");
+          setMeshSelected({
+            name: "TN_CHETTI",
+            children: null,
+          });
         },
         onLeaveBack: () => {
           chettiVis.current = false;
@@ -208,7 +214,10 @@ const Cuisines = () => {
         end: "bottom 90%",
         onEnter: () => {
           pandiVis.current = true;
-          setMeshSelected("TN_PANDI");
+          setMeshSelected({
+            name: "TN_PANDI",
+            children: null,
+          });
         },
         onLeave: () => {
           pandiVis.current = false;
@@ -216,7 +225,10 @@ const Cuisines = () => {
         },
         onEnterBack: () => {
           pandiVis.current = true;
-          setMeshSelected("TN_PANDI");
+          setMeshSelected({
+            name: "TN_PANDI",
+            children: null,
+          });
         },
         onLeaveBack: () => {
           pandiVis.current = false;
@@ -461,7 +473,7 @@ const Cuisines = () => {
         className="intro-text"
         style={{
           position: "fixed",
-          bottom: 50 * (window.innerHeight / 1080),
+          bottom: 75 * (window.innerHeight / 1080),
           left: 175 * (window.innerWidth / 1920),
           display: "flex",
           flexDirection: "column",

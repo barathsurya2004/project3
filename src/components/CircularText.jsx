@@ -322,7 +322,7 @@ const CircularText = ({ texts, radius }) => {
         className="wheel-burst"
         style={{
           width: "100%",
-          height: "100vh",
+          height: "80vh",
         }}
       ></div>
     </>
