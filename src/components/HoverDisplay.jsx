@@ -70,7 +70,7 @@ const HoverDisplay = () => {
               display: "inline-block",
               fontFamily: "TTtravels Next Bold",
               fontSize: (55 * window.innerWidth) / 1920,
-              color: "#f2d8a0",
+              color: "#ffe8b8",
             }}
             id="hover-display-heading"
           >
@@ -98,7 +98,7 @@ const HoverDisplay = () => {
             style={{
               color: "#af9f8c",
               fontSize: (21 * window.innerWidth) / 1920,
-              marginTop: (23 * window.innerWidth) / 1920,
+              marginTop: (15 * window.innerWidth) / 1920,
             }}
           >
             Region: {current ? current.region : ""}
@@ -125,7 +125,7 @@ const HoverDisplay = () => {
               display: "inline-block",
               fontFamily: "TTtravels Next Bold",
               fontSize: (55 * window.innerWidth) / 1920,
-              color: "#f2d8a0",
+              color: "#ffe8b8",
             }}
             id="hover-display-heading"
           >
@@ -153,7 +153,7 @@ const HoverDisplay = () => {
             style={{
               color: "#af9f8c",
               fontSize: (21 * window.innerWidth) / 1920,
-              marginTop: (23 * window.innerWidth) / 1920,
+              marginTop: (15 * window.innerWidth) / 1920,
             }}
           >
             Region:{current ? current.region : ""}

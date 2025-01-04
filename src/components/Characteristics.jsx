@@ -48,7 +48,7 @@ const Characteristics = () => {
           >
             <path
               fill="none"
-              stroke="#d3ad62"
+              stroke="#facd74"
               strokeWidth="5"
               d="M480.225,0 L480.225,3392.025"
             />
@@ -60,7 +60,7 @@ const Characteristics = () => {
             fontFamily: "TTtravels Next DemiBold",
             textAlign: "center",
             margin: (25 * window.innerHeight) / 1080,
-            color: "#D3AD62",
+            color: "#facd74",
           }}
         >
           Charecteristics
@@ -87,7 +87,7 @@ const Characteristics = () => {
           >
             <path
               fill="none"
-              stroke="#d3ad62"
+              stroke="#facd74"
               strokeWidth="5"
               d="M480.225,0 L480.225,3392.025"
             />

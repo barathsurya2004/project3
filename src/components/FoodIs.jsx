@@ -380,7 +380,7 @@ const FoodIs = () => {
         <div className="card-content" style={{}}>
           <h1
             style={{
-              color: "#D3AD62",
+              color: "#facd74",
               fontFamily: "TTtravels Next Bold",
             }}
           >
@@ -388,7 +388,7 @@ const FoodIs = () => {
             <span
               className="is-word"
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next Bold",
                 // marginLeft: "1vw",
               }}
@@ -399,7 +399,7 @@ const FoodIs = () => {
             <span
               className="x-word"
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold",
                 marginLeft: "-5rem",
                 opacity: 0,
@@ -412,7 +412,7 @@ const FoodIs = () => {
           <div className="love">
             <h2
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold Italic",
               }}
             >
@@ -422,7 +422,7 @@ const FoodIs = () => {
           <div className="topic art">
             <h2
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold Italic",
               }}
             >
@@ -432,7 +432,7 @@ const FoodIs = () => {
           <div className="adventure topic">
             <h2
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold Italic",
               }}
             >
@@ -442,7 +442,7 @@ const FoodIs = () => {
           <div className="beyond-time topic">
             <h2
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold Italic",
               }}
             >
@@ -450,7 +450,7 @@ const FoodIs = () => {
             </h2>
             <h2
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold Italic",
               }}
             >
@@ -460,7 +460,7 @@ const FoodIs = () => {
           <div className="culture topic">
             <h2
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
 
                 fontFamily: "TTtravels Next DemiBold Italic",
               }}
@@ -471,7 +471,7 @@ const FoodIs = () => {
           <div className="cuisine topic">
             <h2
               style={{
-                color: "#D3AD62",
+                color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold Italic",
 
                 top: "52.5vh",

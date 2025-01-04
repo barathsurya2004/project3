@@ -1,9 +1,5 @@
-import { RedChillyModel } from "../../public/Models/Cards/new/Chetti/RedChilly";
-import { SpicesModel } from "../../public/Models/Cards/new/Chetti/Spices";
-import { TamarindModel } from "../../public/Models/Cards/new/Chetti/Tamarind";
-import { CoconutModel } from "../../public/Models/Cards/new/Pandi/Coconut";
-import { LentilsModel } from "../../public/Models/Cards/new/Pandi/Lentils";
-import { PepperModel } from "../../public/Models/Cards/new/Pandi/Pepper";
+import { useGSAP } from "@gsap/react";
+
 import { ChilliCard } from "../../public/Models/ChettiCards/Chilli";
 import { SpicesCard } from "../../public/Models/ChettiCards/Spices";
 import { TamarindCard } from "../../public/Models/ChettiCards/Tamarind";
@@ -12,7 +8,23 @@ import { LentilsCard } from "../../public/Models/PandiCards/Lentils";
 import { PepperCard } from "../../public/Models/PandiCards/Pepper";
 import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
+import gsap from "gsap";
+import { Context } from "../context";
+import { useContext, useEffect } from "react";
 const Ingredients = () => {
+  const { cardInteractions } = useContext(Context);
+  useEffect(() => {
+    console.log(cardInteractions);
+    if (cardInteractions) {
+      const tl = gsap.timeline();
+      tl.to(".instructions-for-collecting", {
+        opacity: 0,
+        duration: 0.7,
+      }).to(".instructions-for-collecting", {
+        height: 0,
+      });
+    }
+  }, [cardInteractions]);
   return (
     <div
       className="ingredients-page"
@@ -33,7 +45,7 @@ const Ingredients = () => {
           style={{
             margin: 0,
             width: "100%",
-            height: (70 * window.innerHeight) / 1080,
+            height: (100 * window.innerHeight) / 1080,
             overflow: "hidden",
             position: "relative",
           }}
@@ -51,7 +63,7 @@ const Ingredients = () => {
           >
             <path
               fill="none"
-              stroke="#d3ad62"
+              stroke="#facd74"
               strokeWidth="5"
               d="M480.225,0 L480.225,3392.025"
             />
@@ -62,11 +74,25 @@ const Ingredients = () => {
             fontSize: (68 * window.innerWidth) / 1920,
             fontFamily: "TTtravels Next DemiBold",
             textAlign: "center",
-            margin: (25 * window.innerHeight) / 1080,
-            color: "#D3AD62",
+            margin: (20 * window.innerHeight) / 1080,
+            color: "#facd74",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           Raw Materials
+          <span
+            className="instructions-for-collecting"
+            style={{
+              fontSize: (27 * window.innerWidth) / 1920,
+              color: "#ffe8b8",
+              marginTop: (27 * window.innerHeight) / 1080,
+              height: (50 * window.innerHeight) / 1080,
+              fontFamily: "TTtravels Next Light",
+            }}
+          >
+            Double Click any card to collect the it
+          </span>
         </h1>
         <div
           style={{
@@ -78,6 +104,7 @@ const Ingredients = () => {
           }}
         >
           <svg
+            id="interactive-line"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 960.45 3000"
             preserveAspectRatio="none"
@@ -90,7 +117,7 @@ const Ingredients = () => {
           >
             <path
               fill="none"
-              stroke="#d3ad62"
+              stroke="#facd74"
               strokeWidth="5"
               d="M480.225,0 L480.225,3392.025"
             />

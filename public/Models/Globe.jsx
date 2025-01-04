@@ -18,6 +18,7 @@ export function GlobeModel(props) {
     pointer,
     setModelsPosition,
     modelsPosition,
+    setGlobeInteractions,
   } = useContext(Context);
   useEffect(() => {
     if (!meshSelected) return;
@@ -426,6 +427,11 @@ export function GlobeModel(props) {
       position={[0.35, 0, 0]}
       scale={0}
       rotation={[0, 0, 0]}
+      onPointerDown={() => {
+        // console.log("down");
+        // console.log(interactionState);
+        setGlobeInteractions(true);
+      }}
     >
       <mesh
         scale={1.3}

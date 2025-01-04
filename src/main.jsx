@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { ContextProvider } from "./context.jsx";
 import Layout from "./Layout.jsx";
-import { OrthographicCamera } from "@react-three/drei";
+import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
 import Grid from "./components/Grid.jsx";
 import Grain from "./components/Grain.jsx";
 import { Canvas } from "@react-three/fiber";
@@ -34,10 +34,11 @@ createRoot(document.getElementById("root")).render(
         >
           <OrthographicCamera makeDefault zoom={100} position={[0, 0, 10]} />
 
-          {/* <Grain /> */}
+          <Grain />
         </Canvas>
       </div>
       <div
+        className="grid-container-shader"
         style={{
           position: "fixed",
           top: 0,
@@ -60,6 +61,7 @@ createRoot(document.getElementById("root")).render(
           }}
         >
           <OrthographicCamera makeDefault zoom={50} position={[0, 0, 10]} />
+          {/* <PerspectiveCamera makeDefault position={[0, 0, 10]} zoom={0.5} /> */}
           <ambientLight intensity={100} />
           <Grid />
         </Canvas>

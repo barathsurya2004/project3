@@ -14,8 +14,9 @@ import ShallWeEnd from "./ShallWeEnd";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 const Slider1 = () => {
+  const { setSliderInteractions, sliderInteractions } = useContext(Context);
   const [dragging, setDragging] = useState(false);
-  const [yPos, setYPos] = useState(0);
+  const [yPos, setYPos] = useState("40vh");
   const [xPos, setXPos] = useState(window.innerWidth / 2);
   const { pointer } = useContext(Context);
   const [sliderValue, setSliderValue] = useState(50);
@@ -95,7 +96,7 @@ const Slider1 = () => {
         top: 0,
       },
       {
-        top: "-125vh",
+        top: "-150vh",
         scrollTrigger: {
           trigger: ".slider-compare-scroll",
           start: "top bottom",
@@ -117,10 +118,10 @@ const Slider1 = () => {
     gsap.fromTo(
       ".slider-compare",
       {
-        top: "-125vh",
+        top: "-150vh",
       },
       {
-        top: "-225vh",
+        top: "-250vh",
         scrollTrigger: {
           trigger: ".shall-we-end-anim-scroll",
           start: "bottom 100%",
@@ -203,6 +204,15 @@ const Slider1 = () => {
             left: "50%",
           });
         },
+        onLeave: () => {
+          if (!sliderInteractions) {
+            gsap.to(".slider-button-cont", {
+              top: "50%",
+            });
+            setYPos("50vh");
+          }
+          setSliderInteractions(true);
+        },
       },
     });
   });
@@ -228,21 +238,21 @@ const Slider1 = () => {
         className="slider-stay-scroll"
         style={{
           width: "100%",
-          height: "50vh",
+          height: "80vh",
         }}
       ></div>
       <div
         className="slider-compare-scroll"
         style={{
           width: "100%",
-          height: "125vh",
+          height: "150vh",
         }}
       ></div>
       <div
         className="shall-we-end-anim-scroll"
         style={{
           width: "100%",
-          height: "25vh",
+          height: "100vh",
         }}
       ></div>
 
@@ -250,7 +260,7 @@ const Slider1 = () => {
         className="slider-compare"
         style={{
           width: "100%",
-          height: "225vh",
+          height: "250vh",
           position: "fixed",
           top: "100vh",
           left: "0",
@@ -506,6 +516,7 @@ const Slider1 = () => {
               if (time - pointerUp > 1000) {
                 setDragging(true);
               }
+              setSliderInteractions(true);
             }}
             onPointerUp={() => {
               setPointerUp(performance.now());
@@ -623,7 +634,7 @@ const Slider1 = () => {
                 pointerEvents: "none",
                 cursor: "pointer",
                 // transform: "translate(0, 100vh)",
-                opacity: 0.3,
+                opacity: !sliderInteractions ? 1 : 0.3,
                 zIndex: 10,
               }}
             />
@@ -744,7 +755,7 @@ const Slider1 = () => {
                   // top: "-100%",
                   height: "300%",
                   width: "50%",
-                  stroke: "#bb8be8",
+                  stroke: "#bf8eed",
                   left: "74.8%",
                 }}
                 src={right}

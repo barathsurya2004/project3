@@ -33,7 +33,7 @@ const ThereIsMore = () => {
         >
           <path
             fill="none"
-            stroke="#d3ad62"
+            stroke="#facd74"
             stroke-width="5"
             d="M480.225,0 L480.225,3392.025"
           />
@@ -74,7 +74,7 @@ const ThereIsMore = () => {
         >
           <path
             fill="none"
-            stroke="#d3ad62"
+            stroke="#facd74"
             stroke-width="5"
             d="M480.225,0 L480.225,3392.025"
           />
@@ -86,7 +86,7 @@ const ThereIsMore = () => {
           fontFamily: "TTtravels Next DemiBold",
           textAlign: "center",
           margin: (25 * window.innerHeight) / 1080,
-          color: "#D3AD62",
+          color: "#facd74",
         }}
       >
         THERE’S MORE!
@@ -113,7 +113,7 @@ const ThereIsMore = () => {
         >
           <path
             fill="none"
-            stroke="#d3ad62"
+            stroke="#facd74"
             stroke-width="5"
             d="M480.225,0 L480.225,3392.025"
           />

@@ -309,7 +309,7 @@ const Slider = () => {
                   // top: "-100%",
                   height: "300%",
                   width: "50%",
-                  stroke: "#bb8be8",
+                  stroke: "#bf8eed",
                   left: "74.8%",
                 }}
                 src={right}

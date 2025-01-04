@@ -145,7 +145,7 @@ const YetSoUnique = () => {
             fontFamily: "TTtravels Next Demibold",
             fontSize: 86 * (window.innerHeight / 1080),
             margin: 0,
-            color: "#D3AD62",
+            color: "#facd74",
           }}
         >
           “They are so close, yet
@@ -156,7 +156,7 @@ const YetSoUnique = () => {
             fontSize: 86 * (window.innerHeight / 1080),
             lineHeight: 1,
             margin: 0,
-            color: "#D3AD62",
+            color: "#facd74",
           }}
         >
           SO UNIQUE”

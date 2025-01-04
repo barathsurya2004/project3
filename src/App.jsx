@@ -39,6 +39,18 @@ function App() {
       });
     };
   });
+  useEffect(() => {
+    gsap.fromTo(
+      ".grid-container-shader",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 5,
+      }
+    );
+  }, []);
 
   return (
     <>
@@ -62,7 +74,7 @@ function App() {
           //
         }}
       >
-        {/* <Interactions /> */}
+        <Interactions />
         <ThreeJsCanvas />
         <Hero />
         <CircularAnimation

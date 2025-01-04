@@ -111,7 +111,7 @@ const FaceReact = () => {
     split.chars.forEach((char) => {
       char.style.fontFamily = "TTtravels Next DemiBold";
 
-      char.style.color = "#BB8BE8";
+      char.style.color = "#bf8eed";
       char.style.display = "inline-block";
     });
     tl.to(split.chars, {
@@ -124,7 +124,7 @@ const FaceReact = () => {
     gsap.to(".pandi-vote", { duration: 0.005, opacity: 1 });
     split2.chars.forEach((char) => {
       char.style.fontFamily = "TTtravels Next DemiBold";
-      char.style.color = "#BB8BE8";
+      char.style.color = "#bf8eed";
       char.style.display = "inline-block";
       char.style.opacity = 0;
     });
@@ -150,7 +150,7 @@ const FaceReact = () => {
     const split2 = new SplitType(".pandi-vote");
     split2.chars.forEach((char) => {
       char.style.fontFamily = "TTtravels Next DemiBold";
-      char.style.color = "#BB8BE8";
+      char.style.color = "#bf8eed";
       char.style.display = "inline-block";
     });
     tl.to(split2.chars, {
@@ -167,7 +167,7 @@ const FaceReact = () => {
     });
     split.chars.forEach((char) => {
       char.style.fontFamily = "TTtravels Next DemiBold";
-      char.style.color = "#BB8BE8";
+      char.style.color = "#bf8eed";
     });
     tl.fromTo(
       split.chars,
@@ -455,7 +455,7 @@ const FaceReact = () => {
                       display: "flex",
                       flexWrap: "nowrap",
                       ...styles.para,
-                      color: "#BB8BE8",
+                      color: "#bf8eed",
                     }}
                   >
                     Pandiyanad
@@ -464,7 +464,7 @@ const FaceReact = () => {
                     className="pandi-text"
                     style={{
                       ...styles.para,
-                      color: "#BB8BE8",
+                      color: "#bf8eed",
                     }}
                   >
                     Cuisine
@@ -485,7 +485,7 @@ const FaceReact = () => {
                     className="pandi-vote"
                     style={{
                       ...styles.para,
-                      color: "#BB8BE8",
+                      color: "#bf8eed",
                       opacity: 0,
                     }}
                   >
@@ -494,7 +494,7 @@ const FaceReact = () => {
                   <p
                     style={{
                       ...styles.para,
-                      color: "#BB8BE8",
+                      color: "#bf8eed",
                     }}
                   >
                     {pandiVotes}

@@ -333,7 +333,7 @@ const Cuisines = () => {
               transform: `translate(${(13 * window.innerWidth) / 1280}px,${
                 (20 * window.innerWidth) / 1280
               }px)`,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             Cuisines
@@ -344,7 +344,7 @@ const Cuisines = () => {
               fontFamily: "TTtravels Next Demibold Italic",
               margin: 0,
               transform: `translate(${(15 * window.innerWidth) / 1280}px,0)`,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             of the{" "}
@@ -352,7 +352,7 @@ const Cuisines = () => {
               style={{
                 fontSize: (144 * window.innerHeight) / 1080,
                 fontFamily: "TTtravels Next Demibold Italic",
-                color: "#D3AD62",
+                color: "#facd74",
               }}
             >
               World
@@ -387,7 +387,7 @@ const Cuisines = () => {
               fontSize: (144 * window.innerHeight) / 1080,
               fontFamily: "TTtravels Next Bold",
               margin: 0,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             Cuisines
@@ -398,7 +398,7 @@ const Cuisines = () => {
               fontFamily: "TTtravels Next Demibold Italic",
               margin: 0,
               transform: `translate(0,${-(35 * window.innerHeight) / 1280}px`,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             of
@@ -406,7 +406,7 @@ const Cuisines = () => {
               style={{
                 fontSize: (144 * window.innerHeight) / 1080,
                 fontFamily: "TTtravels Next Demibold Italic",
-                color: "#D3AD62",
+                color: "#facd74",
               }}
             >
               India
@@ -442,7 +442,7 @@ const Cuisines = () => {
               fontSize: (144 * window.innerHeight) / 1080,
               fontFamily: "TTtravels Next Demibold Italic",
               margin: 0,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             Tamil
@@ -452,7 +452,7 @@ const Cuisines = () => {
               fontSize: (144 * window.innerHeight) / 1080,
               fontFamily: "TTtravels Next Demibold Italic",
               margin: 0,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             Nadu's
@@ -462,7 +462,7 @@ const Cuisines = () => {
               fontSize: (144 * window.innerHeight) / 1080,
               fontFamily: "TTtravels Next Bold",
               margin: 0,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             Cuisines

@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 485.2 485.2"><defs><style>.cls-1{fill:#bb8be8;}.cls-2{font-size:34.56px;fill:#171717;font-family:TTTravelsNext-Bd, TT Travels Next;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="main"><rect class="cls-1" width="485.2" height="485.2"/><text class="cls-2" transform="translate(71.6 251.08)">anim goes here</text></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 485.2 485.2">
+    <defs>
+        <style>.cls-1{fill:#bf8eed;}.cls-2{font-size:34.56px;fill:#171717;font-family:TTTravelsNext-Bd,
+            TT Travels Next;}</style>
+    </defs>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="main">
+            <rect class="cls-1" width="485.2" height="485.2" />
+            <text class="cls-2" transform="translate(71.6 251.08)">anim goes here</text>
+        </g>
+    </g>
+</svg>

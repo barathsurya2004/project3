@@ -12,7 +12,7 @@ import CardRotateHelp from "./CardRotateHelp";
 import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
 import { BlurPass, Resizer, KernelSize, Resolution } from "postprocessing";
 
-const CardsCanvas = ({ children, onDoubleClick }) => {
+const CardsCanvas = ({ children, onDoubleClick, onClick }) => {
   const ref = useRef();
 
   return (
@@ -22,6 +22,7 @@ const CardsCanvas = ({ children, onDoubleClick }) => {
         height: "100%",
       }}
       onDoubleClick={onDoubleClick}
+      onClick={onClick}
     >
       <Canvas
         onPointerOut={() => {

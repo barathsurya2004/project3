@@ -18,12 +18,13 @@ export function QuestionModel(props) {
   const [active, setActive] = React.useState(false);
   const { setModelsPosition, modelsPosition } = useContext(Context);
   const positionSet = useRef(false);
+  const change = useRef();
 
   useGSAP(() => {
     gsap.fromTo(
       ref.current.position,
       {
-        y: -1.92,
+        y: -1.652,
       },
       {
         y: -1.5,
@@ -48,6 +49,11 @@ export function QuestionModel(props) {
         },
         onEnterBack: () => {
           setActive(false);
+        },
+        onUpdate: (self) => {
+          gsap.to(change.current, {
+            value: 1 - self.progress,
+          });
         },
         toggleActions: "play none none reverse",
         scrub: true,
@@ -145,8 +151,9 @@ export function QuestionModel(props) {
       {...props}
       dispose={null}
       scale={0.035}
-      position={[2.03, -1.92, 0]}
+      position={[2.03, -1.652, 0]}
     >
+      <ambientLight ref={change} intensity={0.5} />
       <group rotation={[Math.PI / 2, 0, 0]}>
         <mesh
           geometry={nodes.svgMeshShape3.geometry}

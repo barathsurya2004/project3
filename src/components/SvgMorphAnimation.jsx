@@ -121,9 +121,10 @@ const SvgMorphAnimation = () => {
         ref={lineRef}
         style={{
           height: 2 * (window.innerWidth / 1920),
-          backgroundColor: "#f2d8a0",
+          backgroundColor: "#ffe8b8",
           position: "absolute",
           transformOrigin: "left center",
+          borderRadius: "10%",
         }}
       ></div>
       <div
@@ -134,10 +135,11 @@ const SvgMorphAnimation = () => {
           left: down ? posRef.right : posRef.left,
           height: 2 * (window.innerWidth / 1920),
           transform: `rotate(${down ? 180 : 0}deg)`,
-          backgroundColor: "#f2d8a0",
+          backgroundColor: "#ffe8b8",
           position: "absolute",
           transformOrigin: "left center",
           width: 0,
+          borderRadius: 50,
         }}
       ></div>
 
@@ -148,7 +150,7 @@ const SvgMorphAnimation = () => {
           width: 15 * (window.innerWidth / 1920),
           height: 15 * (window.innerWidth / 1920),
           borderRadius: "50%",
-          backgroundColor: "#f2d8a0",
+          backgroundColor: "#ffe8b8",
           transform: "translate(-100%, -100%)",
         }}
       ></div>

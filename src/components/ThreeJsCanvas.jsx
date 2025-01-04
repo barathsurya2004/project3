@@ -287,7 +287,25 @@ const ThreeJsCanvas = () => {
               }
             >
               <EffectComposer>
-                <directionalLight intensity={3} position={[5, 10, 10]} />
+                {/* <directionalLight intensity={3} position={[5, 10, 10]} /> */}
+                <spotLight
+                  intensity={30}
+                  position={[5, 0, 5]}
+                  color="#f4e7cb"
+                  angle={Math.PI / 2}
+                />
+                <spotLight
+                  intensity={50}
+                  position={[1, 0, 4]}
+                  color={"#f4e7cb"}
+                  angle={Math.PI / 2}
+                />
+
+                <spotLight
+                  intensity={80}
+                  position={[3, 3, 5]}
+                  color="#f4e7cb"
+                />
                 {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
                 {/* 
           <OrthographicCamera
@@ -326,9 +344,9 @@ const ThreeJsCanvas = () => {
           height: "100vh",
 
           maskImage: `radial-gradient(circle at center left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) ${
-            30 + 70 * prog
+            50 + 50 * prog
           }%, rgba(255,255,255,1) ${
-            30 + 90 * prog
+            60 + 90 * prog
           }%, rgba(255,255,255,1) 100%)`,
 
           zIndex: 10,

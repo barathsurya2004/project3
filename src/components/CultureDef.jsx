@@ -125,7 +125,7 @@ const CultureDef = () => {
         >
           <p
             style={{
-              color: "#F2D8A0",
+              color: "#ffe8b8",
               marginBottom: "2vh",
             }}
           >
@@ -140,7 +140,7 @@ const CultureDef = () => {
           </p>
           <p
             style={{
-              color: "#F2D8A0",
+              color: "#ffe8b8",
             }}
           >
             A cuisine tells a story of regional traditions and cultural

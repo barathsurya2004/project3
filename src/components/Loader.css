@@ -7,10 +7,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #f2d8a0;
+  color: #ffe8b8;
   font-family: "Filson Pro Regular";
 }
-.container {
+.loadingbar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +48,7 @@
 .bar-glow-inner {
   height: 100%;
   width: 0;
-  background-color: #f2d8a0;
+  background-color: #ffe8b8;
   filter: blur(10px);
 }
 
@@ -57,7 +57,7 @@
   border-radius: 5px;
   width: 100%;
 
-  /* background-color: #f2d8a0; */
+  /* background-color: #ffe8b8; */
 }
 
 .bar-glow-small {
@@ -82,7 +82,7 @@
   width: 120px;
   border-radius: 50%;
   /* transform: translate(-100%, 45%); */
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #f2d8a0 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffe8b8 100%);
   opacity: 0.4;
 }
 .bg-container {

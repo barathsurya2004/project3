@@ -1,28 +1,30 @@
 import { useProgress } from "@react-three/drei";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../context";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { CustomEase } from "gsap/all";
 import "./Loader.css";
-import inner from "../assets/icons/load-blur.svg";
-import back from "../assets/icons/loaderBack.svg";
+import back from "../assets/images/fin_load_1.png";
+import inner from "../assets/images/fin_load_2.png";
+import inner1 from "../assets/images/fin_load_3.png";
 gsap.registerPlugin(CustomEase);
 const Loader = () => {
   const { progress } = useProgress();
   const hori = 11;
   const verti = 19;
   const { loading, setLoading } = useContext(Context);
+  const completedRef = useRef();
   useEffect(() => {
     if (progress === 100) {
       setTimeout(() => {
         gsap.fromTo(
           ".inner-loader",
           {
-            width: "25%",
+            width: "35%",
           },
           {
-            width: "100%",
+            width: "120%",
             duration: 5,
             ease: "power4.out",
           }
@@ -30,32 +32,38 @@ const Loader = () => {
         gsap.fromTo(
           ".back-loader-inner",
           {
-            width: "25%",
+            width: "35%",
           },
           {
-            width: "100%",
+            width: "120%",
             duration: 5,
             ease: "power4.out",
           }
         );
       }, 2000);
       setTimeout(() => {
+        completedRef.current.pause();
         gsap.to(".text", {
           opacity: 0,
-          duration: 1,
           onComplete: () => {
             setLoading(false);
-          },
+          }, //
+          duration: 1,
+        });
+
+        gsap.to(".loadingbar-container", {
+          opacity: 0,
+          duration: 1.5,
         });
       }, 5000);
     }
     gsap.to(".inner-loader", {
-      width: `${progress / 4}%`,
+      width: `${35 * (progress / 100)}%`,
       duration: 2,
       ease: "power4.out",
     });
     gsap.to(".back-loader-inner", {
-      width: `${progress / 4}%`,
+      width: `${35 * (progress / 100)}%`,
       duration: 2,
       ease: "power4.out",
     });
@@ -73,6 +81,31 @@ const Loader = () => {
       });
     }
   }, [progress, loading]);
+  useEffect(() => {
+    gsap.fromTo(
+      ".loadingbar-container",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: "power4.out",
+      }
+    );
+  }, []);
+  useGSAP(() => {
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.to("#glow-for-loader", {
+      duration: 0.8,
+      opacity: 0.3,
+      ease: "power4.out",
+    }).to("#glow-for-loader", {
+      duration: 0.8,
+      opacity: 0.7,
+      ease: "power4.out",
+    });
+  });
   let count = 0;
   let index = 0;
   const content = [
@@ -89,43 +122,52 @@ const Loader = () => {
   const [i, setI] = useState(Math.floor(Math.random() * content.length));
   const [previ, setPrevi] = useState(i);
   useGSAP(() => {
-    gsap.to(".text", {
-      opacity: 1,
-      duration: 1,
-      ease: CustomEase.create("custom", "M0,0 C0.1,0 0.9,1 1,1"),
+    // const testing = gsap.to(".text", {
+    //   opacity: 1,
+    //   duration: 1,
+    //   // ease: CustomEase.create("custom", "M0,0 C0.1,0 0.9,1 1,1"),
+    //   repeat: -1,
+
+    //   onRepeat() {
+    //     if (count % 2 !== 0) {
+    //       index = Math.floor(Math.random() * content.length);
+    //       if (index === previ) {
+    //         index = (index + 1) % content.length;
+    //       } else {
+    //         setI(index % content.length);
+    //       }
+    //     }
+    //     count += 1;
+    //   },
+    //   yoyo: true,
+    // });
+    const mastertl = gsap.timeline({
       repeat: -1,
 
-      onRepeat() {
-        if (count % 2 !== 0) {
-          index = Math.floor(Math.random() * content.length);
-          if (index === previ) {
-            index = (index + 1) % content.length;
-          } else {
-            setI(index % content.length);
-          }
+      onRepeat: () => {
+        index = Math.floor(Math.random() * content.length);
+        if (index === previ) {
+          index = (index + 1) % content.length;
         }
-        count += 1;
+        setI(index % content.length);
+        setPrevi(index % content.length);
+        // setI((previ + 1) % content.length);
       },
-      yoyo: true,
     });
-    gsap.to(".grid-lines-hori", {
-      width: "100%",
-      duration: 4.371,
-      stagger: {
-        amount: 1,
-        from: "random",
-      },
-      ease: CustomEase.create("custom", "M0,0 C0.33,0 0.67,1 1,1 "),
+    const tl = gsap.timeline();
+    tl.to(".text", {
+      duration: 1,
+      opacity: 1,
+      ease: CustomEase.create("custom", "M0,0 C0.1,0 0.9,1 1,1"),
+    }).to(".text", {
+      delay: 1,
+      duration: 1,
+      opacity: 0,
+      ease: CustomEase.create("custom", "M0,0 C0.1,0 0.9,1 1,1"),
     });
-    gsap.to(".grid-lines-verti", {
-      height: "100%",
-      duration: 4.371,
-      stagger: {
-        amount: 1,
-        from: "random",
-      },
-      ease: CustomEase.create("custom", "M0,0 C0.33,0 0.67,1 1,1 "),
-    });
+
+    mastertl.add(tl);
+    completedRef.current = mastertl;
   });
   return (
     <div
@@ -153,7 +195,7 @@ const Loader = () => {
           ))}
         </div>
       </div> */}
-      <div className="container">
+      <div className="loadingbar-container">
         <div
           className="text"
           style={{
@@ -172,7 +214,6 @@ const Loader = () => {
           className="bar-load"
           style={{
             width: (690 * window.innerWidth) / 1920,
-            height: (5 * window.innerHeight) / 1080,
             position: "relative",
             display: "flex",
             justifyContent: "flex-start",
@@ -180,28 +221,45 @@ const Loader = () => {
             // background: "white",
             transform: `translateX(${(20 * window.innerWidth) / 1920}px)`,
             marginTop: (20 * window.innerHeight) / 1080,
+            height: (5 * window.innerHeight) / 1080,
+            // background: "rgba(255, 255, 255, 0.5)",
           }}
         >
           <div
             className="inner-loader"
             style={{
               width: 0,
-              height: (200 * window.innerHeight) / 1080,
+              height: (250 * window.innerHeight) / 1080,
               // background: "white",
               position: "absolute",
-              bottom: 0,
+              top: 0,
               left: 0,
             }}
           >
             <img
+              src={inner1}
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                bottom: 0,
+                opacity: 0.7,
+                // mixBlendMode: "screen",
+                transform: "translate(0%,-50%)",
+              }}
+              id="glow-for-loader"
+            />
+            <img
               src={inner}
               alt=""
               style={{
-                width: "120%",
-                height: 50,
+                width: "100%",
+                height: "100%",
                 position: "absolute",
                 bottom: 0,
                 // mixBlendMode: "screen",
+                transform: "translate(0%,-50%)",
               }}
             />
           </div>
@@ -209,14 +267,15 @@ const Loader = () => {
             className="back-loader"
             style={{
               position: "absolute",
-              bottom: 0,
+              top: 0,
               margin: 0,
-              width: (675 * window.innerWidth) / 1920,
-              height: "50px",
+              width: "120%",
+              height: (250 * window.innerHeight) / 1080,
               zIndex: -1,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              // background: "rgba(255, 255, 255, 0.5)",
             }}
           >
             <img
@@ -224,26 +283,13 @@ const Loader = () => {
               alt=""
               style={{
                 width: "100%",
-                height: 50,
+                height: "100%",
                 position: "absolute",
                 bottom: 0,
                 left: 0,
+                transform: "translate(0%,-50%)",
               }}
             />
-            <div
-              className="back-loader-inner"
-              style={{
-                width: "100%",
-                height: 4,
-                background: "#f2d8a0",
-                position: "absolute",
-                bottom: "50%",
-                left: 0,
-                borderRadius: 2,
-                // opacity: 0.5,
-                transform: "translateY(50%)",
-              }}
-            ></div>
           </div>
         </div>
       </div>

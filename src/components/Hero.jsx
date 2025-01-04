@@ -288,7 +288,7 @@ const Hero = () => {
               width: 679 * (window.innerWidth / 1920),
               height: 170 * (window.innerHeight / 1080),
               position: "relative",
-              marginBottom: 125 * (window.innerHeight / 1080),
+              marginBottom: 60 * (window.innerHeight / 1080),
               fontSize: "2.5vh",
             }}
           >

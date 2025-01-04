@@ -39,6 +39,14 @@ export const Context = createContext({
   setModelsPosition: () => {},
   chettiVis: false,
   pandiVis: false,
+  questionInteractions: false,
+  setQuestionInteractions: () => {},
+  globeInteractions: false,
+  setGlobeInteractions: () => {},
+  sliderInteractions: false,
+  setSliderInteractions: () => {},
+  cardInteractions: false,
+  setCardInteractions: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -65,6 +73,11 @@ export const ContextProvider = ({ children }) => {
     globePandi: [0, 0],
     globeChetti: [0, 0],
   });
+  const [questionInteractions, setQuestionInteractions] = useState(false);
+  const [globeInteractions, setGlobeInteractions] = useState(false);
+  const [sliderInteractions, setSliderInteractions] = useState(false);
+  const [cardInteractions, setCardInteractions] = useState(false);
+
   const chettiVis = useRef(false);
   const pandiVis = useRef(false);
   const handleMouseMove = (event) => {
@@ -272,6 +285,14 @@ export const ContextProvider = ({ children }) => {
     setModelsPosition,
     chettiVis,
     pandiVis,
+    questionInteractions,
+    setQuestionInteractions,
+    globeInteractions,
+    setGlobeInteractions,
+    sliderInteractions,
+    setSliderInteractions,
+    cardInteractions,
+    setCardInteractions,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

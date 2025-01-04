@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import anim from "../assets/json/shall_we_fin_fin_2.json";
+import anim from "../assets/json/shall_we_fin_fin_4.json";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";

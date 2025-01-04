@@ -74,7 +74,7 @@ const Disclaimer = () => {
           paddingBottom: 0,
           alignItems: "center",
           position: "relative",
-          border: "5px solid #D3AD62",
+          border: "5px solid #facd74",
         }}
       >
         <p

@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import anim from "../assets/json/rev_shall_we.json";
+import anim from "../assets/json/end_shall_we_10.json";
 import { useContext, useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";

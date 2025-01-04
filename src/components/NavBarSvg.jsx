@@ -2,15 +2,17 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import * as React from "react";
 import arrow from "../assets/icons/navArrow.svg";
-import color1 from "../assets/icons/navbar/color1.svg";
-import color2 from "../assets/icons/navbar/color2.svg";
-import speed1 from "../assets/icons/navbar/speed1.svg";
-import speed2 from "../assets/icons/navbar/speed2.svg";
-import speed3 from "../assets/icons/navbar/speed3.svg";
-import zoom1 from "../assets/icons/navbar/zoom1.svg";
-import zoom2 from "../assets/icons/navbar/zoom2.svg";
-import int1 from "../assets/icons/navbar/int1.svg";
-import int2 from "../assets/icons/navbar/int2.svg";
+import invert1 from "../assets/icons/navbar/invert1.svg";
+import invert2 from "../assets/icons/navbar/invert2.svg";
+import play1 from "../assets/icons/navbar/play1.svg";
+import play2 from "../assets/icons/navbar/play2.svg";
+import play3 from "../assets/icons/navbar/play3.svg";
+import lightOn from "../assets/icons/navbar/lightOn.svg";
+import lightOff from "../assets/icons/navbar/lightOff.svg";
+import showInt from "../assets/icons/navbar/showInt.svg";
+import noInt from "../assets/icons/navbar/noInt.svg";
+import navOn from "../assets/icons/navbar/navOn.svg";
+import navOff from "../assets/icons/navbar/navOff.svg";
 import { Context } from "../context";
 const NavBarSvg = (props) => {
   const [show, setShow] = React.useState(false);
@@ -28,6 +30,7 @@ const NavBarSvg = (props) => {
 
   useGSAP(() => {
     if (!show) {
+      const tl = gsap.timeline();
       gsap.to(".hide-on-click", {
         duration: 0.5,
         y: "100%",
@@ -38,18 +41,16 @@ const NavBarSvg = (props) => {
         y: 270,
         ease: "power1.inOut",
       });
-      gsap.to("#arrow-nav-bar", {
-        duration: 0.5,
-        rotate: 180,
-        ease: "power1.inOut",
-      });
-      gsap.to(".nav-bar-cont-2", {
+
+      tl.to(".nav-bar-cont-2", {
         duration: 0.5,
         y: 0,
-        opacity: 0.3,
         ease: "power1.inOut",
+      }).to(".nav-bar-cont-2", {
+        opacity: 0.3,
       });
     } else {
+      const tl = gsap.timeline();
       gsap.to(".hide-on-click", {
         duration: 0.5,
         y: "0%",
@@ -60,16 +61,14 @@ const NavBarSvg = (props) => {
         y: 0,
         ease: "power1.inOut",
       });
-      gsap.to("#arrow-nav-bar", {
-        duration: 0.5,
-        rotate: 0,
-        ease: "power1.inOut",
-      });
+
       gsap.to(".nav-bar-cont-2", {
         duration: 0.5,
         y: "40%",
-        opacity: 1,
         ease: "power1.inOut",
+      });
+      gsap.to(".nav-bar-cont-2", {
+        opacity: 1,
       });
     }
   }, [show]);
@@ -87,7 +86,7 @@ const NavBarSvg = (props) => {
     position: "absolute",
     width: "100%",
     height: "100%",
-    border: "3px solid #d3ad62",
+    border: "3px solid #facd74",
     borderRadius: 50,
     transform: "translate(0%, 0%)",
   };
@@ -97,7 +96,7 @@ const NavBarSvg = (props) => {
     // overflow: "hidden",
     width: "100%",
     aspectRatio: "1.15/1",
-    // border: "3px solid #d3ad62",
+    // border: "3px solid #facd74",
     borderRadius: "50%",
     position: "relative",
     cursor: "pointer",
@@ -142,14 +141,14 @@ const NavBarSvg = (props) => {
         >
           {invert ? (
             <img
-              src={color1}
-              alt="color1"
+              src={invert1}
+              alt="invert1"
               //   style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           ) : (
             <img
-              src={color2}
-              alt="color2"
+              src={invert2}
+              alt="invert2"
               //   style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           )}
@@ -162,11 +161,11 @@ const NavBarSvg = (props) => {
           }}
         >
           {speed === 1 ? (
-            <img src={speed1} alt="speed1" />
+            <img src={play1} alt="play1" />
           ) : speed === 2 ? (
-            <img src={speed2} alt="speed2" />
+            <img src={play2} alt="play2" />
           ) : (
-            <img src={speed3} alt="speed3" />
+            <img src={play3} alt="play3" />
           )}
         </div>
         <div
@@ -177,9 +176,9 @@ const NavBarSvg = (props) => {
           }}
         >
           {light ? (
-            <img src={zoom1} alt="zoom1" />
+            <img src={lightOn} alt="lightOn" />
           ) : (
-            <img src={zoom2} alt="zoom2" />
+            <img src={lightOff} alt="lightOff" />
           )}
         </div>
         <div
@@ -191,16 +190,16 @@ const NavBarSvg = (props) => {
         >
           {interaction === 1 ? (
             <img
-              src={int1}
-              alt="int1"
+              src={showInt}
+              alt="showInt"
               onClick={() => {
                 setInteraction(2);
               }}
             />
           ) : (
             <img
-              src={int2}
-              alt="int2"
+              src={noInt}
+              alt="noInt"
               onClick={() => {
                 setInteraction(1);
               }}
@@ -212,10 +211,7 @@ const NavBarSvg = (props) => {
       <div
         style={{
           width: "100%",
-          aspectRatio: "1.15/1",
-          borderRadius: "50%",
-          border: "3px solid #d3ad62",
-          padding: "15%",
+
           cursor: "pointer",
           position: "absolute",
           zIndex: 2,
@@ -228,34 +224,46 @@ const NavBarSvg = (props) => {
         onClick={() => {
           setShow(!show);
         }}
-        onPointerEnter={() => {
-          gsap.to(".nav-bar-cont-2", {
-            duration: 0.5,
-            opacity: 1,
-            ease: "power1.inOut",
-          });
-        }}
-        onPointerLeave={() => {
-          if (!show) {
-            gsap.to(".nav-bar-cont-2", {
-              duration: 0.5,
-              opacity: 0.3,
-              ease: "power1.inOut",
-            });
-          }
-        }}
+        // onPointerEnter={() => {
+        //   gsap.to(".nav-bar-cont-2", {
+        //     duration: 0.5,
+        //     opacity: 1,
+        //     ease: "power1.inOut",
+        //   });
+        // }}
+        // onPointerLeave={() => {
+        //   if (!show) {
+        //     gsap.to(".nav-bar-cont-2", {
+        //       duration: 0.5,
+        //       opacity: 0.3,
+        //       ease: "power1.inOut",
+        //     });
+        //   }
+        // }}
       >
-        <img
-          id="arrow-nav-bar"
-          src={arrow}
-          alt="arrow"
-          style={{
-            width: "100%",
-            // height: "100%",
+        {invert || speed !== 1 || light || interaction !== 1 ? (
+          <img
+            src={navOn}
+            alt="arrow"
+            style={{
+              width: "100%",
+              // height: "100%",
 
-            objectFit: "contain",
-          }}
-        />
+              objectFit: "contain",
+            }}
+          />
+        ) : (
+          <img
+            src={navOff}
+            alt="arrow"
+            style={{
+              width: "100%",
+              // height: "100%",
+
+              objectFit: "contain",
+            }}
+          />
+        )}
       </div>
     </div>
   );

@@ -2,9 +2,11 @@ import CardsCanvas from "./CardsCanvas";
 import button from "../assets/icons/chettiArrow.svg";
 import activePage from "../assets/icons/chettiPagi.svg";
 import gsap from "gsap";
-import { Children, useState } from "react";
+import { Children, useContext, useState } from "react";
+import { Context } from "../context";
 const CardHolder = ({ children, idd }) => {
   const [active, setActive] = useState(0);
+  const { setCardInteractions } = useContext(Context);
   return (
     <>
       <div
@@ -47,6 +49,9 @@ const CardHolder = ({ children, idd }) => {
         idd={idd}
         onDoubleClick={() => {
           console.log(idd, active);
+        }}
+        onClick={() => {
+          setCardInteractions(true);
         }}
       >
         {Children.map(children, (child, index) => {

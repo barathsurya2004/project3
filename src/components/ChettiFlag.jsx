@@ -30,14 +30,14 @@ const ChettiFlag = () => {
           style={{
             position: "relative",
             // background: "white",
-            transform: "translateY(60%)",
+            transform: "translateY(85%)",
           }}
         >
           <div
             className="chetti-icon-container"
             style={{
               position: "absolute",
-              transform: "translateY(-100%)",
+              transform: "translateY(-105%)",
               top: 0,
               right: 0,
             }}
@@ -55,6 +55,7 @@ const ChettiFlag = () => {
               fontSize: (89 * window.innerHeight) / 1080,
               fontFamily: "TTtravels Next DemiBold",
               color: "#F07373",
+              textAlign: "right",
             }}
           >
             Chettinad
@@ -87,7 +88,7 @@ const ChettiFlag = () => {
           width: "100%",
           display: "flex",
           justifyContent: "end",
-          paddingTop: "15%",
+          paddingTop: "50vh",
           position: "relative",
         }}
       >

@@ -2,7 +2,7 @@
     viewBox="0 0 127.11 127.11">
     <defs>
         <style>
-            .cls-1{stroke:#d3ad62;stroke-miterlimit:10;stroke-width:2.4px;fill:url(#linear-gradient);}.cls-2{fill:#d3ad62;stroke:#6d522c;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.6px;}</style>
+            .cls-1{stroke:#facd74;stroke-miterlimit:10;stroke-width:2.4px;fill:url(#linear-gradient);}.cls-2{fill:#facd74;stroke:#6d522c;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.6px;}</style>
         <linearGradient id="linear-gradient" x1="63.55" y1="125.91" x2="63.55" y2="1.2"
             gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#876849" stop-opacity="0.3" />

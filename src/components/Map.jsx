@@ -101,7 +101,7 @@ const MapComponent = () => {
         style={{
           width: (1494.583 * window.innerWidth) / 1920,
           height: (747.47 * window.innerHeight) / 1080,
-          // background: "#D3AD62",
+          // background: "#facd74",
           // opacity: 0.5,
           borderRadius: (30 * window.innerWidth) / 1280,
           display: "flex",
@@ -109,7 +109,7 @@ const MapComponent = () => {
           alignItems: "center",
           overflow: "hidden",
           position: "relative",
-          outline: `${(5 * window.innerHeight) / 720}px solid #D3AD62`,
+          outline: `${(5 * window.innerHeight) / 720}px solid #facd74`,
           outlineOffset: `-${(1 * window.innerHeight) / 720}px`,
         }}
       >
@@ -121,7 +121,7 @@ const MapComponent = () => {
             alignItems: "center",
             width: "100%",
             height: "10%",
-            backgroundColor: "#D3AD62",
+            backgroundColor: "#facd74",
             position: "relative",
           }}
         >
@@ -186,7 +186,7 @@ const MapComponent = () => {
               alignItems: "center",
               overflow: "scroll",
               scrollbarWidth: "none",
-              borderLeft: "5px solid #D3AD62",
+              borderLeft: "5px solid #facd74",
               background:
                 "linear-gradient(90deg, rgba(135,104,73,0.3) 0%, rgba(89,71,49,0.2) 100%)",
             }}
@@ -237,7 +237,7 @@ const MapComponent = () => {
                     </h1>
                     <p
                       style={{
-                        color: "#CEB9A5",
+                        color: "#fce3ca",
                         fontSize: (32.4 * window.innerWidth) / 1920,
                         margin: 0,
                         fontWeight: 200,
@@ -247,7 +247,7 @@ const MapComponent = () => {
                       <div
                         style={{
                           display: "inline",
-                          color: "#CEB9A5",
+                          color: "#fce3ca",
                           fontWeight: 400,
                         }}
                         onPointerEnter={() => {
@@ -288,7 +288,7 @@ const MapComponent = () => {
                         <span
                           className={`place-${index}-text`}
                           style={{
-                            color: "#CEB9A5",
+                            color: "#fce3ca",
                             fontWeight: 200,
                             fontSize: (32.4 * window.innerWidth) / 1920,
                           }}

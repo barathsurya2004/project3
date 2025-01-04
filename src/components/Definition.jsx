@@ -10,15 +10,18 @@ const Definition = () => {
           </div>
           <source type="audio/mpeg" src="/Sounds/ukfolksFood.mp3" />
         </audio>
-        <h1>
+        <h1 style={{}}>
           <img
             src={image}
             alt=""
             style={{
               cursor: "pointer",
-              height: "4.629vh",
-              width: "5.15027vh",
-              marginLeft: "-0.5vh",
+              height: (0.8 * (50 * window.innerHeight)) / 1080,
+              width: (0.8 * (55 * window.innerHeight)) / 1080,
+              // marginLeft: "-0.5vh",
+              // transform: "scale(0.9)",
+              // backgroundColor: "white",
+              transform: "translate(-150%, 50%)",
             }}
             onClick={() => {
               document.getElementById("audio").play();

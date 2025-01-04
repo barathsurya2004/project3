@@ -120,10 +120,10 @@ const ActualMap = ({ places, cur }) => {
             return (
               <Polygon
                 path={path}
-                strokeColor={"#ccb1eb"}
+                strokeColor={"#d0b5f0"}
                 strokeOpacity={0.5}
                 strokeWeight={1}
-                fillColor={"#ccb1eb"}
+                fillColor={"#d0b5f0"}
                 fillOpacity={0.1}
               />
             );
@@ -132,10 +132,10 @@ const ActualMap = ({ places, cur }) => {
             return (
               <Polygon
                 path={path}
-                strokeColor={"#ed928c"}
+                strokeColor={"#f0948e"}
                 strokeOpacity={0.5}
                 strokeWeight={1}
-                fillColor={"#ed928c"}
+                fillColor={"#f0948e"}
                 fillOpacity={0.1}
               />
             );
@@ -154,14 +154,14 @@ const ActualMap = ({ places, cur }) => {
                 {place.cuisine === "pandi" ? (
                   cur && cur.name === place.name ? (
                     <Pin
-                      background={"#ccb1eb"}
+                      background={"#d0b5f0"}
                       glyphColor={"#887ba8"}
                       borderColor={"#887ba8"}
                       scale={1.5}
                     />
                   ) : (
                     <Pin
-                      background={"#ccb1eb"}
+                      background={"#d0b5f0"}
                       glyphColor={"#887ba8"}
                       borderColor={"#887ba8"}
                       scale={1}
@@ -169,14 +169,14 @@ const ActualMap = ({ places, cur }) => {
                   )
                 ) : cur && cur.name === place.name ? (
                   <Pin
-                    background={"#ed928c"}
+                    background={"#f0948e"}
                     glyphColor={"#b26464"}
                     borderColor={"#b26464"}
                     scale={1.5}
                   />
                 ) : (
                   <Pin
-                    background={"#ed928c"}
+                    background={"#f0948e"}
                     glyphColor={"#b26464"}
                     borderColor={"#b26464"}
                     scale={1}

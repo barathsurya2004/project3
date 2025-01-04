@@ -58,7 +58,7 @@ const Contact = () => {
           borderRadius: (40 * window.innerWidth) / 1920,
           background:
             " linear-gradient(0deg, rgba(89,71,49,0.5) 0%, rgba(89,71,49,0.3) 100%)",
-          border: "solid 5px #D3AD62",
+          border: "solid 5px #facd74",
           width: (1494.583 * window.innerWidth) / 1920,
           height: (747.47 * window.innerHeight) / 1080,
           alignItems: "end",
@@ -103,7 +103,7 @@ const Contact = () => {
             style={{
               fontSize: (55 * window.innerWidth) / 1920,
               fontFamily: "TTtravels Next Bold",
-              color: "#F2D8A0",
+              color: "#ffe8b8",
               margin: 15,
             }}
           >

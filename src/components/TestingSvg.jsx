@@ -11,7 +11,7 @@ const SvgComponent = (props) => (
       id="path-please"
       style={{
         fill: "none",
-        stroke: "#f2d8a0",
+        stroke: "#ffe8b8",
         strokeMiterlimit: 10,
       }}
       preserveAspectRatio="none"

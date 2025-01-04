@@ -18,7 +18,8 @@ const CircularText = ({ texts, radius }) => {
   const prevIndVisibleRef = useRef();
   const [rotation, setRotation] = useState(0);
   const [canHighlight, setCanHighlight] = useState(false);
-  const { questionSelected, setQuestionSelected } = useContext(Context);
+  const { questionSelected, setQuestionSelected, setQuestionInteractions } =
+    useContext(Context);
   const answer = [...texts];
   // console.log(360 / 30);
   useEffect(() => {
@@ -275,6 +276,9 @@ const CircularText = ({ texts, radius }) => {
               justifyContent: "center",
               alignItems: "center",
               // left: 0,
+            }}
+            onPointerDown={() => {
+              setQuestionInteractions(true);
             }}
           >
             {texts.map((text, index) => {

@@ -27,14 +27,14 @@ const PandiFlag = () => {
             position: "relative",
             // background: "white",
             marginLeft: "10%",
-            transform: "translateY(60%)",
+            transform: "translateY(85%)",
           }}
         >
           <div
             className="pandi-icon-container"
             style={{
               position: "absolute",
-              transform: "translateY(-100%)",
+              transform: "translateY(-105%)",
               left: 0,
             }}
           >
@@ -50,7 +50,7 @@ const PandiFlag = () => {
             style={{
               fontSize: (89 * window.innerHeight) / 1080,
               fontFamily: "TTtravels Next DemiBold",
-              color: "#BB8BE8",
+              color: "#bf8eed",
             }}
           >
             Pandiyanad
@@ -83,7 +83,7 @@ const PandiFlag = () => {
         style={{
           width: "100%",
           position: "relative",
-          paddingTop: "15%",
+          paddingTop: "50vh",
         }}
       >
         <div
@@ -106,7 +106,7 @@ const PandiFlag = () => {
                 style={{
                   fontSize: (55 * window.innerHeight) / 1080,
                   fontFamily: "TTtravels Next DemiBold",
-                  color: "#BB8BE8",
+                  color: "#bf8eed",
                   margin: 0,
                   width: "60%",
                 }}
@@ -117,7 +117,7 @@ const PandiFlag = () => {
                 style={{
                   fontSize: (27 * window.innerHeight) / 1080,
                   fontFamily: "Filson Pro Regular",
-                  color: "#BB8BE8",
+                  color: "#bf8eed",
                   width: "60%",
                   marginBottom: 70 * (window.innerHeight / 1080),
                 }}
@@ -154,7 +154,7 @@ const PandiFlag = () => {
                 style={{
                   fontSize: (55 * window.innerHeight) / 1080,
                   fontFamily: "TTtravels Next DemiBold",
-                  color: "#BB8BE8",
+                  color: "#bf8eed",
                   margin: 0,
                   width: "60%",
                 }}
@@ -165,7 +165,7 @@ const PandiFlag = () => {
                 style={{
                   fontSize: (27 * window.innerHeight) / 1080,
                   fontFamily: "Filson Pro Regular",
-                  color: "#BB8BE8",
+                  color: "#bf8eed",
                   width: "60%",
                   marginBottom: 70 * (window.innerHeight / 1080),
                 }}
@@ -199,7 +199,7 @@ const PandiFlag = () => {
                 style={{
                   fontSize: (55 * window.innerHeight) / 1080,
                   fontFamily: "TTtravels Next DemiBold",
-                  color: "#BB8BE8",
+                  color: "#bf8eed",
                   margin: 0,
                   width: "60%",
                 }}
@@ -210,7 +210,7 @@ const PandiFlag = () => {
                 style={{
                   fontSize: (27 * window.innerHeight) / 1080,
                   fontFamily: "Filson Pro Regular",
-                  color: "#BB8BE8",
+                  color: "#bf8eed",
                   width: "60%",
                   marginBottom: 70 * (window.innerHeight / 1080),
                 }}

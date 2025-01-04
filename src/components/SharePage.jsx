@@ -30,7 +30,7 @@ const SharePage = () => {
       .toPng(node, {
         style: {
           scale: 0.95,
-          outline: "5px solid #D3AD62",
+          outline: "5px solid #facd74",
           borderRadius: "50px",
           background: "#101010",
         },
@@ -249,7 +249,7 @@ const SharePage = () => {
             width: (1500 * window.innerWidth) / 1920,
             height: (753 * window.innerHeight) / 1080,
             borderRadius: (50 * window.innerWidth) / 1920,
-            border: "5px solid #D3AD62",
+            border: "5px solid #facd74",
             // backgroundColor: "rgba(0, 0, 0, 0.5)",
             display: "flex",
             zIndex: 2000,
@@ -328,7 +328,7 @@ const SharePage = () => {
                   padding: (130 * window.innerHeight) / 1080,
                   backgroundImage:
                     "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
-                  outline: "5px solid #D3AD62",
+                  outline: "5px solid #facd74",
                   // borderRadius: (50 * window.innerWidth) / 1920,
                   // outlineOffset: "5px",
                 }}
@@ -425,7 +425,7 @@ const SharePage = () => {
               height: "100%",
               display: "flex",
               flexDirection: "column",
-              borderLeft: "5px solid #D3AD62",
+              borderLeft: "5px solid #facd74",
               backgroundImage:
                 "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
             }}
@@ -438,7 +438,7 @@ const SharePage = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "#D3AD62",
+                backgroundColor: "#facd74",
                 color: "black",
                 textAlign: "center",
                 padding: (32 * window.innerHeight) / 1080,
@@ -453,7 +453,7 @@ const SharePage = () => {
                 height: "60%",
                 width: "100%",
                 // backgroundColor: "blue",
-                borderBottom: "5px solid #D3AD62",
+                borderBottom: "5px solid #facd74",
                 // padding: (20 * window.innerWidth) / 1920,
                 padding: `${(40 * window.innerHeight) / 1080}px ${
                   (60 * window.innerHeight) / 1080
@@ -509,7 +509,7 @@ const SharePage = () => {
                             // fontSize: (20 * window.innerWidth) / 1920,
                             marginLeft: (20 * window.innerWidth) / 1920,
                             // padding: (10 * window.innerWidth) / 1920,
-                            // color: "#D3AD62",
+                            // color: "#facd74",
                             fontSize: (27 * window.innerWidth) / 1920,
                             marginBottom: (50 * window.innerHeight) / 1080,
                           }}
@@ -535,7 +535,7 @@ const SharePage = () => {
                 style={{
                   flex: 1,
                   // padding: (50 * window.innerWidth) / 1920,
-                  // borderRight: "5px solid #D3AD62",
+                  // borderRight: "5px solid #facd74",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -595,7 +595,7 @@ const SharePage = () => {
           >
             <path
               fill="none"
-              stroke="#d3ad62"
+              stroke="#facd74"
               stroke-width="5"
               d="M480.225,0 L480.225,3392.025"
             />
@@ -631,7 +631,7 @@ const SharePage = () => {
               fontFamily: "TTtravels Next DemiBold",
               textAlign: "center",
               margin: (25 * window.innerHeight) / 1080,
-              color: "#D3AD62",
+              color: "#facd74",
             }}
           >
             Share
@@ -672,7 +672,7 @@ const SharePage = () => {
           >
             <path
               fill="none"
-              stroke="#d3ad62"
+              stroke="#facd74"
               stroke-width="5"
               d="M480.225,0 L480.225,3392.025"
             />
@@ -687,7 +687,7 @@ const SharePage = () => {
             width: (950 * window.innerWidth) / 1920,
             marginLeft: "auto",
             marginRight: "auto",
-            color: "#D3AD62",
+            color: "#facd74",
           }}
         >
           So many differences, yet complimentary.

@@ -124,9 +124,9 @@ const Gallery = () => {
             flexDirection: "column",
             alignItems: "center",
             position: "relative",
-            outline: `${(5 * window.innerHeight) / 720}px solid #D3AD62`,
+            outline: `${(5 * window.innerHeight) / 720}px solid #facd74`,
             outlineOffset: -1 * ((1 * window.innerHeight) / 720),
-            // background: "#D3AD62",
+            // background: "#facd74",
             zIndex: 500,
           }}
         >
@@ -137,7 +137,7 @@ const Gallery = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              background: "#D3AD62",
+              background: "#facd74",
               position: "relative",
               margin: 0,
             }}

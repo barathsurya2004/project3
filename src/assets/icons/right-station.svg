@@ -7,7 +7,7 @@
       <rect x="0" y="0" width="480.225" height="3000" />
     </clipPath>
     <filter id="shadow-left" filterUnits="userSpaceOnUse">
-      <feFlood result="flood" flood-color="#eb7272" flood-opacity="0.09"></feFlood>
+      <feFlood result="flood" flood-color="#f27676" flood-opacity="0.09"></feFlood>
       <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
       <feMorphology in="mask" result="dilated" operator="dilate" radius="209"></feMorphology>
       <feGaussianBlur in="dilated" result="blurred" stdDeviation="100"></feGaussianBlur>
@@ -18,8 +18,8 @@
     </filter>
   </defs>
   <!-- Original path without filter -->
-  <path fill="none" stroke="#eb7272" stroke-width="10" d="M480.225,0 L480.225,3392.025" />
+  <path fill="none" stroke="#f27676" stroke-width="10" d="M480.225,0 L480.225,3392.025" />
   <!-- Duplicate path with filter and clipped to the left side -->
-  <path fill="none" stroke="#eb7272" stroke-width="10" d="M480.225,0 L480.225,3392.025"
+  <path fill="none" stroke="#f27676" stroke-width="10" d="M480.225,0 L480.225,3392.025"
     filter="url(#shadow-left)" clip-path="url(#clip-left-half)" />
 </svg>
