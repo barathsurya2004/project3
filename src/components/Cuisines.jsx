@@ -7,8 +7,13 @@ import "./Cuisines.css";
 import { useContext } from "react";
 import { Context } from "../context";
 const Cuisines = () => {
-  const { setMeshSelected, meshSelected, chettiVis, pandiVis } =
-    useContext(Context);
+  const {
+    setMeshSelected,
+    meshSelected,
+    chettiVis,
+    pandiVis,
+    meshShowRestrict,
+  } = useContext(Context);
   useGSAP(() => {
     gsap.fromTo(
       ".cuisines-of-the-world",
@@ -233,6 +238,42 @@ const Cuisines = () => {
         onLeaveBack: () => {
           pandiVis.current = false;
           setMeshSelected(null);
+        },
+      },
+    });
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".cuisines-of-India-trigger",
+        start: "top bottom",
+        end: "top top",
+        // markers: true,
+        onEnter: () => {
+          meshShowRestrict.current = 1;
+        },
+
+        onEnterBack: () => {
+          meshShowRestrict.current = 1;
+        },
+        onLeaveBack: () => {
+          meshShowRestrict.current = null;
+        },
+      },
+    });
+
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".cuisines-of-TN-trigger",
+        start: "top bottom",
+        end: "top top",
+        // markers: true,
+        onEnter: () => {
+          meshShowRestrict.current = 2;
+        },
+        onEnterBack: () => {
+          meshShowRestrict.current = 2;
+        },
+        onLeaveBack: () => {
+          meshShowRestrict.current = 1;
         },
       },
     });

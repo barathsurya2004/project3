@@ -203,6 +203,18 @@ const EndingPage = () => {
             <span
               style={{
                 position: "absolute",
+                top: 0,
+                right: 0,
+                transform: "translate(20%, 50%%)",
+                opacity: 1,
+                // background: "red",
+                height: "100%",
+                width: "120%",
+              }}
+            ></span>
+            <span
+              style={{
+                position: "absolute",
                 top: "50%",
                 right: 0,
                 transform: "translate(120%, -50%)",
@@ -340,7 +352,7 @@ const EndingPage = () => {
             gsap.to(window, {
               duration: 8,
               scrollTo: 0,
-              ease: "power4.inOut",
+              ease: "power1.inOut",
               onComplete: () => {
                 canScrollTo.current = true;
               },

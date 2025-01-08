@@ -60,7 +60,7 @@ const Contact = () => {
             " linear-gradient(0deg, rgba(89,71,49,0.5) 0%, rgba(89,71,49,0.3) 100%)",
           border: "solid 5px #facd74",
           width: (1494.583 * window.innerWidth) / 1920,
-          height: (747.47 * window.innerHeight) / 1080,
+          height: (690 * window.innerHeight) / 1080,
           alignItems: "end",
           display: "flex",
           flexDirection: "column",

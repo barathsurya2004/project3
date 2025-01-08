@@ -1,6 +1,12 @@
 import chettiflag from "../assets/icons/chetti-flag.svg";
 import chettiIcon from "../assets/icons/chettisvg.svg";
 import holder from "../assets/icons/placeholder1.svg";
+
+import C_1 from "/videos/C-1_1.webm";
+import C_2 from "/videos/C-2_1.webm";
+import C_3 from "/videos/C-3_1.webm";
+import flagAnim from "/videos/flagg_chetti.webm";
+import mask from "../assets/images/video_mask.svg";
 const ChettiFlag = () => {
   return (
     <div
@@ -71,9 +77,7 @@ const ChettiFlag = () => {
           height: "100%",
         }}
       >
-        <img
-          src={chettiflag}
-          alt=""
+        <div
           style={{
             position: "absolute",
             left: 0,
@@ -81,7 +85,22 @@ const ChettiFlag = () => {
             // transform: "translateY(-50%)",
             height: 360 * (window.innerHeight / 1080),
           }}
-        />
+        >
+          <video
+            // ref={videoRef}
+            playsInline
+            muted
+            autoPlay
+            style={{
+              height: 360 * (window.innerHeight / 1080),
+            }}
+            loop
+            preload="metadata"
+          >
+            <source id="video-source" src={flagAnim} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
       <div
         style={{
@@ -106,13 +125,27 @@ const ChettiFlag = () => {
               justifyContent: "space-between",
             }}
           >
-            <img
+            <div
               style={{
-                height: 300 * (window.innerHeight / 1080),
+                maskImage: `url(${mask})`,
+                maskSize: "100% 100%",
               }}
-              src={holder}
-              alt=""
-            />
+            >
+              <video
+                // ref={videoRef}
+                playsInline
+                muted
+                autoPlay
+                style={{
+                  height: 300 * (window.innerHeight / 1080),
+                }}
+                loop
+                preload="metadata"
+              >
+                <source id="video-source" src={C_1} type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div
               style={{
                 width: "50%",
@@ -155,13 +188,26 @@ const ChettiFlag = () => {
               justifyContent: "space-between",
             }}
           >
-            <img
+            <div
               style={{
-                height: 300 * (window.innerHeight / 1080),
+                maskImage: `url(${mask})`,
               }}
-              src={holder}
-              alt=""
-            />
+            >
+              <video
+                // ref={videoRef}
+                playsInline
+                muted
+                autoPlay
+                style={{
+                  height: 300 * (window.innerHeight / 1080),
+                }}
+                loop
+                preload="metadata"
+              >
+                <source id="video-source" src={C_2} type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div
               style={{
                 width: "50%",
@@ -211,13 +257,26 @@ const ChettiFlag = () => {
               justifyContent: "space-between",
             }}
           >
-            <img
+            <div
               style={{
-                height: 300 * (window.innerHeight / 1080),
+                maskImage: `url(${mask})`,
               }}
-              src={holder}
-              alt=""
-            />
+            >
+              <video
+                // ref={videoRef}
+                playsInline
+                muted
+                autoPlay
+                style={{
+                  height: 300 * (window.innerHeight / 1080),
+                }}
+                loop
+                preload="metadata"
+              >
+                <source id="video-source" src={C_3} type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div
               style={{
                 width: "50%",

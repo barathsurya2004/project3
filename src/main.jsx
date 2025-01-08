@@ -8,7 +8,7 @@ import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
 import Grid from "./components/Grid.jsx";
 import Grain from "./components/Grain.jsx";
 import { Canvas } from "@react-three/fiber";
-
+import grain from "/videos/grains_new.mp4";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ContextProvider>
@@ -21,11 +21,12 @@ createRoot(document.getElementById("root")).render(
           top: 0,
           left: 0,
           zIndex: 10000,
-          opacity: 0.075,
+          opacity: 0.3,
           pointerEvents: "none",
+          mixBlendMode: "overlay",
         }}
       >
-        <Canvas
+        {/* <Canvas
           style={{
             pointerEvents: "none",
             height: "100vh",
@@ -35,7 +36,22 @@ createRoot(document.getElementById("root")).render(
           <OrthographicCamera makeDefault zoom={100} position={[0, 0, 10]} />
 
           <Grain />
-        </Canvas>
+        </Canvas> */}
+        <video
+          // ref={videoRef}
+          playsInline
+          muted
+          autoPlay
+          style={{
+            height: "100vh",
+            width: "100vw",
+            objectFit: "cover",
+          }}
+          loop
+          preload="metadata"
+        >
+          <source src={grain} type="video/mp4" />
+        </video>
       </div>
       <div
         className="grid-container-shader"
@@ -51,6 +67,7 @@ createRoot(document.getElementById("root")).render(
           mixBlendMode: "screen",
           pointerEvents: "none",
           userSelect: "none",
+          opacity: 0.3,
         }}
       >
         <Canvas

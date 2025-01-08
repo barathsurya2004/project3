@@ -224,12 +224,22 @@ const Hero = () => {
   });
   useGSAP(() => {
     if (!loading) {
+      gsap.set(".hero-page-interactions", {
+        opacity: 1,
+      });
       gsap.to(".hero-scroll-start", {
         y: 0,
         duration: 1,
         ease: "power4.out",
       });
     }
+    gsap.to(".hero-page-interactions", {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: ".hero-content",
+        start: "bottom 99%",
+      },
+    });
   }, [loading]);
   return (
     <div
@@ -239,6 +249,7 @@ const Hero = () => {
         width: "100%",
         overflow: "hidden",
         scrollSnapAlign: "start",
+        // position: "relative",
       }}
     >
       <div
@@ -254,6 +265,29 @@ const Hero = () => {
           zIndex: 1010,
         }}
       >
+        <div
+          className="hero-page-interactions"
+          style={{
+            position: "absolute",
+            bottom: 150 * (window.innerHeight / 1080),
+            left: "50%",
+            transform: "translateX(-50%)",
+            opacity: 0,
+          }}
+        >
+          <p
+            style={{
+              fontSize: (19 * window.innerWidth) / 1920,
+              fontFamily: "TTtravels Next Light",
+              color: "#ffe8b8",
+              textAlign: "center",
+              opacity: 0.7,
+              //   color: "white",
+            }}
+          >
+            Click anywhere or scroll to begin
+          </p>
+        </div>
         <NavBar />
         <div
           style={{

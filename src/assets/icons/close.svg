@@ -1,10 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.78 62.7">
-    <defs>
-        <style>.cls-1{font-size:55px;font-family:TTTravelsNext-Regular, TT Travels Next;}</style>
-    </defs>
-    <g id="Layer_2" data-name="Layer 2">
-        <g id="Layer_1-2" data-name="Layer 1">
-            <text class="cls-1" transform="translate(0 46.75)">X</text>
-        </g>
-    </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.2 38.5">
+  <g id="main">
+    <path d="M0,38.5l19.85-19.52L.55,0h5.17l14.46,14.46c1.15,1.16,2.14,2.2,2.14,3.08v.17h.6v-.17c0-.88.99-1.92,2.09-3.08L39.54,0h5.11l-19.25,18.97,19.8,19.52h-5.22l-15.07-14.96c-1.1-1.1-1.98-2.04-1.98-2.86v-.17h-.6v.17c0,.82-.88,1.76-1.98,2.86l-15.07,14.96H0Z"/>
+  </g>
 </svg>

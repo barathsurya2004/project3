@@ -19,6 +19,24 @@ import { getDocFromDb, updateDoc } from "../firebaseUtils";
 gsap.registerPlugin(ScrollTrigger);
 const FaceReact = () => {
   const [selected, setSelected] = useState(null);
+  const prev = useRef(null);
+  useEffect(() => {
+    if (prev.current === null && selected) {
+      gsap.fromTo(
+        ".vote-num",
+        {
+          opacity: 0,
+          y: 30,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+        }
+      );
+    }
+    prev.current = selected;
+  }, [selected]);
   const styles = {
     para: {
       fontSize: (34 * window.innerHeight) / 1080,
@@ -426,8 +444,12 @@ const FaceReact = () => {
                   cursor: "pointer",
                 }}
               >
-                <PerspectiveCamera position={[0, 0, 3]} makeDefault />
-                <ambientLight />
+                <PerspectiveCamera
+                  makeDefault
+                  position={[0, 0, 10]}
+                  zoom={3.5}
+                />
+                <ambientLight intensity={1.75} />
                 <VotePandi />
               </Canvas>
               <div
@@ -436,70 +458,93 @@ const FaceReact = () => {
                   width: "100%",
                 }}
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    top: 0,
-                    left: 0,
-                    display: "flex",
-                    flexWrap: "nowrap",
-                    flexDirection: "column",
-                    zIndex: 505,
-                  }}
-                >
-                  <p
-                    className="pandi-text"
+                {selected ? (
+                  <div
                     style={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      top: 0,
+                      left: 0,
                       display: "flex",
                       flexWrap: "nowrap",
-                      ...styles.para,
-                      color: "#bf8eed",
+                      flexDirection: "column",
+                      zIndex: 505,
                     }}
                   >
-                    Pandiyanad
-                  </p>
-                  <p
-                    className="pandi-text"
-                    style={{
-                      ...styles.para,
-                      color: "#bf8eed",
-                    }}
-                  >
-                    Cuisine
-                  </p>
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
+                    <p
+                      className="pandi-votes vote-num"
+                      style={{
+                        display: "flex",
+                        flexWrap: "nowrap",
+                        ...styles.para,
+                        color: "#bf8eed",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {pandiVotes}
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                        display: "flex",
+                        flexWrap: "nowrap",
+                        flexDirection: "column",
+                        zIndex: 505,
+                      }}
+                    >
+                      <p
+                        className="pandi-text"
+                        style={{
+                          display: "flex",
+                          flexWrap: "nowrap",
+                          ...styles.para,
+                          color: "#bf8eed",
+                        }}
+                      >
+                        Pandiyanad
+                      </p>
+                      <p
+                        className="pandi-text"
+                        style={{
+                          ...styles.para,
+                          color: "#bf8eed",
+                        }}
+                      >
+                        Cuisine
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
 
-                    zIndex: 505,
-                  }}
-                >
-                  <p
-                    className="pandi-vote"
-                    style={{
-                      ...styles.para,
-                      color: "#bf8eed",
-                      opacity: 0,
-                    }}
-                  >
-                    ~Vote~
-                  </p>
-                  <p
-                    style={{
-                      ...styles.para,
-                      color: "#bf8eed",
-                    }}
-                  >
-                    {pandiVotes}
-                  </p>
-                </div>
+                        zIndex: 505,
+                      }}
+                    >
+                      <p
+                        className="pandi-vote"
+                        style={{
+                          ...styles.para,
+                          color: "#bf8eed",
+                          opacity: 0,
+                        }}
+                      >
+                        ~Vote~
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <div
@@ -531,8 +576,12 @@ const FaceReact = () => {
                   cursor: "pointer",
                 }}
               >
-                <PerspectiveCamera position={[0, 0, 3]} makeDefault />
-                <ambientLight />
+                <PerspectiveCamera
+                  makeDefault
+                  position={[0, 0, 10]}
+                  zoom={3.5}
+                />
+                <ambientLight intensity={1.75} />
                 <VoteChetti />
               </Canvas>
               <div
@@ -541,64 +590,87 @@ const FaceReact = () => {
                   width: "100%",
                 }}
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexWrap: "nowrap",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    zIndex: 505,
-                  }}
-                >
-                  <p
-                    className="chetti-texts"
-                    style={{ ...styles.para, color: "#CC7272" }}
-                  >
-                    Chettinad
-                  </p>
-                  <p
-                    className="chetti-texts"
-                    style={{
-                      ...styles.para,
-                      color: "#CC7272",
-                    }}
-                  >
-                    Cuisine
-                  </p>
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    // justifyContent: "center",
-                    zIndex: 505,
-                  }}
-                >
-                  <p
-                    className="chetti-vote"
-                    style={{
-                      ...styles.para,
-                      color: "#CC7272",
-                      opacity: 0,
-                    }}
-                  >
-                    ~Vote~
-                  </p>
-                  <p
-                    style={{
-                      ...styles.para,
-                      color: "#CC7272",
-                    }}
-                  >
-                    {chettiVotes}
-                  </p>
-                </div>
+                {selected ? (
+                  <>
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        flexWrap: "nowrap",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        zIndex: 505,
+                      }}
+                    >
+                      <p className="chetti-votes vote-num">
+                        <span
+                          style={{
+                            ...styles.para,
+                            color: "#CC7272",
+                            display: "flex",
+                            flexWrap: "nowrap",
+                            justifyContent: "center",
+                          }}
+                        >
+                          {chettiVotes}
+                        </span>
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        flexWrap: "nowrap",
+                        flexDirection: "column",
+                        zIndex: 505,
+                      }}
+                    >
+                      <p
+                        className="chetti-texts"
+                        style={{ ...styles.para, color: "#CC7272" }}
+                      >
+                        Chettinad
+                      </p>
+                      <p
+                        className="chetti-texts"
+                        style={{
+                          ...styles.para,
+                          color: "#CC7272",
+                        }}
+                      >
+                        Cuisine
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        zIndex: 505,
+                      }}
+                    >
+                      <p
+                        className="chetti-vote"
+                        style={{
+                          ...styles.para,
+                          color: "#CC7272",
+                          opacity: 0,
+                        }}
+                      >
+                        ~Vote~
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

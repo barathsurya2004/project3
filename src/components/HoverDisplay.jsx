@@ -1,18 +1,51 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../context";
 import SvgMorphAnimation from "./SvgMorphAnimation";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import data from "../assets/json/globe.json";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 const HoverDisplay = () => {
-  const { down, setDown, meshSelected } = useContext(Context);
+  const { down, meshSelected, meshShowRestrict } = useContext(Context);
+  if (meshSelected === null) return null;
   if (!meshSelected) return null;
   const [current, setCurrent] = useState(null);
+  const Indianref = useRef(false);
+  const TNref = useRef(false);
+  useEffect(() => {
+    if (meshShowRestrict.current === 1) {
+      Indianref.current = true;
+    } else if (meshShowRestrict.current === 2) {
+      Indianref.current = true;
+      TNref.current = true;
+    }
+  }, [meshShowRestrict]);
+
   useEffect(() => {
     const current = data.find((item) => item.id === meshSelected.name);
     setCurrent(current);
     console.log(current);
   }, [meshSelected]);
+
+  const restrictHandler = () => {
+    if (Indianref.current) {
+      if (TNref.current) {
+        if (current?.TN == "true") {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (current?.Indian == "true") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
   useGSAP(() => {
     gsap.fromTo(
       "#hover-display-heading",
@@ -48,10 +81,10 @@ const HoverDisplay = () => {
       setShowAnimation(true);
     }, 200);
 
-    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+    return () => clearTimeout(timer);
   }, []);
 
-  if (down)
+  if (down && restrictHandler())
     return (
       <>
         {showAnimation && <SvgMorphAnimation />}
@@ -106,7 +139,7 @@ const HoverDisplay = () => {
         </div>
       </>
     );
-  else {
+  else if (!down) {
     return (
       <>
         {showAnimation && <SvgMorphAnimation />}

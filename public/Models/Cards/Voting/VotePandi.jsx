@@ -18,8 +18,8 @@ export function VotePandi(props) {
       onClick={() => {
         // console.log("Clicked");
         gsap.to(ref.current.rotation, {
-          duration: 2,
-          y: Math.PI * 4 + Math.PI,
+          duration: 1,
+          y: Math.PI,
           ease: "power4.out",
           onComplete: () => {
             gsap.to(ref.current.rotation, {

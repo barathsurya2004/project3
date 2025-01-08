@@ -10,9 +10,11 @@ import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
 import gsap from "gsap";
 import { Context } from "../context";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 const Ingredients = () => {
   const { cardInteractions } = useContext(Context);
+  const [rotateP, setRotateP] = useState(false);
+  const [rotateC, setRotateC] = useState(false);
   useEffect(() => {
     console.log(cardInteractions);
     if (cardInteractions) {
@@ -133,11 +135,17 @@ const Ingredients = () => {
             height: "100vh",
             paddingTop: "10vh",
           }}
+          onPointerEnter={(e) => {
+            setRotateP(true);
+          }}
+          onPointerLeave={(e) => {
+            setRotateP(false);
+          }}
         >
-          <CardHolder idd={"Ing"}>
-            <PepperCard />
-            <CoconutCard />
-            <LentilsCard />
+          <CardHolder idd={"ing"} reg={"p"}>
+            <PepperCard rot={rotateP} />
+            <CoconutCard rot={rotateP} />
+            <LentilsCard rot={rotateP} />
           </CardHolder>
         </div>
         <div
@@ -150,11 +158,17 @@ const Ingredients = () => {
             height: "100vh",
             paddingTop: "10vh",
           }}
+          onPointerEnter={(e) => {
+            setRotateC(true);
+          }}
+          onPointerLeave={(e) => {
+            setRotateC(false);
+          }}
         >
-          <CardHolderC idd={"Ing"}>
-            <ChilliCard />
-            <TamarindCard />
-            <SpicesCard />
+          <CardHolderC idd={"ing"} reg={"c"}>
+            <ChilliCard rot={rotateC} />
+            <TamarindCard rot={rotateC} />
+            <SpicesCard rot={rotateC} />
           </CardHolderC>
         </div>
       </div>

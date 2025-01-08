@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MortarModel } from "../../public/Models/Cards/new/Chetti/Mortor";
 import { SlowModel } from "../../public/Models/Cards/new/Chetti/Slow";
 import { BlenderModel } from "../../public/Models/Cards/new/Pandi/Blender";
@@ -10,6 +11,8 @@ import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
 
 const Procedure = () => {
+  const [rotateP, setRotateP] = useState(false);
+  const [rotateC, setRotateC] = useState(false);
   return (
     <div
       className="procedure-page"
@@ -102,10 +105,16 @@ const Procedure = () => {
             width: "50%",
             height: "100vh",
           }}
+          onPointerEnter={() => {
+            setRotateP(true);
+          }}
+          onPointerLeave={() => {
+            setRotateP(false);
+          }}
         >
-          <CardHolder idd={"proc"}>
-            <BlenderCard />
-            <FastCard />
+          <CardHolder idd={"proc"} reg={"p"}>
+            <BlenderCard rot={rotateP} />
+            <FastCard rot={rotateP} />
           </CardHolder>
         </div>
         <div
@@ -117,10 +126,16 @@ const Procedure = () => {
             width: "50%",
             height: "100vh",
           }}
+          onPointerEnter={() => {
+            setRotateC(true);
+          }}
+          onPointerLeave={() => {
+            setRotateC(false);
+          }}
         >
-          <CardHolderC idd={"proc"}>
-            <MortarCard />
-            <SlowCard />
+          <CardHolderC idd={"proc"} reg={"c"}>
+            <MortarCard rot={rotateC} />
+            <SlowCard rot={rotateC} />
           </CardHolderC>
         </div>
       </div>

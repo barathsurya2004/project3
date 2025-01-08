@@ -53,6 +53,7 @@ const Gallery = () => {
           });
           prevIndexRef.current = undefined;
           setOpened(false);
+          setTitleIndex(null);
         }
       }, 500);
     }
@@ -149,7 +150,7 @@ const Gallery = () => {
                 fontWeight: 200,
               }}
             >
-              {titleIndex == null
+              {titleIndex === null
                 ? "Getting to the Roots"
                 : photos[titleIndex].Thumbnail}
             </h1>
@@ -158,12 +159,12 @@ const Gallery = () => {
                 src={close}
                 alt=""
                 style={{
-                  width: 48.78 * (window.innerWidth / 1920),
-                  height: 62.69 * (window.innerWidth / 1920),
+                  width: 40 * (window.innerWidth / 1920),
+                  // height: 62.69 * (window.innerWidth / 1920),
                   position: "absolute",
                   top: "50%",
                   right: (30 * window.innerWidth) / 1920,
-                  transform: "translate(0%, -40%)",
+                  transform: "translate(0%, -50%)",
                   cursor: "pointer",
                 }}
                 onClick={() => {

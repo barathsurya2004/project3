@@ -3,248 +3,370 @@
     "id": "INDIAN_SUB_CONT",
     "title": "Indian",
     "text": "Indian cuisine is known for its rich, flavorful spices and diverse dishes like biryani, curry, and samosas. Popular ingredients include rice, lentils, and various meats. Each region has its own unique culinary traditions, making Indian food a vibrant and varied experience.",
-    "region": "South Asia"
+    "region": "South Asia",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "C_ASIA",
     "title": "Central Asian",
     "text": "Central Asian cuisine blends influences from its nomadic heritage, featuring hearty dishes like plov (pilaf), kebabs, and bread. Dairy products, mutton, and horse meat are staples, reflecting the region's pastoral lifestyle.",
-    "region": "Central Asia"
+    "region": "Central Asia",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "IRAN",
     "title": "Iranian",
     "text": "Iranian cuisine, also known as Persian cuisine, is renowned for its use of fresh herbs, fruits, and delicate spices. Signature dishes include kebabs, stews (khoresh), and rice dishes like tahdig and saffron rice.",
-    "region": "Middle East"
+    "region": "Middle East",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "CHINESE",
     "title": "Chinese",
     "text": "Chinese cuisine is incredibly diverse, with each region offering unique flavors and techniques. From dim sum in the south to spicy Sichuan dishes in the west, Chinese food is rich in variety and tradition.",
-    "region": "East Asia"
+    "region": "East Asia",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "KOREAN",
     "title": "Korean",
     "text": "Korean cuisine is famous for its bold flavors, fermentation, and communal dining. Kimchi, bibimbap, and Korean barbecue are staples, often accompanied by a variety of side dishes (banchan).",
-    "region": "East Asia"
+    "region": "East Asia",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "AMER",
     "title": "American",
     "text": "American cuisine reflects its melting pot culture, incorporating elements from various immigrant groups. Iconic foods include burgers, hot dogs, and apple pie, with regional specialties like Southern barbecue and New England clam chowder.",
-    "region": "North America"
+    "region": "North America",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "CIRPOLAR",
     "title": "Circumpolar",
     "text": "Circumpolar cuisine includes traditional foods of the Arctic peoples, like Inuit and Sami. It focuses on locally available ingredients such as fish, seal, whale, and reindeer, often preserved through drying and smoking.",
-    "region": "Arctic Regions"
+    "region": "Arctic Regions",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "TURK",
     "title": "Turkish",
     "text": "Turkish cuisine combines Mediterranean, Middle Eastern, and Central Asian influences. Known for dishes like kebabs, baklava, and meze, it emphasizes fresh ingredients, grilled meats, and savory pastries.",
-    "region": "Middle East and Southeastern Europe"
+    "region": "Middle East and Southeastern Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "N_AFRICA",
     "title": "North African",
     "text": "North African cuisine features vibrant spices and ingredients like couscous, lamb, and chickpeas. Signature dishes include tagine, harira soup, and a variety of flavorful dips and spreads.",
-    "region": "North Africa"
+    "region": "North Africa",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "E_AFRICA",
     "title": "East African",
     "text": "East African cuisine is characterized by the use of grains, legumes, and vegetables. Popular dishes include injera (Ethiopian flatbread), ugali, and various stews. The cuisine is hearty and often communal.",
-    "region": "East Africa"
+    "region": "East Africa",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "MEX_CAR",
     "title": "Mexican and Caribbean",
     "text": "Mexican and Caribbean cuisine is a fusion of indigenous, Spanish, and African influences. Common dishes include tacos, jerk chicken, and plantains, with a focus on bold flavors and vibrant colors.",
-    "region": "Latin America and Caribbean"
+    "region": "Latin America and Caribbean",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "E_EURO",
     "title": "East European",
     "text": "East European cuisine is hearty and comforting, with dishes like borscht, pierogi, and goulash. It relies heavily on root vegetables, meats, and fermented foods, reflecting the region's cold climate.",
-    "region": "Eastern Europe"
+    "region": "Eastern Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "ITALIAN",
     "title": "Italian",
     "text": "Italian cuisine is beloved worldwide for its simplicity and quality ingredients. Iconic dishes include pasta, pizza, and risotto, often featuring fresh vegetables, olive oil, and artisanal cheeses.",
-    "region": "Southern Europe"
+    "region": "Southern Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "S_AMERICA",
     "title": "South American",
     "text": "South American cuisine varies widely by region but often includes staples like corn, beans, and potatoes. Signature dishes include Argentine asado, Brazilian feijoada, and Peruvian ceviche.",
-    "region": "South America"
+    "region": "South America",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "GREEK",
     "title": "Greek and Mediterranean",
     "text": "Greek and Mediterranean cuisine is known for its healthy ingredients like olive oil, vegetables, and seafood. Popular dishes include moussaka, souvlaki, and baklava, often enjoyed in a communal setting.",
-    "region": "Southern Europe"
+    "region": "Southern Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "S_E_ASIA",
     "title": "Southeast Asian",
     "text": "Southeast Asian cuisine is vibrant and aromatic, with dishes like Thai curry, Vietnamese pho, and Indonesian satay. It emphasizes fresh herbs, spices, and a balance of sweet, sour, salty, and spicy flavors.",
-    "region": "Southeast Asia"
+    "region": "Southeast Asia",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "C_EURO",
     "title": "Central European",
     "text": "Central European cuisine is hearty and robust, featuring dishes like schnitzel, goulash, and dumplings. It relies on meats, root vegetables, and bread, reflecting the region's agrarian traditions.",
-    "region": "Central Europe"
+    "region": "Central Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "C_AFRICA",
     "title": "Central African",
     "text": "Central African cuisine uses local ingredients like cassava, plantains, and peanuts. Dishes are often stews or porridges, seasoned with spices and sometimes served with grilled meats.",
-    "region": "Central Africa"
+    "region": "Central Africa",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "SPANISH",
     "title": "Spanish",
     "text": "Spanish cuisine is diverse, with regional specialties like paella, tapas, and gazpacho. It emphasizes fresh seafood, cured meats, and vibrant flavors, often enjoyed in a leisurely, social setting.",
-    "region": "Southern Europe"
+    "region": "Southern Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "FRANCE",
     "title": "French",
     "text": "French cuisine is renowned for its finesse and technique, featuring dishes like coq au vin, baguettes, and croissants. It places a strong emphasis on quality ingredients and presentation.",
-    "region": "Western Europe"
+    "region": "Western Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "S_AFRICA",
     "title": "South African",
     "text": "South African cuisine is a melting pot of indigenous, Dutch, and Malay influences. Popular dishes include bobotie, biltong, and braai (barbecue), reflecting the country's diverse culinary heritage.",
-    "region": "Southern Africa"
+    "region": "Southern Africa",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "IRISH",
     "title": "Irish",
     "text": "Irish cuisine is simple and hearty, with staples like potatoes, lamb, and cabbage. Traditional dishes include Irish stew, soda bread, and colcannon, often enjoyed with a pint of stout.",
-    "region": "Western Europe"
+    "region": "Western Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "BRIT",
     "title": "British",
     "text": "British cuisine features comfort foods like fish and chips, roast beef, and shepherd's pie. It is known for its hearty breakfasts, afternoon tea, and diverse regional specialties.",
-    "region": "Western Europe"
+    "region": "Western Europe",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "MID_EAST",
     "title": "Middle Eastern",
     "text": "Middle Eastern cuisine is rich in flavors and spices, with dishes like hummus, falafel, and shawarma. It often features grains, legumes, and fresh vegetables, creating a balanced and flavorful diet.",
-    "region": "Middle East"
+    "region": "Middle East",
+    "Indian":"false",
+    "TN":"true"
   },
   {
     "id": "PAPUA",
     "title": "Papua New Guinean",
     "text": "Papua New Guinean cuisine relies on locally sourced ingredients like taro, sweet potatoes, and seafood. Traditional methods include roasting and boiling, with a focus on simplicity and natural flavors.",
-    "region": "Oceania"
+    "region": "Oceania",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "AUS",
     "title": "Australian",
     "text": "Australian cuisine is a blend of indigenous and immigrant influences, featuring dishes like barbecued meats, meat pies, and seafood. It often emphasizes fresh, local ingredients and outdoor dining.",
-    "region": "Oceania"
+    "region": "Oceania",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "PORTU",
     "title": "Portuguese",
     "text": "Portuguese cuisine is flavorful and diverse, with dishes like bacalhau (salted cod), pastéis de nata, and caldo verde. It highlights fresh seafood, olive oil, and hearty soups and stews.",
-    "region": "Southern Europe"
+    "region": "Southern Europe",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "JAPAN",
     "title": "Japanese",
     "text": "Japanese cuisine is known for its precision and aesthetics, featuring dishes like sushi, ramen, and tempura. It emphasizes fresh, high-quality ingredients and seasonal flavors.",
-    "region": "East Asia"
+    "region": "East Asia",
+    "Indian":"true",
+    "TN":"true"
   },
  
   {
     "id": "IN_N_INDIA",
     "title": "North Indian",
     "text": "North Indian cuisine is famous for its rich, creamy curries, tandoori dishes, and bread like naan and roti. Signature dishes include butter chicken, biryani, and paneer tikka, often accompanied by fragrant basmati rice.",
-    "region": "Northern India"
+    "region": "Northern India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "IN_S_INDIA",
     "title": "South Indian",
     "text": "South Indian cuisine is characterized by its use of rice, coconut, and a variety of spices. Popular dishes include dosa, idli, and sambar. The cuisine is known for its diverse vegetarian options and distinct flavor profiles.",
-    "region": "Southern India"
+    "region": "Southern India",
+    "Indian":"true",
+    "TN":"false"
   },
   {
     "id": "IN_S_INDIA_TN",
     "title": "South Indian",
     "text": "South Indian cuisine is characterized by its use of rice, coconut, and a variety of spices. Popular dishes include dosa, idli, and sambar. The cuisine is known for its diverse vegetarian options and distinct flavor profiles.",
-    "region": "Southern India"
+    "region": "Southern India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "IN_W_INDIA",
     "title": "West Indian",
     "text": "West Indian cuisine, especially from regions like Maharashtra and Gujarat, features a mix of spicy and sweet flavors. Dishes like vada pav, dhokla, and fish curry are common, often highlighting local ingredients like coconut, peanuts, and seafood.",
-    "region": "Western India"
+    "region": "Western India",
+    "Indian":"true",
+    "TN":"true"
   },
   
   {
     "id": "IN_E_INDIA",
     "title": "East Indian",
     "text": "East Indian cuisine is known for its use of mustard oil, panch phoron (a blend of five spices), and seafood. Popular dishes include macher jhol (fish curry), luchi (fried bread), and sweets like rasgulla and sandesh, reflecting the region's rich culinary heritage.",
-    "region": "Eastern India"
+    "region": "Eastern India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "IN_N_E_INDIA",
     "title": "North East Indian",
     "text": "North East Indian cuisine is diverse, featuring ingredients like bamboo shoots, fermented soybeans, and local meats. Signature dishes include momos (dumplings), fish tenga, and smoked meats, often showcasing the region's unique flavors and techniques.",
-    "region": "North Eastern India"
+    "region": "North Eastern India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "IN_RAJ",
     "title": "Rajasthani",
     "text": "Rajasthani cuisine is known for its rich, spicy flavors and hearty dishes. Popular items include dal baati churma, gatte ki sabzi, and ker sangri. The cuisine often reflects the arid climate, using dried and preserved ingredients.",
-    "region": "Western India"
+    "region": "Western India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "TN_THONDAI",
     "title": "Thondai Naadu",
     "text": "Thondai Naadu cuisine, from the northern region of Tamil Nadu, is known for its use of rice, millets, and lentils. Popular dishes include idli, dosa, and a variety of rice preparations like puliyodarai and lemon rice, often accompanied by spicy chutneys and sambar.",
-    "region": "Northern Tamil Nadu, India"
+    "region": "Northern Tamil Nadu, India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "TN_CHOLA",
     "title": "Chola Nadu",
     "text": "Chola Nadu cuisine, hailing from the fertile lands of the Cauvery delta, features rice as a staple along with lentils and vegetables. Signature dishes include karuveppilai sadam (curry leaf rice), sambhar, and kozhambu, showcasing rich and tangy flavors.",
-    "region": "Central Tamil Nadu, India"
+    "region": "Central Tamil Nadu, India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "TN_NANJIL",
     "title": "Nanjil Nadu",
     "text": "Nanjil Nadu cuisine, from the Kanyakumari district, is influenced by both Tamil and Kerala flavors. Coconut, seafood, and tapioca are staples. Popular dishes include fish curry, appam with stew, and puttu, reflecting a unique blend of culinary traditions.",
-    "region": "Southern Tamil Nadu, India"
+    "region": "Southern Tamil Nadu, India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "TN_CHETTI",
     "title": "Chettinad",
     "text": "Chettinad cuisine is famous for its bold, spicy flavors and extensive use of freshly ground spices. Known for dishes like Chettinad chicken, pepper chicken, and varuval (dry curries), it also features a variety of vegetarian delicacies like kaikari pirattal.",
-    "region": "Sivaganga District, Tamil Nadu, India"
+    "region": "Sivaganga District, Tamil Nadu, India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "TN_KONGU",
     "title": "Kongu Nadu",
     "text": "Kongu Nadu cuisine, from the western region of Tamil Nadu, emphasizes the use of millets, lentils, and freshly ground masalas. Popular dishes include kola urundai (meatballs), arisi paruppu sadam (rice and lentil dish), and a variety of coconut-based curries.",
-    "region": "Western Tamil Nadu, India"
+    "region": "Western Tamil Nadu, India",
+    "Indian":"true",
+    "TN":"true"
   },
   {
     "id": "TN_PANDI",
     "title": "Pandiyanad",
     "text": "Pandiyanad cuisine, from the southern districts of Tamil Nadu, is known for its rich and spicy flavors, often using tamarind and coconut. Signature dishes include mutton chukka, meen kuzhambu (fish curry), and kothu parotta, showcasing hearty and robust tastes.",
-    "region": "Southern Tamil Nadu, India"
-  }
+    "region": "Southern Tamil Nadu, India",
+    "Indian":"true",
+    "TN":"true"
+  },{
+  "id": "NEPAL",
+  "title": "Nepalese",
+  "text": "Nepalese cuisine is characterized by its use of fresh ingredients, with dishes like dal bhat (lentil soup and rice), momos (dumplings), and gundruk (fermented leafy greens). The cuisine often features a balance of spices, herbs, and diverse textures, reflecting the country's rich cultural heritage.",
+  "region": "South Asia",
+  "Indian": "true",
+  "TN": "false"
+},
+{
+  "id": "PAKISTAN",
+  "title": "Pakistani",
+  "text": "Pakistani cuisine is rich and flavorful, with a focus on meat dishes such as biryani, nihari, and kebabs. The cuisine features a blend of spices and cooking techniques influenced by the Mughal, Persian, and Indian traditions, often accompanied by naan or roti.",
+  "region": "South Asia",
+  "Indian": "true",
+  "TN": "false"
+},
+{
+  "id": "BANGALADESH",
+  "title": "Bengali",
+  "text": "Bengali cuisine is known for its use of fish, rice, and lentils, with popular dishes like macher jhol (fish curry), shorshe ilish (hilsa fish in mustard sauce), and roshogolla (a sweet delicacy). The cuisine emphasizes the use of mustard oil and a variety of spices, creating a distinct flavor profile.",
+  "region": "South Asia",
+  "Indian": "true",
+  "TN": "false"
+},{
+  "id": "SRI_LANKA",
+  "title": "Sri Lankan",
+  "text": "Sri Lankan cuisine is vibrant and diverse, with staples like rice and curry, hoppers, and kottu roti. It blends spices, coconut, and seafood, influenced by Indian, Malay, and colonial traditions.",
+  "region": "South Asia",
+  "Indian": "true",
+  "TN": "false"
+},
+{
+  "id": "W_AFRICA",
+  "title": "West African",
+  "text": "West African cuisine is rich and communal, featuring jollof rice, fufu, and egusi soup. Staples like yams, cassava, and plantains combine with bold flavors of chili, peanuts, and smoked fish.",
+  "region": "Sub-Saharan Africa",
+  "Indian": "false",
+  "TN": "false"
+}
+
+
 ]

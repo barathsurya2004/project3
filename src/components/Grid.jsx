@@ -1,14 +1,25 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import gsap from "gsap";
+import { Context } from "../context";
 
 const Grid = () => {
   const shaderRef = useRef();
   const { size, camera } = useThree(); // Access screen size and camera
-  const mouse = useRef([0, 0]);
-  const isMoving = useRef(true); // Track if the mouse is moving
-  const distortionVisibility = useRef({ value: 1.0 }); // Control distortion visibility
+
+  const mouse = useRef([10, 10]);
+  const isMoving = useRef(false); // Track if the mouse is moving
+  const distortionVisibility = useRef({ value: 0.0 }); // Control distortion visibility
   let inactivityTimeout = useRef(null);
+  const [moved, setMoved] = useState(false);
+
+  useEffect(() => {
+    // Set a timeout to turn off distortion after 5 seconds of inactivity
+    inactivityTimeout.current = setTimeout(() => {
+      isMoving.current = false;
+      gsap.to(distortionVisibility.current, { value: 1.0, duration: 1.0 });
+    }, 100);
+  }, []);
 
   // Track mouse movement
   const handleMouseMove = (event) => {
@@ -18,9 +29,6 @@ const Grid = () => {
     ];
 
     // Clear the inactivity timeout and reset distortion visibility
-    clearTimeout(inactivityTimeout.current);
-    isMoving.current = true;
-    distortionVisibility.current.value = 1.0;
 
     // // Set a timeout to turn off distortion after 5 seconds of inactivity
     // inactivityTimeout.current = setTimeout(() => {
@@ -83,9 +91,9 @@ void main() {
   distortion *= smoothstep(uCircleRadius, 0.0, dist) * 0.2 * uVisibility;
 
   // Dynamic line thickness based on distance
-  float gridSize = 2.0;          // Adjust the grid cell size
-  float baseLineWidth = 0.02;    // Base grid line thickness
-  float thicknessScale = 0.05;    // Scale factor for thickness increase
+  float gridSize = 2.8;          // Adjust the grid cell size
+  float baseLineWidth = 0.015;    // Base grid line thickness
+  float thicknessScale = 0.03;    // Scale factor for thickness increase
   float dynamicLineWidth = baseLineWidth + 
                            thicknessScale * smoothstep(uCircleRadius, 0.0, dist);
 

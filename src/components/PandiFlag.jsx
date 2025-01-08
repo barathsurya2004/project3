@@ -1,6 +1,10 @@
 import pandiFlag from "../assets/icons/pandi-flag.svg";
 import pandiIcon from "../assets/icons/pandisvg.svg";
 import holder from "../assets/icons/placeholder.svg";
+import P_1 from "/videos/P-1_1.webm";
+import P_2 from "/videos/P-2_1.webm";
+import P_3 from "/videos/P-3_1.webm";
+import flagAnim from "/videos/flagg_pandi.webm";
 const PandiFlag = () => {
   return (
     <div
@@ -66,9 +70,7 @@ const PandiFlag = () => {
           height: "100%",
         }}
       >
-        <img
-          src={pandiFlag}
-          alt=""
+        <div
           style={{
             position: "absolute",
             top: "25vh",
@@ -76,7 +78,22 @@ const PandiFlag = () => {
             right: 0,
             height: 360 * (window.innerHeight / 1080),
           }}
-        />
+        >
+          <video
+            // ref={videoRef}
+            playsInline
+            muted
+            autoPlay
+            style={{
+              height: 360 * (window.innerHeight / 1080),
+            }}
+            loop
+            preload="metadata"
+          >
+            <source id="video-source" src={flagAnim} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
       <div
         className=""
@@ -134,13 +151,28 @@ const PandiFlag = () => {
                 never sleeps, along with the food too!
               </p>
             </div>
-            <img
+            <video
+              // ref={videoRef}
+              playsInline
+              muted
+              autoPlay
+              style={{
+                height: 300 * (window.innerHeight / 1080),
+              }}
+              loop
+              preload="metadata"
+            >
+              <source id="video-source" src={P_1} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* <img
               style={{
                 height: 300 * (window.innerHeight / 1080),
               }}
               src={holder}
               alt=""
-            />
+            /> */}
           </div>
           <div
             style={{
@@ -179,13 +211,20 @@ const PandiFlag = () => {
                 meal is a celebration!
               </p>
             </div>
-            <img
+            <video
+              // ref={videoRef}
+              playsInline
+              muted
+              autoPlay
               style={{
                 height: 300 * (window.innerHeight / 1080),
               }}
-              src={holder}
-              alt=""
-            />
+              loop
+              preload="metadata"
+            >
+              <source id="video-source" src={P_2} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
           </div>
           <div
             style={{
@@ -225,13 +264,20 @@ const PandiFlag = () => {
                 mistake it for other nearby cuisines.
               </p>
             </div>
-            <img
+            <video
+              // ref={videoRef}
+              playsInline
+              muted
+              autoPlay
               style={{
                 height: 300 * (window.innerHeight / 1080),
               }}
-              src={holder}
-              alt=""
-            />
+              loop
+              preload="metadata"
+            >
+              <source id="video-source" src={P_3} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>

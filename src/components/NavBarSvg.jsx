@@ -47,7 +47,7 @@ const NavBarSvg = (props) => {
         y: 0,
         ease: "power1.inOut",
       }).to(".nav-bar-cont-2", {
-        opacity: 0.3,
+        opacity: 0.2,
       });
     } else {
       const tl = gsap.timeline();
@@ -235,7 +235,7 @@ const NavBarSvg = (props) => {
         //   if (!show) {
         //     gsap.to(".nav-bar-cont-2", {
         //       duration: 0.5,
-        //       opacity: 0.3,
+        //       opacity: 0.2,
         //       ease: "power1.inOut",
         //     });
         //   }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ChettiColorModel } from "../../public/Models/Cards/new/Chetti/ChettiColor";
 import { IntricateModel } from "../../public/Models/Cards/new/Chetti/Intricate";
 import { PandiColorModel } from "../../public/Models/Cards/new/Pandi/PandiColor";
@@ -10,6 +11,8 @@ import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
 
 const Characteristics = () => {
+  const [rotateP, setRotateP] = useState(false);
+  const [rotateC, setRotateC] = useState(false);
   return (
     <div
       className="characteristics-page"
@@ -102,10 +105,16 @@ const Characteristics = () => {
             width: "50%",
             height: "100vh",
           }}
+          onPointerEnter={() => {
+            setRotateP(true);
+          }}
+          onPointerLeave={() => {
+            setRotateP(false);
+          }}
         >
-          <CardHolder idd={"char"}>
-            <PnadiColorCard />
-            <SimpleCard />
+          <CardHolder idd={"char"} reg={"p"}>
+            <PnadiColorCard rot={rotateP} />
+            <SimpleCard rot={rotateP} />
           </CardHolder>
         </div>
         <div
@@ -117,10 +126,16 @@ const Characteristics = () => {
             width: "50%",
             height: "100vh",
           }}
+          onPointerEnter={() => {
+            setRotateC(true);
+          }}
+          onPointerLeave={() => {
+            setRotateC(false);
+          }}
         >
-          <CardHolderC idd={"char"}>
-            <ChettiColorCard />
-            <IntricateCard />
+          <CardHolderC idd={"char"} reg={"c"}>
+            <ChettiColorCard rot={rotateC} />
+            <IntricateCard rot={rotateC} />
           </CardHolderC>
         </div>
       </div>

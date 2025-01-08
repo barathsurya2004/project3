@@ -139,9 +139,8 @@ const MapComponent = () => {
               position: "absolute",
               right: (30 * window.innerWidth) / 1920,
               top: "50%",
-              transform: "translate(0, -45%)",
-              width: 48.78 * (window.innerWidth / 1920),
-              height: 62.69 * (window.innerWidth / 1920),
+              transform: "translate(0, -50%)",
+
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -151,7 +150,13 @@ const MapComponent = () => {
               setMode(null);
             }}
           >
-            <img src={close} alt="close" />
+            <img
+              src={close}
+              alt="close"
+              style={{
+                width: 40 * (window.innerWidth / 1920),
+              }}
+            />
           </div>
         </div>
         <div

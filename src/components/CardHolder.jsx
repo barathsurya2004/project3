@@ -4,9 +4,14 @@ import activePage from "../assets/icons/pagination.svg";
 import gsap from "gsap";
 import { Children, useContext, useState } from "react";
 import { Context } from "../context";
-const CardHolder = ({ children, idd }) => {
+import { PandiTick } from "../../public/Models/Cards/selection/Pandi_tick";
+import { PandiCross } from "../../public/Models/Cards/selection/Pandi_cross";
+
+const CardHolder = ({ children, idd, reg }) => {
   const [active, setActive] = useState(0);
-  const { setCardInteractions } = useContext(Context);
+  const { setCardInteractions, cardSelectionHelper } = useContext(Context);
+  const [selected, setSelected] = useState(false);
+  const [rotate, setRotate] = useState(false);
   return (
     <>
       <div
@@ -49,9 +54,15 @@ const CardHolder = ({ children, idd }) => {
         idd={idd}
         onPointerEnter={() => {
           setCardInteractions(true);
+          setRotate(true);
+        }}
+        onPointerLeave={() => {
+          setRotate(false);
         }}
         onDoubleClick={() => {
-          console.log(idd, active);
+          const temp = reg + "_" + idd + "_" + (active + 1);
+          cardSelectionHelper(temp);
+          setSelected(!selected);
         }}
       >
         {Children.map(children, (child, index) => {

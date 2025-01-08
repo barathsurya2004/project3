@@ -47,6 +47,9 @@ export const Context = createContext({
   setSliderInteractions: () => {},
   cardInteractions: false,
   setCardInteractions: () => {},
+  meshShowRestrict: null,
+  cardSelectionHelper: null,
+  cardsSelected: {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -77,7 +80,30 @@ export const ContextProvider = ({ children }) => {
   const [globeInteractions, setGlobeInteractions] = useState(false);
   const [sliderInteractions, setSliderInteractions] = useState(false);
   const [cardInteractions, setCardInteractions] = useState(false);
+  const meshShowRestrict = useRef(null);
+  const [cardsSelected, setCardsSelected] = useState({
+    p_ing_1: false,
+    p_ing_2: false,
+    p_ing_3: false,
+    p_char_1: false,
+    p_char_2: false,
+    p_proc_1: false,
+    p_proc_2: false,
+    c_ing_1: false,
+    c_ing_2: false,
+    c_ing_3: false,
+    c_char_1: false,
+    c_char_2: false,
+    c_proc_1: false,
+    c_proc_2: false,
+  });
+  const cardSelectionHelper = (card) => {
+    const temp = { ...cardsSelected };
 
+    temp[card] = !temp[card];
+    setCardsSelected(temp);
+    console.log(temp);
+  };
   const chettiVis = useRef(false);
   const pandiVis = useRef(false);
   const handleMouseMove = (event) => {
@@ -293,6 +319,9 @@ export const ContextProvider = ({ children }) => {
     setSliderInteractions,
     cardInteractions,
     setCardInteractions,
+    meshShowRestrict,
+    cardSelectionHelper,
+    cardsSelected,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };
