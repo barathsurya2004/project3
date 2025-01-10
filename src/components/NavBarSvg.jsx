@@ -38,7 +38,7 @@ const NavBarSvg = (props) => {
       });
       gsap.to(".on-click", {
         duration: 0.5,
-        y: 270,
+        y: (270 * innerHeight) / 1080,
         ease: "power1.inOut",
       });
 
@@ -50,32 +50,46 @@ const NavBarSvg = (props) => {
         opacity: 0.2,
       });
     } else {
+      gsap.fromTo(
+        ".hide-on-click",
+        {
+          y: "100%",
+        },
+        {
+          duration: 0.5,
+          y: "0%",
+          ease: "power1.inOut",
+        }
+      );
+      gsap.fromTo(
+        ".on-click",
+        {
+          y: (270 * innerHeight) / 1080,
+        },
+        {
+          duration: 0.5,
+          y: 0,
+          ease: "power1.inOut",
+        }
+      );
       const tl = gsap.timeline();
-      gsap.to(".hide-on-click", {
-        duration: 0.5,
-        y: "0%",
-        ease: "power1.inOut",
-      });
-      gsap.to(".on-click", {
-        duration: 0.5,
-        y: 0,
-        ease: "power1.inOut",
-      });
-
-      gsap.to(".nav-bar-cont-2", {
+      tl.to(".nav-bar-cont-2", {
         duration: 0.5,
         y: "40%",
         ease: "power1.inOut",
-      });
-      gsap.to(".nav-bar-cont-2", {
-        opacity: 1,
-      });
+      }).to(
+        ".nav-bar-cont-2",
+        {
+          opacity: 1,
+        },
+        "<"
+      );
     }
   }, [show]);
   const containerStyle = {
     position: "relative",
-    width: 50,
-    height: 270,
+    width: 50 * (innerWidth / 1920),
+    height: (270 * innerHeight) / 1080,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
