@@ -8,11 +8,16 @@ import { useDeviceOrientation } from "../deviceOrientation";
 const MobileLoader = () => {
   const { orientation, requestAccess, revokeAccess, error } =
     useDeviceOrientation();
-
   useEffect(() => {
-    requestAccess();
+    requestAccess().then((granted) => {
+      if (!granted) {
+        alert("Please enable device orientation access to continue");
+      }
+    });
+    return () => {
+      revokeAccess();
+    };
   }, []);
-
   return (
     <div
       className="mobile-container"
