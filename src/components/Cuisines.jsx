@@ -4,8 +4,9 @@ gsap.registerPlugin(useGSAP);
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 import "./Cuisines.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../context";
+import PandiChettiExplain from "./PandiChettiExplain";
 const Cuisines = () => {
   const {
     setMeshSelected,
@@ -13,7 +14,10 @@ const Cuisines = () => {
     chettiVis,
     pandiVis,
     meshShowRestrict,
+    cp,
+    setCP,
   } = useContext(Context);
+
   useGSAP(() => {
     gsap.fromTo(
       ".cuisines-of-the-world",
@@ -184,65 +188,6 @@ const Cuisines = () => {
 
     gsap.to(".null", {
       scrollTrigger: {
-        trigger: ".chettiNadu-intro",
-        start: "top 90%",
-        end: "bottom 100%",
-        onEnter: () => {
-          chettiVis.current = true;
-          setMeshSelected({
-            name: "TN_CHETTI",
-            children: null,
-          });
-        },
-        onLeave: () => {
-          setMeshSelected(null);
-          chettiVis.current = false;
-        },
-
-        onEnterBack: () => {
-          chettiVis.current = true;
-          setMeshSelected({
-            name: "TN_CHETTI",
-            children: null,
-          });
-        },
-        onLeaveBack: () => {
-          chettiVis.current = false;
-          setMeshSelected(null);
-        },
-      },
-    });
-    gsap.to(".null", {
-      scrollTrigger: {
-        trigger: ".pandiyaNadu-intro",
-        start: "top 90%",
-        end: "bottom 90%",
-        onEnter: () => {
-          pandiVis.current = true;
-          setMeshSelected({
-            name: "TN_PANDI",
-            children: null,
-          });
-        },
-        onLeave: () => {
-          pandiVis.current = false;
-          setMeshSelected(null);
-        },
-        onEnterBack: () => {
-          pandiVis.current = true;
-          setMeshSelected({
-            name: "TN_PANDI",
-            children: null,
-          });
-        },
-        onLeaveBack: () => {
-          pandiVis.current = false;
-          setMeshSelected(null);
-        },
-      },
-    });
-    gsap.to(".null", {
-      scrollTrigger: {
         trigger: ".cuisines-of-India-trigger",
         start: "top bottom",
         end: "top top",
@@ -274,6 +219,40 @@ const Cuisines = () => {
         },
         onLeaveBack: () => {
           meshShowRestrict.current = 1;
+        },
+      },
+    });
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".chettiNadu-intro",
+        start: "top bottom",
+        end: "bottom bottom",
+        markers: true,
+        onEnter: () => {
+          setCP(1);
+        },
+
+        onLeaveBack: () => {
+          setCP(null);
+        },
+      },
+    });
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".pandiyaNadu-intro",
+        start: "top bottom",
+        end: "bottom 105%",
+        onEnter: () => {
+          setCP(2);
+        },
+        onLeave: () => {
+          setCP(null);
+        },
+        onEnterBack: () => {
+          setCP(2);
+        },
+        onLeaveBack: () => {
+          setCP(1);
         },
       },
     });
@@ -343,6 +322,20 @@ const Cuisines = () => {
           width: "100%",
         }}
       ></div>
+      <div
+        className="pandiVschetti-actual"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          pointerEvents: "none",
+          zIndex: 1000,
+        }}
+      >
+        <PandiChettiExplain />
+      </div>
       <div
         className="cuisines-of-the-world"
         style={{

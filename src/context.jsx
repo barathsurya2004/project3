@@ -50,6 +50,8 @@ export const Context = createContext({
   meshShowRestrict: null,
   cardSelectionHelper: null,
   cardsSelected: {},
+  cp: null,
+  setCP: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -106,6 +108,7 @@ export const ContextProvider = ({ children }) => {
   };
   const chettiVis = useRef(false);
   const pandiVis = useRef(false);
+  const [cp, setCP] = useState(null);
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
     setPointer([clientX, clientY]);
@@ -322,6 +325,8 @@ export const ContextProvider = ({ children }) => {
     meshShowRestrict,
     cardSelectionHelper,
     cardsSelected,
+    cp,
+    setCP,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

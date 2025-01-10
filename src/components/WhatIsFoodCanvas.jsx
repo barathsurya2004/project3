@@ -30,15 +30,15 @@ const WhatIsFoodCanvas = () => {
     <div
       className="foods-canvas canvas"
       style={{
-        // maskImage: `radial-gradient(circle at center left, rgba(255,255,255,1) ${
+        // backgroundImage: `radial-gradient(circle at center left, rgba(255,255,255,1) ${
         //   (prog + 0.1) * 100
         // }%, rgba(255,255,255,1) ${
         //   10 + 90 * (prog + 0.1)
         // }%, rgba(255,255,255,0) ${60 + 50 * prog}%, rgba(255,255,255,0) 100%)`,
         maskImage: `radial-gradient(circle at center left, rgba(255,255,255,1) ${0}%, rgba(255,255,255,1) ${
-          40 * (prog + 0.4)
+          40 * (prog * 2 + 0.2)
         }%, rgba(18, 15, 15, 0) ${
-          100 * (prog + 0.3)
+          100 * (prog * 2 + 0.1)
         }%, rgba(255,255,255,0) 100%)`,
         position: "fixed",
         top: 0,

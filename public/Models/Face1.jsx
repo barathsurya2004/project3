@@ -90,6 +90,8 @@ export function FaceModel(props) {
         { r: 1, g: 0, b: 0, duration: 0.2, immediateRender: false }
       );
       animationPlayedRef.current = true;
+      gsap.set(meshRef.current.scale, { y: 1.311, x: 0.786 });
+      gsap.set(meshRef1.current.scale, { y: 1.311, x: 0.786 });
       names.forEach((name) => {
         const action = actions[name];
         action.setLoop(THREE.LoopOnce);

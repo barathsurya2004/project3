@@ -432,7 +432,9 @@ const FaceReact = () => {
                 handleMouseEnterChetti();
               }}
               onPointerLeave={() => {
-                setHovered(false);
+                if (selected === null) {
+                  setHovered(false);
+                }
                 handleMouseLeavePandi();
                 handleMouseLeaveChetti();
               }}
@@ -563,7 +565,9 @@ const FaceReact = () => {
                 handleMouseEnterPandi();
               }}
               onPointerLeave={() => {
-                setHovered(false);
+                if (selected === null) {
+                  setHovered(false);
+                }
                 handleMouseLeavePandi();
                 handleMouseLeaveChetti();
               }}

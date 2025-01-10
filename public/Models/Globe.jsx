@@ -22,6 +22,7 @@ export function GlobeModel(props) {
     setModelsPosition,
     modelsPosition,
     setGlobeInteractions,
+    cp,
   } = useContext(Context);
   const southRef = React.useRef();
   const mainRef = React.useRef();
@@ -66,6 +67,44 @@ export function GlobeModel(props) {
       duration: 0.5,
     });
   };
+  const painter = (child) => {
+    if (!child) return;
+    child.material = new THREE.MeshStandardMaterial(materials["Material.004"]);
+    gsap.to(child.material.color, {
+      r: 0.952,
+      g: 0.61,
+      b: 0.178,
+      duration: 1,
+    });
+  };
+  const paintRemover = (child) => {
+    if (!child) return;
+    child.material = new THREE.MeshStandardMaterial(materials["Material.004"]);
+    gsap.to(child.material.color, {
+      r: 0.652,
+      g: 0.418,
+      b: 0.122,
+      duration: 1,
+    });
+  };
+  useEffect(() => {
+    if (cp === 2) {
+      const child1 = pandiRef.current.children[0];
+      const child2 = chettiRef.current.children[0];
+      painter(child1);
+      paintRemover(child2);
+    } else if (cp === 1) {
+      const child1 = pandiRef.current.children[0];
+      const child2 = chettiRef.current.children[0];
+      paintRemover(child1);
+      painter(child2);
+    } else {
+      const child1 = pandiRef.current.children[0];
+      const child2 = chettiRef.current.children[0];
+      paintRemover(child1);
+      paintRemover(child2);
+    }
+  }, [cp]);
   useEffect(() => {
     if (!meshSelected) return;
     if (meshSelected.children == null) return;
