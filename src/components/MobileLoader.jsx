@@ -1,10 +1,18 @@
 import { Canvas } from "@react-three/fiber";
 import image from "../assets/icons/thunder.svg";
 import { OrthographicCamera } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import "./MobileCont.css";
 import { Face2 } from "../../public/Models/Face2";
+import { useDeviceOrientation } from "../deviceOrientation";
 const MobileLoader = () => {
+  const { orientation, requestAccess, revokeAccess, error } =
+    useDeviceOrientation();
+
+  useEffect(() => {
+    requestAccess();
+  }, []);
+
   return (
     <div
       className="mobile-container"
@@ -15,6 +23,24 @@ const MobileLoader = () => {
         overflow: "hidden",
       }}
     >
+      <div
+        style={{
+          position: "fixed",
+          backgroundColor: "red",
+        }}
+      >
+        <ul>
+          <li>
+            ɑ: <code>{orientation?.alpha}</code>
+          </li>
+          <li>
+            β: <code>{orientation?.beta}</code>
+          </li>
+          <li>
+            γ: <code>{orientation?.gamma}</code>
+          </li>
+        </ul>
+      </div>
       <div
         style={{
           height: "100vh",
