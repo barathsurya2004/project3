@@ -12,6 +12,7 @@ const Interactions = () => {
     questionInteractions,
     globeInteractions,
     sliderInteractions,
+    interaction,
   } = useContext(Context);
   useEffect(() => {
     if (globeInteractions) {
@@ -159,11 +160,13 @@ const Interactions = () => {
             }}
           >
             {!questionInteractions || questionSelected === null
-              ? "Drag the wheel to select a question"
+              ? interaction === 1
+                ? "Drag the wheel to select a question"
+                : null
               : temp[questionSelected]}
           </p>
         </div>
-        {!globeInteractions && (
+        {!globeInteractions && interaction === 1 && (
           <div
             className="globe-interactions"
             style={{
@@ -188,7 +191,7 @@ const Interactions = () => {
             </p>
           </div>
         )}
-        {!sliderInteractions && (
+        {!sliderInteractions && interaction === 1 && (
           <div
             className="slider-interactions"
             style={{

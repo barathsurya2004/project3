@@ -2,16 +2,18 @@ import CardsCanvas from "./CardsCanvas";
 import button from "../assets/icons/cardButton.svg";
 import activePage from "../assets/icons/pagination.svg";
 import gsap from "gsap";
-import { Children, useContext, useState } from "react";
+import { Children, useContext, useRef, useState } from "react";
 import { Context } from "../context";
 import { PandiTick } from "../../public/Models/Cards/selection/Pandi_tick";
 import { PandiCross } from "../../public/Models/Cards/selection/Pandi_cross";
-import video from "/videos/selection.webm";
+import video from "/videos/P-1_1.webm";
 const CardHolder = ({ children, idd, reg }) => {
   const [active, setActive] = useState(0);
   const { setCardInteractions, cardSelectionHelper } = useContext(Context);
   const [selected, setSelected] = useState(false);
   const [rotate, setRotate] = useState(false);
+  const videoRef = useRef();
+  useState(() => {}, [selected]);
   return (
     <>
       <div
@@ -49,32 +51,7 @@ const CardHolder = ({ children, idd, reg }) => {
           }}
         />
       </div>
-      <div
-        className="selection__container"
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          zIndex: 1000,
-          // background: "rgba(255,0,0,0.5)",
-        }}
-      >
-        <video
-          // ref={videoRef}
-          playsInline
-          muted
-          autoPlay
-          style={{
-            height: "100%",
-            width: "100%",
-            objectFit: "cover",
-          }}
-          loop
-          preload="metadata"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
-      </div>
+
       <CardsCanvas
         cur={active}
         idd={idd}

@@ -288,6 +288,26 @@ const Hero = () => {
             Click anywhere or scroll to begin
           </p>
         </div>
+        <div
+          className="int-scroll-helper"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            // backgroundColor: "rgba(255,0,0,0.5)",
+            zIndex: 1,
+          }}
+          onClick={() => {
+            gsap.to(window, {
+              duration: 3,
+              scrollTo: {
+                y: ".drag-space-actual",
+              },
+            });
+          }}
+        />
         <NavBar />
         <div
           style={{

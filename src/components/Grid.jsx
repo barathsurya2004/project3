@@ -29,12 +29,17 @@ const Grid = () => {
     ];
 
     // Clear the inactivity timeout and reset distortion visibility
+    if (!isMoving.current) {
+      isMoving.current = true;
+      gsap.to(distortionVisibility.current, { value: 2, duration: 0.5 });
+      clearTimeout(inactivityTimeout.current);
+    }
 
-    // // Set a timeout to turn off distortion after 5 seconds of inactivity
-    // inactivityTimeout.current = setTimeout(() => {
-    //   isMoving.current = false;
-    //   gsap.to(distortionVisibility.current, { value: 0.0, duration: 1.0 });
-    // }, 100);
+    // Set a timeout to turn off distortion after 5 seconds of inactivity
+    inactivityTimeout.current = setTimeout(() => {
+      isMoving.current = false;
+      gsap.to(distortionVisibility.current, { value: 0.0, duration: 1.0 });
+    }, 100);
   };
 
   useEffect(() => {
@@ -44,13 +49,24 @@ const Grid = () => {
 
   // Update uniforms for mouse position and distortion visibility
   useFrame(() => {
+    // Get the current mouse position
+    const temp = mouse.current; // [mouseX, mouseY]
+    const canvasSize = [size.width, size.height]; // Canvas dimensions
+    const screenSize = [window.innerWidth, window.innerHeight]; // Screen dimensions
+
+    // Normalize mouse position relative to canvas size
+    const normalizedMouseX = (temp[0] / screenSize[0]) * canvasSize[0];
+    const normalizedMouseY = (temp[1] / screenSize[1]) * canvasSize[1];
+
+    // Update shader uniforms if the shaderRef is available
     if (shaderRef.current) {
       shaderRef.current.uniforms.uMouse.value = [
-        mouse.current[0] * 20,
-        mouse.current[1] * 10,
+        normalizedMouseX * 20, // Adjust scaling factor as needed
+        normalizedMouseY * 10, // Adjust scaling factor as needed
       ];
+
       shaderRef.current.uniforms.uVisibility.value =
-        distortionVisibility.current.value;
+        distortionVisibility.current.value; // Update visibility uniform
     }
   });
 
