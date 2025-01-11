@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useFrame } from "@react-three/fiber";
 import { ScrollTrigger, CustomEase } from "gsap/all";
+import { Context } from "../../src/context";
 gsap.registerPlugin(CustomEase);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
@@ -16,7 +17,7 @@ export function ArtModel(props) {
   const { nodes, materials } = useGLTF("/Models/art.glb");
   const ref = React.useRef();
   const changeRef = React.useRef();
-  const [active, setActive] = React.useState(false);
+  const { speed } = React.useContext(Context);
   useGSAP(() => {
     gsap.fromTo(
       ref.current.scale,
@@ -35,10 +36,8 @@ export function ArtModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          onToggle: (self) => {
-            setActive(self.isActive);
-          },
-          // markers: true,
+
+          // ,
         },
       }
     );
@@ -59,7 +58,7 @@ export function ArtModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          // markers: true,
+          // ,
         },
         immediateRender: false,
       }
@@ -71,7 +70,7 @@ export function ArtModel(props) {
     //     start: "top bottom",
     //     end: "top top",
     //     toggleActions: "reverse none none play",
-    //     // markers: true,
+    //     // ,
     //     onToggle: (self) => {
     //       setActive(self.isActive);
     //     },
@@ -116,18 +115,14 @@ export function ArtModel(props) {
     //       start: "top top",
     //       end: "top -100%",
     //       toggleActions: "play none none reverse",
-    //       // markers: true,
+    //       // ,
     //     },
     //     immediateRender: false,
     //   }
     // );
   });
   useFrame(() => {
-    if (active) {
-      ref.current.rotation.y += 0.01;
-    } else {
-      return;
-    }
+    ref.current.rotation.y += 0.01 * speed;
   });
   return (
     <group {...props} dispose={null} scale={0} ref={ref}>

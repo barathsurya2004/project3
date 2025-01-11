@@ -7,11 +7,13 @@ import React, { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
+import { Context } from "../../../src/context";
 
 export function TamarindCard(props) {
   const { nodes, materials } = useGLTF("/Models/ChettiCards/tamarind.glb");
   const { rot } = props;
   const group = React.useRef();
+  const { speed } = React.useContext(Context);
   useFrame(() => {
     if (rot) {
       group.current.rotation.y += 0.01;

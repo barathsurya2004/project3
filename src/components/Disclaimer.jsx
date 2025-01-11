@@ -89,12 +89,14 @@ const Disclaimer = () => {
           informational purposes only. I, Sudhesh Venkatachalam, am the sole
           author and creator of this content. While every effort has been made
           to ensure the accuracy of the information, I do not guarantee its
-          completeness, reliability, or suitability. The content is based on my
-          knowledge and experience and may not reflect the most current research
-          or trends. Users are encouraged to verify any information and consult
-          relevant professionals before making any decisions based on the
-          content of this website. I disclaim any liability for any loss or
-          damage arising from the use of this information.
+          completeness, reliability, or suitability.
+          <br />
+          <br /> The content is based on my knowledge and experience and may not
+          reflect the most current research or trends. Users are encouraged to
+          verify any information and consult relevant professionals before
+          making any decisions based on the content of this website. I disclaim
+          any liability for any loss or damage arising from the use of this
+          information.
         </p>
         <div
           className="close-button"

@@ -18,6 +18,11 @@ const Loader = () => {
   useEffect(() => {
     if (progress === 100) {
       setTimeout(() => {
+        gsap.to(".glow-container", {
+          opacity: 1,
+          duration: 5,
+          ease: "power4.out",
+        });
         gsap.fromTo(
           ".inner-loader",
           {
@@ -55,7 +60,7 @@ const Loader = () => {
           opacity: 0,
           duration: 1.5,
         });
-      }, 5000);
+      }, 5500);
     }
     gsap.to(".inner-loader", {
       width: `${35 * (progress / 100)}%`,
@@ -64,6 +69,11 @@ const Loader = () => {
     });
     gsap.to(".back-loader-inner", {
       width: `${35 * (progress / 100)}%`,
+      duration: 2,
+      ease: "power4.out",
+    });
+    gsap.to(".glow-container", {
+      opacity: `${(0.35 * progress) / 100}`,
       duration: 2,
       ease: "power4.out",
     });
@@ -236,20 +246,27 @@ const Loader = () => {
               left: 0,
             }}
           >
-            <img
-              src={inner1}
-              alt=""
+            <div
+              className="glow-container"
               style={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                bottom: 0,
-                opacity: 0.7,
-                // mixBlendMode: "screen",
-                transform: "translate(0%,-50%)",
+                opacity: 0,
               }}
-              id="glow-for-loader"
-            />
+            >
+              <img
+                src={inner1}
+                alt=""
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  bottom: 0,
+                  opacity: 0.7,
+                  // mixBlendMode: "screen",
+                  transform: "translate(0%,-50%)",
+                }}
+                id="glow-for-loader"
+              />
+            </div>
             <img
               src={inner}
               alt=""

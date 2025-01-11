@@ -14,6 +14,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../context";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
+import { BlurPass, Resizer, KernelSize, Resolution } from "postprocessing";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,14 +25,15 @@ import { NewClockModel } from "../../public/Models/Clokc";
 import { TreasureModel } from "../../public/Models/Treasure";
 import { CountriesModel } from "../../public/Models/Countries";
 import { FGlobeModel } from "../../public/Models/FINAL_globe";
-import { EffectComposer, Outline } from "@react-three/postprocessing";
 import { TrialModel } from "../../public/Models/Triallllllllll";
 import { GlobeModel } from "../../public/Models/Globe";
 import { GlobeModelBack } from "../../public/Models/Globe copy";
+
 const ThreeJsCanvas = () => {
   const [prog, setProg] = useState(0);
   const [change, setChange] = useState(0);
   const { loading } = useContext(Context);
+  const lightRef = useRef();
   useGSAP(() => {
     gsap.set(".question-mark-canvas", {
       y: "100vh",
@@ -46,6 +49,8 @@ const ThreeJsCanvas = () => {
         scrub: true,
       },
     });
+    // console.log(lightRef.current);
+
     // gsap.fromTo(
     //   ".face-model",
     //   {
@@ -286,49 +291,67 @@ const ThreeJsCanvas = () => {
                 }
               }
             >
-              <EffectComposer>
-                {/* <directionalLight intensity={3} position={[5, 10, 10]} /> */}
-                <spotLight
-                  intensity={30}
-                  position={[5, 0, 5]}
-                  color="#f4e7cb"
-                  angle={Math.PI / 2}
-                />
-                <spotLight
-                  intensity={50}
-                  position={[1, 0, 4]}
-                  color={"#f4e7cb"}
-                  angle={Math.PI / 2}
-                />
+              <EffectComposer multisampling={0}>
+                {/* <SMAA /> */}
+                {/* <Bloom
+                  intensity={1.0} // The bloom intensity.
+                  kernelSize={KernelSize.LARGE} // blur kernel size
+                  luminanceThreshold={0.9} // luminance threshold. Raise this value to mask out darker elements in the scene.
+                  luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
+                  mipmapBlur={false} // Enables or disables mipmap blur.
+                  resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
+                  resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
+                /> */}
+              </EffectComposer>
+              {/* <directionalLight intensity={3} position={[5, 10, 10]} /> */}
+              <spotLight
+                intensity={150}
+                position={[10, 0, 0]}
+                color="#f4e7cb"
+                angle={Math.PI / 2}
+              />
+              <spotLight
+                intensity={150}
+                position={[-10, 0, 0]}
+                color={"#f4e7cb"}
+                angle={Math.PI / 2}
+              />
 
-                <spotLight
-                  intensity={80}
-                  position={[3, 3, 5]}
-                  color="#f4e7cb"
-                />
-                {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
-                {/* 
+              <spotLight
+                ref={lightRef}
+                intensity={250}
+                position={[3, 3, 10]}
+                color="#f4e7cb"
+              />
+
+              <spotLight
+                ref={lightRef}
+                intensity={150}
+                position={[3, 2, 10]}
+                color="#f4e7cb"
+              />
+              {/* <directionalLight intensity={2} position={[-5, -10, -10]} /> */}
+              {/* 
           <OrthographicCamera
             makeDefault
             position={[0, 0, 20]}
             zoom={1000}
             // left={-1
           /> */}
-                <PerspectiveCamera
-                  makeDefault={true}
-                  far={1000}
-                  near={0.001}
-                  fov={22.895}
-                  position={[0, 0, 2.212]}
-                  zoom={0.9}
-                />
-                {/* <OrbitControls /> */}
+              <PerspectiveCamera
+                makeDefault={true}
+                far={1000}
+                near={0.001}
+                fov={22.895}
+                position={[0, 0, 2.212]}
+                zoom={0.9}
+              />
+              {/* <OrbitControls /> */}
 
-                {/* <FGlobeModel position={[1, 0, 0]} /> */}
-                <GlobeModel position={[1, 0, 0]} />
-                {/* <GlobeModelBack /> */}
-                {/* <TrialModel position={[1, 0, 0]} /> */}
-              </EffectComposer>
+              {/* <FGlobeModel position={[1, 0, 0]} /> */}
+              <GlobeModel position={[1, 0, 0]} />
+              {/* <GlobeModelBack /> */}
+              {/* <TrialModel position={[1, 0, 0]} /> */}
               {/* <CountriesModel position={[1, 0, 0]} /> */}
             </Canvas>
           </div>
@@ -344,9 +367,9 @@ const ThreeJsCanvas = () => {
           height: "100vh",
 
           maskImage: `radial-gradient(circle at center left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) ${
-            50 + 50 * prog
+            45 + 60 * prog
           }%, rgba(255,255,255,1) ${
-            60 + 90 * prog
+            55 + 95 * prog
           }%, rgba(255,255,255,1) 100%)`,
 
           zIndex: 10,
@@ -370,7 +393,12 @@ const ThreeJsCanvas = () => {
             color={"#f4e7cb"}
             angle={Math.PI / 2}
           />
-
+          <spotLight
+            intensity={0}
+            position={[0.2, 0, 1]}
+            color="#f4e7cb"
+            angle={Math.PI / 2}
+          />
           <spotLight intensity={50} position={[3, 3, 5]} color="#f4e7cb" />
           <PerspectiveCamera makeDefault zoom={1.1} position={[-0.2, 0, 10]} />
 

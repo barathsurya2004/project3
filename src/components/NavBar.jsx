@@ -17,14 +17,19 @@ const NavBar = () => {
           top: "50%",
           right: "5%",
           transform: "translate(0%, -50%)",
-          height: 500,
+          height: (270 * window.innerHeight) / 1080,
+          // backgroundColor: "red",
         }}
       >
-        <NavBarSvg
+        <div
           style={{
-            height: "100%",
+            transform: `translate(0%, -${
+              ((270 / 2 - 270 / 12) * window.innerHeight) / 1080
+            }px)`,
           }}
-        />
+        >
+          <NavBarSvg />
+        </div>
       </div>
     </>
   );

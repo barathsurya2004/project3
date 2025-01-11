@@ -13,7 +13,7 @@ export function GlobeModel(props) {
   const { nodes, materials } = useGLTF("/Models/Globe.glb");
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeout = useRef(null);
-
+  const lightRef = useRef();
   const {
     setDown,
     setMeshSelected,
@@ -23,6 +23,7 @@ export function GlobeModel(props) {
     modelsPosition,
     setGlobeInteractions,
     cp,
+    speed,
   } = useContext(Context);
   const southRef = React.useRef();
   const mainRef = React.useRef();
@@ -59,12 +60,12 @@ export function GlobeModel(props) {
       r: 0.952,
       g: 0.61,
       b: 0.178,
-      duration: 1,
+      duration: 1 / speed,
     }).to(child.material.color, {
       r: 0.652,
       g: 0.418,
       b: 0.122,
-      duration: 0.5,
+      duration: 0.5 / speed,
     });
   };
   const painter = (child) => {
@@ -74,7 +75,7 @@ export function GlobeModel(props) {
       r: 0.952,
       g: 0.61,
       b: 0.178,
-      duration: 1,
+      duration: 1 / speed,
     });
   };
   const paintRemover = (child) => {
@@ -84,7 +85,7 @@ export function GlobeModel(props) {
       r: 0.652,
       g: 0.418,
       b: 0.122,
-      duration: 1,
+      duration: 1 / speed,
     });
   };
   useEffect(() => {
@@ -150,7 +151,7 @@ export function GlobeModel(props) {
   useFrame((state) => {
     if (active && shouldRotate && !hovering)
       rotRef.current.rotation.y =
-        (rotRef.current.rotation.y + 0.005) % (2 * Math.PI);
+        (rotRef.current.rotation.y + 0.005 * speed) % (2 * Math.PI);
 
     if (shouldRotate) {
       setDown(false);
@@ -262,6 +263,7 @@ export function GlobeModel(props) {
         },
       }
     );
+
     gsap.fromTo(
       mainRef.current.scale,
       {
@@ -325,12 +327,12 @@ export function GlobeModel(props) {
             setShouldRotate(false);
             gsap.to(rotRef.current.rotation, {
               y: 0,
-              duration: 1,
+              duration: 1 / speed,
             });
             gsap.to(dragRef.current.rotation, {
               x: 0,
               y: 0,
-              duration: 1,
+              duration: 1 / speed,
             });
             setStatesVisible(true);
           },
@@ -372,8 +374,8 @@ export function GlobeModel(props) {
         y: 0,
       },
       {
-        x: 0.1,
-        y: 0.2,
+        x: 0.115,
+        y: 0.19,
         scrollTrigger: {
           trigger: ".cuisines-of-TN-trigger",
           start: "top bottom",
@@ -453,7 +455,7 @@ export function GlobeModel(props) {
           start: "bottom bottom",
           end: "bottom top",
           scrub: true,
-          // markers: true,
+          // ,
         },
         ease: "none",
         immediateRender: false,
@@ -489,7 +491,7 @@ export function GlobeModel(props) {
       gsap.to(dragRef.current.rotation, {
         x: newRotX,
         y: newRotY,
-        duration: 0.1,
+        duration: 0.1 / speed,
       });
     }
     setInitialMouse({ x: state.pointer.x, y: state.pointer.y });
@@ -522,7 +524,10 @@ export function GlobeModel(props) {
           if (canDrag) setHovering(true);
         }}
         onPointerLeave={() => {
-          if (canDrag) setHovering(false);
+          if (canDrag)
+            setTimeout(() => {
+              setHovering(false);
+            }, 500);
           setDragging(false);
         }}
       >

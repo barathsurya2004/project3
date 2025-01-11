@@ -15,6 +15,14 @@ const Ingredients = () => {
   const { cardInteractions } = useContext(Context);
   const [rotateP, setRotateP] = useState(false);
   const [rotateC, setRotateC] = useState(false);
+  const { changed, setChanged } = useContext(Context);
+  useEffect(() => {
+    console.log(changed);
+    if (changed) {
+      setRotateC(false);
+      setRotateP(false);
+    }
+  }, [changed]);
   useEffect(() => {
     console.log(cardInteractions);
     if (cardInteractions) {
@@ -142,7 +150,12 @@ const Ingredients = () => {
             setRotateP(false);
           }}
         >
-          <CardHolder idd={"ing"} reg={"p"}>
+          <CardHolder
+            idd={"ing"}
+            reg={"p"}
+            changed={changed}
+            setChanged={setChanged}
+          >
             <PepperCard rot={rotateP} />
             <CoconutCard rot={rotateP} />
             <LentilsCard rot={rotateP} />
@@ -165,7 +178,12 @@ const Ingredients = () => {
             setRotateC(false);
           }}
         >
-          <CardHolderC idd={"ing"} reg={"c"}>
+          <CardHolderC
+            idd={"ing"}
+            reg={"c"}
+            changed={changed}
+            setChanged={setChanged}
+          >
             <ChilliCard rot={rotateC} />
             <TamarindCard rot={rotateC} />
             <SpicesCard rot={rotateC} />

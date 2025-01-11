@@ -66,18 +66,30 @@ const Cuisines = () => {
       {
         opacity: 0,
         x: -50,
-        zIndex: 10,
       },
       {
         opacity: 1,
         x: 0,
-        zIndex: 1100,
+
         scrollTrigger: {
           trigger: ".cuisines-of-India-trigger",
-          start: "top 80%",
+          start: "top bottom",
           end: "top 60%",
           toggleActions: "play none none reverse",
           scrub: 0.1,
+          onEnter: () => {
+            gsap.set(".cuisines-of-India", {
+              zIndex: 1100,
+            });
+          },
+
+          onLeaveBack: () => {
+            gsap.set(".cuisines-of-India", {
+              zIndex: 10,
+            });
+          },
+
+          // ,
         },
         immediateRender: false,
         ease: "none",
@@ -191,7 +203,7 @@ const Cuisines = () => {
         trigger: ".cuisines-of-India-trigger",
         start: "top bottom",
         end: "top top",
-        // markers: true,
+        // ,
         onEnter: () => {
           meshShowRestrict.current = 1;
         },
@@ -210,7 +222,7 @@ const Cuisines = () => {
         trigger: ".cuisines-of-TN-trigger",
         start: "top bottom",
         end: "top top",
-        // markers: true,
+        // ,
         onEnter: () => {
           meshShowRestrict.current = 2;
         },
@@ -227,7 +239,6 @@ const Cuisines = () => {
         trigger: ".chettiNadu-intro",
         start: "top bottom",
         end: "bottom bottom",
-        markers: true,
         onEnter: () => {
           setCP(1);
         },
@@ -522,9 +533,11 @@ const Cuisines = () => {
         >
           Among the cuisines of Tamil Nadu, Chettinad and Pandiyanad present a
           unique scenario. Despite being just 60 kilometers apart, they offer
-          completely different tastes and experiences. They epitomize diversity
-          and serve as a prime example of how two cuisines can be so distinct,
-          despite their geographical proximity and other shared factors.
+          completely different tastes and experiences. <br />
+          <br />
+          They epitomize diversity and serve as a prime example of how two
+          cuisines can be so distinct, despite their geographical proximity and
+          other shared factors.
         </p>
       </div>
     </>

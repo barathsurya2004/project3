@@ -8,6 +8,7 @@ import { Caustics, MeshRefractionMaterial, useGLTF } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { RGBELoader } from "three-stdlib";
 import gsap from "gsap";
+import { Context } from "../../../src/context";
 export function SimpleCard(props) {
   const { nodes, materials } = useGLTF("/Models/PandiCards/simple.glb");
   const texture = useLoader(
@@ -16,6 +17,7 @@ export function SimpleCard(props) {
   );
   const { rot } = props;
   const group = React.useRef();
+  const { speed } = React.useContext(Context);
   useFrame(() => {
     if (rot) {
       group.current.rotation.y += 0.01;

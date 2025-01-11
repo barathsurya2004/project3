@@ -11,7 +11,6 @@ import { useFrame } from "@react-three/fiber";
 
 export function MapModel(props) {
   const { nodes, materials } = useGLTF("/Models/treasure_map.glb");
-  const [active, setActive] = React.useState(false);
 
   const ref = React.useRef();
   const changeRef = React.useRef();
@@ -36,7 +35,7 @@ export function MapModel(props) {
           onToggle: (self) => {
             setActive(self.isActive);
           },
-          // markers: true,
+          // ,
         },
       }
     );
@@ -58,7 +57,7 @@ export function MapModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          // markers: true,
+          // ,
         },
         immediateRender: false,
       }

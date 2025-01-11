@@ -52,6 +52,10 @@ export const Context = createContext({
   cardsSelected: {},
   cp: null,
   setCP: () => {},
+  changed: false,
+  setChanged: () => {},
+  winkState: false,
+  setWinkState: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -64,7 +68,7 @@ export const ContextProvider = ({ children }) => {
   const [pointer, setPointer] = useState([0, 0]);
   const [down, setDown] = useState(false);
   const [globeClicked, setGlobeClicked] = useState(false);
-  const [mode, setMode] = useState(null);
+  const [mode, setMode1] = useState(null);
   const [fullscreen, setFullscreen] = useState(null);
   const canScrollTo = useRef(true);
   const [questionSelected, setQuestionSelected] = useState(null);
@@ -72,17 +76,23 @@ export const ContextProvider = ({ children }) => {
   const [speed, setSpeed] = useState(1);
   const [light, setLight] = useState(false);
   const [interaction, setInteraction] = useState(1);
+  const [changed, setChanged] = useState(false);
   const [modelsPosition, setModelsPosition] = useState({
     qMark: [0, 0],
     globe: [0, 0],
     globePandi: [0, 0],
     globeChetti: [0, 0],
   });
+  const [winkState, setWinkState] = useState(false);
   const [questionInteractions, setQuestionInteractions] = useState(false);
   const [globeInteractions, setGlobeInteractions] = useState(false);
   const [sliderInteractions, setSliderInteractions] = useState(false);
   const [cardInteractions, setCardInteractions] = useState(false);
   const meshShowRestrict = useRef(null);
+  const setMode = (mode) => {
+    setMode1(mode);
+    setWinkState(false);
+  };
   const [cardsSelected, setCardsSelected] = useState({
     p_ing_1: false,
     p_ing_2: false,
@@ -327,6 +337,10 @@ export const ContextProvider = ({ children }) => {
     cardsSelected,
     cp,
     setCP,
+    changed,
+    setChanged,
+    winkState,
+    setWinkState,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

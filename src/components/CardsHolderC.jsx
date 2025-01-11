@@ -4,10 +4,13 @@ import activePage from "../assets/icons/chettiPagi.svg";
 import gsap from "gsap";
 import { Children, useContext, useState } from "react";
 import { Context } from "../context";
-import { ChettiCross } from "../../public/Models/Cards/selection/Chetti_cross";
+import { ChettiCross } from "../../public/Models/Cards/selection/Chetti_cross1";
+import { ChettiTick } from "../../public/Models/Cards/selection/Chetti_tick1";
 const CardHolder = ({ children, idd, reg }) => {
   const [active, setActive] = useState(0);
-  const { setCardInteractions, cardSelectionHelper } = useContext(Context);
+  const { setCardInteractions, cardSelectionHelper, changed, setChanged } =
+    useContext(Context);
+  const [selected, setSelected] = useState(false);
   return (
     <>
       <div
@@ -49,15 +52,23 @@ const CardHolder = ({ children, idd, reg }) => {
       <CardsCanvas
         cur={active}
         idd={idd}
+        changed={false}
         onDoubleClick={() => {
           const temp = reg + "_" + idd + "_" + (active + 1);
           cardSelectionHelper(temp);
+          setSelected(!selected);
+          setChanged(true);
+          setTimeout(() => {
+            setChanged(false);
+          }, 2000);
         }}
         onClick={() => {
           setCardInteractions(true);
         }}
       >
         {/* <ChettiCross /> */}
+        <ChettiCross selected={!selected} />
+        <ChettiTick selected={selected} />
         {Children.map(children, (child, index) => {
           if (index === active) {
             return child;

@@ -4,7 +4,7 @@ import { Context } from "../context";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 const Footer = () => {
-  const { mode, setMode } = useContext(Context);
+  const { mode, setMode, setWinkState } = useContext(Context);
   useEffect(() => {
     if (mode === null || mode === "Disclaimer") {
       gsap.to(".disclaimer-text", {
@@ -127,6 +127,7 @@ const Footer = () => {
         }}
         onClick={() => {
           setMode("Contact");
+          setWinkState(true);
         }}
       >
         Designed by Sudhesh Venkatachalam

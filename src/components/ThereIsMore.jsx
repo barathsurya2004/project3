@@ -11,7 +11,7 @@ const ThereIsMore = () => {
         alignItems: "center",
       }}
     >
-      <div
+      {/* <div
         style={{
           height: (305 * window.innerHeight) / 1080,
           margin: 0,
@@ -38,7 +38,7 @@ const ThereIsMore = () => {
             d="M480.225,0 L480.225,3392.025"
           />
         </svg>
-      </div>
+      </div> */}
       <p
         style={{
           fontSize: (27 * window.innerWidth) / 1920,

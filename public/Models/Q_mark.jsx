@@ -16,7 +16,7 @@ export function QuestionModel(props) {
   const ref = React.useRef();
   const { nodes, materials } = useGLTF("/Models/q_mark.glb");
   const [active, setActive] = React.useState(false);
-  const { setModelsPosition, modelsPosition } = useContext(Context);
+  const { setModelsPosition, modelsPosition, speed } = useContext(Context);
   const positionSet = useRef(false);
   const change = useRef();
 
@@ -39,6 +39,22 @@ export function QuestionModel(props) {
         immediateRender: false,
       }
     );
+    gsap.fromTo(
+      change.current.position,
+      {
+        z: 1,
+      },
+      {
+        z: 100,
+        scrollTrigger: {
+          trigger: ".scroll-control",
+          start: "top 95%",
+          end: "top 25%",
+          toggleActions: "play none none reverse",
+          scrub: true,
+        },
+      }
+    );
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".scroll-control",
@@ -49,11 +65,6 @@ export function QuestionModel(props) {
         },
         onEnterBack: () => {
           setActive(false);
-        },
-        onUpdate: (self) => {
-          gsap.to(change.current, {
-            value: 1 - self.progress,
-          });
         },
         toggleActions: "play none none reverse",
         scrub: true,
@@ -68,7 +79,7 @@ export function QuestionModel(props) {
       {
         x: 3,
         y: 1,
-        duration: 2,
+        duration: 2 / speed,
         immediateRender: false,
       }
     )
@@ -83,7 +94,7 @@ export function QuestionModel(props) {
           x: 0.1,
           y: 0.1,
           z: 0.1,
-          duration: 2,
+          duration: 2 / speed,
         },
         "<"
       )
@@ -93,8 +104,8 @@ export function QuestionModel(props) {
           y: 1,
         },
         {
-          y: -3,
-          duration: 2,
+          y: -2.25,
+          duration: 2 / speed,
           immediateRender: false,
         }
       )
@@ -109,7 +120,7 @@ export function QuestionModel(props) {
           x: 0.4,
           y: 0.4,
           z: 0.4,
-          duration: 2,
+          duration: 2 / speed,
           immediateRender: false,
         },
         "<"
@@ -117,7 +128,8 @@ export function QuestionModel(props) {
   });
   useFrame((state) => {
     if (active) {
-      ref.current.rotation.y = (ref.current.rotation.y + 0.01) % (Math.PI * 2);
+      ref.current.rotation.y =
+        (ref.current.rotation.y + 0.01 * speed) % (Math.PI * 2);
       if (!positionSet.current) {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -131,13 +143,13 @@ export function QuestionModel(props) {
         temp.qMark = [position.x, position.y];
         setModelsPosition(temp);
         positionSet.current = true;
-        console.log(modelsPosition);
+        // console.log(modelsPosition);
       }
     } else {
       positionSet.current = false;
       gsap.to(ref.current.rotation, {
         y: 0,
-        duration: 1,
+        duration: 1 / speed,
       });
     }
 
@@ -153,7 +165,13 @@ export function QuestionModel(props) {
       scale={0.035}
       position={[2.03, -1.652, 0]}
     >
-      <ambientLight ref={change} intensity={0.5} />
+      <ambientLight intensity={0.5} />
+      <spotLight
+        ref={change}
+        intensity={3}
+        position={[0, 0, 1]}
+        angle={Math.PI / 2}
+      />
       <group rotation={[Math.PI / 2, 0, 0]}>
         <mesh
           geometry={nodes.svgMeshShape3.geometry}

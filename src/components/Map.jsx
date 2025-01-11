@@ -219,8 +219,8 @@ const MapComponent = () => {
                 >
                   <div
                     style={{
-                      paddingTop: (34 * window.innerHeight) / 1080,
-                      paddingBottom: (34 * window.innerHeight) / 1080,
+                      paddingTop: (26 * window.innerHeight) / 1080,
+                      paddingBottom: (26 * window.innerHeight) / 1080,
                       paddingLeft: (34 * window.innerWidth) / 1920,
                       paddingRight: (34 * window.innerWidth) / 1920,
                       width: "100%",
@@ -232,7 +232,7 @@ const MapComponent = () => {
                   >
                     <h1
                       style={{
-                        fontSize: 40.8 * (window.innerWidth / 1920),
+                        fontSize: 34 * (window.innerWidth / 1920),
                         color: "#DDD4C7",
                         marginBottom: 10 * (window.innerHeight / 1080),
                         fontWeight: 200,
@@ -243,7 +243,7 @@ const MapComponent = () => {
                     <p
                       style={{
                         color: "#fce3ca",
-                        fontSize: (32.4 * window.innerWidth) / 1920,
+                        fontSize: (24 * window.innerWidth) / 1920,
                         margin: 0,
                         fontWeight: 200,
                       }}
@@ -295,7 +295,7 @@ const MapComponent = () => {
                           style={{
                             color: "#fce3ca",
                             fontWeight: 200,
-                            fontSize: (32.4 * window.innerWidth) / 1920,
+                            fontSize: (24 * window.innerWidth) / 1920,
                           }}
                         >
                           Visit

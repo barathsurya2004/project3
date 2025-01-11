@@ -96,7 +96,7 @@ const Slider1 = () => {
         top: 0,
       },
       {
-        top: "-150vh",
+        top: "-200vh",
         scrollTrigger: {
           trigger: ".slider-compare-scroll",
           start: "top bottom",
@@ -118,10 +118,10 @@ const Slider1 = () => {
     gsap.fromTo(
       ".slider-compare",
       {
-        top: "-150vh",
+        top: "-200vh",
       },
       {
-        top: "-250vh",
+        top: "-300vh",
         scrollTrigger: {
           trigger: ".shall-we-end-anim-scroll",
           start: "bottom 100%",
@@ -245,7 +245,7 @@ const Slider1 = () => {
         className="slider-compare-scroll"
         style={{
           width: "100%",
-          height: "150vh",
+          height: "200vh",
         }}
       ></div>
       <div
@@ -260,7 +260,7 @@ const Slider1 = () => {
         className="slider-compare"
         style={{
           width: "100%",
-          height: "250vh",
+          height: "300vh",
           position: "fixed",
           top: "100vh",
           left: "0",

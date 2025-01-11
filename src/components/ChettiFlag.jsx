@@ -2,10 +2,10 @@ import chettiflag from "../assets/icons/chetti-flag.svg";
 import chettiIcon from "../assets/icons/chettisvg.svg";
 import holder from "../assets/icons/placeholder1.svg";
 
-import C_1 from "/videos/C-1_1.webm";
-import C_2 from "/videos/C-2_1.webm";
-import C_3 from "/videos/C-3_1.webm";
-import flagAnim from "/videos/flagg_chetti.webm";
+import C_1 from "/videos/C-1_2_VP9.webm";
+import C_2 from "/videos/C-2_2_VP9.webm";
+import C_3 from "/videos/C-3_fin_VP9.webm";
+import flagAnim from "/videos/flagg_chetti_1_VP9.webm";
 import mask from "../assets/images/video_mask.svg";
 const ChettiFlag = () => {
   return (
@@ -81,9 +81,10 @@ const ChettiFlag = () => {
           style={{
             position: "absolute",
             left: 0,
-            top: "25vh",
+            top: "20vh",
             // transform: "translateY(-50%)",
-            height: 360 * (window.innerHeight / 1080),
+
+            height: 720 * (window.innerHeight / 1080),
           }}
         >
           <video
@@ -92,7 +93,7 @@ const ChettiFlag = () => {
             muted
             autoPlay
             style={{
-              height: 360 * (window.innerHeight / 1080),
+              height: "80%",
             }}
             loop
             preload="metadata"
@@ -122,30 +123,30 @@ const ChettiFlag = () => {
             style={{
               width: "100%",
               display: "flex",
-              justifyContent: "space-between",
+              flexDirection: "column",
+              alignItems: "flex-end",
+              position: "relative",
             }}
           >
-            <div
+            <video
+              // ref={videoRef}
+              playsInline
+              muted
+              autoPlay
               style={{
-                maskImage: `url(${mask})`,
-                maskSize: "100% 100%",
+                height: 400 * (window.innerHeight / 1080),
+                position: "absolute",
+                top: 0,
+                left: 200 * (window.innerWidth / 1920),
+                transform: "translateX(-50%)",
               }}
+              loop
+              preload="metadata"
             >
-              <video
-                // ref={videoRef}
-                playsInline
-                muted
-                autoPlay
-                style={{
-                  height: 300 * (window.innerHeight / 1080),
-                }}
-                loop
-                preload="metadata"
-              >
-                <source id="video-source" src={C_1} type="video/webm" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+              <source id="video-source" src={C_1} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+
             <div
               style={{
                 width: "50%",
@@ -172,12 +173,19 @@ const ChettiFlag = () => {
                   marginBottom: 70 * (window.innerHeight / 1080),
                 }}
               >
-                Chettinad cuisine is as intricate as the blend of spices get.
-                Originating from present-day Karaikudi and neighboring villages
-                in the Sivagangai district (often referred to as Chettinad,
-                meaning "the land of Chettiars"), this community-influenced
-                cuisine is renowned nationwide. Although it evolved alongside
-                Pandiyanad cuisine, Chettinad cuisine has its unique surprises.
+                Chettinad cuisine is as intricate and rich as the remarkable
+                blend of spices it features. Originating from the culturally
+                vibrant region of present-day Karaikudi and its neighboring
+                villages in the Sivagangai district (often referred to as
+                Chettinad, meaning "the land of Chettiars"), this cuisine
+                reflects the legacy of the Chettiar community. Renowned across
+                India for its bold flavors and diverse ingredients, Chettinad
+                cuisine is a treasure trove of culinary artistry. <br />
+                <br />
+                While it shares historical ties with Pandiyanad cuisine, it has
+                carved a distinct identity, offering a delightful array of
+                unique recipes and unforgettable surprises, truly embodying the
+                essence of its roots.
               </p>
             </div>
           </div>
@@ -185,29 +193,30 @@ const ChettiFlag = () => {
             style={{
               width: "100%",
               display: "flex",
-              justifyContent: "space-between",
+              position: "relative",
+              flexDirection: "column",
+              alignItems: "flex-end",
             }}
           >
-            <div
+            <video
+              // ref={videoRef}
+              playsInline
+              muted
+              autoPlay
               style={{
-                maskImage: `url(${mask})`,
+                height: 600 * (window.innerHeight / 1080),
+                position: "absolute",
+                top: 0,
+                left: 200 * (window.innerWidth / 1920),
+                transform: "translateX(-50%)",
               }}
+              loop
+              preload="metadata"
             >
-              <video
-                // ref={videoRef}
-                playsInline
-                muted
-                autoPlay
-                style={{
-                  height: 300 * (window.innerHeight / 1080),
-                }}
-                loop
-                preload="metadata"
-              >
-                <source id="video-source" src={C_2} type="video/webm" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+              <source id="video-source" src={C_2} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+
             <div
               style={{
                 width: "50%",
@@ -241,12 +250,14 @@ const ChettiFlag = () => {
                 lands under the Pandiyan kings. The Pandiyans granted them land
                 in exchange for work(accountign and commerce), leading to the
                 formation of the seven villages (from the 7 families) that make
-                up modern Chettinad. Impressed by their work, the Pandiyans
-                allotted a quarter of their land with its own jurisdiction and
-                appointed a local king. This mini-kingdom, known as
-                KaanaaduKaathan Parappu, meaning "the land of the ruler of a
-                quarter of the Pandiyan's land," shaped Chettinad cuisine as an
-                embodiment of rich history and exceptional flavor.
+                up modern Chettinad.
+                <br />
+                <br /> Impressed by their work, the Pandiyans allotted a quarter
+                of their land with its own jurisdiction and appointed a local
+                king. This mini-kingdom, known as KaanaaduKaathan Parappu,
+                meaning "the land of the ruler of a quarter of the Pandiyan's
+                land," shaped Chettinad cuisine as an embodiment of rich history
+                and exceptional flavor.
               </p>
             </div>
           </div>
@@ -255,28 +266,30 @@ const ChettiFlag = () => {
               width: "100%",
               display: "flex",
               justifyContent: "space-between",
+              position: "relative",
+              flexDirection: "column",
+              alignItems: "flex-end",
             }}
           >
-            <div
+            <video
+              // ref={videoRef}
+              playsInline
+              muted
+              autoPlay
               style={{
-                maskImage: `url(${mask})`,
+                height: 450 * (window.innerHeight / 1080),
+                position: "absolute",
+                top: 0,
+                left: 200 * (window.innerWidth / 1920),
+                transform: "translateX(-50%)",
               }}
+              loop
+              preload="metadata"
             >
-              <video
-                // ref={videoRef}
-                playsInline
-                muted
-                autoPlay
-                style={{
-                  height: 300 * (window.innerHeight / 1080),
-                }}
-                loop
-                preload="metadata"
-              >
-                <source id="video-source" src={C_3} type="video/webm" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+              <source id="video-source" src={C_3} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+
             <div
               style={{
                 width: "50%",
@@ -309,9 +322,11 @@ const ChettiFlag = () => {
                 popularity of Chettinad cuisine and the craze around it is
                 consuming the legacies of the nearby cuisines, leaving the
                 people from the Chettinad region confused about what food
-                carries their Chettinad legacy. Despite this, since Chettinad
-                cuisine evolves from a community, there is a constant claim of
-                who makes the authentic Chettinad food.
+                carries their Chettinad legacy.
+                <br />
+                <br /> Despite this, since Chettinad cuisine evolves from a
+                community, there is a constant claim of who makes the
+                authentic Chettinad food.
               </p>
             </div>
           </div>

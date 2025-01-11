@@ -8,10 +8,12 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 
+import { Context } from "../../../src/context";
 export function CoconutCard(props) {
   const { nodes, materials } = useGLTF("/Models/PandiCards/coconut.glb");
   const { rot } = props;
   const group = React.useRef();
+  const { speed } = React.useContext(Context);
   useFrame(() => {
     if (rot) {
       group.current.rotation.y += 0.01;

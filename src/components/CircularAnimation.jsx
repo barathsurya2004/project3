@@ -1,9 +1,12 @@
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger, MotionPathPlugin } from "gsap/all";
+import { ScrollTrigger, MotionPathPlugin, ScrollToPlugin } from "gsap/all";
+gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(MotionPathPlugin);
 import gsap from "gsap";
 import SvgComponent from "./TestingSvg";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../context";
+
 // import CircularText from "./pages/CircularText";
 
 gsap.registerPlugin(MotionPathPlugin);
@@ -36,7 +39,7 @@ const CircularAnimation = () => {
         start: "top center",
         end: "bottom top",
         scrub: 0,
-        // markers: true, // Debug markers, remove in production
+        // , // Debug markers, remove in production
         onEnter: () => {
           gsap.set(".wheel-animation-cont", {
             zIndex: 1010,
@@ -137,6 +140,21 @@ const CircularAnimation = () => {
         },
         index * 0.045 // Overlap animations by starting the next one with a small delay
       );
+    });
+    gsap.to(".null", {
+      scrollTrigger: {
+        trigger: ".scroll-control",
+        start: "bottom center",
+        onEnter: () => {
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+              y: ".drag-space-actual",
+              offsetY: -10,
+            },
+          });
+        },
+      },
     });
   });
 

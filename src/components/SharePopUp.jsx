@@ -34,6 +34,7 @@ gsap.registerPlugin(TextPlugin);
 const SharePopUp = ({ setShareOpen }) => {
   const divRef = useRef();
   const { cardsSelected } = useContext(Context);
+  const [textSelected, setTextSelected] = useState(null);
   const [shareContent, setShareContent] = useState([
     {
       id: 1,
@@ -48,25 +49,10 @@ const SharePopUp = ({ setShareOpen }) => {
     {
       id: 3,
       selected: false,
-      text: "Just found this! The cards list the characteristics unique to Pandiyanad and Chettinad cuisines. If your food matches, it’s official! \n\nWanna test your foodie detective skills? Come explore this website and learn more here - cuisine.quest",
+      text: "Just discovered this! These cards highlight the unique traits of Pandiyanad and Chettinad cuisines.Think your dish matches the description? Time to find out!\n\n Put your foodie detective skills to the test—explore more here: cuisine.quest",
     },
   ]);
-  const content = [
-    {
-      id: 1,
-      text: [
-        "Discover the rich culinary heritage of Tamil Nadu with beautifully crafted cards showcasing lorem ipsum sir lorem ipsum the essence of cuisines. Share the journey with your friends and dive into the world of diverse food cultures! \n \nCheck it out now: [Website Link]",
-        "",
-      ],
-    },
-    {
-      id: 2,
-      text: [
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam",
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien",
-      ],
-    },
-  ];
+
   const [cards, setCards] = useState([
     { id: 1, url: p_ing_1 },
     { id: 2, url: p_ing_2 },
@@ -157,7 +143,8 @@ const SharePopUp = ({ setShareOpen }) => {
           scale: 0.95,
           outline: "5px solid #facd74",
           borderRadius: "50px",
-          background: "#101010",
+          background:
+            "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
         },
       })
       .then(async function (dataUrl) {
@@ -296,8 +283,14 @@ const SharePopUp = ({ setShareOpen }) => {
                 position: "relative",
                 width: "100%",
                 height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+
                 // backgroundColor: "rgba(0, 0, 0, 0.5)",
-                padding: (130 * window.innerHeight) / 1080,
+                padding: (95 * window.innerHeight) / 1080,
+
                 backgroundImage:
                   "linear-gradient(0deg, rgba(135,104,73,0.5) 0%, rgba(89,71,49,0.3) 100%)",
                 outline: "5px solid #facd74",
@@ -314,9 +307,12 @@ const SharePopUp = ({ setShareOpen }) => {
                   // transform: "translate(0, -50%)",
                   // left: 0,
                   // marginTop: (20 * window.innerHeight) / 1080,
-                  transform: "translate(0, -10%)",
-                  width: "100%",
 
+                  // backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  transform: "translate(0, 0)",
+                  width: "85%",
+                  maskImage:
+                    "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 96%, rgba(255,255,255,0) 100%)",
                   height: "100%",
 
                   zIndex: 0,
@@ -330,8 +326,8 @@ const SharePopUp = ({ setShareOpen }) => {
                   coverflowEffect={{
                     rotate: 0,
                     stretch: 0,
-                    depth: 50,
-                    modifier: 3,
+                    depth: 100,
+                    modifier: 2,
                     slideShadows: false,
                   }}
                   modules={[EffectCoverflow, Navigation]}
@@ -350,7 +346,7 @@ const SharePopUp = ({ setShareOpen }) => {
                             // width: 100,
                             // height: 100,
                             // height: "100%",
-                            height: 370 * (window.innerHeight / 1080),
+                            height: 320 * (window.innerHeight / 1080),
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "center",
@@ -370,39 +366,59 @@ const SharePopUp = ({ setShareOpen }) => {
                     );
                   })}
                 </Swiper>
-                <div
-                  className="share-current-select-text"
-                  style={{
-                    marginTop: (60 * window.innerHeight) / 1080,
-                  }}
-                >
-                  {shareContent.length !== 0 ? (
-                    shareContent.map(
-                      (ele, index) =>
-                        ele.selected && (
-                          <p
-                            style={{
-                              marginBottom: (20 * window.innerHeight) / 1080,
-                              fontSize: (22 * window.innerWidth) / 1920,
-                              // lineBreak: "auto",
-                              whiteSpace: "preserve-breaks",
-                              lineHeight: "1.5",
-                            }}
-                          >
-                            {ele.text}
-                          </p>
-                        )
-                    )
-                  ) : (
-                    <p>
-                      I discovered that the characteristics on these cards that
-                      define Pandiyanad and Chettinad cuisines help you find out
-                      what the history and the culture around your food is.\n
-                      \nExplore this project to distinguish your meals:
+              </div>
+              <div
+                className="share-current-select-text"
+                style={{
+                  marginTop: (60 * window.innerHeight) / 1080,
+                  width: "100%",
+                  // backgroundColor: "rgba(20, 0, 0, 0.5)",
+                }}
+              >
+                {textSelected ? (
+                  shareContent.map(
+                    (ele, index) =>
+                      ele.selected && (
+                        <p
+                          style={{
+                            marginBottom: (20 * window.innerHeight) / 1080,
+                            fontSize: (22 * window.innerWidth) / 1920,
+                            // lineBreak: "auto",
+                            whiteSpace: "preserve-breaks",
+                            lineHeight: "1.5",
+                            textAlign: "center",
+                          }}
+                        >
+                          {ele.text}
+                        </p>
+                      )
+                  )
+                ) : (
+                  <p
+                    style={{
+                      marginBottom: (20 * window.innerHeight) / 1080,
+                      fontSize: (22 * window.innerWidth) / 1920,
+                      // lineBreak: "auto",
+                      whiteSpace: "preserve-breaks",
+                      lineHeight: "1.5",
+                      textAlign: "center",
+                    }}
+                  >
+                    I discovered that the characteristics on these cards that
+                    define Pandiyanad and Chettinad cuisines help you find out
+                    what the history and the culture around your food is.
+                    <br />
+                    <br />
+                    Explore this project to distinguish your meals:
+                    <a
+                      href="https://cuisine.quest"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {" "}
                       cuisine.quest
-                    </p>
-                  )}
-                </div>
+                    </a>
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -434,7 +450,8 @@ const SharePopUp = ({ setShareOpen }) => {
               fontSize: (32 * window.innerWidth) / 1920,
             }}
           >
-            Select text and click share to copy to clipboard
+            Select text and click share to
+            <br /> copy to clipboard
           </div>
           <div
             className="share-overlay-content"
@@ -455,6 +472,9 @@ const SharePopUp = ({ setShareOpen }) => {
                 // listStylePosition: "inside",
                 listStyleType: "none",
                 // padding: 10,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
             >
               {shareContent.map((ele, index) => {
@@ -466,17 +486,22 @@ const SharePopUp = ({ setShareOpen }) => {
                       }}
                       onClick={() => {
                         let temp = [...shareContent];
+                        let flag = false;
                         temp.forEach((item) => {
                           if (item.id === ele.id) {
                             if (item.selected) {
                               item.selected = false;
-                            } else item.selected = true;
+                            } else {
+                              item.selected = true;
+                              flag = true;
+                            }
                           } else {
                             item.selected = false;
                           }
                         });
                         setShareContent(temp);
-                        console.log(shareContent);
+                        setTextSelected(flag);
+                        // console.log(shareContent);
                       }}
                     >
                       {ele.selected ? (
@@ -515,12 +540,30 @@ const SharePopUp = ({ setShareOpen }) => {
                           // padding: (10 * window.innerWidth) / 1920,
                           // color: "#facd74",
                           fontSize: (27 * window.innerWidth) / 1920,
-                          marginBottom: (50 * window.innerHeight) / 1080,
+                          whiteSpace: "pre-line",
                         }}
                       >
                         {ele.text}
                       </p>
                     </li>
+                    {index !== shareContent.length - 1 && (
+                      <hr
+                        style={{
+                          border: "0.5px solid #facd74",
+                          margin: "30px 0",
+                          width: "70%",
+                          opacity: 0.3,
+                        }}
+                      ></hr>
+                    )}
+                    {/* <hr
+                      style={{
+                        border: "0.5px solid #facd74",
+                        margin: "30px 0",
+                        width: "70%",
+                        opacity: 0.3,
+                      }}
+                    ></hr> */}
                   </>
                 );
               })}

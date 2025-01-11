@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import anim from "../assets/json/end_shall_we_10.json";
+import anim from "../assets/json/fin_end_shall_we.json";
 import { useContext, useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -48,6 +48,7 @@ const ShallWeEnd = () => {
           });
         },
       },
+      ease: "none",
     });
   }, []);
   return (

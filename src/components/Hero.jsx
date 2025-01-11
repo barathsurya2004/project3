@@ -16,7 +16,7 @@ import { Context } from "../context";
 gsap.registerPlugin(useGSAP);
 const Hero = () => {
   const foods = [img1, img2, img3, img4, img5, img6, img7, img8];
-  const { loading } = useContext(Context);
+  const { loading, speed } = useContext(Context);
 
   useGSAP(() => {
     gsap.set(".hero-scroll-start", {
@@ -32,16 +32,16 @@ const Hero = () => {
           opacity: 0,
           x: (200 * window.innerWidth) / 1920,
         },
-        { opacity: 1, x: 0, duration: 0.5, ease: "power1.inOut" }
+        { opacity: 1, x: 0, duration: 0.5 / speed, ease: "power1.inOut" }
       )
       .fromTo(
         ".food-0",
         { opacity: 1, x: 0 },
         {
-          delay: 5,
+          delay: 5 / speed,
           opacity: 0,
           x: (-200 * window.innerWidth) / 1920,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -55,7 +55,7 @@ const Hero = () => {
         {
           opacity: 1,
           x: 0,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
         }
       )
@@ -63,10 +63,10 @@ const Hero = () => {
         ".food-1",
         { opacity: 1, x: 0 },
         {
-          delay: 5,
+          delay: 5 / speed,
           opacity: 0,
           x: (-200 * window.innerWidth) / 1920,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -80,7 +80,7 @@ const Hero = () => {
         {
           opacity: 1,
           x: 0,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
         }
       )
@@ -89,9 +89,9 @@ const Hero = () => {
         { opacity: 1, x: 0 },
         {
           opacity: 0,
-          delay: 5,
+          delay: 5 / speed,
           x: -30,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -105,7 +105,7 @@ const Hero = () => {
         {
           opacity: 1,
           x: 0,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
         }
       )
@@ -115,8 +115,8 @@ const Hero = () => {
         {
           opacity: 0,
           x: -30,
-          delay: 5,
-          duration: 0.5,
+          delay: 5 / speed,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -130,7 +130,7 @@ const Hero = () => {
         {
           opacity: 1,
           x: 0,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
         }
       )
@@ -140,8 +140,8 @@ const Hero = () => {
         {
           opacity: 0,
           x: -30,
-          duration: 0.5,
-          delay: 5,
+          duration: 0.5 / speed,
+          delay: 5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -155,7 +155,7 @@ const Hero = () => {
         {
           opacity: 1,
           x: 0,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
         }
       )
@@ -165,8 +165,8 @@ const Hero = () => {
         {
           opacity: 0,
           x: -30,
-          duration: 0.5,
-          delay: 5,
+          duration: 0.5 / speed,
+          delay: 5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -180,7 +180,7 @@ const Hero = () => {
         {
           opacity: 1,
           x: 0,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
         }
       )
@@ -190,8 +190,8 @@ const Hero = () => {
         {
           opacity: 0,
           x: -30,
-          delay: 5,
-          duration: 0.5,
+          delay: 5 / speed,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -205,7 +205,7 @@ const Hero = () => {
         {
           opacity: 1,
           x: 0,
-          duration: 0.5,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
         }
       )
@@ -215,8 +215,8 @@ const Hero = () => {
         {
           opacity: 0,
           x: -30,
-          delay: 5,
-          duration: 0.5,
+          delay: 5 / speed,
+          duration: 0.5 / speed,
           ease: "power1.inOut",
           immediateRender: false,
         }
@@ -269,7 +269,7 @@ const Hero = () => {
           className="hero-page-interactions"
           style={{
             position: "absolute",
-            bottom: 150 * (window.innerHeight / 1080),
+            bottom: 170 * (window.innerHeight / 1080),
             left: "50%",
             transform: "translateX(-50%)",
             opacity: 0,
@@ -301,7 +301,7 @@ const Hero = () => {
           }}
           onClick={() => {
             gsap.to(window, {
-              duration: 3,
+              duration: 3 / speed,
               scrollTo: {
                 y: ".drag-space-actual",
               },

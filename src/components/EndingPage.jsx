@@ -306,23 +306,15 @@ const EndingPage = () => {
               the questions that arose from that experience. Through extensive
               exploration, the workings of cuisine were uncovered through the
               distinct culinary landscapes of Tamil Nadu, revealing how two
-              unique cuisines,Pandiyanad and Chettinad, exist in close proximity
-              yet offer vastly different flavors and experiences. This platform
-              provides an in-depth look at how these cuisines function and
-              thrive.
-            </p>
-            <p
-              style={{
-                fontSize: (27 * window.innerWidth) / 1920,
-                fontFamily: "Filson Pro Regular",
-                margin: 0,
-                color: "#DDD4C7",
-              }}
-            >
-              The website explores and celebrates two regional cuisines,
-              offering insights into their origins, preparation, and cultural
-              significance. It provides an immersive journey for anyone looking
-              to learn, savor, or appreciate these rich culinary traditions.
+              unique cuisines—Pandiyanad and Chettinad—exist in close proximity
+              yet offer vastly different flavors and experiences.
+              <br />
+              <br />
+              Dedicated to exploring, documenting, and distinguishing these two
+              regional cuisines (and many more from around the globe to come),
+              the website offers an immersive journey aimed at providing
+              information and distinction to every cuisine documented in this
+              website.
             </p>
           </div>
         </div>

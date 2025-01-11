@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MortarModel } from "../../public/Models/Cards/new/Chetti/Mortor";
 import { SlowModel } from "../../public/Models/Cards/new/Chetti/Slow";
 import { BlenderModel } from "../../public/Models/Cards/new/Pandi/Blender";
@@ -9,10 +9,19 @@ import { BlenderCard } from "../../public/Models/PandiCards/Blender";
 import { FastCard } from "../../public/Models/PandiCards/Fast";
 import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
+import { Context } from "../context";
 
 const Procedure = () => {
   const [rotateP, setRotateP] = useState(false);
   const [rotateC, setRotateC] = useState(false);
+  const { changed, setChanged } = useContext(Context);
+  useEffect(() => {
+    console.log(changed);
+    if (changed) {
+      setRotateC(false);
+      setRotateP(false);
+    }
+  }, [changed]);
   return (
     <div
       className="procedure-page"
@@ -112,7 +121,12 @@ const Procedure = () => {
             setRotateP(false);
           }}
         >
-          <CardHolder idd={"proc"} reg={"p"}>
+          <CardHolder
+            idd={"proc"}
+            reg={"p"}
+            changed={changed}
+            setChanged={setChanged}
+          >
             <BlenderCard rot={rotateP} />
             <FastCard rot={rotateP} />
           </CardHolder>
@@ -133,7 +147,12 @@ const Procedure = () => {
             setRotateC(false);
           }}
         >
-          <CardHolderC idd={"proc"} reg={"c"}>
+          <CardHolderC
+            idd={"proc"}
+            reg={"c"}
+            changed={changed}
+            setChanged={setChanged}
+          >
             <MortarCard rot={rotateC} />
             <SlowCard rot={rotateC} />
           </CardHolderC>

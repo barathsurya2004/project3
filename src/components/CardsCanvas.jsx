@@ -7,27 +7,34 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useContext, useEffect, useRef, useState } from "react";
 import CardRotateHelp from "./CardRotateHelp";
 import { Bloom, EffectComposer, SMAA } from "@react-three/postprocessing";
 import { BlurPass, Resizer, KernelSize, Resolution } from "postprocessing";
+import { Context } from "../context";
 
 const CardsCanvas = ({ children, onDoubleClick, onClick }) => {
   const ref = useRef();
-
+  const { changed } = useContext(Context);
+  useEffect(() => {
+    ref.current?.setAzimuthalAngle(0);
+  }, [changed]);
   return (
     <div
       style={{
         width: "100%",
         height: "100%",
       }}
-      onDoubleClick={onDoubleClick}
+      onDoubleClick={() => {
+        onDoubleClick();
+        ref.current?.setAzimuthalAngle(0);
+      }}
       onClick={onClick}
     >
       <Canvas
         onPointerOut={() => {
           if (ref.current) {
-            ref.current.setAzimuthalAngle(0);
+            ref.current?.setAzimuthalAngle(0);
           }
         }}
       >
@@ -60,7 +67,9 @@ const CardsCanvas = ({ children, onDoubleClick, onClick }) => {
         <directionalLight position={[0, 10, 5]} intensity={1} />
         {/* <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={150} /> */}
         <PerspectiveCamera makeDefault position={[0, 0, 10]} zoom={1.5} />
-        <CardRotateHelp>{children}</CardRotateHelp>
+        {/* <CardRotateHelp changed={changed}>{children}</CardRotateHelp>
+         */}
+        {children}
       </Canvas>
     </div>
   );

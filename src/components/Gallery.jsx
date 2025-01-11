@@ -318,6 +318,7 @@ const Gallery = () => {
                               paddingRight: 5 * (window.innerWidth / 1920),
                               ease: "power4.inOut",
                             });
+                            setTitleIndex(index);
                           } else {
                             setIndexSelected(`.images-${index}`);
                             setTitleIndex(index);

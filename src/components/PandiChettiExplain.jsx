@@ -33,14 +33,14 @@ const PandiChettiExplain = () => {
     );
   }, [cp]);
   const pandi = {
-    title: "Pandi",
-    text: "The Pandi Chetti are a community of Tamil merchants who have been trading with the indigenous people of the Andaman Islands for centuries. They are known for their expertise in the trade of coconuts and other goods.",
-    region: "Andaman Islands",
+    title: "Pandiyanad",
+    text: "Pandiyanad cuisine, from the southern districts of Tamil Nadu, is known for its rich and spicy flavors, often using tamarind and coconut. Signature dishes include mutton chukka, meen kuzhambu (fish curry), and kothu parotta, showcasing hearty and robust tastes.",
+    region: "Southern Tamil Nadu, India",
   };
   const chetti = {
-    title: "Chetti",
-    text: "The Chetti are a community of Tamil merchants who have been trading with the indigenous people of the Andaman Islands for centuries. They are known for their expertise in the trade of coconuts and other goods.",
-    region: "Andaman Islands",
+    title: "Chettinad",
+    text: "Chettinad cuisine is famous for its bold, spicy flavors and extensive use of freshly ground spices. Known for dishes like Chettinad chicken, pepper chicken, and varuval (dry curries), it also features a variety of vegetarian delicacies like kaikari pirattal.",
+    region: "Sivaganga District, Tamil Nadu, India",
   };
   if (cp === 1) {
     return (
@@ -63,17 +63,18 @@ const PandiChettiExplain = () => {
           }}
           id="hover-display-heading-2"
         >
-          {chetti ? chetti.title : ""}
+          {chetti ? chetti.title : ""}{" "}
+          <div
+            id="hover-display-line"
+            style={{
+              height: 1,
+              margin: 0,
+              width: "100%",
+              backgroundColor: "#ffe8b8",
+            }}
+          ></div>
         </p>
-        <div
-          id="hover-display-line"
-          style={{
-            height: 1,
-            margin: 0,
-            width: "100%",
-            backgroundColor: "#ffe8b8",
-          }}
-        ></div>
+
         <p
           id="hover-display-text-2"
           style={{
@@ -118,16 +119,17 @@ const PandiChettiExplain = () => {
           id="hover-display-heading-2"
         >
           {pandi ? pandi.title : ""}
+          <div
+            id="hover-display-line"
+            style={{
+              height: 1,
+              margin: 0,
+              width: "100%",
+              backgroundColor: "#ffe8b8",
+            }}
+          ></div>
         </p>
-        <div
-          id="hover-display-line"
-          style={{
-            height: 1,
-            margin: 0,
-            width: "100%",
-            backgroundColor: "#ffe8b8",
-          }}
-        ></div>
+
         <p
           id="hover-display-text-2"
           style={{

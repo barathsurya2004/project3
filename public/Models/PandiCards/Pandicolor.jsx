@@ -7,11 +7,13 @@ import React, { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
+import { Context } from "../../../src/context";
 
 export function PnadiColorCard(props) {
   const { nodes, materials } = useGLTF("/Models/PandiCards/pandicolor.glb");
   const { rot } = props;
   const group = React.useRef();
+  const { speed } = React.useContext(Context);
   useFrame(() => {
     if (rot) {
       group.current.rotation.y += 0.01;
@@ -49,11 +51,17 @@ export function PnadiColorCard(props) {
           <mesh
             name="Coin006"
             geometry={nodes.Coin006.geometry}
-            material={materials["Game Gold Coin"]}
             position={[0, 0, -0.044]}
             rotation={[-Math.PI / 2, 0, 0]}
             scale={[0.136, 0.136, 0.183]}
-          />
+          >
+            <meshStandardMaterial
+              attach="material"
+              color="#6d522c"
+              roughness={0.1}
+              metalness={0}
+            />
+          </mesh>
         </group>
       </group>
     </group>

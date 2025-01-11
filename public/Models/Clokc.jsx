@@ -7,6 +7,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useFrame } from "@react-three/fiber";
+import { Context } from "../../src/context";
 export function NewClockModel(props) {
   const { nodes, materials } = useGLTF("/Models/clokc.glb");
   const ref = React.useRef();
@@ -15,7 +16,7 @@ export function NewClockModel(props) {
   const [minute, setMinute] = React.useState(0);
   const minuteHand = React.useRef();
   const hourHand = React.useRef();
-  const [active, setActive] = React.useState(false);
+  const { speed } = React.useContext(Context);
 
   useGSAP(() => {
     gsap.fromTo(
@@ -35,10 +36,8 @@ export function NewClockModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          onToggle: (self) => {
-            setActive(self.isActive);
-          },
-          // markers: true,
+
+          // ,
         },
       }
     );
@@ -60,7 +59,7 @@ export function NewClockModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          // markers: true,
+          // ,
         },
         immediateRender: false,
       }
@@ -73,11 +72,7 @@ export function NewClockModel(props) {
     hourHand.current.rotation.y = ((hour % 12) + minute / 60) * (Math.PI / 6);
     minuteHand.current.rotation.y =
       (-Math.PI * 18) / 180 + minute * (Math.PI / 30);
-    if (active) {
-      ref.current.rotation.y += 0.01;
-    } else {
-      return;
-    }
+    ref.current.rotation.y += 0.01 * speed;
   });
   return (
     <group {...props} ref={ref} dispose={null}>

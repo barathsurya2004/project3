@@ -4,16 +4,18 @@ import activePage from "../assets/icons/pagination.svg";
 import gsap from "gsap";
 import { Children, useContext, useRef, useState } from "react";
 import { Context } from "../context";
-import { PandiTick } from "../../public/Models/Cards/selection/Pandi_tick";
-import { PandiCross } from "../../public/Models/Cards/selection/Pandi_cross";
+
 import video from "/videos/P-1_1.webm";
+import { PandiTick } from "../../public/Models/Cards/selection/Pandi_tick1";
+import { PandiCross } from "../../public/Models/Cards/selection/Pandi_cross1";
 const CardHolder = ({ children, idd, reg }) => {
   const [active, setActive] = useState(0);
-  const { setCardInteractions, cardSelectionHelper } = useContext(Context);
+  const { setCardInteractions, cardSelectionHelper, changed, setChanged } =
+    useContext(Context);
   const [selected, setSelected] = useState(false);
   const [rotate, setRotate] = useState(false);
   const videoRef = useRef();
-  useState(() => {}, [selected]);
+
   return (
     <>
       <div
@@ -55,6 +57,7 @@ const CardHolder = ({ children, idd, reg }) => {
       <CardsCanvas
         cur={active}
         idd={idd}
+        changed={changed}
         onPointerEnter={() => {
           setCardInteractions(true);
           setRotate(true);
@@ -66,8 +69,15 @@ const CardHolder = ({ children, idd, reg }) => {
           const temp = reg + "_" + idd + "_" + (active + 1);
           cardSelectionHelper(temp);
           setSelected(!selected);
+          setChanged(true);
+          setTimeout(() => {
+            setChanged(false);
+          }, 2000);
         }}
       >
+        <PandiTick selected={selected} />
+        <PandiCross selected={!selected} />
+
         {Children.map(children, (child, index) => {
           if (index === active) {
             return child;

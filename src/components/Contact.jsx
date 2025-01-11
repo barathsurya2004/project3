@@ -3,9 +3,10 @@ import close from "../assets/icons/close contact.svg";
 import { Context } from "../context";
 import mail from "../assets/icons/mail.svg";
 import linkedin from "../assets/icons/linkedin.svg";
+import website from "../assets/icons/web_icon.svg";
 import gsap from "gsap";
 const Contact = () => {
-  const { mode, setMode } = useContext(Context);
+  const { mode, setMode, setWinkState } = useContext(Context);
   useEffect(() => {
     if (mode === "Contact") {
       gsap.fromTo(
@@ -51,6 +52,7 @@ const Contact = () => {
         }}
         onClick={() => {
           setMode(null);
+          setWinkState(false);
         }}
       />
       <div
@@ -67,6 +69,7 @@ const Contact = () => {
           justifyContent: "center",
           position: "relative",
           zIndex: 0,
+          transform: "translateY(-5%)",
         }}
       >
         <div
@@ -181,6 +184,41 @@ const Contact = () => {
                 }}
               />
               Sudhesh Venkatachalam
+            </p>
+            <p
+              className="contact-website"
+              style={{
+                fontSize: (27 * window.innerWidth) / 1920,
+                color: "#DDD4C7",
+                margin: 25,
+                cursor: "pointer",
+                textDecoration: "underline 0.1vh solid rgba(175, 159, 140,0)",
+              }}
+              onClick={() => {
+                window.open("https://sudheshvenkatachalam.com");
+              }}
+              onPointerEnter={() => {
+                gsap.to(".contact-website", {
+                  textDecoration: "underline 0.1vh solid #DDD4C7",
+                  duration: 0.2,
+                });
+              }}
+              onPointerLeave={() => {
+                gsap.to(".contact-website", {
+                  textDecoration: "underline 0.1vh solid rgba(175, 159, 140,0)",
+                  duration: 0.2,
+                });
+              }}
+            >
+              <img
+                src={website}
+                alt=""
+                style={{
+                  width: 40 * (window.innerWidth / 1920),
+                  transform: "translateY(25%) translateX(-50%)",
+                }}
+              />
+              sudheshvenkatachalam.com
             </p>
           </div>
         </div>

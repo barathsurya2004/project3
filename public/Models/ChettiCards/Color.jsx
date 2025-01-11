@@ -7,11 +7,13 @@ import React, { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
+import { Context } from "../../../src/context";
 
 export function ChettiColorCard(props) {
   const { nodes, materials } = useGLTF("/Models/ChettiCards/color.glb");
   const { rot } = props;
   const group = React.useRef();
+  const { speed } = React.useContext(Context);
   useFrame(() => {
     if (rot) {
       group.current.rotation.y += 0.01;
@@ -49,11 +51,17 @@ export function ChettiColorCard(props) {
           <mesh
             name="Coin001"
             geometry={nodes.Coin001.geometry}
-            material={materials["Game Gold Coin.001"]}
             position={[0, 0, -0.037]}
             rotation={[-Math.PI / 2, 0, 0]}
             scale={[0.136, 0.136, 0.183]}
-          />
+          >
+            <meshStandardMaterial
+              attach="material"
+              color="#8b4027"
+              roughness={0.1}
+              metalness={0}
+            />
+          </mesh>
         </group>
       </group>
     </group>

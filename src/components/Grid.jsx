@@ -13,13 +13,13 @@ const Grid = () => {
   let inactivityTimeout = useRef(null);
   const [moved, setMoved] = useState(false);
 
-  useEffect(() => {
-    // Set a timeout to turn off distortion after 5 seconds of inactivity
-    inactivityTimeout.current = setTimeout(() => {
-      isMoving.current = false;
-      gsap.to(distortionVisibility.current, { value: 1.0, duration: 1.0 });
-    }, 100);
-  }, []);
+  // useEffect(() => {
+  //   // Set a timeout to turn off distortion after 5 seconds of inactivity
+  //   inactivityTimeout.current = setTimeout(() => {
+  //     isMoving.current = false;
+  //     gsap.to(distortionVisibility.current, { value: 1.0, duration: 1.0 });
+  //   }, 100);
+  // }, []);
 
   // Track mouse movement
   const handleMouseMove = (event) => {
@@ -29,17 +29,15 @@ const Grid = () => {
     ];
 
     // Clear the inactivity timeout and reset distortion visibility
-    if (!isMoving.current) {
-      isMoving.current = true;
-      gsap.to(distortionVisibility.current, { value: 2, duration: 0.5 });
-      clearTimeout(inactivityTimeout.current);
-    }
+    clearTimeout(inactivityTimeout.current);
+    isMoving.current = true;
+    distortionVisibility.current.value = 1.0;
 
-    // Set a timeout to turn off distortion after 5 seconds of inactivity
+    // // Set a timeout to turn off distortion after 5 seconds of inactivity
     inactivityTimeout.current = setTimeout(() => {
       isMoving.current = false;
       gsap.to(distortionVisibility.current, { value: 0.0, duration: 1.0 });
-    }, 100);
+    }, 500);
   };
 
   useEffect(() => {

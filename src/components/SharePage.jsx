@@ -87,7 +87,7 @@ const SharePage = () => {
             zIndex: 1000,
           });
         },
-        // markers: true,
+        // ,
       },
     });
     gsap.fromTo(
@@ -248,7 +248,7 @@ const SharePage = () => {
             style={{
               fontSize: (27 * window.innerWidth) / 1920,
               textAlign: "center",
-              width: (300 * window.innerWidth) / 1920,
+              width: (425 * window.innerWidth) / 1920,
               margin: 0,
               marginLeft: "auto",
               marginRight: "auto",

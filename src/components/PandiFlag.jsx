@@ -1,11 +1,18 @@
+import { useContext, useEffect } from "react";
 import pandiFlag from "../assets/icons/pandi-flag.svg";
 import pandiIcon from "../assets/icons/pandisvg.svg";
 import holder from "../assets/icons/placeholder.svg";
-import P_1 from "/videos/P-1_1.webm";
-import P_2 from "/videos/P-2_1.webm";
-import P_3 from "/videos/P-3_1.webm";
-import flagAnim from "/videos/flagg_pandi.webm";
+import P_1 from "/videos/P-1_4_VP9.webm";
+import P_2 from "/videos/P-2_2_VP9.webm";
+import P_3 from "/videos/P-3_3_VP9.webm";
+import flagAnim from "/videos/flagg_pandi_1_VP9.webm";
+import { Context } from "../context";
 const PandiFlag = () => {
+  const { speed } = useContext(Context);
+  useEffect(() => {
+    const video = document.querySelector("video");
+    video.defaultPlaybackRate = speed;
+  }, [speed]);
   return (
     <div
       className="pandi-flag-content"
@@ -73,10 +80,10 @@ const PandiFlag = () => {
         <div
           style={{
             position: "absolute",
-            top: "25vh",
+            top: "15vh",
             // transform: "translateY(-50%)",
             right: 0,
-            height: 360 * (window.innerHeight / 1080),
+            height: 720 * (window.innerHeight / 1080),
           }}
         >
           <video
@@ -85,7 +92,7 @@ const PandiFlag = () => {
             muted
             autoPlay
             style={{
-              height: 360 * (window.innerHeight / 1080),
+              height: "100%",
             }}
             loop
             preload="metadata"
@@ -115,6 +122,7 @@ const PandiFlag = () => {
               width: "100%",
               display: "flex",
               justifyContent: "space-between",
+              position: "relative",
               // background: "white",
             }}
           >
@@ -135,7 +143,7 @@ const PandiFlag = () => {
                   fontSize: (27 * window.innerHeight) / 1080,
                   fontFamily: "Filson Pro Regular",
                   color: "#bf8eed",
-                  width: "60%",
+                  width: "50%",
                   marginBottom: 70 * (window.innerHeight / 1080),
                 }}
               >
@@ -145,8 +153,9 @@ const PandiFlag = () => {
                 delicacies, pandiyanad Cuisine has it all, the cuisine is deeply
                 inspired by the Pandiyan kings. the culinary heritage is
                 reflected by the Modern-day Madurai and its surrounding
-                villages, once the capital of the Pandiyan dynasty,. The
-                Pandiyans, key rulers of South India, were known for their
+                villages, once the capital of the Pandiyan dynasty. <br />
+                <br />
+                The Pandiyans, key rulers of South India, were known for their
                 extensive trade networks, making Madurai a bustling city that
                 never sleeps, along with the food too!
               </p>
@@ -157,7 +166,12 @@ const PandiFlag = () => {
               muted
               autoPlay
               style={{
-                height: 300 * (window.innerHeight / 1080),
+                height: 400 * (window.innerHeight / 1080),
+                position: "absolute",
+                top: 0,
+                right: 200 * (window.innerWidth / 1920),
+                transform: "translateX(50%)",
+                // background: "red",
               }}
               loop
               preload="metadata"
@@ -178,6 +192,7 @@ const PandiFlag = () => {
             style={{
               width: "100%",
               display: "flex",
+              position: "relative",
               justifyContent: "space-between",
             }}
           >
@@ -198,17 +213,26 @@ const PandiFlag = () => {
                   fontSize: (27 * window.innerHeight) / 1080,
                   fontFamily: "Filson Pro Regular",
                   color: "#bf8eed",
-                  width: "60%",
+                  width: "50%",
                   marginBottom: 70 * (window.innerHeight / 1080),
                 }}
               >
-                Modern Pandiyanad cuisine has deep roots in the Pandiyan kings'
-                era. The variety of foods, influenced by international trade,
-                reflects the Pandiyans' connections with various parts of the
-                world. The wide array of seafood dishes can be traced back to
-                the overseas territories ruled by the Pandiyans. Food was
-                integral to the city then and continues to be so today, every
-                meal is a celebration!
+                Modern Pandiyanad cuisine has deep roots in the illustrious era
+                of the Pandiyan kings, reflecting a rich tapestry of history and
+                cultural exchange. The culinary variety, shaped significantly by
+                international trade, showcases the Pandiyans' profound
+                connections with distant lands across the globe. The influence
+                of these interactions is most evident in the abundance of
+                seafood dishes, a hallmark of Pandiyanad cuisine, which harks
+                back to the overseas territories once ruled by the Pandiyans.
+                Spices, techniques, and unique ingredients brought in through
+                these trade routes have left an indelible mark on its flavors.
+                <br />
+                <br />
+                Food was not just sustenance; it was a symbol of prosperity and
+                hospitality, playing a vital role in the life of the city.
+                Today, this legacy endures, and every meal continues to be a
+                vibrant celebration of history, culture, and unity.
               </p>
             </div>
             <video
@@ -217,7 +241,11 @@ const PandiFlag = () => {
               muted
               autoPlay
               style={{
-                height: 300 * (window.innerHeight / 1080),
+                height: 600 * (window.innerHeight / 1080),
+                position: "absolute",
+                top: 0,
+                right: 200 * (window.innerWidth / 1920),
+                transform: "translateX(50%)",
               }}
               loop
               preload="metadata"
@@ -231,6 +259,7 @@ const PandiFlag = () => {
               width: "100%",
               display: "flex",
               justifyContent: "space-between",
+              position: "relative",
             }}
           >
             <div>
@@ -250,7 +279,7 @@ const PandiFlag = () => {
                   fontSize: (27 * window.innerHeight) / 1080,
                   fontFamily: "Filson Pro Regular",
                   color: "#bf8eed",
-                  width: "60%",
+                  width: "50%",
                   marginBottom: 70 * (window.innerHeight / 1080),
                 }}
               >
@@ -259,9 +288,11 @@ const PandiFlag = () => {
                 and its neighboring villages, one can find food readily
                 available in welcoming homes and restaurants. However, a modern
                 problem persists: the identity of Pandiyanad cuisine is being
-                forgotten. Many locals are unaware of the historical
-                significance of their cuisines and their kitchens and often
-                mistake it for other nearby cuisines.
+                forgotten.
+                <br />
+                <br /> Many locals are unaware of the historical significance of
+                their cuisines and their kitchens and often mistake it for other
+                nearby cuisines.
               </p>
             </div>
             <video
@@ -270,7 +301,11 @@ const PandiFlag = () => {
               muted
               autoPlay
               style={{
-                height: 300 * (window.innerHeight / 1080),
+                height: 450 * (window.innerHeight / 1080),
+                position: "absolute",
+                top: 0,
+                right: 200 * (window.innerWidth / 1920),
+                transform: "translateX(50%)",
               }}
               loop
               preload="metadata"

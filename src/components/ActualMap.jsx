@@ -49,7 +49,7 @@ const MapControls = ({ pos }) => {
   useEffect(() => {
     if (!map) return;
     if (!pos) {
-      map.setZoom(8);
+      map.setZoom(8.5);
       return;
     } else {
       map.setZoom(12);
@@ -62,8 +62,8 @@ const MapControls = ({ pos }) => {
 
 const ActualMap = ({ places, cur }) => {
   const [position, setPosition] = useState({
-    lat: 10.262443428724893,
-    lng: 78.8383847326833,
+    lat: 10.03550407752225,
+    lng: 78.33772721390407,
   });
   const pandiPath = madurai;
 
@@ -111,7 +111,7 @@ const ActualMap = ({ places, cur }) => {
         }}
       >
         <Map
-          defaultZoom={5}
+          defaultZoom={8}
           defaultCenter={position}
           mapId={import.meta.env.VITE_MAP_ID}
           disableDefaultUI

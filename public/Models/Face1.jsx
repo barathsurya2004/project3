@@ -22,22 +22,24 @@ export function FaceModel(props) {
   const meshRef = React.useRef();
   const eyebrowRefl = React.useRef();
   const eyebrowRefr = React.useRef();
-  const { hovered, setHovered } = useContext(Context);
-  useGSAP(() => {
-    gsap.to(".face-model", {
-      scrollTrigger: {
-        trigger: ".ending-page-helper",
-        start: "top bottom",
-        toggleActions: "play none none reverse",
-        onEnter: () => {
-          setoffset([-window.innerWidth / 4, 0]);
-        },
-        onLeaveBack: () => {
-          setoffset([0, 0]);
-        },
-      },
-    });
-  });
+  const { hovered, setHovered, speed, mode, winkState } = useContext(Context);
+  const [endPage, setEndPage] = React.useState(false);
+  useEffect(() => {
+    if (winkState) {
+      winkHelper();
+    } else {
+    }
+  }, [winkState]);
+
+  useEffect(() => {
+    if (endPage && hovered) {
+      heartToEye();
+    }
+    if (!endPage && hovered) {
+      eyeToHeart();
+    }
+  }, [endPage, hovered]);
+
   useEffect(() => {
     const blinkTimeline = gsap.timeline({
       repeat: -1,
@@ -45,23 +47,39 @@ export function FaceModel(props) {
       paused: true,
     });
     blinkTimeline
-      .to(meshRef.current.scale, { y: 0.1, x: 0.72, duration: 0.1 })
+      .to(meshRef.current.scale, { y: 0.1, x: 0.72, duration: 0.1 / speed })
 
-      .to(meshRef1.current.scale, { y: 0.1, x: 0.72, duration: 0.1 }, "<")
-      .to(meshRef.current.scale, { y: 1.311, x: 0.786, duration: 0.1 }, "+=0.1")
-      .to(meshRef1.current.scale, { y: 1.311, x: 0.786, duration: 0.1 }, "<");
+      .to(
+        meshRef1.current.scale,
+        { y: 0.1, x: 0.72, duration: 0.1 / speed },
+        "<"
+      )
+      .to(
+        meshRef.current.scale,
+        { y: 1.311, x: 0.786, duration: 0.1 / speed },
+        "+=0.1"
+      )
+      .to(
+        meshRef1.current.scale,
+        { y: 1.311, x: 0.786, duration: 0.1 / speed },
+        "<"
+      );
 
-    if (hovered) {
+    if (hovered && !endPage) {
       meshRef.current.material.roughness = 1;
       blinkTimeline.pause();
     } else {
       blinkTimeline.play();
       meshRef.current.material.roughness = 0.2;
     }
+
+    if (winkState) {
+      blinkTimeline.pause();
+    }
     return () => {
       blinkTimeline.kill();
     };
-  }, [hovered]);
+  }, [hovered, winkState]);
 
   useFrame((state) => {
     // console.log(offset);
@@ -84,41 +102,76 @@ export function FaceModel(props) {
   const animationPlayedRef = React.useRef(false);
   useEffect(() => {
     if (hovered && !animationPlayedRef.current) {
-      gsap.fromTo(
-        meshRef.current.material.color,
-        { r: 0, g: 0, b: 0 },
-        { r: 1, g: 0, b: 0, duration: 0.2, immediateRender: false }
-      );
-      animationPlayedRef.current = true;
-      gsap.set(meshRef.current.scale, { y: 1.311, x: 0.786 });
-      gsap.set(meshRef1.current.scale, { y: 1.311, x: 0.786 });
-      names.forEach((name) => {
-        const action = actions[name];
-        action.setLoop(THREE.LoopOnce);
-        action.reset();
-        action.clampWhenFinished = true;
-        action.timeScale = 1.5;
-        action.play();
-      });
+      eyeToHeart();
     } else if (!hovered && animationPlayedRef.current) {
-      gsap.fromTo(
-        meshRef.current.material.color,
-        { r: 1, g: 0, b: 0 },
-        { r: 0, g: 0, b: 0, duration: 0.2, immediateRender: false }
-      );
-      animationPlayedRef.current = false;
-      names.forEach((name) => {
-        const action = actions[name];
-        action.paused = true;
-        action.time = action.getClip().duration;
-        action.paused = false;
-        action.timeScale = -1.5;
-        action.clampWhenFinished = true;
-        action.play();
-      });
+      heartToEye();
     }
   }, [hovered, actions, names]);
+  const eyeToHeart = () => {
+    gsap.fromTo(
+      meshRef.current.material.color,
+      { r: 0, g: 0, b: 0 },
+      { r: 1, g: 0, b: 0, duration: 0.2 / speed, immediateRender: false }
+    );
+    animationPlayedRef.current = true;
+    gsap.set(meshRef.current.scale, { y: 1.311, x: 0.786 });
+    gsap.set(meshRef1.current.scale, { y: 1.311, x: 0.786 });
+    names.forEach((name) => {
+      const action = actions[name];
+      action.setLoop(THREE.LoopOnce);
+      action.reset();
+      action.clampWhenFinished = true;
+      action.timeScale = 2 * speed;
+      action.time;
+      action.play();
+    });
+  };
+  const heartToEye = () => {
+    gsap.fromTo(
+      meshRef.current.material.color,
+      { r: 1, g: 0, b: 0 },
+      { r: 0, g: 0, b: 0, duration: 0.2 / speed, immediateRender: false }
+    );
+    animationPlayedRef.current = false;
+    names.forEach((name) => {
+      const action = actions[name];
+      action.paused = true;
+      action.time = action.getClip().duration;
+      action.paused = false;
+      action.timeScale = -2 * speed;
+      action.clampWhenFinished = true;
+      action.play();
+    });
+  };
+  useGSAP(() => {
+    gsap.to(".face-model", {
+      scrollTrigger: {
+        trigger: ".ending-page-helper",
+        start: "top bottom",
+        toggleActions: "play none none reverse",
+        onEnter: () => {
+          setoffset([-window.innerWidth / 4, 0]);
+          setEndPage(true);
+        },
+        onLeaveBack: () => {
+          setEndPage(false);
+          setoffset([0, 0]);
+        },
+      },
+    });
+  }, [hovered]);
 
+  const winkHelper = () => {
+    const winktl = gsap.timeline({});
+    winktl
+      .to(meshRef1.current.scale, { y: 0.1, x: 0.72, duration: 0.1 / speed })
+
+      .to(
+        meshRef1.current.scale,
+        { y: 1.311, x: 0.786, duration: 0.1 / speed },
+        "+=0.1"
+      );
+  };
   return (
     <group ref={group} {...props} dispose={null} position={[0, -10, 0]}>
       <mesh scale={9} position={[0, 10, 5]}>

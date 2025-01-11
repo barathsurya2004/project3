@@ -7,8 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
 const SvgMorphAnimation = () => {
   const containerRef = useRef(null);
   const lineRef = useRef(null);
-  const { meshSelected, pointer, down, modelsPosition, chettiVis, pandiVis } =
-    useContext(Context);
+  const {
+    meshSelected,
+    pointer,
+    down,
+    modelsPosition,
+    chettiVis,
+    pandiVis,
+    speed,
+  } = useContext(Context);
   const newLineRef = useRef(null);
 
   const [posRef, setPosRef] = useState({ left: 0, right: 0, top: 0 });
@@ -73,7 +80,7 @@ const SvgMorphAnimation = () => {
       {
         opacity: 1,
         scale: 1,
-        duration: 0.25,
+        duration: 0.25 / speed,
       }
     )
       .fromTo(
@@ -83,7 +90,7 @@ const SvgMorphAnimation = () => {
         },
         {
           width: length,
-          duration: 0.25,
+          duration: 0.25 / speed,
           ease: "none",
         }
       )
@@ -96,7 +103,7 @@ const SvgMorphAnimation = () => {
           width: down
             ? Math.max((500 * window.innerWidth) / 1920, heading.offsetWidth)
             : heading.offsetWidth,
-          duration: 0.25,
+          duration: 0.25 / speed,
           ease: "none",
         }
       );

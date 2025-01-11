@@ -382,6 +382,7 @@ const FoodIs = () => {
             style={{
               color: "#facd74",
               fontFamily: "TTtravels Next Bold",
+              // backgroundColor: "red",
             }}
           >
             food
@@ -391,6 +392,7 @@ const FoodIs = () => {
                 color: "#facd74",
                 fontFamily: "TTtravels Next Bold",
                 // marginLeft: "1vw",
+                // backgroundColor: "black",
               }}
             >
               {" "}
@@ -401,8 +403,9 @@ const FoodIs = () => {
               style={{
                 color: "#facd74",
                 fontFamily: "TTtravels Next DemiBold",
-                marginLeft: "-5rem",
+                marginLeft: "-1em",
                 opacity: 0,
+                // backgroundColor: "black",
               }}
             >
               x

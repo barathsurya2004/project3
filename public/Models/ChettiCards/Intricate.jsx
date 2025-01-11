@@ -9,6 +9,7 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import { RGBELoader } from "three-stdlib";
 import gsap from "gsap";
 
+import { Context } from "../../../src/context";
 export function IntricateCard(props) {
   const { nodes, materials } = useGLTF("/Models/ChettiCards/intricate.glb");
   const texture = useLoader(
@@ -17,6 +18,7 @@ export function IntricateCard(props) {
   );
   const { rot } = props;
   const group = React.useRef();
+  const { speed } = React.useContext(Context);
   useFrame(() => {
     if (rot) {
       group.current.rotation.y += 0.01;

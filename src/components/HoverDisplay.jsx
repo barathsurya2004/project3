@@ -7,7 +7,7 @@ import data from "../assets/json/globe.json";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 const HoverDisplay = () => {
-  const { down, meshSelected, meshShowRestrict } = useContext(Context);
+  const { down, meshSelected, meshShowRestrict, speed } = useContext(Context);
   if (meshSelected === null) return null;
   if (!meshSelected) return null;
   const [current, setCurrent] = useState(null);
@@ -54,10 +54,10 @@ const HoverDisplay = () => {
         y: 20,
       },
       {
-        delay: 0.7,
+        delay: 0.7 / speed,
         opacity: 1,
         y: 0,
-        duration: 0.2,
+        duration: 0.2 / speed,
       }
     );
     gsap.fromTo(
@@ -68,9 +68,9 @@ const HoverDisplay = () => {
       },
       {
         y: 0,
-        delay: 0.7,
+        delay: 0.7 / speed,
         opacity: 1,
-        duration: 0.2,
+        duration: 0.2 / speed,
       }
     );
   });
@@ -104,6 +104,7 @@ const HoverDisplay = () => {
               fontFamily: "TTtravels Next Bold",
               fontSize: (55 * window.innerWidth) / 1920,
               color: "#ffe8b8",
+              whiteSpace: "pre-line",
             }}
             id="hover-display-heading"
           >
@@ -159,6 +160,7 @@ const HoverDisplay = () => {
               fontFamily: "TTtravels Next Bold",
               fontSize: (55 * window.innerWidth) / 1920,
               color: "#ffe8b8",
+              whiteSpace: "pre-line",
             }}
             id="hover-display-heading"
           >

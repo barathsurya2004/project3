@@ -128,7 +128,7 @@ const CircularText = ({ texts, radius }) => {
             setIndVisible(null);
             setQuestionSelected(-2);
           },
-          // markers: true,
+          // ,
         },
         ease: "none",
       }
@@ -145,7 +145,7 @@ const CircularText = ({ texts, radius }) => {
           start: "bottom 47.5%",
           end: "bottom top",
           scrub: true,
-          // markers: true,
+          // ,
           onUpdate: (progress) => {
             setRotation(12 - 72 * progress.progress);
           },

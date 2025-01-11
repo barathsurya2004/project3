@@ -9,13 +9,13 @@ import { useFrame } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, CustomEase } from "gsap/all";
+import { Context } from "../../src/context";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(CustomEase);
 export function HeartModel(props) {
   const { nodes, materials } = useGLTF("/Models/heart.glb");
-  const [active, setActive] = React.useState(false);
-
+  const { speed } = React.useContext(Context);
   const ref = React.useRef();
   const changeRef = React.useRef();
   useGSAP(() => {
@@ -39,7 +39,7 @@ export function HeartModel(props) {
           onToggle: (self) => {
             setActive(self.isActive);
           },
-          // markers: true,
+          // ,
         },
       }
     );
@@ -60,10 +60,8 @@ export function HeartModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          onToggle: (self) => {
-            setActive(self.isActive);
-          },
-          // markers: true,
+
+          // ,
         },
         immediateRender: false,
       }
@@ -74,7 +72,7 @@ export function HeartModel(props) {
     //     start: "top bottom",
     //     end: "top top",
     //     toggleActions: "play none none reverse",
-    //     // markers: true,
+    //     // ,
     //   },
     // });
     // gsap.to(ref.current, {
@@ -147,11 +145,7 @@ export function HeartModel(props) {
     // });
   });
   useFrame(() => {
-    if (active) {
-      ref.current.rotation.y += 0.01;
-    } else {
-      return;
-    }
+    ref.current.rotation.y += 0.01 * speed;
   });
   return (
     <group {...props} dispose={null} scale={0} ref={ref}>

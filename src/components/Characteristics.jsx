@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ChettiColorModel } from "../../public/Models/Cards/new/Chetti/ChettiColor";
 import { IntricateModel } from "../../public/Models/Cards/new/Chetti/Intricate";
 import { PandiColorModel } from "../../public/Models/Cards/new/Pandi/PandiColor";
@@ -9,10 +9,19 @@ import { PnadiColorCard } from "../../public/Models/PandiCards/Pandicolor";
 import { SimpleCard } from "../../public/Models/PandiCards/Simple";
 import CardHolder from "./CardHolder";
 import CardHolderC from "./CardsHolderC";
+import { Context } from "../context";
 
 const Characteristics = () => {
   const [rotateP, setRotateP] = useState(false);
   const [rotateC, setRotateC] = useState(false);
+  const { changed, setChanged } = useContext(Context);
+  useEffect(() => {
+    console.log(changed);
+    if (changed) {
+      setRotateC(false);
+      setRotateP(false);
+    }
+  }, [changed]);
   return (
     <div
       className="characteristics-page"
@@ -112,9 +121,14 @@ const Characteristics = () => {
             setRotateP(false);
           }}
         >
-          <CardHolder idd={"char"} reg={"p"}>
-            <PnadiColorCard rot={rotateP} />
+          <CardHolder
+            idd={"char"}
+            reg={"p"}
+            changed={changed}
+            setChanged={setChanged}
+          >
             <SimpleCard rot={rotateP} />
+            <PnadiColorCard rot={rotateP} />
           </CardHolder>
         </div>
         <div
@@ -133,9 +147,14 @@ const Characteristics = () => {
             setRotateC(false);
           }}
         >
-          <CardHolderC idd={"char"} reg={"c"}>
-            <ChettiColorCard rot={rotateC} />
+          <CardHolderC
+            idd={"char"}
+            reg={"c"}
+            changed={changed}
+            setChanged={setChanged}
+          >
             <IntricateCard rot={rotateC} />
+            <ChettiColorCard rot={rotateC} />
           </CardHolderC>
         </div>
       </div>

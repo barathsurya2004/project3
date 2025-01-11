@@ -8,13 +8,14 @@ import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useFrame } from "@react-three/fiber";
+import { Context } from "../../src/context";
 
 export function TreasureModel(props) {
   const { nodes, materials } = useGLTF("/Models/treasure.glb");
-  const [active, setActive] = React.useState(false);
 
   const ref = React.useRef();
   const changeRef = React.useRef();
+  const { speed } = React.useContext(Context);
   useGSAP(() => {
     gsap.fromTo(
       ref.current.scale,
@@ -33,10 +34,8 @@ export function TreasureModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          onToggle: (self) => {
-            setActive(self.isActive);
-          },
-          // markers: true,
+
+          // ,
         },
       }
     );
@@ -58,18 +57,14 @@ export function TreasureModel(props) {
           start: "top bottom",
           end: "top top",
           toggleActions: "play none none reverse",
-          // markers: true,
+          // ,
         },
         immediateRender: false,
       }
     );
   });
   useFrame(() => {
-    if (active) {
-      ref.current.rotation.y += 0.01;
-    } else {
-      return;
-    }
+    ref.current.rotation.y += 0.01 * speed;
   });
   return (
     <group {...props} dispose={null} ref={ref}>

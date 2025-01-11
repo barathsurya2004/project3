@@ -54,7 +54,7 @@ const Interactions = () => {
         trigger: ".cuisines-of-the-world-trigger",
         start: "top top",
         end: "bottom 50%",
-        // markers: true,
+        // ,
         onEnter: () => {
           if (!globeInteractions) {
             gsap.to(".globe-interactions", { opacity: 1 });
@@ -145,7 +145,8 @@ const Interactions = () => {
             position: "absolute",
             opacity: 0,
             left: modelsPosition.qMark[0],
-            top: modelsPosition.qMark[1],
+            top: modelsPosition.qMark[1] + (50 * window.innerHeight) / 1080,
+            width: (500 * window.innerWidth) / 1920,
           }}
         >
           <p
@@ -172,17 +173,18 @@ const Interactions = () => {
             style={{
               position: "absolute",
               opacity: 0,
-              left: modelsPosition.globe[0],
-              top: modelsPosition.globe[1],
+              right: 177 * (window.innerWidth / 1920),
+              top: modelsPosition.globe[1] + (150 * window.innerHeight) / 1080,
+              width: (500 * window.innerWidth) / 1920,
             }}
           >
             <p
               style={{
-                fontSize: (27 * window.innerWidth) / 1920,
-                transform: "translate(-50%, -50%)",
+                fontSize: (21 * window.innerWidth) / 1920,
                 //   color: "white",
-                color: "#ffe8b8",
                 width: "100%",
+                color: "#ffe8b8",
+                textAlign: "right",
                 fontFamily: "TTtravels Next Light",
               }}
             >
