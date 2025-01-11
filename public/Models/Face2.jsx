@@ -113,7 +113,7 @@ export function Face2(props) {
       ref={group}
       {...props}
       dispose={null}
-      position={[0, -10, 0]}
+      position={[0, -13.5, 0]}
       // onPointerEnter={handleOnHoverIn}
       // onPointerOut={handleOnHoverOut}
     >

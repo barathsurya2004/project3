@@ -80,9 +80,9 @@ const ChettiFlag = () => {
         <div
           style={{
             position: "absolute",
-            left: 0,
+            right: "50%",
             top: "20vh",
-            // transform: "translateY(-50%)",
+            transform: "translateX(-15%)",
 
             height: 720 * (window.innerHeight / 1080),
           }}

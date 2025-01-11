@@ -82,7 +82,7 @@ const Disclaimer = () => {
             width: "80%",
             textAlign: "center",
             color: "#DDD4C7",
-            fontSize: 27 * (window.innerWidth / 1920),
+            fontSize: 21 * (window.innerWidth / 1920),
           }}
         >
           The information provided on this website is for educational and
@@ -94,13 +94,22 @@ const Disclaimer = () => {
           <br /> The content is based on my knowledge and experience and may not
           reflect the most current research or trends. Users are encouraged to
           verify any information and consult relevant professionals before
-          making any decisions based on the content of this website. I disclaim
-          any liability for any loss or damage arising from the use of this
-          information.
+          making any decisions based on the content of this website.
+          <br />
+          <br /> Assets used on this website have been sourced from poly.pizza,
+          freepik.com, and commons.wikimedia.org, and I gratefully acknowledge
+          their contributions. Additionally, I utilized OpenAI's ChatGPT as a
+          supportive tool for refining content and as aid during the
+          development process.
+          <br />
+          <br />I disclaim any liability for any loss or damage arising from the
+          use of this information.
         </p>
         <div
           className="close-button"
           style={{
+            position: "absolute",
+            bottom: "2%",
             margin: 0,
             display: "flex",
             justifyContent: "center",

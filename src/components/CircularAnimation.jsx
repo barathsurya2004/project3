@@ -19,7 +19,7 @@ const CircularAnimation = () => {
     "Is food the same for all",
     "Is food only for the body",
     "Do food have habits",
-    "Is food geo-taggeed",
+    "Is food geo-tagged",
     "Does food influence life",
     "Does food have mood",
     "Whats a meal and a feast",

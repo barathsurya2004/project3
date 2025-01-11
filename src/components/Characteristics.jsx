@@ -75,7 +75,7 @@ const Characteristics = () => {
             color: "#facd74",
           }}
         >
-          Charecteristics
+          Characteristics
         </h1>
         <div
           style={{

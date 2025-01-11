@@ -56,6 +56,8 @@ export const Context = createContext({
   setChanged: () => {},
   winkState: false,
   setWinkState: () => {},
+  flowerFall: false,
+  setFlowerFall: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -93,6 +95,7 @@ export const ContextProvider = ({ children }) => {
     setMode1(mode);
     setWinkState(false);
   };
+  const [flowerFall, setFlowerFall] = useState(false);
   const [cardsSelected, setCardsSelected] = useState({
     p_ing_1: false,
     p_ing_2: false,
@@ -187,7 +190,7 @@ export const ContextProvider = ({ children }) => {
     },
     {
       alt: "pandi24.jpg",
-      Thumbnail: "The legent himself (Inventor of bun parotta)",
+      Thumbnail: "The legend himself (Inventor of bun parotta)",
       url: "https://lh3.googleusercontent.com/d/1t5pIdhvJH6ZXOp56f9uMH_Z9zUMIEcva",
     },
     {
@@ -222,7 +225,7 @@ export const ContextProvider = ({ children }) => {
     },
     {
       alt: "pandi4.jpg",
-      Thumbnail: "Crafted by Legacy, living within poeple",
+      Thumbnail: "Crafted by Legacy, living within people",
       url: "https://lh3.googleusercontent.com/d/1XHZWbjtFdz_LwjuL7HQvFlKfZioCQMCZ",
     },
     {
@@ -341,6 +344,8 @@ export const ContextProvider = ({ children }) => {
     setChanged,
     winkState,
     setWinkState,
+    flowerFall,
+    setFlowerFall,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

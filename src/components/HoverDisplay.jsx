@@ -10,6 +10,7 @@ const HoverDisplay = () => {
   const { down, meshSelected, meshShowRestrict, speed } = useContext(Context);
   if (meshSelected === null) return null;
   if (!meshSelected) return null;
+  if (meshShowRestrict.current === 3) return null;
   const [current, setCurrent] = useState(null);
   const Indianref = useRef(false);
   const TNref = useRef(false);

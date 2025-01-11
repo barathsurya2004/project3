@@ -30,24 +30,6 @@ const MobileLoader = () => {
     >
       <div
         style={{
-          position: "fixed",
-          backgroundColor: "red",
-        }}
-      >
-        <ul>
-          <li>
-            ɑ: <code>{orientation?.alpha}</code>
-          </li>
-          <li>
-            β: <code>{orientation?.beta}</code>
-          </li>
-          <li>
-            γ: <code>{orientation?.gamma}</code>
-          </li>
-        </ul>
-      </div>
-      <div
-        style={{
           height: "100vh",
           width: "100%",
           position: "absolute",
@@ -77,14 +59,19 @@ const MobileLoader = () => {
           zIndex: 5,
         }}
       >
-        <Canvas>
+        <Canvas
+          style={{
+            height: "100vh",
+            width: "100%",
+          }}
+        >
           <ambientLight intensity={1} />
           <directionalLight intensity={3} position={[10, 10, 10]} />
           <OrthographicCamera makeDefault position={[0, -10, 20]} zoom={20} />
           {/* <PerspectiveCamera makeDefault position={[0, 0, 10]} zoom={0.4} /> */}
           <Suspense fallback={null}>
             {/* <FaceModel /> */}
-            <Face2 />
+            <Face2 scale={Math.min(1.2, (4 * window.innerWidth) / 1920)} />
           </Suspense>
         </Canvas>
       </div>
@@ -92,7 +79,7 @@ const MobileLoader = () => {
         className="mobile-container"
         style={{
           position: "absolute",
-          top: "7.5%",
+          // top: "7.5%",
           left: 0,
 
           display: "flex",
@@ -105,47 +92,48 @@ const MobileLoader = () => {
           zIndex: 1,
         }}
       >
-        <h1
-          style={{
-            fontFamily: "TTtravels Next DemiBold",
-            textAlign: "center",
-            whiteSpace: "nowrap",
-          }}
-        >
-          Thank you for visiting!
-        </h1>
         <div
           style={{
             width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            transform: "translateY(75%)",
           }}
         >
-          <p
+          <h1
             style={{
-              fontFamily: "Filson Pro Regular",
+              fontFamily: "TTtravels Next DemiBold",
               textAlign: "center",
+              whiteSpace: "nowrap",
+              marginBottom: (30 * window.innerHeight) / 1080,
             }}
           >
-            This website is designed for Leisure Viewing on Larger Screens. If
-            you have a laptop, desktop, or external monitor nearby, grab them to
-            completely experience and interact with this website.
-          </p>
-          <p
+            Bigger screen,
+            <br /> better experience.
+          </h1>
+          <div
             style={{
-              fontFamily: "Filson Pro Regular",
-              textAlign: "center",
+              width: "100%",
             }}
           >
-            If you don't have these devices nearby and want to visit later,
-            thank you again!
-          </p>
-          <p
-            style={{
-              fontFamily: "Filson Pro Regular",
-              textAlign: "center",
-            }}
-          >
-            Click here to copy the link to this website and save it for later.
-          </p>
+            <p
+              style={{
+                fontFamily: "Filson Pro Regular",
+                textAlign: "center",
+              }}
+            >
+              This website is like a movie, better in a bigger screen. Grab a
+              larger screen, like a laptop or desktop. That way, you can fully
+              explore all its features we've crafted for you and enjoy an
+              interactive experience.
+              <br />
+              <br />
+              If now isn’t the right time, no problem! Click here to copy the
+              link and save it for later viewing. or save a reminder here!
+            </p>
+          </div>
         </div>
       </div>
       <div
@@ -153,17 +141,29 @@ const MobileLoader = () => {
         style={{
           position: "absolute",
           width: "100%",
+          paddingLeft: (85 * window.innerWidth) / 1920,
+          paddingRight: (85 * window.innerWidth) / 1920,
         }}
       >
         <p
           style={{
             fontFamily: "Filson Pro Regular",
             textAlign: "center",
+            margin: 10,
           }}
         >
           © 2024 Sudhesh Venkatachalam | Disclaimer
         </p>
-        <hr className="footer-line" />
+        <hr
+          className="footer-line"
+          style={{
+            margin: 0,
+            // width: "100%",
+            height: 1,
+            backgroundColor: "#AF9F8C",
+            border: "none",
+          }}
+        />
         <div
           className="footer-content"
           style={{
@@ -175,20 +175,16 @@ const MobileLoader = () => {
           <p
             style={{
               fontFamily: "Filson Pro Regular",
+              margin: 10,
             }}
           >
             Designed by Sudhesh Venkatachalam{" "}
           </p>
-          <img
-            src={image}
-            style={{
-              margin: "0 10px",
-            }}
-            alt=""
-          />
+          <img src={image} style={{}} alt="" />
           <p
             style={{
               fontFamily: "Filson Pro Regular",
+              margin: 10,
             }}
           >
             Developed by Barath Surya

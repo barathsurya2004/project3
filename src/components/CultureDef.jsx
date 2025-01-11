@@ -134,9 +134,10 @@ const CultureDef = () => {
             ingredients as vocabulary. Indian cuisine, for example, relies on
             ingredients like cardamom, turmeric, and chilies. Preparation
             methods act like verbs, shaping the dish's essence. Think of the
-            slow simmering of fragrant biryanis compared to the tandoori's fiery
-            smoky perfection. Flavors and techniques are the grammar, creating a
-            symphony on the plate. From the creamy kurmas to the Jamuns.
+            slow simmering of fragrant biryani's compared to the tandoori's
+            fiery smoky perfection. Flavors and techniques are the grammar,
+            creating a symphony on the plate. From the creamy Kurmas to the
+            Jamuns.
           </p>
           <p
             style={{

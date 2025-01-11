@@ -24,9 +24,10 @@ import WhatIsFoodCanvas from "./components/WhatIsFoodCanvas";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Interactions from "./components/Interactions";
+import FlowerFall from "./components/FlowerFall";
 
 function App() {
-  const { loading, light } = useContext(Context);
+  const { loading, light, flowerFall } = useContext(Context);
   const [pointer, setPointer] = useState([0, 0]);
   useEffect(() => {
     window.addEventListener("mousemove", (e) => {
@@ -55,6 +56,8 @@ function App() {
   return (
     <>
       {/* <BackGround /> */}
+      {flowerFall && <FlowerFall />}
+      {/* <FlowerFall /> */}
       <Loader />
       <div
         className="loading-helper"

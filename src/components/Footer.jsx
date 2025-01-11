@@ -4,7 +4,8 @@ import { Context } from "../context";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 const Footer = () => {
-  const { mode, setMode, setWinkState } = useContext(Context);
+  const { mode, setMode, setWinkState, setFlowerFall, flowerFall } =
+    useContext(Context);
   useEffect(() => {
     if (mode === null || mode === "Disclaimer") {
       gsap.to(".disclaimer-text", {
@@ -169,7 +170,14 @@ const Footer = () => {
           });
         }}
         onClick={() => {
-          window.open("https://bsurya.netlify.app/");
+          if (!flowerFall) {
+            setFlowerFall(true);
+            setTimeout(() => {
+              window.open("https://bsurya.netlify.app/");
+            }, 2000);
+          } else {
+            window.open("https://bsurya.netlify.app/");
+          }
         }}
       >
         Developed by Barath Surya

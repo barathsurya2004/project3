@@ -105,7 +105,7 @@ void main() {
   distortion *= smoothstep(uCircleRadius, 0.0, dist) * 0.2 * uVisibility;
 
   // Dynamic line thickness based on distance
-  float gridSize = 2.8;          // Adjust the grid cell size
+  float gridSize = 2.5;          // Adjust the grid cell size
   float baseLineWidth = 0.015;    // Base grid line thickness
   float thicknessScale = 0.03;    // Scale factor for thickness increase
   float dynamicLineWidth = baseLineWidth + 

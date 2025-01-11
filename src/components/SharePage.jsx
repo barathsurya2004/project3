@@ -254,7 +254,7 @@ const SharePage = () => {
               marginRight: "auto",
             }}
           >
-            Click to send these to your firends and let them know the beauty of
+            Click to send these to your friends and let them know the beauty of
             these cuisines
           </p>
         </div>

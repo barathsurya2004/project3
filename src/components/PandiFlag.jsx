@@ -81,8 +81,8 @@ const PandiFlag = () => {
           style={{
             position: "absolute",
             top: "15vh",
-            // transform: "translateY(-50%)",
-            right: 0,
+            transform: "translate(10%)",
+            left: "50%",
             height: 720 * (window.innerHeight / 1080),
           }}
         >

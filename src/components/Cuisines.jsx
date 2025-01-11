@@ -232,6 +232,9 @@ const Cuisines = () => {
         onLeaveBack: () => {
           meshShowRestrict.current = 1;
         },
+        onLeave: () => {
+          meshShowRestrict.current = 3;
+        },
       },
     });
     gsap.to(".null", {
@@ -523,6 +526,8 @@ const Cuisines = () => {
           display: "flex",
           flexDirection: "column",
           lineHeight: 1.2,
+          zIndex: 10000,
+          pointerEvents: "none",
         }}
       >
         <p
